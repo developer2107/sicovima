@@ -1,4 +1,4 @@
-
+//Brenda
 function agregarProducto(){
 
   var cantidad=$("#cant_DCom").val();
@@ -42,7 +42,7 @@ function agregarProducto(){
 $(document).on("click",".deleteCompra",function(){
 var totalF=parseFloat($(this).parents('tr').find('td:eq(3)').html());
 var parent = $(this).parents().get(0);
- 
+
 $(parent).remove();
 var total=parseFloat($("#total_Com").val());
     total=total-(totalF);
@@ -66,7 +66,7 @@ tipos[4]='Remaches';
 
 var tipo = parseFloat($(this).parents('tr').find('input:eq(2)').val());
 for (var i = 1; i < 5; i++) {
-  
+
   if (tipo==i) {
     tipoa.append("<option value='"+i+"' selected='selected'>"+tipos[i]+"</option>");
   }else{
@@ -79,7 +79,7 @@ var medida = $(this).parents('tr').find('input:eq(3)').val();
 
 var color = $(this).parents('tr').find('input:eq(4)').val();
   $("#colorMP").val(color);
- 
+
  var nombre = $(this).parents('tr').find('input:eq(5)').val();
   $("#nombreMP").val(nombre);
 
