@@ -206,11 +206,11 @@
                                                 <td align="left"><font size="4" >{{$inv->nuevaExistencia_IPT}}</font></td>
                                                 <td align="rihgt"><font size="4" >{{$prod->color_Prod}}</font></td>
                                                 <td align="rihgt"><font size="4" >{{$prod->descripcion_Prod}}</font></td>
-                                                <td align="rihgt" id="precio"><font size="4" >{{$prod->precio_Prod}}</font></td>
+                                                <td align="rihgt" id="precio" step=".01" style = "width:15%"><font size="4" ><i class="fa fa-usd"></i>  {{$prod->precio_Prod}}</font></td>
                                                 <td align="center">
                                                     <input type="hidden" value='{{$prod->tipo_Prod." ".$prod->estilo_Prod." ".$prod->color_Prod}}'>
                                                     <input type="hidden" value='{{$inv->nuevaExistencia_IPT}}'>
-                                                    <input type="hidden" value='{{$prod->precio_Prod}}'>
+                                                    <input type="hidden" step=".01" value='{{$prod->precio_Prod}}'>
                                                     <input type="hidden" value='{{$prod->id}}'>
                                                     <input type="hidden" name="prueba" value="100"/>
                                                     <a class="btn btn-success btn-circle" type="button" id="AddCant" data-dismiss="modal" data-toggle="modal" data-target="#myModal6">

@@ -59,8 +59,8 @@ $(document).on('ready',function(){
 			"<td>"+ subtotal +"</td>"+
 			"<td>"+ "<input  type='hidden' name='idV[]' value='"+a_id+"'/>" +
 			"<input type='hidden' name='cantidadV[]' value='"+cantidad+"'/>" +
-			"<input  type='hidden' name='costoProdV[]' value='"+a_precio+"'/>" +
-			"<input  type='hidden' name='gananciaV[]' value='"+gananciau+"'/>" +
+			"<input  type='hidden' name='costoProdV[]'step='.01' value='"+a_precio+"'/>" +
+			"<input  type='hidden' name='gananciaV[]' step='.01' value='"+gananciau+"'/>" +
 			"<input  type='hidden' name='id[]' value=''/>" +
 			"<a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>"+
 			"</td>"+

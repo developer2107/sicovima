@@ -41,33 +41,31 @@
                     </thead>
                     <tbody>
                       <?php  
-                      foreach($ventas as $ven):
-                      $cadena='agregarMotivo('.$ven->id.');';
+                        foreach($ventas as $ven):
+                        $cadena='agregarMotivo('.$ven->id.');';
                       ?>
                       <tr>
-<td align="left"><font size="4" ></font>{{$ven->cliente->nombre_Cli}}</td>
-<?php   
-  $dato = explode("-",(String)$ven->fecha_Ven);
-  $fecha = $dato[2]."/".$dato[1]."/".$dato[0];
-?>
-<td align="rihgt" style = "width:15%"><font size="4" ></font>{{$fecha}}</td>
-<td align="rihgt" style = "width:20%"><font size="4" ></font>{{SICOVIMA\venta::numeroDocumento($ven->id)}}</td>
-<td align="rihgt" style = "width:10%"><font size="4" ></font><i class="fa fa-usd"></i>  {{$ven-> total_Ven}}</td>
-<td align="center" style = "width:12%">
-  <a href="VerVenta" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
-  </a><?php if ($ven->estado_Ven!=2): ?>
-  <a href="ModificarVenta/{{$ven->id}}" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
-  </a>
-    <a class="btn btn-danger btn-circle" data-toggle="modal" type="button" data-target="#myModalAnular" onclick="{{$cadena}}"><i class="fa fa-times"></i></a>
-  <?php else: ?>
-
-  <?php endif ?>
-  </td>
-                       </tr>
-                       <?php  
-                       
-                          endforeach
-                          ?>
+                        <td align="left"><font size="4" ></font>{{$ven->cliente->nombre_Cli}}</td>
+                        <?php   
+                          $dato = explode("-",(String)$ven->fecha_Ven);
+                          $fecha = $dato[2]."/".$dato[1]."/".$dato[0];
+                        ?>
+                        <td align="rihgt" style = "width:15%"><font size="4" ></font>{{$fecha}}</td>
+                        <td align="rihgt" style = "width:20%"><font size="4" ></font>{{SICOVIMA\venta::numeroDocumento($ven->id)}}</td>
+                        <td align="rihgt" style = "width:10%"><font size="4" ></font><i class="fa fa-usd"></i>  {{$ven-> total_Ven}}</td>
+                        <td align="center" style = "width:12%">
+                          <a href="VerVenta" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
+                          </a><?php if ($ven->estado_Ven!=2): ?>
+                          <a href="ModificarVenta/{{$ven->id}}" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
+                          </a>
+                          <a class="btn btn-danger btn-circle" data-toggle="modal" type="button" data-target="#myModalAnular" onclick="{{$cadena}}"><i class="fa fa-times"></i></a>
+                          <?php else: ?>
+                          <?php endif ?>
+                        </td>
+                      </tr>
+                    <?php  
+                      endforeach
+                    ?>
                     </tbody>
                   </table>
                 </div>

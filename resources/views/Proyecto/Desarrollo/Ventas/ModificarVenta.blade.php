@@ -246,7 +246,7 @@
                         <label class="font-bold">Ganancia por unidad</label>
                         <div class="input-group m-b">
                             <span class="input-group-addon">$</span>
-                            {!! Form::number('ganancia_Prod',null,['class'=>'form-control','id'=>'gananciau']) !!}
+                            {!! Form::number('ganancia_Prod',null,['class'=>'form-control','id'=>'gananciau','step'=>'.01']) !!}
                         </div>
                     </div>
                 </div>
