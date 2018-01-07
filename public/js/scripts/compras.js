@@ -1,4 +1,4 @@
-//Brendaly
+//Brendaly Carmela
 function agregarProducto(){
 
   var cantidad=$("#cant_DCom").val();
