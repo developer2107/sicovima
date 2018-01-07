@@ -1,4 +1,4 @@
-//Brenda
+//Brendaly
 function agregarProducto(){
 
   var cantidad=$("#cant_DCom").val();
