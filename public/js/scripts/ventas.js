@@ -1,4 +1,4 @@
-//Gre
+//Gre Melina the pretty girl
 var indiceg;
 var gananciag;
 var costog;
