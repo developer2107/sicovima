@@ -1,3 +1,4 @@
+//Brenda
 var indiceg;
 var gananciag;
 var costog;
