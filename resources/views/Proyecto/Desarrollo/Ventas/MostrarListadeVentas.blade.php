@@ -36,6 +36,7 @@
                        <th align="left">Fecha</th>
                        <th align="left">Numero de Documento</th>
                        <th align="left">Total</th>
+                       <th align="left">Estado</th>
                        <th align="left">Acciones</th>
                       </tr>
                     </thead>
@@ -53,6 +54,14 @@
                         <td align="rihgt" style = "width:15%"><font size="4" ></font>{{$fecha}}</td>
                         <td align="rihgt" style = "width:20%"><font size="4" ></font>{{SICOVIMA\venta::numeroDocumento($ven->id)}}</td>
                         <td align="rihgt" style = "width:10%"><font size="4" ></font><i class="fa fa-usd"></i>  {{$ven-> total_Ven}}</td>
+                        <td><?php 
+                        if ($ven->estado_Ven!=2):
+                         ?>
+                          Normal
+                          <?php else: ?>
+                            Anulada
+                          <?php endif ?>
+                        </td>
                         <td align="center" style = "width:12%">
                           <a href="VerVenta" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
                           </a><?php if ($ven->estado_Ven!=2): ?>
