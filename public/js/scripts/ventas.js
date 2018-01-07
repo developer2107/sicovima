@@ -56,7 +56,7 @@ $(document).on('ready',function(){
 			"<td>"+ cantidad +"</td>"+
 			"<td>"+ a_precio +"</td>"+
 			"<td>"+ gananciau +"</td>"+
-			"<td>"+ subtotal +"</td>"+
+			"<td>"+ subtotal.toFixed(2) +"</td>"+
 			"<td>"+ "<input  type='hidden' name='idV[]' value='"+a_id+"'/>" +
 			"<input type='hidden' name='cantidadV[]' value='"+cantidad+"'/>" +
 			"<input  type='hidden' name='costoProdV[]'step='.01' value='"+a_precio+"'/>" +
