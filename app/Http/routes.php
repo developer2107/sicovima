@@ -34,10 +34,12 @@ Route::get('/DarBajaCli','ClientesController@darbajacli');
 
 /* DE AQUI ABAJO ESTAN LAS RUTAS DE GRECIA*/
 
-Route::Resource('Bitacora','SeguridadController@Bitacora');
+Route::Resource('Bitacora','BitacoraController');
 Route::match(['get','post'],'/ModificarVenta/{id}','VentasController@Modificar');
 Route::Resource('/RegistrarVenta','VentasController');
 Route::Resource('/ListadeVentas','VentasController@Mostrar');
+Route::match(['get','post'],'/motivo/{id}/{motivo}','VentasController@motivos');
+
 Route::Resource('/AnularVenta','VentasController@Anular');
 Route::Resource('/VerVenta','VentasController@Ver');
 Route::get('RegistrarVentas/{id}','VentasController@getResponsables');

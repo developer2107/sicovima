@@ -1,7 +1,9 @@
-	var indiceg;
-	var gananciag;
-	var costog;
-	var subtotalg;
+var indiceg;
+var gananciag;
+var costog;
+var subtotalg;
+var idMot;
+
 $(document).on('ready',function(){
 	var a_producto;
 	var a_existencia;
@@ -67,7 +69,7 @@ $(document).on('ready',function(){
 			tabla.append(detalles);
 			$("#cantidad").val("");
 			$("#gananciau").val("");
-			$("#totalVenta").val(total);
+			$("#totalVenta").val(total.toFixed(2));
 
 			//$('#myModal6').modal('hide');
 			var objeto=document.getElementById("cerraM");
@@ -96,7 +98,7 @@ $(document).on('ready',function(){
 			total=total-subtotalg;
 			total=total+subtotal;
 			console.log(subtotalg);
-			$('#totalVenta').val(total);
+			$('#totalVenta').val(total.toFixed(2));
 		}
 
 		
@@ -104,13 +106,31 @@ $(document).on('ready',function(){
 
 	$('#tablaProductos').on('click','#Eliminar',function(e){
 		var total=parseFloat($("#totalVenta").val());
-		subtotal=parseFloat($(this).parents('tr').find('input:eq(2)').val());
+		var cantidadE=parseFloat($(this).parents('tr').find('input:eq(1)').val());
+		var gananciaE=parseFloat($(this).parents('tr').find('input:eq(3)').val());
+		precio=parseFloat($(this).parents('tr').find('input:eq(2)').val());
 		id_Product=parseFloat($(this).parents('tr').find('input:eq(0)').val());
-		total = total - subtotal;
+		var aux = ((gananciaE+precio)*cantidadE);
+		total = total - aux;
 		$(this).parent('td').parent('tr').remove();
-		$("#totalVenta").val(total);
+		$("#totalVenta").val(total.toFixed(2));
 		var indice = productosAgregados.indexOf(id_Product);
 		productosAgregados.splice(indice,1);
+	});
+
+	$('#agregarMotivo').click(function(){
+		var accion = $("#agregarMotivo").val();
+		if (accion == "Agregar") {
+			var obtener=$('#ventasTabla').find('option:selected');
+		//alert(obtener.val());
+			var idCliente =obtener.val();
+			var ruta="/github/sicovima/public/motivo/"+idCliente;
+
+		}else{
+			
+		}
+
+		
 	});
 
 
@@ -129,4 +149,16 @@ function modificarDetalle(indice){
 	$("#gananciau").val(gananciag);//enviar y mostrar en los input
 	$("#agregarVentas").val("Modificar");
 
+}
+
+function agregarMotivo(id){
+	idMot=id;
+}
+
+function agregarMotivoEst(){
+	var motivo = $("#motivo").val();
+	var ruta="/github/sicovima/public/motivo/"+idMot+"/"+motivo;
+	$.get(ruta,function(res){
+		location.href="/github/sicovima/public/ListadeVentas";
+	});
 }

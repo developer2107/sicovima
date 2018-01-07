@@ -14,6 +14,7 @@ use SICOVIMA\documentoVenta;
 use SICOVIMA\clienteJuridico;
 use SICOVIMA\producto;
 use SICOVIMA\inventarioProductoTerminado;
+use SICOVIMA\estadoDocumento;
 
 class VentasController extends Controller
 {
@@ -33,8 +34,7 @@ class VentasController extends Controller
         $venta = venta::find($id);
         $clientes = cliente::all();
         $cliente = cliente::all();
-        $productos = producto::all();
-        
+        $productos = producto::where('estado_Prod',1)->get();        
         $arrayC = [];
         foreach ($clientes as $cliente) {
             $arrayC[$cliente->id]=$cliente->nombre_Cli;
@@ -56,49 +56,56 @@ class VentasController extends Controller
 
     public function Mostrar()
     {
-        return view("Proyecto.Desarrollo.Ventas.MostrarListadeVentas");//
+        $ventas = venta::with('cliente')->get();
+        return view("Proyecto.Desarrollo.Ventas.MostrarListadeVentas",compact('ventas'))->with('ventas', $ventas);
     }
 
     public function Index()
     {
-        // $producto = producto::create([
-        //     'tipo_Prod'=>"Short",
-        //     'estilo_Prod'=>"Comando",
-        //     'descripcion_Prod'=>"Con pretina ancha",
-        //     'precio_Prod'=>14.22,
-        //     'color_Prod'=>"Negro",
-        //     'talla_Prod'=>"36",
-        //     'imagen_Prod'=>'9878674653',
+        // producto::create([
+        //     'tipo_Prod'=>"Short Jeans",
+        //     'estilo_Prod'=>"Corto y Alto",
+        //     'descripcion_Prod'=>"Roto de ambas piernas, una rutura mediana en cada uno", 
+        //     'precio_Prod'=>12.88, 
+        //     'color_Prod'=>"Azul", 
+        //     'talla_Prod'=>"28", 
+        //     'imagen_Prod'=>"", 
+        //     'estado_Prod'=>1,
         // ]);
+        // producto::create([
+        //     'tipo_Prod'=>"Pantalon",
+        //     'estilo_Prod'=>"Tipo polo",
+        //     'descripcion_Prod'=>"Cuello rallado blanco", 
+        //     'precio_Prod'=>15.50, 
+        //     'color_Prod'=>"Menta", 
+        //     'talla_Prod'=>"28", 
+        //     'imagen_Prod'=>"", 
+        //     'estado_Prod'=>1,
+        // ]);
+        
+        // // 
+        // inventarioProductoTerminado::create([
+        //         'tipoMovimiento_IPT'=>1,
+        //         'existencias_IPT'=>0,
+        //         'cantidad_IPT'=>20,
+        //         'fechaMov_IPT'=>"2017-08-21",
+        //         'nuevaExistencia_IPT'=>(0+20),
+        //         'id_Producto'=>27,
+        //     ]);
+        // inventarioProductoTerminado::create([
+        //         'tipoMovimiento_IPT'=>1,
+        //         'existencias_IPT'=>0,
+        //         'cantidad_IPT'=>9,
+        //         'fechaMov_IPT'=>"2017-08-21",
+        //         'nuevaExistencia_IPT'=>(0+9),
+        //         'id_Producto'=>28,
+        //     ]);
 
-        //$nombres_Cli = cliente::select('nombre_Cli') -> get();
-       // dd($nombres_Cli -> all());
-       // 
-       
-        $productos = producto::all();
+
+        $productos = producto::where('estado_Prod',1)->get();
         $cliente = cliente::all();
         $inventarioProductoTerminados = inventarioProductoTerminado::all();
-      
-        return view('Proyecto.Desarrollo.Ventas.RegistrarVentas',compact('cliente'))->with('productos')->with('cliente', $cliente)->with('inventarioProductoTerminados', $inventarioProductoTerminados);
-
-        
-            //return view('Proyecto.Desarrollo.Ventas.RegistrarVentas',compact('nombres_Cli'));
-        /*/if(is_null($request->has('total_Ven'))) {
-           # code...
-           $id= \SICOVIMA\venta::create([
-            'can_Ven'=>'5',
-            'fecha_Ven'=>'2017-09-08',
-            'total_Ven'=>'1',
-            'id_Cliente'=>'1',
-
-            ]);
-       //}
-        $Cliente = \SICOVIMA\cliente::orderBy('id','ASC')->paginate(5);
-        $Venta = \SICOVIMA\venta::orderBy('id','ASC')->paginate(5);
-        $Producto = \SICOVIMA\producto::orderBy('id','ASC')->paginate(5);
-       // return view('Ventas.RegistrarVentas',compact('nombres_Cli'));
-        //return view("Proyecto.Desarrollo.Ventas.RegistrarVentas")->with('cliente', $nombres_Cli)->with('cliente', $Cliente)->with('venta', $Venta)->with('producto', $Producto);
-    */
+        return view('Proyecto.Desarrollo.Ventas.RegistrarVentas',compact('cliente','productos'))->with('cliente', $cliente)->with('inventarioProductoTerminados', $inventarioProductoTerminados);
     }
 
 
@@ -177,10 +184,9 @@ class VentasController extends Controller
 
     public function ListaProductos()
     {
-      $producto= producto::all();
-      $inventarioProductoTerminado = inventarioProductoTerminado::all();
-
-        return view("Proyecto.Desarrollo.Ventas.FormVentas.modalDetallesdeProducto")->with('producto', $producto)->with('inventarioProductoTerminado', $inventarioProductoTerminado);//
+        $producto= producto::all();
+        $inventarioProductoTerminado = inventarioProductoTerminado::all();
+        return view("Proyecto.Desarrollo.Ventas.FormVentas.modalDetallesdeProducto")->with('producto', $producto)->with('inventarioProductoTerminado', $inventarioProductoTerminado);
     }
     /**
      * Display the specified resource.
@@ -192,7 +198,6 @@ class VentasController extends Controller
     {
         $producto2 = producto::find($id);
         return view("Proyecto.Desarrollo.Ventas.RegistrarVentas")->with('producto2', $producto2);
-
     }
 
     /**
@@ -224,6 +229,15 @@ class VentasController extends Controller
         $venta2->estado_Ven = 0;
         $venta2->save();
         $detalles2 = detalleVenta::where('id_Venta',$id)->get();
+        $docVenta = documentoVenta::where('id_Venta',$id)->get()->first();
+        $doc = documento::find($docVenta->id_Documento);
+        $doc->estado_Doc = 1;//estado anulada
+        $doc->save();
+
+        estadoDocumento::create([
+            'motivo_EstadoDoc'=>$request->motivoEstado,
+            'id_Documento'=>$docVenta->id_Documento,
+        ]);        
 
         foreach ($detalles2 as $detalle2) {
             $inventario = inventarioProductoTerminado::where('id_Producto',$detalle2->id_Producto)->get()->last();
@@ -241,7 +255,7 @@ class VentasController extends Controller
             'tipo_Doc'=>$request->tipo_Doc,
             'tipoPago_Doc'=>2,
             'fechaEmision_Doc'=>$request->fecha_Ven,
-            'estado_Doc'=>0,
+            'estado_Doc'=>0,//estado normal
             'numero_Doc'=>$request->numeroDoc,
         ]);
 
@@ -255,6 +269,7 @@ class VentasController extends Controller
             'fecha_Ven'=>$request->fecha_Ven,
             'total_Ven'=>$request->total_Ven,
             'id_Cliente'=>$request->clientes,
+            'estado_Ven'=>1,
         ]);
 
         for ($i=0; $i < count($idV); $i++) {
@@ -285,7 +300,7 @@ class VentasController extends Controller
             'id_Documento'=>$documento->id,
         ]);
         
-        return redirect("/RegistrarVenta");
+        return redirect("/ListadeVentas");
         // $cantidadV=$request->cantidadV;
         // $idV=$request->idV;
         // $costoProdV=$request->costoProdV;
@@ -349,5 +364,23 @@ class VentasController extends Controller
             return "false";
         }
 
+    }
+
+    public static function motivos($id,$motivo){
+        $docVenta = documentoVenta::where('id_Venta',$id)->get()->first();
+        $doc = documento::find($docVenta->id_Documento);
+        $doc->estado_Doc = 1;//estado anulada
+        $doc->save();
+        $venta3 = venta::find($id);
+        $venta3->estado_Ven = 2;//Anulada-Eliminada
+        $venta3->save();
+       
+        estadoDocumento::create([
+            'motivo_EstadoDoc'=>$motivo,
+            'id_Documento'=>$docVenta->id_Documento,
+        ]);        
+
+        $ventas = venta::with('cliente')->get();
+        return 0;
     }
 }

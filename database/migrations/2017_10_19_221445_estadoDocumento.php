@@ -15,7 +15,6 @@ class EstadoDocumento extends Migration
         Schema::create('estadoDocumento', function (Blueprint $table) {
             $table->increments('id');
             $table->string('motivo_EstadoDoc');
-            $table->date('fecha_EstadoAnu');
             $table->integer('id_Documento')->unsigned();
             $table->foreign('id_Documento')->references('id')->on('documento');
             $table->rememberToken();
