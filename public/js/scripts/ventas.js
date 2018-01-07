@@ -1,4 +1,4 @@
-//Brenda
+//Gre
 var indiceg;
 var gananciag;
 var costog;
