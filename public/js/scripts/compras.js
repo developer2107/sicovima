@@ -28,6 +28,7 @@ $('#agregarCompras').click(function(){
       "<td><input type='hidden' name='cantidadc[]' value='"+cantidad+"'>"+
       "<input type='hidden' name='idc[]' value='"+id_MP+"'>"+
       "<input type='hidden' name='subTotalc[]' value='"+c+"'>"+
+      "<input type='hidden' name='id[]' value=''>"+
       "</td><td>"+cantidad+"</td><td>"+nombre_MP+" "+color_MP+"</td><td>"+parseFloat(precio_MP).toFixed(2)+"</td><td>"+parseFloat(c).toFixed(2)+"</td><td class='deleteCompra' style='cursor:pointer;'>Eliminar</td></tr>");
   }
 });
@@ -91,3 +92,14 @@ var total=parseFloat($("#total_Com").val());
     total=total-(totalF);
      document.getElementById("total_Com").value=total.toFixed(2);
 });
+
+function modificarDetalleMP(indice){
+	console.log(indice);
+	indiceg=indice;
+	cantidadg = $('#cd'+indice).text();
+	subtotalg = $('#st'+indice).text();
+  console.log(cantidadg+subtotalg);
+	$("#cantidad").val(cantidadg);
+	$("#agregarCompras").val("Modificar");
+
+}

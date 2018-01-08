@@ -22,7 +22,9 @@ class CompraController extends Controller
     public function Modificar($id)
     {
       $compra = compra::find($id);
-        return view("Proyecto.Desarrollo.Compras.ModificarCompra",compact('compra'));//
+      $materiaPrimas = \SICOVIMA\materiaPrima::all();
+
+        return view("Proyecto.Desarrollo.Compras.ModificarCompra",compact('compra','materiaPrimas'));//
     }
 
     public function Ver()
