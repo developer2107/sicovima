@@ -65,6 +65,7 @@ Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar')
 
 Route::get('/ControlMateriaPrima','InventarioMPController@Mostrar');
 Route::Resource('/VerMateriaPrima','InventarioMPController@Ver');
+Route::Resource('/RegistroMateriaP','MateriaPrimaController');
 Route::get('/ControlProductosTerminados','InventarioPTController@Mostrar');
 Route::Resource('/VerProductosTerminados','InventarioPTController@Ver');
 Route::get('/Login','LoginController@index');
