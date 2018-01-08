@@ -41,13 +41,9 @@
                   <tr>
                       <td align="left"><font size="4" >{{$cli-> nombre_Cli}}</font></td>
                       <?php
-                        $telefonosC = SICOVIMA\cliente::numeroTelefonoCliente($cli->id);
+                        $telefonoC = SICOVIMA\cliente::numeroTelefonoCliente($cli->id);
                       ?>
-                      <td align="rihgt"><font size="4" ><?php
-                        foreach ($telefonosC as $telefonos) {
-                          echo $telefonos->numero_TelefonoCli." ";
-                        }
-                      ?></font></td>
+                      <td align="rihgt"><font size="4" >{{$telefonoC-> numero_TelefonoCli}}</font></td>
                       <td align="left"><font size="4" >
                         @if ($cli-> tipo_Cli )
                           Natural

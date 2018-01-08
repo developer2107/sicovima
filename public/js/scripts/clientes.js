@@ -22,27 +22,6 @@ $(document).on('ready',function(){
 		};
 	});
 
-
-	$('#AddTelefono').click(function(){
-
-		var telCliente='';
-		//alert($("#telCliente").val());
-		var telefono = $("#idTelefonos");
-		var cadena="<div class='row'><div class='form-group'><label class='col-lg-3 control-label'></label><div class='col-lg-4' ><input type='text' class='form-control' data-mask='(+999) 9999-9999' placeholder='(+      )         -     ' style='width:140px' name='tel[]' value='"+telCliente+"'/></div></div></div><br>";
-
-		telefono.append(cadena);
-			
-	});
-
-	$('#AddCorreo').click(function(){
-
-		var correoCliente='';
-		//alert($("#telCliente").val());
-		var correo = $("#idCorreos");
-		var cadena1="<div class='row'><div class='form-group'><label class='col-lg-3 control-label'></label><div class='col-lg-7' ><input type='email' class='form-control' placeholder='JuanPerez@ejemplo.com' style = 'width:300px' name='cor[]' value='"+correoCliente+"'/></div></div></div><br>";
-		correo.append(cadena1);
-	});
-
 	$('#natural').click(function(){
 		$('#datosNatural').css("display","block");
 		$('#datosJuridico').css("display","none");
