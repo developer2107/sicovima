@@ -2,7 +2,7 @@
 
 
 @section('content')
-{!!Form::open(['class' =>'form-horizontal form-label-left input_mask','route' =>'admin.pedido.store','method' =>'POST'])!!}
+{!!Form::open(['class' =>'form-horizontal form-label-left input_mask','route' =>'admin.pedidos.store','method' =>'POST'])!!}
 
 
 <div class="row wrapper border-bottom white-bg page-heading">

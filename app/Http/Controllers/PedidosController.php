@@ -99,7 +99,7 @@ class PedidosController extends Controller
      {
 
        $producto = \SICOVIMA\producto::orderBy('id','ASC')->paginate(5);
-       return view('Proyecto.Desarrollo.pedidos.RegistrarPedidos')->with('producto', $producto);
+       return view('Proyecto.Desarrollo.pedidos.create')->with('producto', $producto);
      }
 
     public function create()

@@ -5,7 +5,7 @@
                 <div class="carousel-inner">
 
                     <div class="item active">
-                        <img alt="image" class="img-responsive" src="img/mada.jpg">
+                        <img alt="image" class="img-responsive" src="../img/mada.jpg">
                     </div>
 
                 </div>
