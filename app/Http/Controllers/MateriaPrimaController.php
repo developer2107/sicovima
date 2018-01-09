@@ -15,9 +15,9 @@ class MateriaPrimaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function Modificar($id)
+    public function Modificar()
     {
-
+        return view("Proyecto.Desarrollo.InventarioMP.ModificarMateriaPrima");
     }
 
     public function Ver()

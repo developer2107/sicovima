@@ -39,7 +39,7 @@
                                                  <th align="left">Fecha</th>
                                                  <th align="left">Numero de Factura</th>
                                                  <th align="left">Total</th>
-                                                 <th align="left">Accion</th>
+                                                 <th align="left">Opciones</th>
 
                                           </tr>
                             </thead>

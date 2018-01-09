@@ -33,7 +33,7 @@
                   <th align="left">Nombre</th>
                   <th align="left">Telefono</th>
                   <th align="left">Tipo de Cliente</th>
-                  <th align="left">Acciones</th>
+                  <th align="left">Opciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -57,6 +57,8 @@
                         </a>
                         <a href="ModificarCli" class="btn btn-success btn-circle" type="button">
                           <i class="fa fa-pencil-square-o"></i>
+                        </a>
+                      </td>
                    </tr>
                 @endforeach
               </tbody>

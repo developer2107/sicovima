@@ -41,15 +41,14 @@ public static function arrayProveedores(){
 }
 
 public static function numeroTelefono($id_Proveedor){
-       $telefonoProveedor = telefonoProveedor::where('id_Proveedor',$id_Proveedor)->get();
-       return $telefonoProveedor;
+       $telefonoProveedor = telefonoProveedor::where('id_Proveedor',$id_Proveedor)->get()->first();
+       if(count($telefonoProveedor)>0){
+         return $telefonoProveedor;
+       }else{
+         return [];
+       }
+
 }
 
-// public static function tipoMercaderia($id_Proveedor){
-//        $compra = compra::where('id_Proveedor',$id_Proveedor)->get()->first();
-//        $detalleCompra = detalleCompra::where('id',$id_Compra)->get()->first();
-//        $materiaPrima = materiaPrima::where('id',$detalleCompra->id_MateriaPrima)->get()->first();
-//        return $materiaPrima -> nombre_MP;
-// }
 
 }

@@ -45,7 +45,7 @@
                                 <form class="form-horizontal">
                                      <br>
 
-                                          <div class="form-group"><label class="col-lg-3 control-label">Nombre </label>
+                                    <div class="form-group"><label class="col-lg-3 control-label">Nombre </label>
 
                                         <div class="col-lg-9">
                                           {!! Form::text('nombre_MP', null,['id' => 'nombre_MP','class' =>'form-control']) !!}

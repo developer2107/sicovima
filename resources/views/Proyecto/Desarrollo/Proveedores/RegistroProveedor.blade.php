@@ -152,18 +152,18 @@
                     </div>
 
 
-<div class="col-lg-5">
-        <div class="ibox-content">
-            <div class="carousel slide" id="carousel1">
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img alt="image" class="img-responsive" src="img/mada.jpg">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+      <div class="col-lg-5">
+              <div class="ibox-content">
+                  <div class="carousel slide" id="carousel1">
+                      <div class="carousel-inner">
+                          <div class="item active">
+                              <img alt="image" class="img-responsive" src="img/mada.jpg">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+      </div>
+  </div>
 </div>
 
  <br><br>
