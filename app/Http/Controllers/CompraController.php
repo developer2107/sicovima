@@ -27,10 +27,18 @@ class CompraController extends Controller
         return view("Proyecto.Desarrollo.Compras.ModificarCompra",compact('compra','materiaPrimas'));//
     }
 
-    public function Ver()
+    public function Ver($id)
     {
-      //  $compra = compra::find($id);
-        return view("Proyecto.Desarrollo.Compras.VerCompra");
+      $compra = compra::find($id);
+      $proveedores = proveedor::get();
+
+      $arrayP = [];
+      foreach ($proveedores as $proveedor) {
+          $arrayP[$proveedor->id]=$proveedor-> nombre_Prov;
+      }
+
+      $inventarioMateriaPrima = \SICOVIMA\inventarioMateriaPrima::all();
+      return view('Proyecto.Desarrollo.Compras.VerCompra',compact('inventarioMateriaPrima','compra','arrayP','proveedor'));
     }
 
     public function Registrar()
@@ -128,7 +136,7 @@ class CompraController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('Proyecto.Desarrollo.Compras.VerCompra');
     }
 
     /**
@@ -226,4 +234,5 @@ class CompraController extends Controller
         Session::flash('message','Detalle eliminado correctamente');
         return view("Proyecto.Desarrollo.Compras.RegistrarCompras");
     }
+
 }

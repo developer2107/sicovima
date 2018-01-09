@@ -59,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-                <?php endif ?>        
+                <?php endif ?>
                 <br>
                 <div class="row">
                     <div class="col-md-1">
@@ -149,8 +149,8 @@
                     <?php
                         $total=0;
                         $indice=0;
-                        foreach ($venta->detalleVenta as $key => $detalle): 
-                        
+                        foreach ($venta->detalleVenta as $key => $detalle):
+
                     ?>
                     <?php
                         $prod=SICOVIMA\producto::find($detalle->id_Producto);
@@ -166,10 +166,10 @@
                            <td style = "width:10%" id="gn{{$indice}}">{{$detalle->gananciaProd_DVen}}</td>
                            <td style = "width:10%" id="st{{$indice}}">{{$subtotal}}</td>
                         </tr>
-                    <?php 
+                    <?php
                         $total=$total+$subtotal;
                         $indice++;
-                        endforeach 
+                        endforeach
                     ?>
                     </tbody>
                 </table>
