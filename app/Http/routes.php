@@ -77,7 +77,6 @@ Route::get('/ModificarMateriaPrima','MateriaPrimaController@Modificar');
 Route::get('/ControlMateriaPrima','InventarioMPController@Mostrar');
 Route::Resource('/VerMateriaPrima','InventarioMPController@Ver');
 Route::Resource('/RegistroMateriaP','MateriaPrimaController');
-
 Route::get('/Login','LoginController@index');
 Route::get('/BuscarUsuario','SeguridadController@Buscar');
 Route::get('/VerUsuario','SeguridadController@Ver');

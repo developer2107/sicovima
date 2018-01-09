@@ -37,24 +37,29 @@
                     <table id="example" class="display" cellspacing="100" width="100%">
                       <thead>
                         <tr>
-                          <th align="left">Tipo</th>
-                          <th align="left">Estilo</th>
-                          <th align="left">Precio</th>
-                          <th align="left">Talla</th>
-                          <th align="left">Existencias</th>
-                          <th align="left">Estado</th>
-                          <th align="left">Opciones</th>
+                          <th align="left"><font size="3" >Tipo</font></th>
+                          <th align="left"><font size="3" >Estilo</font></th>
+                          <th align="left"><font size="3" >Precio</font></th>
+                          <th align="left"><font size="3" >Talla</font></th>
+                          <th align="left"><font size="3" >Existencias</font></th>
+                          <th align="left"><font size="3" >Estado</font></th>
+                          <th align="left"><font size="3" >Opciones</font></th>
                         </tr>
                       </thead>
                       <tbody>
                         @foreach($producto as $prod)
                         <tr>
-                          <td align="left"><font size="4" >{{$prod-> tipo_Prod}}</font></td>
-                          <td align="left"><font size="4" ></font></td>
-                          <td align="left"><font size="4" ></font></td>
-                          <td align="left"><font size="4" ></font></td>
-                          <td align="left"><font size="4" ></font></td>
-                          <td align="left"><font size="4" ></font></td>
+                          <td align="left"><font size="3" >{{$prod->tipo_Prod}}</font></td>
+                          <td align="left"><font size="3" >{{$prod->estilo_Prod}}</font></td>
+                          <td align="left"><font size="3" >{{$prod->precio_Prod}}</font></td>
+                          <td align="left"><font size="3" >{{$prod->talla_Prod}}</font></td>
+                          <td align="left" style = "width:10%"><font size="4" >{{$prod->talla_Prod}}</font></td>
+                          <td align="left">
+                            <?php if ($prod->estado_Prod==0): ?>
+                            <font size="4" >Dañado</font>
+                            <?php else: ?>
+                            <font size="4" >Bien</font></td> 
+                            <?php endif ?>
                           <td align="center"><a href="VerProductosTerminados" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a>
                         </tr>
                         @endforeach

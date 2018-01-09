@@ -30,7 +30,7 @@ class InventarioPTController extends Controller
     {
         $inventario = inventarioProductoTerminado::with('producto')->get();
         $producto = producto::all();
-        return view("Proyecto.Desarrollo.InventarioPT.InventarioPT")->with('producto', $producto);//
+        return view("Proyecto.Desarrollo.InventarioPT.InventarioPT")->with('producto', $producto)->with('inventario', $inventario);//
     }
 
     /**
