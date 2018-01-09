@@ -31,19 +31,26 @@ Route::get('/ModificarProv','ProveedoresController@modificarpro');
 Route::get('/ModificarCli','ClientesController@ModificarCli');
 Route::get('/DarBajaProv','ProveedoresController@darbajaprov');
 Route::get('/DarBajaCli','ClientesController@darbajacli');
+Route::Resource('/ListadeCompras','CompraController@Mostrar');
+Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
+Route::Resource('/RegistrarCompra','CompraController');
+Route::Resource('/VerCompra','CompraController@Ver');
+
 
 /* DE AQUI ABAJO ESTAN LAS RUTAS DE GRECIA*/
 
 Route::Resource('Bitacora','BitacoraController');
 Route::match(['get','post'],'/ModificarVenta/{id}','VentasController@Modificar');
+Route::match(['get','post'],'/VerVenta/{id}','VentasController@Ver');
 Route::Resource('/RegistrarVenta','VentasController');
 Route::Resource('/ListadeVentas','VentasController@Mostrar');
 Route::match(['get','post'],'/motivo/{id}/{motivo}','VentasController@motivos');
-Route::Resource('/AnularVenta','VentasController@Anular');
-Route::Resource('/VerVenta','VentasController@Ver');
 Route::get('RegistrarVentas/{id}','VentasController@getResponsables');
 Route::resource('venta','ventasController');
 Route::match(['get','post'],'/responsable/{id}','VentasController@responsables');
+
+
+//---------------------------------------------------------------------------
 
 Route::Resource('/ListadeCompras','CompraController@Mostrar');
 Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');

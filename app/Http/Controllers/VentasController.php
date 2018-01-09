@@ -23,10 +23,6 @@ class VentasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function Anular()
-    {
-        return view("Proyecto.Desarrollo.Ventas.AnularVenta");
-    }
 
     public function Modificar($id)
     {
@@ -44,14 +40,19 @@ class VentasController extends Controller
         return view('Proyecto.Desarrollo.Ventas.ModificarVenta',compact('arrayC','inventarioProductoTerminados','venta','productos','cliente','clientes'));
     }
 
-    public function Registrar()
+    public function Ver($id)
     {
-        return view("Proyecto.Desarrollo.Ventas.RegistrarVentas");
-    }
+        $venta = venta::find($id);
+        $clientes = cliente::all();
+        $cliente = cliente::all();
+        $productos = producto::where('estado_Prod',1)->get();        
+        $arrayC = [];
+        foreach ($clientes as $cliente) {
+            $arrayC[$cliente->id]=$cliente->nombre_Cli;
+        }
 
-    public function Ver()
-    {
-        return view("Proyecto.Desarrollo.Ventas.VerVenta");
+        $inventarioProductoTerminados = inventarioProductoTerminado::all();
+        return view('Proyecto.Desarrollo.Ventas.VerVenta',compact('arrayC','inventarioProductoTerminados','venta','productos','cliente','clientes'));
     }
 
     public function Mostrar()
@@ -360,6 +361,17 @@ class VentasController extends Controller
         $responsable = clienteJuridico::where('id_Cliente','=',$id)->get()->first();
         if (count($responsable)>0) {
             return $responsable;# code...
+        }else{
+            return "false";
+        }
+
+    }
+
+    public static function motivoss($id){
+        $docu = documentoVenta::where('id_Venta','=',$id)->get()->first();
+        $xx = estadoDocumento::where('id_Documento','=',$docu->id_Documento)->get()->first();
+        if (count($xx)>0) {
+            return $xx;# code...
         }else{
             return "false";
         }
