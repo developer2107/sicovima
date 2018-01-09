@@ -26,7 +26,7 @@
                               <th>Color</th>
                               <th>Precio</th>
                               <th>Unidad de Medida</th>
-                              <th>Accion</th>
+                              <th>Opciones</th>
                           </tr>
                           </thead>
                           <tbody>
@@ -36,7 +36,7 @@
                               <td align="left" id="estilo"><font size="4" >{{$materiaPrima-> nombre_MP}}</font></td>
                               <td align="left"><font size="4" >{{$materiaPrima-> tipo_MP}}</font></td>
                               <td align="rihgt"><font size="4" >{{$materiaPrima-> color_MP}}</font></td>
-                              <td align="rihgt"><font size="4" >{{$materiaPrima-> precio_MP}}</font></td>
+                              <td align="rihgt"><font size="4" ><i class="fa fa-usd"></i> {{$materiaPrima-> precio_MP}}</font></td>
                               <td align="rihgt" ><font size="4" >{{$materiaPrima-> unidadMedida_MP}}</font></td>
                               <td align="center">
                                   <input type="hidden" value='{{$materiaPrima-> nombre_MP}}'>
@@ -74,7 +74,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                 <i class="fa fa-clipboard modal-icon"></i>
-                <h4 class="modal-title">¿Cuantos desea llevar?</h4>
+                <h4 class="modal-title">Ingrese Cantidad de Materia Prima</h4>
                 <small></small>
             </div>
             <div class="modal-body">

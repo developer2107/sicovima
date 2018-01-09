@@ -29,8 +29,8 @@ class CompraController extends Controller
 
     public function Ver()
     {
-        $compra = compra::find($id);
-        return view("Proyecto.Desarrollo.Compras.VerCompra",compact('compra'));
+      //  $compra = compra::find($id);
+        return view("Proyecto.Desarrollo.Compras.VerCompra");
     }
 
     public function Registrar()

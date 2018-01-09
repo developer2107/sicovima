@@ -3,7 +3,7 @@
 @section('content')
 
   <div class="row wrapper border-bottom white-bg page-heading">
-      <div class="col-sm-4">
+      <div class="col-sm-6">
           <h2>Control de Inventario Materia Prima</h2>
           <ol class="breadcrumb">
               <li>
@@ -47,7 +47,7 @@
                                 @foreach($materiaPrima as $mat)
                             <tr>
 
-                              <td align="left"><font size="4" >{{$mat-> nombre_MP}}</font></td>
+                              <td align="left"><font size="4" >{{$mat-> nombre_MP." ".$mat-> color_MP}}</font></td>
                               <td align="left"><font size="4" >{{$mat-> obtenerCantidad($mat-> id)}}</font></td>
                               <?php if ($mat->estado_MP) {
                                 $aux = "Bueno";
@@ -60,6 +60,7 @@
                               <td align="center">
                               <a href="VerMateriaPrima" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a>
                               <a href="ModificarMateriaPrima" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></a>
+                              <a class='btn btn-danger btn-circle' type='button'><i class='fa fa-times'></i></a>
                             </td>
                           </tr>
                               @endforeach

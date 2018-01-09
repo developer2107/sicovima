@@ -1,6 +1,6 @@
 @extends('layouts.MenuAdministrador')
 @section('content')
-{!! Form::open(['route'=>'RegistroCliente.store', 'method'=>'post']) !!}
+{!! Form::open(['route'=>'RegistroCliente.store', 'method'=>'post','autocomplete'=>'off']) !!}
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">

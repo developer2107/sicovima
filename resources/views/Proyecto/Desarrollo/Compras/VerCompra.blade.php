@@ -2,7 +2,7 @@
 
 @section('content')
 
-{{-- {!! Form::model($compra,['route'=>['VerCompra.update',$compra->id], 'method'=>'PUT']) !!} --}}
+{{-- {!! Form::model(['route'=>['VerCompra.update'], 'method'=>'PUT']) !!} --}}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Compra</h2>
