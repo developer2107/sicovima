@@ -79,6 +79,7 @@ use SICOVIMA\detalleCompra;  ?>
                     <tr>
                         <th>Cantidad</th>
                         <th>Descripción</th>
+                        <th>Precio Unitario</th>
                         <th>Subtotal</th>
                         <th>Opciones</th>
 
@@ -89,51 +90,47 @@ use SICOVIMA\detalleCompra;  ?>
                       <?php
                         $detalles = detalleCompra::detalle($compra->id);
                         $total1 = 0;
+                        $indice = 0;
                       ?>
                       @foreach ($detalles as $detalle)
                       <?php
-                        $materiaP=detalleCompra::detalleM($detalle->id_MateriaPrima);
+                      $cadena='modificarDetalleMP('.$indice.');';
+
+                      $materiaP=detalleCompra::detalleM($detalle->id_MateriaPrima);
                       ?>
 
                     <tr>
-                        <td><input type='hidden' name='total[]' value='{{$detalle->subtotal_DCom}}'>
-                        <input type='hidden' name='cantidadc[]' value='{{$detalle->cant_DCom}}'>
-                        <input type='hidden' name='tipoc[]' value='{{$materiaP->tipo_MP}}'>
-                        <input type='hidden' name='medidac[]' value='{{$materiaP->unidadMedida_MP}}'>
-                        <input type='hidden' name='colorc[]' value='{{$materiaP->color_MP}}'>
-                        <input type='hidden' name='nombrec[]' value='{{$materiaP->nombre_MP}}'>
-                        {{$detalle->cant_DCom}}
-                        </td>
-                        <td>
-                        {{$materiaP->nombre_MP}}
-                        </td>
-                        <td>
-                        {{$detalle->subtotal_DCom}}
-                        </td>
+                        <td id="cd{{$indice}}">{{$detalle->cant_DCom}}</td>
+                        <td>{{$materiaP->nombre_MP." ".$materiaP->color_MP}}</td>
+                        <td>{{$detalle->subtotal_DCom/$detalle->cant_DCom}}</td>
+                        <td id="st{{$indice}}">{{$detalle->subtotal_DCom}}</td>
                         <?php
                            $total1 = $detalle->subtotal_DCom + $total1;
                         ?>
-                        <td class='edicion' style='cursor:pointer;'>
-                            <a class="btn btn-success btn-circle" data-toggle="modal" data-target="#modalProducto" ><i class="fa fa-pencil-square-o"></i>
-                            </a>
-                            </td>
-                            <td class='deleteC' style='cursor:pointer;'>
-                            <a class="btn btn-warning btn-circle"><i class="fa fa-times"></i>
-                            </a>
-                            </td>
-
+                        <td style='cursor:pointer;'>
+                          <input type='hidden' name='cantidadc[]' id="cdh{{$indice}}" value='{{$detalle->cant_DCom}}'>
+                          <input type='hidden' name='idc[]' value='{{$materiaP-> id}}'>
+                          <input type='hidden' name='subTotalc[]' id="sth{{$indice}}" value='{{$detalle-> subtotal_DCom}}'>
+                          <input type='hidden' name='id[]' value='{{$detalle-> id}}'>
+                          <a class='btn btn-success btn-circle' type='button' id='ModificarDetalleMP'><i class='fa fa-pencil-square-o' data-dismiss="modal" data-toggle="modal" data-target="#myModal6" onclick="{{$cadena}}"></i></a>
+                          <a class='btn btn-danger btn-circle  deleteCompra' type='button' id='Eliminar'><i class='fa fa-times'></i></a>
+                       </td>
 
                     </tr>
+                    <?php
+                    $indice++;
+                     ?>
                       @endforeach
                     </tbody>
                 </table>
+                @include('Proyecto.Desarrollo.Compras.Form.modalRegistroCompras')
                 <div class="row">
                     <div class="col-xs-9"></div>
                     <div class="form-group"><label class="col-lg-1 control-label">Total</label>
                         <div class="col-xs-2">
                             <div class="input-group m-b">
                                 <span class="input-group-addon">$</span>
-                                {!! Form::number('total_Com',$total1,['id'=>'total_Com','class'=>'form-control']) !!}
+                                {!! Form::number('total_Com',$total1,['id'=>'total_Com','class'=>'form-control','step'=>'.01']) !!}
                             </div>
                         </div>
                     </div>
@@ -154,7 +151,7 @@ use SICOVIMA\detalleCompra;  ?>
 
                 <div class="col-xs-2">
                     <div class="input-group bootstrap-touchspin">
-                        <a href="" class="btn btn-outline btn-primary dim" type="button">Modificar</a>
+                        {!! Form::submit('Modificar',['class'=>'btn btn-outline btn-primary dim']) !!}
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -177,7 +174,6 @@ use SICOVIMA\detalleCompra;  ?>
                 <h4 class="modal-title">Producto</h4>
                 <small>Registre el producto de su compra</small>
             </div>
-
 
             <div class="modal-body">
 
@@ -224,7 +220,6 @@ use SICOVIMA\detalleCompra;  ?>
             </div>
 
             <div class="modal-footer">
-                {{-- <button type="button" class="btn btn-primary">Modificar</button> --}}
                 <input type="button" class="btn btn-primary" name="agregarProducto" id="agregarProducto" value="Agregar" onclick="agregarProducto()"/>
                 <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
             </div>

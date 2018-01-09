@@ -4,10 +4,10 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Modificar de Venta</h2>
+        <h2>Modificación de Venta</h2>
         <ol class="breadcrumb">
         <li>
-            <a href="index.html">Ventas</a>
+            <a href={!! asset('ListadeVentas') !!}>Ventas</a>
         </li>
         <li class="active">
             <strong>Modificar</strong>
@@ -32,7 +32,7 @@
                     <label class="col-lg-2 control-label">Cliente</label>
                     <div class="col-md-6">
                         <div class="input-group">
-                           {!!Form::select('clientes',$arrayC,$venta->id_Cliente,['class'=>'form-control','id'=>'clientes'])!!}
+                           {!!Form::select('clientes',$arrayC,$venta->id_Cliente,['class'=>'form-control','id'=>'clientes','class' => 'chosen-select','style'=>'width:300px'])!!}
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <div class="col-md-1">
                         <div class="input-group bootstrap-touchspin">
                              <a type="button" class="btn btn-outline btn-primary dim" data-toggle="modal" data-target="#myModalTabla">Agregar producto</a>
-                            
+
                         </div>
                     </div>
                     <br>
@@ -111,15 +111,15 @@
                         <th>Costo</th>
                         <th>Ganancia</th>
                         <th>Subtotal</th>
-                        <th>Acciones</th>
+                        <th>Opciones</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php 
+                    <?php
                         $total=0;
                         $indice=0;
-                        foreach ($venta->detalleVenta as $key => $detalle): 
-                        
+                        foreach ($venta->detalleVenta as $key => $detalle):
+
                     ?>
                     <?php
                         $prod=SICOVIMA\producto::find($detalle->id_Producto);
@@ -140,14 +140,14 @@
                             <input type="hidden" name='costoProdV[]' id='ctDV{{$indice}}' value='{{$detalle->costoProd_DVen}}'>
                             <input type="hidden" name='gananciaV[]' id='gnDV{{$indice}}' value='{{$detalle->gananciaProd_DVen}}'>
                             <input type="hidden" name='id[]' id='id{{$indice}}' value='{{$detalle->id}}'>
-                            <a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>
                             <a class='btn btn-success btn-circle' type='button' id='ModificarDetalle'><i class='fa fa-pencil-square-o' data-dismiss="modal" data-toggle="modal" data-target="#myModal6" onclick="{{$cadena}}"></i></a>
-                            </td> 
+                            <a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>
+                            </td>
                         </tr>
-                    <?php 
+                    <?php
                         $total=$total+$subtotal;
                         $indice++;
-                        endforeach 
+                        endforeach
                     ?>
                     </tbody>
                 </table>
@@ -203,16 +203,11 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                    </div>   
+                    </div>
                     <div class="col-md-3">
                         <label class="font-bold">              </label>
                         <div class="input-group bootstrap-touchspin">
                             {!! Form::submit('Modificar',['class'=>'btn btn-outline btn-primary dim']) !!}
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="font-bold">              </label>
-                        <div class="input-group bootstrap-touchspin"><a class='btn btn-outline btn-primary dim'>Cancelar</a>
                         </div>
                     </div>
                 </div>
@@ -229,7 +224,8 @@
         <div class="modal-content animated fadeIn">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <i class="fa fa-clipboard modal-icon"></i>
+                
+                <i class="fa fa-cubes modal-icon"></i>
                 <h4 class="modal-title">¿Cuantos desea llevar?</h4>
                 <small></small>
             </div>
@@ -264,7 +260,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content animated fadeIn">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
                 <i class="fa fa-clipboard modal-icon"></i>
                 <h4 class="modal-title">¿Cual desea llevar?</h4>
                 <small></small>
@@ -286,9 +282,9 @@
                                                 <th>Talla</th>
                                                 <th>Existencias</th>
                                                 <th>Color</th>
-                                                <th>Descripcion</th>
+                                                <th>Descripción</th>
                                                 <th>Precio</th>
-                                                <th>Accion</th>
+                                                <th>Opción</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -305,15 +301,15 @@
                                                 <td align="left"><font size="4" >{{$inv->nuevaExistencia_IPT}}</font></td>
                                                 <td align="rihgt"><font size="4" >{{$prod->color_Prod}}</font></td>
                                                 <td align="rihgt"><font size="4" >{{$prod->descripcion_Prod}}</font></td>
-                                                <td align="rihgt" id="precio"><font size="4" >{{$prod->precio_Prod}}</font></td>
+                                                <td align="rihgt" id="precio" step=".01" style = "width:15%"><font size="4" ><i class="fa fa-usd"></i>  {{$prod->precio_Prod}}</font></td>
                                                 <td align="center">
                                                     <input type="hidden" value='{{$prod->tipo_Prod." ".$prod->estilo_Prod." ".$prod->color_Prod}}'>
                                                     <input type="hidden" value='{{$inv->nuevaExistencia_IPT}}'>
                                                     <input type="hidden" value='{{$prod->precio_Prod}}'>
                                                     <input type="hidden" value='{{$prod->id}}'>
                                                     <input type="hidden" name="prueba" value="100"/>
-                                                    <a class="btn btn-success btn-circle" type="button" id="AddCant" data-dismiss="modal" data-toggle="modal" data-target="#myModal6">
-                                                    <i class="fa fa-pencil-square-o"></i>
+                                                    <a class="btn btn-info btn-circle" type="button" id="AddCant" data-dismiss="modal" data-toggle="modal" data-target="#myModal6">
+                                                    <i class="fa fa-check"></i>
                                                     </a>
                                                 </td>
                                             </tr>

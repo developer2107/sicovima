@@ -5,11 +5,9 @@
     <div class="col-sm-4">
         <h2>Lista de Ventas</h2>
         <ol class="breadcrumb">
-            <li>
-                <a href="index.html">Ventas</a>
-            </li>
+            
             <li class="active">
-                <strong>Mostrar Lista</strong>
+                <strong>Ventas</strong>
             </li>
         </ol>
     </div>
@@ -63,7 +61,7 @@
                           <?php endif ?>
                         </td>
                         <td align="center" style = "width:12%">
-                          <a href="VerVenta" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
+                          <a href="VerVenta/{{$ven->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
                           </a><?php if ($ven->estado_Ven!=2): ?>
                           <a href="ModificarVenta/{{$ven->id}}" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
                           </a>

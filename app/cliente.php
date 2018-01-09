@@ -44,7 +44,7 @@ return $this->hasMany('venta');
 }
 
 public static function numeroTelefonoCliente($id_Cliente){
-      $telefonoCliente = telefonoCliente::where('id_Cliente',$id_Cliente)->get();
+      $telefonoCliente = telefonoCliente::where('id_Cliente',$id_Cliente)->get()->first();
       if(count($telefonoCliente)>0){
         return $telefonoCliente;
       }else{

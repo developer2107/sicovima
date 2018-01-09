@@ -55,23 +55,21 @@ class MateriaPrimaController extends Controller
      */
     public function store(Request $request)
     {
-        // $color=$request->color_MP;
-        // $nombre=$request->nombre_MP;
+          $MP = \SICOVIMA\materiaPrima::where('nombre_MP',$request['nombre_MP'])->where('color_MP',$request['color_MP'])->count();
 
-        // if ( ) {
+        if ($MP == 0) {
             $materiaPrima = \SICOVIMA\materiaPrima::create([
             'nombre_MP'=>$request['nombre_MP'],
             'tipo_MP'=>$request['tipo_MP'],
             'color_MP'=>$request['color_MP'],
             'precio_MP'=>$request['precio_MP'],
             'unidadMedida_MP'=>$request['unidadMedida_MP'],
+            'estado_MP'=>true,
         ]);
-
-        // }else{
-
-        // }
-
-        return view('Proyecto.Desarrollo.InventarioMP.RegistroMateriaP');
+        }else{
+          return view('Proyecto.Desarrollo.InventarioMP.RegistroMateriaP');
+        }
+        return view('Proyecto.Desarrollo.InventarioMP.RegistroMateriaP');//Agregar mensaje de si se guardo o no
     }
 
     /**

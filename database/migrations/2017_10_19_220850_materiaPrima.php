@@ -19,6 +19,7 @@ class MateriaPrima extends Migration
             $table->string('color_MP');
             $table->double('precio_MP', 5 , 2 );
             $table->string('unidadMedida_MP');
+            $table->boolean('estado_MP');
             $table->rememberToken();
             $table->timestamps();
         });

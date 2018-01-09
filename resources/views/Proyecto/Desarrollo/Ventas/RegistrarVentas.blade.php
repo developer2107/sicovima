@@ -6,12 +6,12 @@
     <div class="col-sm-4">
         <h2>Registro de Venta</h2>
         <ol class="breadcrumb">
-            <li>
-                <a href="index.html">Ventas</a>
-            </li>
-            <li class="active">
-                <strong>Registrar</strong>
-            </li>
+        <li>
+            <a href={!! asset('ListadeVentas') !!}>Ventas</a>
+        </li>
+        <li class="active">
+            <strong>Registrar</strong>
+        </li>
         </ol>
     </div>
     <div class="col-sm-8">
@@ -33,7 +33,7 @@
                     <div class="col-md-6">
                         <div class="input-group">
                            <select class = "chosen-select" name = "clientes" id = "clientes"  style="width:300px">
-                                <option value="0">Seleccione el cliente</option>
+                                <option value="0">Seleccione</option>
                                 @foreach ($cliente as $v)
                                 <option value={{$v->id}}>{{$v -> nombre_Cli}}</option>
                                 @endforeach
@@ -79,12 +79,13 @@
             <div class="carousel slide" id="carousel1">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img alt="image" class="img-responsive" src="img/mada.jpg">
+                        <img alt="image" class="img-responsive" src="img/Mada-Denim-Blanco4.jpg">
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <br>
 </div>
 <div class="row">
     <div class="col-lg-12">
@@ -153,7 +154,7 @@
                     </div>
                     <div class="col-md-2">
                      <label class="font-bold">              </label>
-                        <div class="input-group bootstrap-touchspin"><a class='btn btn-outline btn-primary dim'>Cancelar</a>
+                        <div class="input-group bootstrap-touchspin" id="CancelarRegistroVenta"><a class='btn btn-outline btn-primary dim'>Cancelar</a>
                         </div>
                     </div>
                 </div>
@@ -190,9 +191,9 @@
                                             <th>Talla</th>
                                             <th>Existencias</th>
                                             <th>Color</th>
-                                            <th>Descripcion</th>
+                                            <th>Descripción</th>
                                             <th>Precio</th>
-                                            <th>Accion</th>          
+                                            <th>Opción</th>          
                                           </tr>
                                         </thead>
                                         <tbody>
@@ -213,8 +214,8 @@
                                                     <input type="hidden" step=".01" value='{{$prod->precio_Prod}}'>
                                                     <input type="hidden" value='{{$prod->id}}'>
                                                     <input type="hidden" name="prueba" value="100"/>
-                                                    <a class="btn btn-success btn-circle" type="button" id="AddCant" data-dismiss="modal" data-toggle="modal" data-target="#myModal6">
-                                                    <i class="fa fa-pencil-square-o"></i>
+                                                    <a class="btn btn-info btn-circle" type="button" id="AddCant" data-dismiss="modal" data-toggle="modal" data-target="#myModal6">
+                                                    <i class="fa fa-check"></i>
                                                     </a>
                                                 </td>
                                             </tr>
