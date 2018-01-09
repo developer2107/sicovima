@@ -43,16 +43,12 @@ class VentasController extends Controller
     public function Ver($id)
     {
         $venta = venta::find($id);
-        $clientes = cliente::all();
-        $cliente = cliente::all();
         $productos = producto::where('estado_Prod',1)->get();        
-        $arrayC = [];
-        foreach ($clientes as $cliente) {
-            $arrayC[$cliente->id]=$cliente->nombre_Cli;
-        }
+        $cliente = cliente::find($venta->id_Cliente);
+        
 
         $inventarioProductoTerminados = inventarioProductoTerminado::all();
-        return view('Proyecto.Desarrollo.Ventas.VerVenta',compact('arrayC','inventarioProductoTerminados','venta','productos','cliente','clientes'));
+        return view('Proyecto.Desarrollo.Ventas.VerVenta',compact('inventarioProductoTerminados','venta','productos','cliente'));
     }
 
     public function Mostrar()
@@ -64,42 +60,44 @@ class VentasController extends Controller
     public function Index()
     {
         // producto::create([
-        //     'tipo_Prod'=>"Short Jeans",
-        //     'estilo_Prod'=>"Corto y Alto",
-        //     'descripcion_Prod'=>"Roto de ambas piernas, una rutura mediana en cada uno", 
-        //     'precio_Prod'=>12.88, 
-        //     'color_Prod'=>"Azul", 
-        //     'talla_Prod'=>"28", 
+        //     'tipo_Prod'=>"Camisa",
+        //     'estilo_Prod'=>"Manga larga",
+        //     'descripcion_Prod'=>"Con dos bolsas en el pecho", 
+        //     'precio_Prod'=>9.35, 
+        //     'color_Prod'=>"Negra", 
+        //     'talla_Prod'=>"M", 
         //     'imagen_Prod'=>"", 
-        //     'estado_Prod'=>1,
+        //     'estado_Prod'=>0,
+        //     'estado2_Prod'=>0,
         // ]);
         // producto::create([
-        //     'tipo_Prod'=>"Pantalon",
-        //     'estilo_Prod'=>"Tipo polo",
-        //     'descripcion_Prod'=>"Cuello rallado blanco", 
-        //     'precio_Prod'=>15.50, 
-        //     'color_Prod'=>"Menta", 
-        //     'talla_Prod'=>"28", 
+        //     'tipo_Prod'=>"Falda",
+        //     'estilo_Prod'=>"Corta",
+        //     'descripcion_Prod'=>"Sin bolsas en la parte de atras", 
+        //     'precio_Prod'=>6.90, 
+        //     'color_Prod'=>"Rosado", 
+        //     'talla_Prod'=>"S", 
         //     'imagen_Prod'=>"", 
         //     'estado_Prod'=>1,
+        //     'estado2_Prod'=>0,
         // ]);
         
         // // 
         // inventarioProductoTerminado::create([
         //         'tipoMovimiento_IPT'=>1,
         //         'existencias_IPT'=>0,
-        //         'cantidad_IPT'=>20,
-        //         'fechaMov_IPT'=>"2017-08-21",
-        //         'nuevaExistencia_IPT'=>(0+20),
-        //         'id_Producto'=>27,
+        //         'cantidad_IPT'=>15,
+        //         'fechaMov_IPT'=>"2015-08-08",
+        //         'nuevaExistencia_IPT'=>15,
+        //         'id_Producto'=>3,
         //     ]);
         // inventarioProductoTerminado::create([
         //         'tipoMovimiento_IPT'=>1,
         //         'existencias_IPT'=>0,
-        //         'cantidad_IPT'=>9,
-        //         'fechaMov_IPT'=>"2017-08-21",
-        //         'nuevaExistencia_IPT'=>(0+9),
-        //         'id_Producto'=>28,
+        //         'cantidad_IPT'=>22,
+        //         'fechaMov_IPT'=>"2016-08-09",
+        //         'nuevaExistencia_IPT'=>22,
+        //         'id_Producto'=>4,
         //     ]);
 
 
@@ -152,7 +150,7 @@ class VentasController extends Controller
             'fecha_Ven'=>$request->fecha_Ven,
             'total_Ven'=>$request->total_Ven,
             'id_Cliente'=>$request->clientes,
-            'estado_Ven'=>1,
+            'estado_Ven'=>0,
         ]);
 
         for ($i=0; $i < count($idV); $i++) {
@@ -227,7 +225,7 @@ class VentasController extends Controller
         $costoProdV=$request->costoProdV;
         $gananciaV=$request->gananciaV;
         $venta2 = venta::find($id);
-        $venta2->estado_Ven = 0;
+        $venta2->estado_Ven = 1;
         $venta2->save();
         $detalles2 = detalleVenta::where('id_Venta',$id)->get();
         $docVenta = documentoVenta::where('id_Venta',$id)->get()->first();
@@ -270,7 +268,7 @@ class VentasController extends Controller
             'fecha_Ven'=>$request->fecha_Ven,
             'total_Ven'=>$request->total_Ven,
             'id_Cliente'=>$request->clientes,
-            'estado_Ven'=>1,
+            'estado_Ven'=>0,
         ]);
 
         for ($i=0; $i < count($idV); $i++) {

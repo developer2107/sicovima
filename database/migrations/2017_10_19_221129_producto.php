@@ -22,6 +22,7 @@ class Producto extends Migration
             $table->string('talla_Prod');
             $table->binary('imagen_Prod');
             $table->boolean('estado_Prod');//0->en pedido 1->disponible
+            $table->boolean('estado2_Prod');//0->bien 1->defectuoso
             $table->rememberToken();
             $table->timestamps();
         });

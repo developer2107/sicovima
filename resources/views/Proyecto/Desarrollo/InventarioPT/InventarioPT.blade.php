@@ -60,7 +60,7 @@
                           <td align="left"><font size="3" >{{$prod->talla_Prod}}</font></td>
                           <td align="left" style = "width:10%"><font size="4" >{{$inv->nuevaExistencia_IPT}}</font></td>
                           <td align="left" style = "width:5%">
-                            <?php if ($prod->estado_Prod==0): ?>
+                            <?php if ($prod->estado2_Prod==1): ?>
                             <font size="4" >Dañado</font>
                             <?php else: ?>
                             <font size="4" >Bien</font></td> 

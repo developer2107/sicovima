@@ -65,7 +65,7 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">DUI</label>
                     <div class="col-lg-5">
-                        {!! Form::text('duiCliente',null,['id' => 'duiCliente','class'=>'form-control','data-mask'=>'99999999-9','style' => 'width:100px']) !!}
+                        {!! Form::text('duiCliente',null,['id' => 'duiCliente','class'=>'form-control','data-mask'=>'99999999-9','style' => 'width:110px']) !!}
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">RNC </label>
                         <div class="col-lg-5">
-                            {!! Form::text('rncCliente',null,['id' => 'rncCliente','class'=>'form-control','data-mask'=>'999999-9','style' => 'width:155px']) !!}
+                            {!! Form::text('rncCliente',null,['id' => 'rncCliente','class'=>'form-control','data-mask'=>'999-99999-9','style' => 'width:155px']) !!}
                         </div>
                     </div>
                 </div>

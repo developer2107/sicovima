@@ -25,7 +25,7 @@
                 <h5>Venta</h5>
             </div>
             <div class="ibox-content">
-                <br><?php  if ($venta->estado_Ven!=2): ?>
+                <br><?php  if ($venta->estado_Ven==0): ?>
                 <div class="row">
                     <div class="col-md-1">
                     </div>
@@ -66,8 +66,8 @@
                     </div>
                     <label class="col-lg-2 control-label">Cliente</label>
                     <div class="col-md-6">
-                        <div class="input-group">
-                           {!!Form::text('clientex',$cliente->nombre_Cli,['class'=>'form-control','id'=>'clientex','readonly'=>'readonly'])!!}
+                        <div class="input-group"> 
+                           {!!Form::text('clientex',$cliente->nombre_Cli,['class'=>'form-control','id'=>'clientex','readonly'=>'readonly','style' => 'width:300px'])!!}
                         </div>
                     </div>
                 </div>

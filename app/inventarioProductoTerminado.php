@@ -8,7 +8,7 @@ class inventarioProductoTerminado extends Model
 {
     protected $table = 'inventarioProductoTerminado';
 
-    protected $fillable = ['tipoMovimiento_IPT','existencias_IPT', 'cantidad_IPT','fechaMov_IPT','NuevaExistencia_IPT','id_Producto'];
+    protected $fillable = ['tipoMovimiento_IPT','existencias_IPT', 'cantidad_IPT','fechaMov_IPT','nuevaExistencia_IPT','id_Producto'];
 
     public function defectuosoPT(){
    return $this->hasMany('defectuosoPT');

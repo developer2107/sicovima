@@ -23,7 +23,18 @@ class InventarioPTController extends Controller
 
     public function Ver()
     {
-        return view("Proyecto.Desarrollo.InventarioPT.VerInventarioPT");
+        $venta = venta::find($id);
+        $clientes = cliente::all();
+        $cliente = cliente::all();
+        $productos = producto::where('estado_Prod',1)->get();        
+        $arrayC = [];
+        foreach ($clientes as $cliente) {
+            $arrayC[$cliente->id]=$cliente->nombre_Cli;
+        }
+
+        $inventarioProductoTerminados = inventarioProductoTerminado::all();
+       
+        return view("Proyecto.Desarrollo.InventarioPT.VerInventarioPT",compact('arrayC','inventarioProductoTerminados','venta','productos','cliente','clientes'));
     }
 
     public function Mostrar()

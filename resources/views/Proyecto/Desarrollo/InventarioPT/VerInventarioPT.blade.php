@@ -35,11 +35,18 @@
                         </div>
                         <div class="ibox-content">
                             <form class="form-horizontal">
-                                
+
                                 <div class="form-group">
-                                    <label class="col-lg-4 control-label">Tipo de Producto</label>
+                                    <label class="col-lg-4 control-label">Tipo</label>
                                     <div class="col-lg-7">
                                         {!! Form::text('tipo_Prod',null,['class'=>'form-control','placeholder' => 'Pantalon'])!!}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Estilo</label>
+                                    <div class="col-lg-7">
+                                        {!! Form::text('estilo_Prod',null,['class'=>'form-control','placeholder' => 'Pantalon'])!!}
                                     </div>
                                 </div>
 
@@ -52,30 +59,38 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-4 control-label">Tipo de Producto</label>
+                                    <label class="col-lg-4 control-label">Precio</label>
                                     <div class="col-lg-7">
-                                        {!! Form::text('tipo_Prod',null,['class'=>'form-control','placeholder' => 'Pantalon'])!!}
+                                        {!! Form::number('precio_Prod',null,['class'=>'form-control','placeholder' => 'Café'])!!}
+                            
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Talla</label>
+                                    <div class="col-lg-7">
+                                        {!! Form::text('talla_Prod',null,['class'=>'form-control','placeholder' => 'Café'])!!}
+                            
                                     </div>
                                 </div>
 
-                                 <div class="form-group">
-                                    <label class="col-lg-4 control-label">Nombre de Producto Terminado</label>
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Descripcion</label>
                                     <div class="col-lg-7">
-                                        {!! Form::text('nombreVIPT',null,['class'=>'form-control','placeholder' => 'Pantalon Punta yuca'])!!}
+                                        {!! Form::text('descripcion_Prod',null,['class'=>'form-control','placeholder' => 'Pantalon Punta yuca'])!!}
                                         
                                     </div>
                                 </div>
 
-                                 <div class="form-group">
-                                    <label class="col-lg-4 control-label">Cantidad de Producto</label>
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Existencias</label>
                                     <div class="col-lg-7">
-                                        {!! Form::text('cant_DProd',null,['class'=>'form-control','placeholder' => '89'])!!}
+                                        {!! Form::text('existencias',null,['class'=>'form-control','placeholder' => '89'])!!}
                                         
                                     </div>
                                 </div>
 
-
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label class="col-lg-4 control-label">Estado1</label>
                                     <div class="col-lg-7">
                                         {!! Form::text('estado1',null,['class'=>'form-control','placeholder' => 'Entregado o Terminado'])!!}   
@@ -92,22 +107,9 @@
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Detalle</label>
                                     <div class="col-lg-7">
-                                        {!! Form::text('descripcion_Prod',null,['class'=>'form-control','placeholder' => 'pantalon con hilos dorados, botones azules'])!!}
+                                        {!! Form::text('descripcion_DPT',null,['class'=>'form-control','placeholder' => 'pantalon con hilos dorados, botones azules'])!!}
                                     </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-lg-4 control-label"></label>
-                                    <div class="col-lg-4">
-                                        <div class="input-group m-b">
-                                            {!! Form::submit('Modificar Estado',['class'=>'btn btn-outline btn-primary dim']) !!}
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                               
+                                </div>                               
                             </form>
                         </div>
                     </div>
@@ -118,7 +120,7 @@
                         <div class="carousel slide" id="carousel1">
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img alt="image" class="img-responsive" src="img/mada.jpg">
+                                    <img alt="image" class="img-responsive" src="img/Mada-Denim-Blanco-Larga.jpg">
                                 </div>
                             </div>
                         </div>
