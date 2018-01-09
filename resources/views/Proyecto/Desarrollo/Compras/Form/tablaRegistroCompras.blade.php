@@ -15,7 +15,7 @@
                         <th>Descripción</th>
                         <th>Precio Unitario</th>
                         <th>Sub Total</th>
-                        <th>Accion</th>
+                        <th>Opción</th>
 
                     </tr>
                     </thead>

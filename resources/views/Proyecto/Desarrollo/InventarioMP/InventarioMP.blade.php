@@ -40,7 +40,7 @@
                                     <th align="left">Cantidad</th>
                                     <th align="left">Tipo de mercaderia</th>
                                     <th align="left">Estado</th>
-                                    <th align="left">Acciones</th>
+                                    <th align="left">Opciones</th>
                                </tr>
                               </thead>
                               <tbody>
@@ -59,6 +59,7 @@
                               <td align="left"><font size="4" >{{$aux}}</font></td>
                               <td align="center">
                               <a href="VerMateriaPrima" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a>
+                              <a href="ModificarMateriaPrima" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></a>
                             </td>
                           </tr>
                               @endforeach

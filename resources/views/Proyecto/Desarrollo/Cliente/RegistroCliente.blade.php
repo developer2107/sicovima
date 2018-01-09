@@ -1,6 +1,6 @@
 @extends('layouts.MenuAdministrador')
 @section('content')
-{!! Form::open(['route'=>'RegistroCliente.store', 'method'=>'post','autocomplete'=>'off']) !!}
+{!! Form::open(['route'=>'RegistroCliente.store', 'method'=>'post']) !!}
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -14,22 +14,22 @@
             </li>
         </ol>
     </div>
-    <div class="col-sm-8"> 
+    <div class="col-sm-8">
     </div>
 </div>
 <br>
 <div id="contenido">
-    <div class="col-lg-5">
+    {{-- <div class="col-lg-5">
         <div class="ibox-content">
             <div class="carousel slide" id="carousel1">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img alt="image" class="img-responsive" src="img/Mada-Denim-Blanco-Larga.jpg">
+                      <img alt="image" class="img-responsive" src="img/mada.jpg">
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="col-lg-7">
         <div class="ibox-title">
             <h5></h5>
@@ -63,8 +63,8 @@
             <br>
             <div id="datosNatural" class="row">
                 <div class="form-group">
-                    <label class="col-lg-3 control-label">DUI</label>   
-                    <div class="col-lg-4">
+                    <label class="col-lg-3 control-label">DUI</label>
+                    <div class="col-lg-5">
                         {!! Form::text('duiCliente',null,['id' => 'duiCliente','class'=>'form-control','data-mask'=>'99999999-9','style' => 'width:100px']) !!}
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">NIT </label>
                         <div class="col-lg-5">
-                            {!! Form::text('nitCliente',null,['id' => 'nitCliente','class'=>'form-control','data-mask'=>'9999-999999-999-9','style' => 'width:155px']) !!}               
+                            {!! Form::text('nitCliente',null,['id' => 'nitCliente','class'=>'form-control','data-mask'=>'9999-999999-999-9','style' => 'width:155px']) !!}
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">RNC </label>
                         <div class="col-lg-5">
-                            {!! Form::text('rncCliente',null,['id' => 'rncCliente','class'=>'form-control','data-mask'=>'999999-9','style' => 'width:155px']) !!}               
+                            {!! Form::text('rncCliente',null,['id' => 'rncCliente','class'=>'form-control','data-mask'=>'999999-9','style' => 'width:155px']) !!}
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Nombre del Responsable </label>
                         <div class="col-lg-9">
-                            {!! Form::text('nombreResponsable',null,['id' => 'nombreResponsable','class'=>'form-control','style' => 'width:300px']) !!}                    
+                            {!! Form::text('nombreResponsable',null,['id' => 'nombreResponsable','class'=>'form-control','style' => 'width:300px']) !!}
                         </div>
                     </div>
                 </div>
@@ -184,11 +184,22 @@
                 </div>
             </div>
         </div>
-       
+
     </div>
     <br>
-    <br>
-    <br>
+
+    <div class="col-lg-5">
+            <div class="ibox-content">
+                <div class="carousel slide" id="carousel1">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img alt="image" class="img-responsive" src="img/mada.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
 </div>
 <div class="row">
 </div>

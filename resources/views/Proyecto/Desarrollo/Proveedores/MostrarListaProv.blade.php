@@ -37,23 +37,18 @@
                                 <th align="left">Nombre</th>
                                 <th align="left">Telefono</th>
                                 <th align="left">Tipo de mercaderia</th>
-                                <th align="left">Acciones</th>
+                                <th align="left">Opciones</th>
 
                          </tr>
                         </thead>
                         <tbody>
                           @foreach($proveedor as $prov)
                             <tr>
-
                                 <td align="left"><font size="4" >{{$prov-> nombre_Prov}}</font></td>
                                 <?php
-                                  $telefonos = SICOVIMA\proveedor::numeroTelefono($prov->id);
+                                  $telefonoP = SICOVIMA\proveedor::numeroTelefono($prov->id);
                                 ?>
-                                <td align="rihgt"><font size="4" ><?php
-                                  foreach ($telefonos as $telefono) {
-                                    echo $telefono->numero_TelefonoProv." ";
-                                  }
-                                ?></font></td>
+                                <td align="rihgt"><font size="4" >{{$telefonoP-> numero_TelefonoProv}}</font></td>
                                 <td align="left"><font size="4" >{{$prov-> tipoMercaderia_Prov}}</font></td>
                                 <td align="center">
                                   <a href="VerProveedor" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>

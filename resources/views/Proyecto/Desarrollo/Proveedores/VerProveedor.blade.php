@@ -107,8 +107,7 @@
                                      </div>
 
                                      <div class="col-sm-offset-4">
-                                          
-                                          <button class="btn btn-outline btn-primary dim" type="button">Dar de Baja</button>
+                                       <button class="btn btn-outline btn-primary dim" type="button">Dar de Baja</button>
                                     </div>
 
                                     </form>

@@ -18,19 +18,26 @@ $('#agregarPedido').click(function(){
   var Precio = $("#precio_Prod").val();
   var Imagen =$("#inputImage").val();
   var subTotal_DPed= $("#subTotal_DPed").val();
-  var tabla=$("#tablaProductos");
+  var tabla=$("#tablaPedidos");
   var total=parseFloat($("#totalEnPedido").val());
 
   // alert(Tipo);
   var total=parseFloat($("#totalEnPedido").val());
-  var subtotalVenta_DPed=(parseFloat(subTotal_DPed)+parseFloat(Precio))*parseFloat(cantidad_DPed);
-  var subtotal_DPed1=(parseFloat(subTotal_DPed)+parseFloat(Precio));
+  var subtotalVenta_DPed= ((parseFloat(subTotal_DPed)+parseFloat(Precio))*parseFloat(Cantidad));
 
-  alert(subtotalVenta_DPed);
-  alert(subTotal_DPed1);
+  // var Prueba = parseFloat(subtotalVenta_DPed);
+
+  // alert(subtotalVenta_DPed);
+  // alert(Prueba);
 
   var datos= "<tr>"+
-  "<td><input type='hidden' name='subtotalventap[]' value='"+subtotalVenta_DPed+"'>"+
+  "<td>"+Tipo+"</td>"+
+  "<td>"+Cantidad+"</td>"+
+  "<td>"+Precio+"</td>"+
+  "<td>"+subTotal_DPed+"</td>"+
+  "<td>"+subtotalVenta_DPed+"</td>"+
+  "<td>"+
+  "<input type='hidden' name='subtotalventap[]' value='"+subtotalVenta_DPed+"'>"+
   "<input type='hidden' name='subtotalp[]' value='"+subTotal_DPed+"'>"+
   "<input type='hidden' name='imagenp[]' value='"+Imagen+"'>"+
   "<input type='hidden' name='tipop[]' value='"+Tipo+"'>"+
@@ -41,18 +48,14 @@ $('#agregarPedido').click(function(){
   "<input type='hidden' name='tallap[]' value='"+Talla+"'>"+
   "<input type='hidden' name='descripcionp[]' value='"+Descripcion+"'>"+
   "<input type='hidden' name='preciop[]' value='"+Precio+"'>"+
+  "<input  type='hidden' name='id[]' value=''/>" +
+  "<a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>"+
   "</td>"+
-  "<td>"+Tipo+"</td>"+
-  "<td>"+Cantidad+"</td>"+
-  "<td>"+Precio+"</td>"+
-  "<td>"+subTotal_DPed1.toFixed(2)+"</td>"+
-  "<td>"+subtotalVenta_DPed.toFixed(2) +"</td>"+
-  "<td class='deleteVisitador' style='cursor:pointer;'>Eliminar</td>"+
   "</tr>";
 
   tabla.append(datos);
 
-  total = total + subtotal;
+  total = total + subtotalVenta_DPed;
 
   $("#totalEnPedido").val(total.toFixed(2));
 
@@ -69,32 +72,28 @@ $('#agregarPedido').click(function(){
   $("#subTotal_DPed").val("");
 
 }else{
-  var total=parseFloat($("#totalVenta").val());
-  var cantidad=$("#cantidad").val();
-  var gananciau=$("#gananciau").val();
-  var subtotal=(parseFloat(gananciau)+parseFloat(costog))*parseFloat(cantidad);
-  console.log(indiceg+costog);
-  $('#cd'+indiceg).text(cantidad);
-  $('#st'+indiceg).text(subtotal);
-  $('#gn'+indiceg).text(gananciau);
-  $('#cdDV'+indiceg).val(cantidad);
-  $('#gnDV'+indiceg).val(gananciau);
-  total=total-subtotalg;
-  total=total+subtotal;
-  console.log(subtotalg);
-  $('#totalVenta').val(total.toFixed(2));
+
 }
 
 });
 //Demas funciones
+$('#tablaPedidos').on('click','#Eliminar',function(e){
+  var total=parseFloat($("#totalEnPedido").val());
+  // alert(total);
+  var Eli_Cantidad=parseFloat($(this).parents('tr').find('input:eq(5)').val());
+  var Eli_Ganancia=parseFloat($(this).parents('tr').find('input:eq(1)').val());
+  precio=parseFloat($(this).parents('tr').find('input:eq(10)').val());
+  id_Pedido=parseFloat($(this).parents('tr').find('input:eq(11)').val());
+  var aux = ((Eli_Ganancia+precio)*Eli_Cantidad);
+  total = total - aux;
+  $(this).parent('td').parent('tr').remove();
+  $("#totalEnPedido").val(total.toFixed(2));
+  var indice = productosAgregados.indexOf(id_Pedido);
+  productosAgregados.splice(indice,1);
+});
 
 });
 
-
-$(document).on("click",".deleteVisitador",function(){
-var parent = $(this).parents().get(0);
-$(parent).remove();
-});
 
 
 
