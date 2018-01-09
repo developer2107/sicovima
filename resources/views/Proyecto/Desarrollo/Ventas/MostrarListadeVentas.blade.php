@@ -35,44 +35,31 @@
                        <th align="left">Numero de Documento</th>
                        <th align="left">Total</th>
                        <th align="left">Estado</th>
-                       <th align="left">Acciones</th>
+                       <th align="left">Opciones</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <?php  
-                        foreach($ventas as $ven):
-                        $cadena='agregarMotivo('.$ven->id.');';
-                      ?>
-                      <tr>
-                        <td align="left"><font size="4" ></font>{{$ven->cliente->nombre_Cli}}</td>
-                        <?php   
-                          $dato = explode("-",(String)$ven->fecha_Ven);
-                          $fecha = $dato[2]."/".$dato[1]."/".$dato[0];
-                        ?>
-                        <td align="rihgt" style = "width:15%"><font size="4" ></font>{{$fecha}}</td>
-                        <td align="rihgt" style = "width:20%"><font size="4" ></font>{{SICOVIMA\venta::numeroDocumento($ven->id)}}</td>
-                        <td align="rihgt" style = "width:10%"><font size="4" ></font><i class="fa fa-usd"></i>  {{$ven-> total_Ven}}</td>
-                        <td><?php 
-                        if ($ven->estado_Ven!=2):
-                         ?>
-                          Normal
-                          <?php else: ?>
-                            Anulada
-                          <?php endif ?>
-                        </td>
-                        <td style = "width:12%">
-                          <a href="VerVenta/{{$ven->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
-                          </a><?php if ($ven->estado_Ven!=2): ?>
-                          <a href="ModificarVenta/{{$ven->id}}" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
-                          </a>
-                          <a class="btn btn-danger btn-circle" data-toggle="modal" type="button" data-target="#myModalAnular" onclick="{{$cadena}}"><i class="fa fa-times"></i></a>
-                          <?php else: ?>
-                          <?php endif ?>
-                        </td>
-                      </tr>
-                    <?php  
-                      endforeach
-                    ?>
+<?php foreach($ventas as $ven): $cadena='agregarMotivo('.$ven->id.');'; ?>
+<tr>
+  <td align="left"><font size="4" ></font>{{$ven->cliente->nombre_Cli}}</td>
+  <?php   
+  $dato = explode("-",(String)$ven->fecha_Ven);
+  $fecha = $dato[2]."/".$dato[1]."/".$dato[0];
+  ?>
+  <td align="rihgt" style = "width:15%"><font size="4" ></font>{{$fecha}}</td>
+  <td align="rihgt" style = "width:20%"><font size="4" ></font>{{SICOVIMA\venta::numeroDocumento($ven->id)}}</td>
+  <td align="rihgt" style = "width:10%"><font size="4" ></font><i class="fa fa-usd"></i>  {{$ven-> total_Ven}}</td>
+  <td><?php if ($ven->estado_Ven!=2): ?>Normal<?php else: ?>Anulada<?php endif ?></td>
+  <td style = "width:12%">
+  <a href="VerVenta/{{$ven->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a>
+  <?php if ($ven->estado_Ven!=2): ?>
+  <a href="ModificarVenta/{{$ven->id}}" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></a>
+  <a class="btn btn-danger btn-circle" data-toggle="modal" type="button" data-target="#myModalAnular" onclick="{{$cadena}}"><i class="fa fa-times"></i></a>
+  <?php else: ?>
+  <?php endif ?>
+  </td>
+</tr>
+<?php endforeach ?>
                     </tbody>
                   </table>
                 </div>
