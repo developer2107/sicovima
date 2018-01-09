@@ -13,7 +13,7 @@
                                 <label class="font-bold">Fecha de Entrega</label>
                                 <div class="input-group date">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    {!! Form::text('fechaEntregar_Ped', '2017-11-21',['class' =>'form-control']) !!}
+                                    {!! Form::text('fechaEntregar_Ped', null ,['class' =>'form-control']) !!}
 
                                 </div>
                             </div>
@@ -25,7 +25,7 @@
                                 <label class="font-bold">Fecha Estimada con Antipación</label>
                                 <div class="input-group date">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    {!! Form::text('fechaRecibir_Ped', '2017-11-20',['class' =>'form-control']) !!}
+                                    {!! Form::text('fechaRecibir_Ped', null,['class' =>'form-control']) !!}
 
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
 
                         <div class="input-group m-b">
                             <span class="input-group-addon">$</span>
-                            {!! Form::number('anticipo_Ped',21,['class'=>'touchspin2 form-control','step'=>'any']) !!}
+                            {!! Form::number('anticipo_Ped',0.00,['class'=>'touchspin2 form-control','step'=>'any']) !!}
 
                         </div>
 
