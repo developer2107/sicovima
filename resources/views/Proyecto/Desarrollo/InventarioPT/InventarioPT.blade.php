@@ -66,7 +66,7 @@
                             <font size="4" >Bien</font></td> 
                             <?php endif ?>
                           <td align="center">
-                            <a href="VerProductosTerminados" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a>
+                            <a href="VerInventarioPT/{{$prod->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-danger btn-circle" data-toggle="modal" type="button" data-target="#myModalAnular" onclick=""><i class="fa fa-times"></i></a>
                           </td>
                         </tr>

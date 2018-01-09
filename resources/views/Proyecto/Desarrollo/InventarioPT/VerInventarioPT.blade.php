@@ -32,24 +32,14 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <h5>Productos Terminados</h5>
-                            
                         </div>
                         <div class="ibox-content">
                             <form class="form-horizontal">
                                 
                                 <div class="form-group">
-                                    <label class="col-lg-4 control-label">Numero Pedidos</label>
-                                    <div class="col-lg-4">
-                                        {!! Form::text('numPedVIPT',null,['class'=>'form-control','placeholder' => '1195'])!!}
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-lg-4 control-label">Cliente</label>
+                                    <label class="col-lg-4 control-label">Tipo de Producto</label>
                                     <div class="col-lg-7">
-                                        {!! Form::text('nombre_Cli',null,['class'=>'form-control','placeholder' => 'Grecia Maria'])!!}
-                                        
+                                        {!! Form::text('tipo_Prod',null,['class'=>'form-control','placeholder' => 'Pantalon'])!!}
                                     </div>
                                 </div>
 
@@ -65,18 +55,6 @@
                                     <label class="col-lg-4 control-label">Tipo de Producto</label>
                                     <div class="col-lg-7">
                                         {!! Form::text('tipo_Prod',null,['class'=>'form-control','placeholder' => 'Pantalon'])!!}
-                       
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-lg-4 control-label">Fecha Venta</label>
-                                    <div class="col-lg-4">
-                                        <div class="input-group date">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            {!! Form::text('fecha_Ven', '21/08/2015',['class' =>'form-control']) !!}
-                                            
-                                        </div>
                                     </div>
                                 </div>
 
@@ -98,30 +76,23 @@
 
 
                                  <div class="form-group">
-                                    <label class="col-lg-4 control-label">Estado</label>
+                                    <label class="col-lg-4 control-label">Estado1</label>
                                     <div class="col-lg-7">
-                                        {!! Form::text('estadoVIPT',null,['class'=>'form-control','placeholder' => 'Entregado o Terminado'])!!}
-                                        
+                                        {!! Form::text('estado1',null,['class'=>'form-control','placeholder' => 'Entregado o Terminado'])!!}   
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-4 control-label">Total</label>
-                                    <div class="col-lg-4">
-                                        <div class="input-group m-b">
-                                            <span class="input-group-addon">$</span>
-                                            {!! Form::number('totalVIPT',null,['class'=>'form-control','placeholder' => '70.23']) !!}
-                                            
-                                        </div>
+                                    <label class="col-lg-4 control-label">Estado2</label>
+                                    <div class="col-lg-7">
+                                        {!! Form::text('estado2',null,['class'=>'form-control','placeholder' => 'Entregado o Terminado'])!!}   
                                     </div>
                                 </div>
 
-
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label class="col-lg-4 control-label">Detalle</label>
                                     <div class="col-lg-7">
                                         {!! Form::text('descripcion_Prod',null,['class'=>'form-control','placeholder' => 'pantalon con hilos dorados, botones azules'])!!}
-                                        
                                     </div>
                                 </div>
 
