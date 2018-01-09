@@ -30,4 +30,14 @@ public static function obtenerCantidad($id){
 
 }
 
+public static function arrayTipoMercaderia(){
+     $tipoMercaderia= materiaPrima::get();
+     $arraytipoMer=[];
+     foreach ($tipoMercaderia as $tipoMer) {
+       $arraytipoMer[$tipoMer->id] = $tipoMer-> tipo_MP;
+     }
+     //$arraytipoMer[0] = "Otro";
+     return $arraytipoMer;
+   }
+
 }
