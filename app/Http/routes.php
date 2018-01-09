@@ -49,7 +49,14 @@ Route::get('RegistrarVentas/{id}','VentasController@getResponsables');
 Route::resource('venta','ventasController');
 Route::match(['get','post'],'/responsable/{id}','VentasController@responsables');
 
+
 //---------------------------------------------------------------------------
+
+Route::Resource('/ListadeCompras','CompraController@Mostrar');
+Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
+Route::Resource('/RegistrarCompra','CompraController');
+Route::Resource('/VerCompra','CompraController@Ver');
+
 Route::Resource('/ListadePedidos','PedidosController@Mostrar');
 Route::Resource('/RegistrarPedido','PedidosController');
 Route::Resource('/IniciarPedido','PedidosController@Iniciar');
