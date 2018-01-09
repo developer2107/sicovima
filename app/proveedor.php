@@ -50,5 +50,4 @@ public static function numeroTelefono($id_Proveedor){
 
 }
 
-
 }

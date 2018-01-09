@@ -8,6 +8,7 @@ use SICOVIMA\municipio;
 use SICOVIMA\departamento;
 use SICOVIMA\correoProveedor;
 use SICOVIMA\telefonoProveedor;
+use SICOVIMA\tipoMercaderia;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 
@@ -76,6 +77,12 @@ class ProveedoresController extends Controller
     {
       $tel=$request->tel;
       $cor=$request->cor;
+      if ($request->tipoMercaderia_Prov=='0') {
+        $tipoMercaderia = tipoMercaderia::create([
+          'nombre_tipoMer' => $request->otroMer,
+        ]);
+        $request -> tipoMercaderia_Prov = $tipoMercaderia->id;
+      }
 
       $proveedor = proveedor::create([
             'nombre_Prov'=>$request->nombre_Prov,
