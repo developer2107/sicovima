@@ -7,7 +7,7 @@
     {!! Html::script('bootstrap/js/bootstrap.min.js') !!}
     {!! Html::script('js/jquery.dataTables.min.js') !!}
     {!! Html::script('js/jquery.min.js') !!}
-  
+
 
         <script type="text/javascript">
         $(document).ready(function(){
@@ -80,7 +80,7 @@
     {!! Html::style('css/plugins/cropper/cropper.min.css') !!}
     {!! Html::style('css/plugins/switchery/switchery.css') !!}
     {!! Html::style('css/plugins/jasny/jasny-bootstrap.min.css') !!}
-    
+
     <!--
     {!! Html::style('css/plugins/nouslider/jquery.nouislider.css') !!}
     -->
@@ -94,7 +94,7 @@
 
     {!! Html::script('js/scripts/ventas.js') !!}
     {!! Html::script('js/scripts/compras.js') !!}
-    {!! Html::script('js/scripts/Pedidos.js') !!}
+    {!! Html::script('js/scripts/Pedido.js') !!}
     {!! Html::script('js/scripts/clientes.js') !!}
     {!! Html::script('js/scripts/proveedores.js') !!}
 

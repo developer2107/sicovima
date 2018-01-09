@@ -51,7 +51,7 @@ Route::Resource('/RegistrarCompra','CompraController');
 Route::Resource('/VerCompra','CompraController@Ver');
 
 Route::Resource('/ListadePedidos','PedidosController@Mostrar');
-Route::Resource('/RegistrarPedido','PedidosController@Registrar');
+Route::Resource('/RegistrarPedido','PedidosController');
 Route::Resource('/IniciarPedido','PedidosController@Iniciar');
 Route::Resource('/FinalizarPedido','PedidosController@Finalizar');
 Route::Resource('/VerPedido','PedidosController@Ver');
@@ -60,6 +60,7 @@ Route::Resource('/EntregarPedido','PedidosController@Entregar');
 Route::Resource('/ListadePedidosaEntregar','PedidosController@ListaaEntregar');
 Route::Resource('/ListadePedidosSinIniciar','PedidosController@ListaSinIniciar');
 Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar');
+
 
 /* DE AQUI ABAJO ESTAN LAS RUTAS DE BENJAMIN*/
 

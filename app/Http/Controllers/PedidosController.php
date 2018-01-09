@@ -97,9 +97,9 @@ class PedidosController extends Controller
 
      public function index()
      {
-
+       $cliente = cliente::all();
        $producto = \SICOVIMA\producto::orderBy('id','ASC')->paginate(5);
-       return view('Proyecto.Desarrollo.pedidos.RegistrarPedidos')->with('producto', $producto);
+       return view('Proyecto.Desarrollo.pedidos.create')->with('producto', $producto)->with('cliente',$cliente);
      }
 
     public function create()
