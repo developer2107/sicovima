@@ -3,7 +3,7 @@
 @extends('layouts.MenuAdministrador')
 
 @section('content')
-{!! Form::open(['class'=>'form-horizontal from-label-left input_mask','route'=>'RegistroProveedor.store', 'method'=>'post']) !!}
+{!! Form::open(['class'=>'form-horizontal from-label-left input_mask','route'=>'RegistroProveedor.store', 'method'=>'post','autocomplete'=>'off']) !!}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Registro de Proveedores</h2>
@@ -61,10 +61,10 @@
                                     <div class="form-group"><label class="col-lg-3 control-label">Tipo de Mercadería</label>
 
                                         <div class="col-lg-5">
-                                            {!! Form::select('tipoMercaderia_Prov', ['0' => 'Seleccionar','1' => 'Botones', '2' => 'Tela', '3' => 'Remaches', '4' => 'Otros'],null,['id' => 'tipoMercaderia_Prov','class' => 'form-control m-b','style' => 'width:200px','tabindex' => '2']) !!}
+                                            {!! Form::select('tipoMercaderia_Prov',\SICOVIMA\tipoMercaderia::arrayTipoMercaderia(),null,['id' => 'tipoMercaderia_Prov','class' => 'form-control m-b','style' => 'width:200px','tabindex' => '2']) !!}
                                         </div>
                                         <div class="col-lg-4">
-                                          <input type="text" disabled="" placeholder="" class="form-control">
+                                          <input type="text" class="form-control" id="otroMercaderia" style="Display:none" name="otroMer" >
                                         </div>
                                     </div>
 

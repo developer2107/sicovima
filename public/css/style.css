@@ -619,8 +619,8 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   color: #fff;
 }
 .btn-primary {
-  background-color: #8c14bd;
-  border-color: #8c14bd;
+  background-color: #0fa1a2;
+  border-color: #148082;
   color: #FFFFFF;
 }
 .btn-primary:hover,
@@ -632,7 +632,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 .btn-primary:active:hover,
 .btn-primary.active:hover,
 .btn-primary.active:focus {
-  background-color: #8c14bd;
+  background-color: #23c6c8;
   border-color: #FFFFFF;
   color: #FFFFFF;
 }
@@ -3412,7 +3412,7 @@ video {
   padding: 20px 30px 30px 30px;
 }
 .inmodal .modal-body {
-  background: #f8fafb;
+  background: #12a3c524;
 }
 .inmodal .modal-header {
   padding: 30px 15px;
@@ -3740,7 +3740,7 @@ code {
   -moz-border-left-colors: none;
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
-  background-color: #c396d6;
+  background-color: #1db5cc;
   border-color: #e7eaec;
   border-image: none;
   border-style: solid solid none;

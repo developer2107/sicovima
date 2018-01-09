@@ -23,37 +23,45 @@
             <br>
 
 
-                    <div class="form-group">
-                        {!! Form::label('nombre_Cli', 'Cliente', ['class' => 'col-lg-4 control-label']) !!}
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                {!! Form::select('clienteRegPed', ['0' => 'Seleccionar','1' => 'Lisbeth Eunice Hernandez Castillo', '2' => 'Juan Antonio Bautista Perez'],'' ,['class' => 'chosen-select','style' => 'width:300px']) !!}
-
-                            </div>
-                        </div>
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <label class="col-lg-2 control-label">Cliente</label>
+                <div class="col-md-6">
+                    <div class="input-group">
+                       <select class = "chosen-select" name = "clientes" id = "clientes"  style="width:300px">
+                            <option value="0">Seleccione el cliente</option>
+                            @foreach ($cliente as $cliente)
+                            <option value={{$cliente->id}}>{{$cliente -> nombre_Cli}}</option>
+                            @endforeach
+                        </select>
                     </div>
-
-                    <div class="form-group">
-                    {!! Form::label('nomresponsable', 'Responsable', ['class' => 'col-lg-4 control-label']) !!}
-
-                        <div class="col-lg-8">
-                            <div class="input-group">
-                                {!! Form::select('nombreResponsable_CJ', ['0' => 'Seleccionar','1' => 'Andrea Stefany Alegria Fuentes', '2' => 'Benjamin Monterrosa Delgado'],'' ,['class' => 'chosen-select','style' => 'width:300px']) !!}
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="row">
+            <br>
+                <div class="col-md-1">
+                </div>
+                <label class="col-lg-2 control-label">Responsable</label>
+                <div class="col-lg-7">
+                    <div class="input-group">
+                        {!! Form::text('nombreResponsable',null,['id' => 'nombreResponsable','class'=>'form-control','readonly'=>'readonly','style' => 'width:300px']) !!}
                     </div>
-
-                    <div class="form-group"  id="data_2">
-                        {!! Form::label('fecha', 'Fecha', ['class' => 'col-lg-4 control-label']) !!}
-                        <div class="col-md-6">
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-
-                                {!! Form::text('fecha_Ped', '2017-11-22',['class' =>'form-control']) !!}
-
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="row" id="data_2">
+            <br>
+                <div class="col-md-1">
+                </div>
+                <label class="col-lg-2 control-label">Fecha</label>
+                <div class="col-md-4">
+                    <div class="input-group date">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        {!! Form::text('fecha_Ven',null,['class' =>'form-control']) !!}
                     </div>
+                </div>
+                <br>
+            </div>
                     <div class="row">
 
 

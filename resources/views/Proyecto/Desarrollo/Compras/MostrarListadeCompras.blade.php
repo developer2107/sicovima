@@ -53,7 +53,7 @@
                                                 $fecha=$dato[2]."/".$dato[1]."/".$dato[0];?>
                                                <td align="rihgt"><font size="4" ></font>{{$fecha}}</td>
                                                <td align="rihgt"><font size="4" ></font>{{$com-> numFac_Com}}</td>
-                                               <td align="rihgt"><font size="4" ></font>{{$com-> total_Com}}</td>
+                                               <td align="rihgt"><font size="4" ></font><i class="fa fa-usd"></i> {{$com-> total_Com}}</td>
                                                <td align="center">
                                                  <a href="VerCompra" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
                                                  </a>

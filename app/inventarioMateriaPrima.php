@@ -8,7 +8,7 @@ class inventarioMateriaPrima extends Model
 {
     protected $table = 'inventarioMateriaPrima';
 
-    protected $fillable = ['tipoMovimiento_IMP','existencias_IMP', 'cantidad_IMP','fechaMov_IMP','NuevaExistencia_IMP','id_MateriaPrima'];
+    protected $fillable = ['tipoMovimiento_IMP','existencias_IMP', 'cantidad_IMP','fechaMov_IMP','nuevaExistencia_IMP','id_MateriaPrima'];
 
     public function detallePedido(){
    return $this->hasMany('detallePedido');

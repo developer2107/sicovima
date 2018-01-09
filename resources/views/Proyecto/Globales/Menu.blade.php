@@ -35,7 +35,17 @@
                  <li>
                     <a href="index.html"><i class="fa fa-paste"></i><span class="nav-label">Inventario</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href={!! asset('ControlMateriaPrima') !!}>Materia Prima</a></li>
+                  <li>
+                    <a href="#">Materia Prima <span class="fa arrow"></span></a>
+                          <ul class="nav nav-third-level">
+                              <li>
+                                  <a href={!! asset('ControlMateriaPrima') !!}>Inventario de Materia Prima</a>
+                              </li>
+                              <li>
+                                  <a href={!! asset('RegistroMateriaP') !!}>Registrar Materia Prima</a>
+                              </li>
+                          </ul>
+                  </li>
                         <li><a href={!! asset('ControlProductosTerminados') !!}>Productos Terminados</a></li>
                     </ul>
                 </li>
@@ -74,7 +84,7 @@
                     <ul class="nav nav-second-level collapse">
                         <li>
                             <a href="#">Control de Usuario <span class="fa arrow"></span></a>
-                            
+
                             <ul class="nav nav-third-level">
                                 <li>
                                     <a href={!! asset('Bitacora') !!}>Bitacora</a>

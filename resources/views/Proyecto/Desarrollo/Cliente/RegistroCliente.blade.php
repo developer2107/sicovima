@@ -1,6 +1,6 @@
 @extends('layouts.MenuAdministrador')
 @section('content')
-{!! Form::open(['route'=>'RegistroCliente.store', 'method'=>'post']) !!}
+{!! Form::open(['route'=>'RegistroCliente.store', 'method'=>'post','autocomplete'=>'off']) !!}
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -24,7 +24,7 @@
             <div class="carousel slide" id="carousel1">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img alt="image" class="img-responsive" src="img/mada.jpg">
+                        <img alt="image" class="img-responsive" src="img/Mada-Denim-Blanco-Larga.jpg">
                     </div>
                 </div>
             </div>

@@ -1,204 +1,70 @@
-//Brendaly
-function agregarProducto(){
 
-  var cantidad=$("#cant_DCom").val();
-  var tipo=$("#tipo_MP").val();
-  var medida=$("#unidadMedida_MP").val();
-  var color=$("#color_MP").val();
-  var nombre=$("#nombre_MP").val();
-  var subTotal=$("#subTotal_DCom").val();
+var id_MP;
+var nombre_MP;
+var precio_MP;
+var color_MP;
 
-  var a = parseFloat(cantidad);
-  var b = parseFloat(subTotal);
-  var total = a*b;
+$(document).on('ready',function(){
 
-  //var total1 = parseFloat(total);
-  var suma1 =  parseFloat( $('#total_Com').val());
-  var suma = parseFloat(total);
+$('#tablaMateriaPrima').on('click','#AddCant',function(e){
+  nombre_MP=$(this).parents('tr').find('input:eq(0)').val();
+  precio_MP=$(this).parents('tr').find('input:eq(2)').val();
+  color_MP=$(this).parents('tr').find('input:eq(1)').val();
+  id_MP=$(this).parents('tr').find('input:eq(3)').val();
+  $("#agregarCompras").val("Agregar");
+  $("#cantidad").val("");
+});
 
-  var suma1 = total+suma1;
-  $('#total_Com').val(suma1);
+$('#agregarCompras').click(function(){
+  var total = parseFloat($("#total_Com").val());
+  var accion = $("#agregarCompras").val();
+  if (accion == "Agregar") {
+    var cantidad=$("#cantidad").val();
+    var c = parseFloat(cantidad)*parseFloat(precio_MP);
+    total = total + c;
+    $("#total_Com").val(parseFloat(total).toFixed(2));
 
+    $("#Compra_producto").append("<tr>"+
+      "</td><td>"+cantidad+"</td><td>"+nombre_MP+" "+color_MP+"</td><td>"+
+      "<td><input type='hidden' name='cantidadc[]' value='"+cantidad+"'>"+
+      "<input type='hidden' name='idc[]' value='"+id_MP+"'>"+
+      "<input type='hidden' name='subTotalc[]' value='"+c+"'>"+
+      "<input type='hidden' name='id[]' value=''>"+
+      parseFloat(precio_MP).toFixed(2)+"</td><td>"+parseFloat(c).toFixed(2)+"</td><td class='deleteCompra' style='cursor:pointer;'>Eliminar</td></tr>");
+  }else{
+      var totalT = parseFloat($("#total_Com").val());
+      var precio = parseFloat(subtotalg)/parseFloat(cantidadg);
+      can =  $("#cantidad").val();
+      $('#cd'+indiceg).text(can);
+      var totalp=precio*parseFloat(can);
+      $('#st'+indiceg).text( totalp.toFixed(2));
+      var resta = totalT - parseFloat(subtotalg) + totalp;
+      $("#total_Com").val(resta.toFixed(2));
+      $('#cdh'+indiceg).val(can);
+      $('#sth'+indiceg).val(totalp.toFixed(2));
 
-  $("#Compra_producto").append("<tr>"+
-    "<td><input type='hidden' name='total[]' value='"+total+"'>"+
-    "<input type='hidden' name='cantidadc[]' value='"+cantidad+"'>"+
-    "<input type='hidden' name='tipoc[]' value='"+tipo+"'>"+
-    "<input type='hidden' name='medidac[]' value='"+medida+"'>"+
-    "<input type='hidden' name='colorc[]' value='"+color+"'>"+
-    "<input type='hidden' name='nombrec[]' value='"+nombre+"'>"+
-    "<input type='hidden' name='subTotalc[]' value='"+subTotal+"'>"+
-    "</td><td>"+cantidad+"</td><td>"+nombre+"</td><td>"+parseFloat(total).toFixed(2)+"</td><td class='deleteCompra' style='cursor:pointer;'>Eliminar</td></tr>");
-  //Limpiar campos
-  $("#cant_DCom").val("");
-  $("#tipo_MP").val("");
-  $("#unidadMedida_MP").val("");
-  $("#color_MP").val("");
-  $("#nombre_MP").val("");
-  $("#subTotal_DCom").val("");
-}
+  }
+});
 
+});
 
 $(document).on("click",".deleteCompra",function(){
-var totalF=parseFloat($(this).parents('tr').find('td:eq(3)').html());
-var parent = $(this).parents().get(0);
+var totalF=parseFloat($(this).parents('tr').find('input:eq(2)').val());
+console.log(totalF);
+$(this).parent('td').parent('tr').remove();
 
-$(parent).remove();
 var total=parseFloat($("#total_Com").val());
     total=total-(totalF);
      document.getElementById("total_Com").value=total.toFixed(2);
 });
 
-$(document).on("click",".edicion",function(){
-var total = parseFloat($(this).parents('tr').find('input:eq(0)').val());
+function modificarDetalleMP(indice){
+	console.log(indice);
+	indiceg=indice;
+	cantidadg = $('#cd'+indice).text();
+	subtotalg = $('#st'+indice).text();
+  console.log(cantidadg+subtotalg);
+	$("#cantidad").val(cantidadg);
+	$("#agregarCompras").val("Modificar");
 
-var cantidad = parseFloat($(this).parents('tr').find('input:eq(1)').val());
-  $("#cant").val(cantidad);
-
-  var tipoa = $("#nombreTipo");
-  tipoa.empty();
-
-var tipos = [];
-tipos[1]='Tela';
-tipos[2]='Hilo';
-tipos[3]='Botones';
-tipos[4]='Remaches';
-
-var tipo = parseFloat($(this).parents('tr').find('input:eq(2)').val());
-for (var i = 1; i < 5; i++) {
-
-  if (tipo==i) {
-    tipoa.append("<option value='"+i+"' selected='selected'>"+tipos[i]+"</option>");
-  }else{
-    tipoa.append("<option value='"+i+"'>"+tipos[i]+"</option>");
-  }
-};
-
-var medida = $(this).parents('tr').find('input:eq(3)').val();
-  $("#unidadMP").val(medida);
-
-var color = $(this).parents('tr').find('input:eq(4)').val();
-  $("#colorMP").val(color);
-
- var nombre = $(this).parents('tr').find('input:eq(5)').val();
-  $("#nombreMP").val(nombre);
-
-
-var subtotal = total/cantidad;
-  $("#subTotal").val(subtotal);
-
-});
-
-$(document).on("click",".deleteC",function(){
-var totalF=parseFloat($(this).parents('tr').find('input:eq(0)').val());
-var parent = $(this).parents().get(0);
-$(parent).remove();
-var total=parseFloat($("#total_Com").val());
-    total=total-(totalF);
-     document.getElementById("total_Com").value=total.toFixed(2);
-});
-
-
-// function guardarProveedor(){
-//     vnombre=validarNombre();
-//     vcorreo=validarCorreo();
-//     vtelefono=validarTelefono();
-//     if(vnombre==false || vcorreo==false || vtelefono==false){
-//
-//     }else{
-//       alert("Todo bien");
-//     }
-//
-// }
-
-// function validarNombre(){
-//   nombre=$("#nombre").val();
-//   val= true;
-//     cont=0;
-//
-//     var errores= [];
-//     if(nombre!=""){
-//       $.get('/blissey/public/existeNombreProveedor/'+nombre,function(data){
-//         if(data=="true"){
-//
-//         }
-//       });
-//     }
-//     if(nombre==""){
-//       errores[cont]="El campo drogería es obligatorio";
-//
-//       cont=cont+1;
-//     }else if(nombre.length<5){
-//       errores[cont]="El campo drogería debe contener mínimo 5 caracteres";
-//       cont=cont+1;
-//     }else if(nombre.length>50){
-//       errores[cont]="El campo drogería debe contener máximo 50 caracteres";
-//       cont=cont+1;
-//     }
-//     if(cont>0){
-//       val= false;
-//     }
-//     for(a=0;a<cont;a++){
-//       new PNotify({
-//         title: 'Error!',
-//         text: errores[a],
-//         type: 'error',
-//         styling: 'bootstrap3'
-//       });
-//     }
-//     return val;
-// }
-//
-// function validarCorreo(){
-//   correo=$("#correo").val();
-//   val= true;
-//     cont=0;
-//     var errores= [];
-//     if(correo==""){
-//       errores[cont]="El campo correo es obligatorio";
-//       cont=cont+1;
-//     }
-//     if(cont>0){
-//       val= false;
-//     }
-//     for(a=0;a<cont;a++){
-//       new PNotify({
-//         title: 'Error!',
-//         text: errores[a],
-//         type: 'error',
-//         styling: 'bootstrap3'
-//       });
-//     }
-//     return val;
-// }
-// function validarTelefono(){
-//   telefono=$("#telefono").val();
-//   val= true;
-//     cont=0;
-//     var errores= [];
-//     if(telefono==""){
-//       errores[cont]="El campo teléfono es obligatorio";
-//       cont=cont+1;
-//     }else if(telefono.length!=9){
-//       errores[cont]="El campo teléfono debe contener 9 caracteres";
-//       cont=cont+1;
-//     }
-//     if(cont>0){
-//       val= false;
-//     }
-//     for(a=0;a<cont;a++){
-//       new PNotify({
-//         title: 'Error!',
-//         text: errores[a],
-//         type: 'error',
-//         styling: 'bootstrap3'
-//       });
-//     }
-//     return val;
-// }
-// function sleep(miliseconds) {
-//    var currentTime = new Date().getTime();
-//
-//    while (currentTime + miliseconds >= new Date().getTime()) {
-//    }
-// }
+}

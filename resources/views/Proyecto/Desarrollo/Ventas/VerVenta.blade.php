@@ -1,108 +1,127 @@
 @extends('layouts.MenuAdministrador')
 @section('content')
-{!! Form::open(['route'=>'RegistrarCompra.store', 'method'=>'post']) !!}
+{!! Form::model($venta,['route'=>['RegistrarVenta.update',$venta->id], 'method'=>'PUT','autocomplete'=>'off']) !!}
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Venta</h2>
         <ol class="breadcrumb">
-            <li>
-                <a href="index.html">Ventas</a>
-            </li>
-            <li>
-                <a href="index.html">Mostrar Lista</a>
-            </li>
-            <li>
-                <a href="index.html">Buscar</a>
-            </li>
-            <li class="active">
-                <strong>Ver Venta</strong>
-            </li>
+        <li>
+            <a href={!! asset('ListadeVentas') !!}>Ventas</a>
+        </li>
+        <li class="active">
+            <strong>Ver</strong>
+        </li>
         </ol>
     </div>
     <div class="col-sm-8">
-        
     </div>
-        
 </div>
 <br>
-
 <div class="row">
-        <div class="col-lg-7">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Venta</h5>
-                    
+    <div class="col-lg-7">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Venta</h5>
+            </div>
+            <div class="ibox-content">
+                <br><?php  if ($venta->estado_Ven!=2): ?>
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <label class="col-lg-2 control-label">Estado</label>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                          {!!Form::text('estado',"Normal",['class'=>'form-control','id'=>'estado','readonly'=>'readonly'])!!}
+                        </div>
+                    </div>
                 </div>
-
-
-                <div class="ibox-content">
+                <?php else: ?>
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <label class="col-lg-2 control-label">Estado</label>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            {!!Form::text('estado',"Anulada",['class'=>'form-control','id'=>'estado','readonly'=>'readonly'])!!}
+                        </div>
+                    </div>
+                </div>
                 <br>
-                    <form class="form-horizontal">
-                       <div class="row">
-                        <div class="col-md-1">
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <label class="col-lg-2 control-label">Motivo</label>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <?php $xx = SICOVIMA\Http\Controllers\VentasController::motivoss($venta->id); ?>  
+                            {!! Form::textarea('motivoEstado',$xx->motivo_EstadoDoc,['class' => 'note-codable','size' => '40x3','id'=>'motivoEstado','readonly'=>'readonly']) !!}
                         </div>
-                            <label class="col-lg-2 control-label">Cliente</label>
-                            <div class="col-md-8">
-                                {!! Form::text('nombre_Cli',null,['class'=>'form-control']) !!}
-                                
-                            </div>              
-                        </div>
-                        <div class="row">
-                        <br>
-                        <div class="col-md-1">
-                        </div>
-                            <label class="col-lg-2 control-label">Responsable</label>
-                            <div class="col-lg-8">
-                                {!! Form::text('nombreResponsable_CJ',null,['class'=>'form-control','placeholder' => 'Brenda del Carmen Guillen Maradiaga']) !!}
-                    
-                            </div>
-                        </div>
-                        <div class="row">
-                        <br>
-                        <div class="col-md-1">
-                        </div>
-                            <label class="col-lg-2 control-label">Fecha</label>
-                            <div class="col-md-4" id="data_2">
-                                <div class="input-group date">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    {!! Form::text('fecha_Ven', '22/9/2017',['class' =>'form-control']) !!}
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                        <br>
-                        <div class="col-md-1">
-                        </div>
-                            <label class="col-lg-2 control-label">Ganancia</label>
-                            <div class="col-lg-4">
-                                <div class="input-group m-b">
-                                    <span class="input-group-addon">$</span>
-                                    {!! Form::number('ganancia_Prod',null,['class'=>'touchspin2 form-control','step'=>'any']) !!}
-                                    
-                                </div>
-                            </div>  
-                            <label class="col-lg-1 control-label">Total</label>
-                            <div class="col-lg-4">
-                                <div class="input-group m-b">
-                                    <span class="input-group-addon">$</span>
-                                    {!! Form::number('total_Ven',null,['class'=>'touchspin2 form-control','step'=>'any']) !!}
-                                    
-                                </div>
-                            </div>  
-                        </div>
-                    </form>
+                    </div>
                 </div>
+                <?php endif ?>        
+                <br>
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <label class="col-lg-2 control-label">Cliente</label>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                           {!!Form::text('clientex',$cliente->nombre_Cli,['class'=>'form-control','id'=>'clientex','readonly'=>'readonly'])!!}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                <br>
+                    <div class="col-md-1">
+                    </div>
+                    <?php
+
+                        $responsable = SICOVIMA\Http\Controllers\VentasController::responsables($venta->id_Cliente);
+                        if ($responsable == "false") {
+                            $responsable = "";
+                        }else{
+                            $responsable = $responsable->nombreResponsable_CJ;
+                        }
+                    ?>
+                    <label class="col-lg-2 control-label">Responsable</label>
+                    <div class="col-lg-8">
+                        <div class="input-group">
+                            {!! Form::text('nombreResponsable',$responsable,['id' => 'nombreResponsable','class'=>'form-control','readonly'=>'readonly','style' => 'width:300px']) !!}
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="data_2">
+                <br>
+                    <div class="col-md-1">
+                    </div>
+                    <label class="col-lg-2 control-label">Fecha</label>
+                    <div class="col-md-4">
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <?php   $dato = explode("-",(String)$venta->fecha_Ven);
+                                    $fecha = $dato[2]." / ".$dato[1]." / ".$dato[0];
+                            ?>
+                            {!! Form::text('fecha_Ven',$fecha,['class' =>'form-control']) !!}
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-2">
+                        {!! Form::button('Ver Documento',['class'=>'btn btn-outline btn-primary']) !!}
+                    </div>
+                    <br>
+                </div>
+                <br>
             </div>
         </div>
-
-        <div class="col-lg-5">
+    </div>
+    <div class="col-lg-5">
         <div class="ibox-content">
             <div class="carousel slide" id="carousel1">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img alt="image" class="img-responsive" src="img/mada.jpg">
+                        <img alt="image" class="img-responsive" src="img/Mada-Denim-Blanco2.jpg">
                     </div>
                 </div>
             </div>
@@ -114,23 +133,11 @@
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <h5>Detalles de la Venta</h5>
-                <div class="ibox-tools">
-                    <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#">Config option 1</a>
-                        </li>
-                        <li><a href="#">Config option 2</a>
-                        </li>
-                    </ul>
-                </div>
             </div>
             <div class="ibox-content">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="tablaProductos">
                     <thead>
                     <tr>
-                        <th>#</th>
                         <th>Producto</th>
                         <th>Cantidad</th>
                         <th>Costo</th>
@@ -139,176 +146,51 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Pantalon Jeans</td>
-                        <td>2</td>
-                        <td>$11.62</td>
-                        <td>$6.39</td>
-                        <td>$18.01</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Camisa Manga Larga</td>
-                        <td>1</td>
-                        <td>$7.55</td>
-                        <td>$4.15</td>
-                        <td>$11.70</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-2">
-    </div>
-    <div class="col-lg-8">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <h5>Producto</h5>
-                <div class="ibox-tools">
-                    <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#">Config option 1</a>
-                        </li>
-                        <li><a href="#">Config option 2</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="ibox-content">
-                <div class="row">
-                <br>
-                    <div class="form-group">
-                        <div class="col-sm-1">
-                        </div>
-                        <div class="col-sm-4">
-                            <label class="font-bold">Tipo</label>
-                            {!! Form::text('tipo_Prod',null,['class'=>'form-control']) !!}
-                            
-                        </div>
-                        <div class="col-sm-6">
-                            <label class="font-bold">Color</label>
-                            {!! Form::text('color_Prod',null,['class'=>'form-control']) !!}
-                            
-                        </div>
-                        <div class="col-sm-1">
-                        </div>
-                    </div>      
-                </div>  
-                <div class="row">
-                </div>
-                <div class="row">
-                 </br> 
-                    <div class="form-group">
-                        <div class="col-sm-1">
-                        </div>
-                        <div class="col-sm-5">
-                            <label class="font-bold">Estilo</label>
-                            
-                            {!! Form::textarea('estilo_Prod', null, ['class' => 'note-codable','size' => '34x5']) !!}
-                            
-                        </div> 
-                        <div class="col-sm-5">
-                            <label class="font-bold">Descripción</label>
-                            {!! Form::textarea('descripcion_Prod', null, ['class' => 'note-codable','size' => '34x5']) !!}
-                            
-                        </div>
-                        <div class="col-sm-1">
-                        </div>  
-                    </div>
-                </div>
-                <div class="row">
-                    </br>
-                </div>
-            </div>
-        </div>
-    </div> 
-</div>
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <h5>Detalles del Producto</h5>
-                <div class="ibox-tools">
-                    <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#">Config option 1</a>
-                        </li>
-                        <li><a href="#">Config option 2</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-
-            <div class="ibox-content">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Materia Prima</th>
-                        <th>Cantidad</th>
-                        <th>Subtotal</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Tela</td>
-                        <td>5 Yardas</td>
-                        <td>$10.15</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Botones</td>
-                        <td>8 Unidades</td>
-                        <td>$1.22</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Hilo</td>
-                        <td>1 Cono</td>
-                        <td>$0.25</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="ibox">
-        <div class="ibox-content">
-            <div class="row">
-            <br>
-                <div class="col-xs-4">  
-                </div>    
-                <div class="col-xs-2">
-                    <div class="input-group bootstrap-touchspin">
-                        <a href="ModificarVenta" class="btn btn-outline btn-primary dim" type="button">Modificar</a>
-                    </div>
-                </div>  
-                <div class="col-xs-2">
-                    <div class="input-group bootstrap-touchspin">
-                        {!! Form::submit('Eliminar',['class'=>'btn btn-outline btn-primary dim']) !!}
+                    <?php
+                        $total=0;
+                        $indice=0;
+                        foreach ($venta->detalleVenta as $key => $detalle): 
                         
+                    ?>
+                    <?php
+                        $prod=SICOVIMA\producto::find($detalle->id_Producto);
+                        $subtotal=($detalle->costoProd_DVen+$detalle->gananciaProd_DVen)*$detalle->cant_DVen;
+                        $cadena='modificarDetalle('.$indice.');';
+                        $icd="cd".$indice;
+                        $ign="gn".$indice;
+                    ?>
+                        <tr>
+                           <td style = "width:40%">{{$prod->tipo_Prod." ".$prod->estilo_Prod." ".$prod->color_Prod}}</td>
+                           <td style = "width:10%" id="cd{{$indice}}">{{$detalle->cant_DVen}}</td>
+                           <td style = "width:10%" id="ct{{$indice}}">{{$detalle->costoProd_DVen}}</td>
+                           <td style = "width:10%" id="gn{{$indice}}">{{$detalle->gananciaProd_DVen}}</td>
+                           <td style = "width:10%" id="st{{$indice}}">{{$subtotal}}</td>
+                        </tr>
+                    <?php 
+                        $total=$total+$subtotal;
+                        $indice++;
+                        endforeach 
+                    ?>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-xs-8"></div>
+                    <div class="col-xs-1">
+                        <label class="col-lg-2 control-label">Total:</label>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="input-group m-b">
+                            <span class="input-group-addon">$</span>
+                            {!! Form::number('total_Ven',$total,['class'=>'touchspin2 form-control','step'=>'any', 'id'=>'totalVenta','readonly'=>'readonly','step'=>'.01']) !!}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<br>
 
 {!! Form::close() !!}
 @stop

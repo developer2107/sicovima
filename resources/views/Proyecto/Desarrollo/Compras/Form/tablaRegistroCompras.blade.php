@@ -13,7 +13,8 @@
                         <th></th>
                         <th>Cantidad</th>
                         <th>Descripción</th>
-                        <th>Precio</th>
+                        <th>Precio Unitario</th>
+                        <th>Sub Total</th>
                         <th>Accion</th>
 
                     </tr>
@@ -31,7 +32,7 @@
                         <div class="col-xs-2">
                             <div class="input-group m-b">
                                 <span class="input-group-addon">$</span>
-                                {!! Form::number('total_Com',0,['class'=>'form-control','id'=>'total_Com']) !!}
+                                {!! Form::number('total_Com',0,['class'=>'form-control','id'=>'total_Com','step'=>'.01']) !!}
                             </div>
                         </div>
                     </div>

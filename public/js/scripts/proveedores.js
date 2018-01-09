@@ -42,4 +42,14 @@ $(document).on('ready',function(){
 
 	});
 
+	$('#tipoMercaderia_Prov').on('change',function(e){
+			var obtener=$('#tipoMercaderia_Prov').find('option:selected');
+
+			if (obtener.val() == '0') {
+				$('#otroMercaderia').css("display","block");
+			}else{
+				$('#otroMercaderia').css("display","none");
+			}
+	});
+
 });

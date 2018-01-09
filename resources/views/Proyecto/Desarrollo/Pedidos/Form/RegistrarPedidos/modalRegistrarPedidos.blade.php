@@ -59,7 +59,7 @@
                                  <div class="col-sm-6">
                                      <label class="font-bold">Estilo</label>
                                      <div class="input-group m-b">
-                                       {!! Form::textarea('estilo_prod', 1, ['class' => 'note-codable','size' => '40x5' , 'id'=>'estilo_prod']) !!}
+                                       {!! Form::textarea('estilo_prod', null, ['class' => 'note-codable','size' => '40x5' , 'id'=>'estilo_prod']) !!}
 
                                      </div>
                                  </div>
@@ -98,7 +98,7 @@
            </div>
 
            <div class="modal-footer">
-             <input class="btn btn-primary" name="agregarPedidos" id="agregarPedidos" type="button" value="Agregar" onClick="agregarPedidos()"/>
+             <input class="btn btn-primary" name="agregarPedido" id="agregarPedido" type="button" value="Agregar" />
                <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
            </div>
        </div>

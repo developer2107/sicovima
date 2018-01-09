@@ -104,7 +104,12 @@ $(document).on('ready',function(){
 
 		
 	});
+	$('#CancelarRegistroVenta').click(function(){
+		var tabla = $("#tablaProductos");
+		tabla.remove();
 
+		
+	});
 	$('#tablaProductos').on('click','#Eliminar',function(e){
 		var total=parseFloat($("#totalVenta").val());
 		var cantidadE=parseFloat($(this).parents('tr').find('input:eq(1)').val());

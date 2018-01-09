@@ -48,7 +48,15 @@
                             <tr>
 
                               <td align="left"><font size="4" >{{$mat-> nombre_MP}}</font></td>
+                              <td align="left"><font size="4" >{{$mat-> obtenerCantidad($mat-> id)}}</font></td>
+                              <?php if ($mat->estado_MP) {
+                                $aux = "Bueno";
+                              } else {
+                                $aux = "Defectuoso";
+                              }
+                               ?>
                               <td align="left"><font size="4" >{{$mat-> tipo_MP}}</font></td>
+                              <td align="left"><font size="4" >{{$aux}}</font></td>
                               <td align="center">
                               <a href="VerMateriaPrima" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a>
                             </td>

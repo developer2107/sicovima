@@ -3,7 +3,7 @@ use SICOVIMA\proveedor; ?>
 @extends('layouts.MenuAdministrador')
 
 @section('content')
-{!! Form::open(['route'=>'RegistrarCompra.store', 'method'=>'post']) !!}
+{!! Form::open(['route'=>'RegistrarCompra.store', 'method'=>'post','autocomplete'=>'off']) !!}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Registro de Compra</h2>
@@ -46,7 +46,7 @@ use SICOVIMA\proveedor; ?>
                         {!! Form::Label('Proveedor') !!}
                         <div class="input-group">
                             {!! Form::select('nombre_Prov',['Seleccione el Proveedor',proveedor::arrayProveedores()],'',['class'=>'chosen-select','data-placeholder'=>'Seleccione el Proveedor','style'=>'width:300px']) !!}
-                              
+
                         </div>
                     </div>
 
@@ -54,8 +54,6 @@ use SICOVIMA\proveedor; ?>
                         <div class="form-group" id="data_2">
                              {!! Form::Label('Fecha de Compra') !!}
                             <div class="input-group date">
-                              <?php  // $dato=explode("-",$variable->fecha);
-                              //  $fecha=$dato[2]."/".$dato[1]."/".$dato[0];?>
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 {!! Form::text('fecha_Com',null,['class'=>'form-control']) !!}
                             </div>
@@ -64,7 +62,7 @@ use SICOVIMA\proveedor; ?>
                     <div class="col-md-2">
                         <label class="font-bold"></label>
                         <div class="input-group bootstrap-touchspin">
-                            <a href="" class="btn btn-outline btn-primary dim" data-toggle="modal" data-target="#modalProducto" type="button">Agregar Detalle de Compra</a>
+                            <a href="" class="btn btn-outline btn-primary dim" data-toggle="modal" data-target="#modalMateriaPrima" type="button">Agregar Detalle de Compra</a>
                         </div>
                     </div>
                 </div>
