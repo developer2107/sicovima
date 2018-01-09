@@ -1,5 +1,12 @@
 
-function agregarPedido(){
+$(document).on('ready',function(){
+
+$('#agregarPedido').click(function(){
+  var accion = $("#agregarPedido").val();
+  if (accion == "Agregar") {
+
+    var cantidad=$("#cantidad").val();
+
   var Tipo = $("#tipo_Prod").val();
   var Estilo = $("#estilo_prod").val();
   var Cantidad = $("#cantidad_DPed").val();
@@ -10,14 +17,15 @@ function agregarPedido(){
   var Precio = $("#precio_Prod").val();
   var Imagen =$("#inputImage").val();
   var subTotal_DPed= $("#subTotal_DPed").val();
+  var tabla=$("#tablaPedidos");
+  var total=parseFloat($("#totalEnPedido").val());
 
-  alert("Aqui");
   //Datos
   var total=parseFloat($("#totalVenta").val());
   var subtotalVenta_DPed=(parseFloat(gananciau)+parseFloat(a_precio))*parseFloat(cantidad);
   var subtotal_DPed=(parseFloat(gananciau)+parseFloat(a_precio));
 
-  $("#tablaProductos").append("<tr>"+
+  var datos= "<tr>"+
   "<td><input type='hidden' name='subtotalventap[]' value='"+subtotalVenta_DPed+"'>"+
   "<input type='hidden' name='subtotalp[]' value='"+subTotal_DPed+"'>"+
   "<input type='hidden' name='imagenp[]' value='"+Imagen+"'>"+
@@ -36,9 +44,12 @@ function agregarPedido(){
   "<td>"+subTotal_DPed.toFixed(2)+"</td>"+
   "<td>"+subtotalVenta_DPed.toFixed(2) +"</td>"+
   "<td class='deleteVisitador' style='cursor:pointer;'>Eliminar</td>"+
-  "</tr>");
+  "</tr>";
+
+  tabla.append(datos);
 
   total = total + subtotal;
+
   $("#totalEnPedido").val(total.toFixed(2));
 
   //Limpiar campos
@@ -53,7 +64,29 @@ function agregarPedido(){
   $("#Resultado").val("");
   $("#subTotal_DPed").val("");
 
+}else{
+  var total=parseFloat($("#totalVenta").val());
+  var cantidad=$("#cantidad").val();
+  var gananciau=$("#gananciau").val();
+  var subtotal=(parseFloat(gananciau)+parseFloat(costog))*parseFloat(cantidad);
+  console.log(indiceg+costog);
+  $('#cd'+indiceg).text(cantidad);
+  $('#st'+indiceg).text(subtotal);
+  $('#gn'+indiceg).text(gananciau);
+  $('#cdDV'+indiceg).val(cantidad);
+  $('#gnDV'+indiceg).val(gananciau);
+  total=total-subtotalg;
+  total=total+subtotal;
+  console.log(subtotalg);
+  $('#totalVenta').val(total.toFixed(2));
 }
+
+});
+//Demas funciones
+
+});
+
+
 $(document).on("click",".deleteVisitador",function(){
 var parent = $(this).parents().get(0);
 $(parent).remove();

@@ -98,7 +98,7 @@
            </div>
 
            <div class="modal-footer">
-             <input class="btn btn-primary" name="agregarPedidos" id="agregarPedidos" type="button" value="Agregar" onClick="agregarPedidos()"/>
+             <input class="btn btn-primary" name="agregarPedido" id="agregarPedido" type="button" value="Agregar" />
                <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
            </div>
        </div>
