@@ -5,7 +5,7 @@
                 <h5>Detalles de la Venta</h5>
             </div>
             <div class="ibox-content">
-                <table class="table table-bordered" id="tablaProductos" name="tablaProductos">
+                <table class="table table-bordered" id="tablaPedidos" name="tablaPedidos">
                     <thead>
                     <tr>
                         <th>Producto</th>

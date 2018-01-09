@@ -59,7 +59,7 @@
                                  <div class="col-sm-6">
                                      <label class="font-bold">Estilo</label>
                                      <div class="input-group m-b">
-                                       {!! Form::textarea('estilo_prod', 1, ['class' => 'note-codable','size' => '40x5' , 'id'=>'estilo_prod']) !!}
+                                       {!! Form::textarea('estilo_prod', null, ['class' => 'note-codable','size' => '40x5' , 'id'=>'estilo_prod']) !!}
 
                                      </div>
                                  </div>

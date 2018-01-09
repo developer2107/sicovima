@@ -2,6 +2,7 @@
 $(document).on('ready',function(){
 
 $('#agregarPedido').click(function(){
+  // alert("aqui");
   var accion = $("#agregarPedido").val();
   if (accion == "Agregar") {
 
@@ -17,13 +18,16 @@ $('#agregarPedido').click(function(){
   var Precio = $("#precio_Prod").val();
   var Imagen =$("#inputImage").val();
   var subTotal_DPed= $("#subTotal_DPed").val();
-  var tabla=$("#tablaPedidos");
+  var tabla=$("#tablaProductos");
   var total=parseFloat($("#totalEnPedido").val());
 
-  //Datos
-  var total=parseFloat($("#totalVenta").val());
-  var subtotalVenta_DPed=(parseFloat(gananciau)+parseFloat(a_precio))*parseFloat(cantidad);
-  var subtotal_DPed=(parseFloat(gananciau)+parseFloat(a_precio));
+  // alert(Tipo);
+  var total=parseFloat($("#totalEnPedido").val());
+  var subtotalVenta_DPed=(parseFloat(subTotal_DPed)+parseFloat(Precio))*parseFloat(cantidad_DPed);
+  var subtotal_DPed1=(parseFloat(subTotal_DPed)+parseFloat(Precio));
+
+  alert(subtotalVenta_DPed);
+  alert(subTotal_DPed1);
 
   var datos= "<tr>"+
   "<td><input type='hidden' name='subtotalventap[]' value='"+subtotalVenta_DPed+"'>"+
@@ -41,7 +45,7 @@ $('#agregarPedido').click(function(){
   "<td>"+Tipo+"</td>"+
   "<td>"+Cantidad+"</td>"+
   "<td>"+Precio+"</td>"+
-  "<td>"+subTotal_DPed.toFixed(2)+"</td>"+
+  "<td>"+subTotal_DPed1.toFixed(2)+"</td>"+
   "<td>"+subtotalVenta_DPed.toFixed(2) +"</td>"+
   "<td class='deleteVisitador' style='cursor:pointer;'>Eliminar</td>"+
   "</tr>";
