@@ -31,10 +31,12 @@ Route::get('/ModificarProv','ProveedoresController@modificarpro');
 Route::get('/ModificarCli','ClientesController@ModificarCli');
 Route::get('/DarBajaProv','ProveedoresController@darbajaprov');
 Route::get('/DarBajaCli','ClientesController@darbajacli');
+
 Route::Resource('/ListadeCompras','CompraController@Mostrar');
 Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
 Route::Resource('/RegistrarCompra','CompraController');
-Route::Resource('/VerCompra','CompraController@Ver');
+Route::match(['get','post'],'/VerCompra/{id}','CompraController@Ver');
+// Route::Resource('/VerCompra','CompraController@Ver');
 
 
 /* DE AQUI ABAJO ESTAN LAS RUTAS DE GRECIA*/
@@ -54,10 +56,10 @@ Route::Resource('/VerProductosTerminados','InventarioPTController@Ver');
 
 //---------------------------------------------------------------------------
 
-Route::Resource('/ListadeCompras','CompraController@Mostrar');
-Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
-Route::Resource('/RegistrarCompra','CompraController');
-Route::Resource('/VerCompra','CompraController@Ver');
+// Route::Resource('/ListadeCompras','CompraController@Mostrar');
+// Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
+// Route::Resource('/RegistrarCompra','CompraController');
+// Route::Resource('/VerCompra','CompraController@Ver');
 
 Route::Resource('/ListadePedidos','PedidosController@Mostrar');
 Route::Resource('/RegistrarPedido','PedidosController');

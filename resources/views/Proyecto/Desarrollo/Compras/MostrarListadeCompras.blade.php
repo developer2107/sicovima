@@ -54,7 +54,7 @@
                                                <td align="rihgt"><font size="4" ></font>{{$com-> numFac_Com}}</td>
                                                <td align="rihgt"><font size="4" ></font><i class="fa fa-usd"></i> {{$com-> total_Com}}</td>
                                                <td align="center">
-                                                 <a href="VerCompra" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
+                                                 <a href="VerCompra/{{$com->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
                                                  </a>
                                                  <a href="ModificarCompra/{{$com->id}}" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
                                                  </a>
