@@ -100,28 +100,20 @@ use SICOVIMA\detalleCompra;  ?>
                       ?>
 
                     <tr>
-                        <td id="cd{{$indice}}">
-                        {{$detalle->cant_DCom}}
-                        </td>
-                        <td>
-                        {{$materiaP->nombre_MP." ".$materiaP->color_MP}}
-                        </td>
-                        <td>
-                        {{$detalle->subtotal_DCom/$detalle->cant_DCom}}
-                        </td>
-                        <td id="st{{$indice}}">
-                        {{$detalle->subtotal_DCom}}
-                        </td>
+                        <td id="cd{{$indice}}">{{$detalle->cant_DCom}}</td>
+                        <td>{{$materiaP->nombre_MP." ".$materiaP->color_MP}}</td>
+                        <td>{{$detalle->subtotal_DCom/$detalle->cant_DCom}}</td>
+                        <td id="st{{$indice}}">{{$detalle->subtotal_DCom}}</td>
                         <?php
                            $total1 = $detalle->subtotal_DCom + $total1;
                         ?>
-                        <td class='edicion' style='cursor:pointer;'>
-                          <input type='hidden' id="cdh{{$indice}}" name='cantidadc[]' value='{{$detalle->cant_DCom}}'>
+                        <td style='cursor:pointer;'>
+                          <input type='hidden' name='cantidadc[]' id="cdh{{$indice}}" value='{{$detalle->cant_DCom}}'>
                           <input type='hidden' name='idc[]' value='{{$materiaP-> id}}'>
-                          <input type='hidden' id="sth{{$indice}}" name='subTotalc[]' value='{{$detalle-> subtotal_DCom}}'>
+                          <input type='hidden' name='subTotalc[]' id="sth{{$indice}}" value='{{$detalle-> subtotal_DCom}}'>
                           <input type='hidden' name='id[]' value='{{$detalle-> id}}'>
                           <a class='btn btn-success btn-circle' type='button' id='ModificarDetalleMP'><i class='fa fa-pencil-square-o' data-dismiss="modal" data-toggle="modal" data-target="#myModal6" onclick="{{$cadena}}"></i></a>
-                          <a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>
+                          <a class='btn btn-danger btn-circle  deleteCompra' type='button' id='Eliminar'><i class='fa fa-times'></i></a>
                        </td>
 
                     </tr>
@@ -138,7 +130,7 @@ use SICOVIMA\detalleCompra;  ?>
                         <div class="col-xs-2">
                             <div class="input-group m-b">
                                 <span class="input-group-addon">$</span>
-                                {!! Form::number('total_Com',$total1,['id'=>'total_Com','class'=>'form-control']) !!}
+                                {!! Form::number('total_Com',$total1,['id'=>'total_Com','class'=>'form-control','step'=>'.01']) !!}
                             </div>
                         </div>
                     </div>
@@ -159,7 +151,7 @@ use SICOVIMA\detalleCompra;  ?>
 
                 <div class="col-xs-2">
                     <div class="input-group bootstrap-touchspin">
-                        <a href="" class="btn btn-outline btn-primary dim" type="button">Modificar</a>
+                        {!! Form::submit('Modificar',['class'=>'btn btn-outline btn-primary dim']) !!}
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -182,7 +174,6 @@ use SICOVIMA\detalleCompra;  ?>
                 <h4 class="modal-title">Producto</h4>
                 <small>Registre el producto de su compra</small>
             </div>
-
 
             <div class="modal-body">
 
@@ -229,7 +220,6 @@ use SICOVIMA\detalleCompra;  ?>
             </div>
 
             <div class="modal-footer">
-                {{-- <button type="button" class="btn btn-primary">Modificar</button> --}}
                 <input type="button" class="btn btn-primary" name="agregarProducto" id="agregarProducto" value="Agregar" onclick="agregarProducto()"/>
                 <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
             </div>

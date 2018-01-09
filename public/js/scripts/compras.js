@@ -25,69 +25,34 @@ $('#agregarCompras').click(function(){
     $("#total_Com").val(parseFloat(total).toFixed(2));
 
     $("#Compra_producto").append("<tr>"+
+      "</td><td>"+cantidad+"</td><td>"+nombre_MP+" "+color_MP+"</td><td>"+
       "<td><input type='hidden' name='cantidadc[]' value='"+cantidad+"'>"+
       "<input type='hidden' name='idc[]' value='"+id_MP+"'>"+
       "<input type='hidden' name='subTotalc[]' value='"+c+"'>"+
       "<input type='hidden' name='id[]' value=''>"+
-      "</td><td>"+cantidad+"</td><td>"+nombre_MP+" "+color_MP+"</td><td>"+parseFloat(precio_MP).toFixed(2)+"</td><td>"+parseFloat(c).toFixed(2)+"</td><td class='deleteCompra' style='cursor:pointer;'>Eliminar</td></tr>");
+      parseFloat(precio_MP).toFixed(2)+"</td><td>"+parseFloat(c).toFixed(2)+"</td><td class='deleteCompra' style='cursor:pointer;'>Eliminar</td></tr>");
+  }else{
+      var totalT = parseFloat($("#total_Com").val());
+      var precio = parseFloat(subtotalg)/parseFloat(cantidadg);
+      can =  $("#cantidad").val();
+      $('#cd'+indiceg).text(can);
+      var totalp=precio*parseFloat(can);
+      $('#st'+indiceg).text( totalp.toFixed(2));
+      var resta = totalT - parseFloat(subtotalg) + totalp;
+      $("#total_Com").val(resta.toFixed(2));
+      $('#cdh'+indiceg).val(can);
+      $('#sth'+indiceg).val(totalp.toFixed(2));
+
   }
 });
+
 });
 
 $(document).on("click",".deleteCompra",function(){
-var totalF=parseFloat($(this).parents('tr').find('td:eq(4)').html());
-var parent = $(this).parents().get(0);
+var totalF=parseFloat($(this).parents('tr').find('input:eq(2)').val());
+console.log(totalF);
+$(this).parent('td').parent('tr').remove();
 
-$(parent).remove();
-var total=parseFloat($("#total_Com").val());
-    total=total-(totalF);
-     document.getElementById("total_Com").value=total.toFixed(2);
-});
-
-$(document).on("click",".edicion",function(){
-var total = parseFloat($(this).parents('tr').find('input:eq(0)').val());
-
-var cantidad = parseFloat($(this).parents('tr').find('input:eq(1)').val());
-  $("#cant").val(cantidad);
-
-  var tipoa = $("#nombreTipo");
-  tipoa.empty();
-
-var tipos = [];
-tipos[1]='Tela';
-tipos[2]='Hilo';
-tipos[3]='Botones';
-tipos[4]='Remaches';
-
-var tipo = parseFloat($(this).parents('tr').find('input:eq(2)').val());
-for (var i = 1; i < 5; i++) {
-
-  if (tipo==i) {
-    tipoa.append("<option value='"+i+"' selected='selected'>"+tipos[i]+"</option>");
-  }else{
-    tipoa.append("<option value='"+i+"'>"+tipos[i]+"</option>");
-  }
-};
-
-var medida = $(this).parents('tr').find('input:eq(3)').val();
-  $("#unidadMP").val(medida);
-
-var color = $(this).parents('tr').find('input:eq(4)').val();
-  $("#colorMP").val(color);
-
- var nombre = $(this).parents('tr').find('input:eq(5)').val();
-  $("#nombreMP").val(nombre);
-
-
-var subtotal = total/cantidad;
-  $("#subTotal").val(subtotal);
-
-});
-
-$(document).on("click",".deleteC",function(){
-var totalF=parseFloat($(this).parents('tr').find('input:eq(0)').val());
-var parent = $(this).parents().get(0);
-$(parent).remove();
 var total=parseFloat($("#total_Com").val());
     total=total-(totalF);
      document.getElementById("total_Com").value=total.toFixed(2);

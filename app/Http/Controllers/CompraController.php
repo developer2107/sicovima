@@ -45,7 +45,7 @@ class CompraController extends Controller
       $materiaPrima=\SICOVIMA\materiaPrima::all();
       $detalleCompra=detalleCompra::all();
 
-      return view("Proyecto.Desarrollo.Compras.MostrarListadeCompras")->with('compra', $compra);//
+      return view("Proyecto.Desarrollo.Compras.MostrarListadeCompras")->with('compra', $compra);
    }
 
     public function Index()
@@ -151,7 +151,67 @@ class CompraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $compraM = compra::find($id);
+        $detallesCompra = detalleCompra::where('id_Compra',$id)->get();
+
+        foreach ($detallesCompra as $detCompra) {
+          $inventario = \SICOVIMA\inventarioMateriaPrima::where('id_MateriaPrima',$detCompra-> id_MateriaPrima)->get()->last();
+
+          \SICOVIMA\inventarioMateriaPrima::create([
+            'tipoMovimiento_IMP'=>2,
+            'existencias_IMP'=>$inventario-> nuevaExistencia_IMP,
+            'cantidad_IMP'=>$detCompra-> cant_DCom,
+            'fechaMov_IMP'=>$request['fecha_Com'],
+            'nuevaExistencia_IMP'=>$inventario -> nuevaExistencia_IMP - $detCompra-> cant_DCom,
+            'id_MateriaPrima'=>$detCompra-> id_MateriaPrima,
+          ]);
+
+          $detCompra -> delete();
+
+        }
+        $compraM->delete();
+
+        $cantidad = $request['cantidadc'];
+        $id_MP = $request['idc'];
+        $subTotal = $request['subTotalc'];
+
+        $contador = count($request['cantidadc']);
+
+       $compra =  \SICOVIMA\compra::create([
+         'numFac_Com'=>$request['numFac_Com'],
+         'fecha_Com'=>$request['fecha_Com'],
+         'total_Com'=>$request['total_Com'],
+         'id_Proveedor'=>$request['nombre_Prov'],
+       ]);
+
+         for ($j=0; $j < $contador ; $j++) {
+           \SICOVIMA\detalleCompra::create([
+            'cant_DCom'=>$cantidad[$j],
+            'subtotal_DCom'=>$subTotal[$j],
+            'id_Compra'=>$compra -> id,
+            'id_MateriaPrima'=>$id_MP[$j],
+           ]);
+
+           $inventario = \SICOVIMA\inventarioMateriaPrima::where('id_MateriaPrima',$id_MP[$j])->get()->last();
+           if (count($inventario) > 0) {
+            $existencias_IMP = $inventario -> nuevaExistencia_IMP;
+           } else {
+            $existencias_IMP = 0;
+           }
+
+           \SICOVIMA\inventarioMateriaPrima::create([
+             'tipoMovimiento_IMP'=>1,
+             'existencias_IMP'=>$existencias_IMP,
+             'cantidad_IMP'=>$cantidad[$j],
+             'fechaMov_IMP'=>$request['fecha_Com'],
+             'nuevaExistencia_IMP'=>$existencias_IMP + $cantidad[$j],
+             'id_MateriaPrima'=>$id_MP[$j],
+           ]);
+         }
+
+         $compra = compra::with('proveedor')->get();
+
+         return view("Proyecto.Desarrollo.Compras.MostrarListadeCompras")->with('compra', $compra);
     }
 
     /**
