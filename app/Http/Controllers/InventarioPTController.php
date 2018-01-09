@@ -4,6 +4,8 @@ namespace SICOVIMA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SICOVIMA\producto;
+use SICOVIMA\inventarioProductoTerminado;
+
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 
@@ -26,10 +28,10 @@ class InventarioPTController extends Controller
 
     public function Mostrar()
     {
-      $producto = producto::all();
-
-      return view("Proyecto.Desarrollo.InventarioPT.InventarioPT")->with('producto', $producto);//
-   }
+        $inventario = inventarioProductoTerminado::with('producto')->get();
+        $producto = producto::all();
+        return view("Proyecto.Desarrollo.InventarioPT.InventarioPT")->with('producto', $producto);//
+    }
 
     /**
      * Show the form for creating a new resource.

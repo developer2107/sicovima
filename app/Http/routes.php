@@ -48,6 +48,8 @@ Route::match(['get','post'],'/motivo/{id}/{motivo}','VentasController@motivos');
 Route::get('RegistrarVentas/{id}','VentasController@getResponsables');
 Route::resource('venta','ventasController');
 Route::match(['get','post'],'/responsable/{id}','VentasController@responsables');
+Route::Resource('/ControlProductosTerminados','InventarioPTController@Mostrar');
+Route::Resource('/VerProductosTerminados','InventarioPTController@Ver');
 
 
 //---------------------------------------------------------------------------
@@ -75,8 +77,6 @@ Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar')
 Route::get('/ControlMateriaPrima','InventarioMPController@Mostrar');
 Route::Resource('/VerMateriaPrima','InventarioMPController@Ver');
 Route::Resource('/RegistroMateriaP','MateriaPrimaController');
-Route::get('/ControlProductosTerminados','InventarioPTController@Mostrar');
-Route::Resource('/VerProductosTerminados','InventarioPTController@Ver');
 Route::get('/Login','LoginController@index');
 Route::get('/BuscarUsuario','SeguridadController@Buscar');
 Route::get('/VerUsuario','SeguridadController@Ver');

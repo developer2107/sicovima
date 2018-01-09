@@ -60,7 +60,7 @@
                             Anulada
                           <?php endif ?>
                         </td>
-                        <td align="center" style = "width:12%">
+                        <td style = "width:12%">
                           <a href="VerVenta/{{$ven->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
                           </a><?php if ($ven->estado_Ven!=2): ?>
                           <a href="ModificarVenta/{{$ven->id}}" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>

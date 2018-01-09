@@ -41,7 +41,6 @@
                     <div class="col-md-1">
                     </div>
                     <?php
-
                         $responsable = SICOVIMA\Http\Controllers\VentasController::responsables($venta->id_Cliente);
                         if ($responsable == "false") {
                             $responsable = "";

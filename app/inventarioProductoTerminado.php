@@ -14,7 +14,8 @@ class inventarioProductoTerminado extends Model
    return $this->hasMany('defectuosoPT');
 }
 
-public function producto(){
-   return $this->belongsTo('producto');
-}
+	public function producto(){
+	   return $this->belongsTo('SICOVIMA\producto','id');
+	}
+
 }
