@@ -4,7 +4,7 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/SICOVIMA2.png">
+                            <img alt="image" class="img-circle" src="../img/SICOVIMA2.png">
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">SICOVIMA</strong>
@@ -46,7 +46,7 @@
                               </li>
                           </ul>
                   </li>
-                        <li><a href={!! asset('ControlProductosTerminados') !!}>Productos Terminados</a></li>
+                        <li><a href={!! asset('ProductosTerminados') !!}>Productos Terminados</a></li>
                     </ul>
                 </li>
                  <li>

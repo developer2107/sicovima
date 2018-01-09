@@ -23,7 +23,6 @@
     <div class="col-sm-8"></div>
 </div>
 <br>
-
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
@@ -35,79 +34,79 @@
                         </div>
                         <div class="ibox-content">
                             <form class="form-horizontal">
-
+                            <br>
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Tipo</label>
-                                    <div class="col-lg-7">
-                                        {!! Form::text('tipo_Prod',null,['class'=>'form-control','placeholder' => 'Pantalon'])!!}
+                                    <div class="col-lg-5 input-group m-b">
+                                        {!! Form::text('tipo_Prod',$producto->tipo_Prod,['class'=>'form-control','readonly'=>'readonly'])!!}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Estilo</label>
-                                    <div class="col-lg-7">
-                                        {!! Form::text('estilo_Prod',null,['class'=>'form-control','placeholder' => 'Pantalon'])!!}
+                                    <div class="col-lg-5 input-group m-b">
+                                        {!! Form::text('estilo_Prod',$producto->estilo_Prod,['class'=>'form-control','readonly'=>'readonly'])!!}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Color</label>
-                                    <div class="col-lg-7">
-                                        {!! Form::text('color_Prod',null,['class'=>'form-control','placeholder' => 'Café'])!!}
+                                    <div class="col-lg-5 input-group m-b">
+                                        {!! Form::text('color_Prod',$producto->color_Prod,['class'=>'form-control','readonly'=>'readonly'])!!}
                             
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Precio</label>
-                                    <div class="col-lg-7">
-                                        {!! Form::number('precio_Prod',null,['class'=>'form-control','placeholder' => 'Café'])!!}
-                            
+                                    <div class="col-lg-3 input-group m-b">
+                                        <span class="input-group-addon">$</span>
+                                        {!! Form::number('precio_Prod',$producto->precio_Prod,['class'=>'touchspin2 form-control','step'=>'.01','readonly'=>'readonly'])!!}
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Talla</label>
-                                    <div class="col-lg-7">
-                                        {!! Form::text('talla_Prod',null,['class'=>'form-control','placeholder' => 'Café'])!!}
+                                    <div class="col-lg-3 input-group m-b">
+                                        {!! Form::text('talla_Prod',$producto->talla_Prod,['class'=>'form-control','readonly'=>'readonly'])!!}
                             
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Descripcion</label>
-                                    <div class="col-lg-7">
-                                        {!! Form::text('descripcion_Prod',null,['class'=>'form-control','placeholder' => 'Pantalon Punta yuca'])!!}
+                                    <div class="col-lg-6 input-group m-b">
+                                        {!! Form::textarea('descripcion_Prod',$producto->descripcion_Prod,['class' => 'note-codable','size' => '40x3','readonly'=>'readonly'])!!}
                                         
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Existencias</label>
-                                    <div class="col-lg-7">
-                                        {!! Form::text('existencias',null,['class'=>'form-control','placeholder' => '89'])!!}
+                                    <div class="col-lg-6 input-group m-b">
+                                        {!! Form::text('existencias',null,['class'=>'form-control','readonly'=>'readonly'])!!}
                                         
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Estado1</label>
-                                    <div class="col-lg-7">
-                                        {!! Form::text('estado1',null,['class'=>'form-control','placeholder' => 'Entregado o Terminado'])!!}   
+                                    <div class="col-lg-6 input-group m-b">
+                                        {!! Form::text('estado1',$producto->estado_Prod,['class'=>'form-control','readonly'=>'readonly'])!!}   
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Estado2</label>
-                                    <div class="col-lg-7">
-                                        {!! Form::text('estado2',null,['class'=>'form-control','placeholder' => 'Entregado o Terminado'])!!}   
+                                    <div class="col-lg-6 input-group m-b">
+                                        {!! Form::text('estado2',$producto->estado2_Prod,['class'=>'form-control','readonly'=>'readonly'])!!}   
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Detalle</label>
-                                    <div class="col-lg-7">
-                                        {!! Form::text('descripcion_DPT',null,['class'=>'form-control','placeholder' => 'pantalon con hilos dorados, botones azules'])!!}
+                                    <div class="col-lg-6 input-group m-b">
+                                        {!! Form::textarea('descripcion_DPT',null,['class' => 'note-codable','size' => '40x3','readonly'=>'readonly'])!!}
                                     </div>
                                 </div>                               
                             </form>
@@ -120,7 +119,7 @@
                         <div class="carousel slide" id="carousel1">
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img alt="image" class="img-responsive" src="img/Mada-Denim-Blanco-Larga.jpg">
+                                    <img alt="image" class="img-responsive" src="../img/Mada-Denim-Blanco-Larga.jpg">
                                 </div>
                             </div>
                         </div>

@@ -44,13 +44,14 @@ Route::match(['get','post'],'/VerCompra/{id}','CompraController@Ver');
 Route::Resource('Bitacora','BitacoraController');
 Route::match(['get','post'],'/ModificarVenta/{id}','VentasController@Modificar');
 Route::match(['get','post'],'/VerVenta/{id}','VentasController@Ver');
+Route::match(['get','post'],'/VerInventarioPT/{id}','InventarioPTController@Ver');
 Route::Resource('/RegistrarVenta','VentasController');
 Route::Resource('/ListadeVentas','VentasController@Mostrar');
 Route::match(['get','post'],'/motivo/{id}/{motivo}','VentasController@motivos');
 Route::get('RegistrarVentas/{id}','VentasController@getResponsables');
 Route::resource('venta','ventasController');
 Route::match(['get','post'],'/responsable/{id}','VentasController@responsables');
-Route::Resource('/ControlProductosTerminados','InventarioPTController@Mostrar');
+Route::Resource('/ProductosTerminados','InventarioPTController@Mostrar');
 Route::Resource('/VerProductosTerminados','InventarioPTController@Ver');
 
 
