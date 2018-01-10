@@ -47,9 +47,10 @@ class ClientesController extends Controller
       return view("Proyecto.Desarrollo.Cliente.MostrarListaCli");
     }
 
-    public function Ver()
+    public function Ver($id)
     {
-      return view("Proyecto.Desarrollo.Cliente.VerCliente");
+        $cliente = cliente::find($id);
+        return view("Proyecto.Desarrollo.Cliente.VerCliente",compact('cliente'));
     }
 
     public function ModificarCli()

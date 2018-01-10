@@ -22,40 +22,49 @@
 <br>
 <div id="contenido">
 
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-title">
-                                    <h5></h5>
-
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Cliente</h5>
+                    </div>
+                        <div class="ibox-content">
+                            <form class="form-horizontal">
+                            <br>
+                            <div class="row">
+                              <div class="col-md-1">
+                              </div>
+                              <label class="col-lg-2 control-label">Nombre</label>
+                                <div class="col-md-9">
+                                <!-- <div class="input-group"> -->
+                                   {!! Form::text('nombre_Cli',$cliente->nombre_Cli,['class'=>'form-control','id'=>'nombre_Cli','readonly'=>'readonly']) !!} 
+                                <!-- </div> -->
                                 </div>
-                                <div class="ibox-content">
-                                    <form class="form-horizontal">
-                                     <br>
+                            </div>
+                            <br><?php  if ($cliente->tipo_Cli==0): ?>
+                            <div class="row">
+                              <div class="col-md-1">
+                              </div>
+                              <label class="col-lg-2 control-label">Tipo de Cliente</label>
+                                <div class="col-md-9">
+                                <div class="input-group">
+                                   {!! Form::text('tipo_Cli',"Juridico",['class'=>'form-control','id'=>'tipo_Cli','readonly'=>'readonly']) !!} 
+                                </div>
+                                </div>
+                            </div>
+                            <?php else: ?>
+                            <div class="row">
+                              <div class="col-md-1">
+                              </div>
+                              <label class="col-lg-2 control-label">Tipo de Cliente</label>
+                                <div class="col-md-9">
+                                <div class="input-group">
+                                   {!! Form::text('tipo_Cli',"Natural",['class'=>'form-control','id'=>'tipo_Cli','readonly'=>'readonly']) !!} 
+                                </div>
+                                </div>
+                            </div>
+                            <?php endif ?>
 
-                                          <div class="form-group"><label class="col-lg-3 control-label">Nombre </label>
-
-                                            <div class="col-lg-9">
-                                              <input id="name" name="name" type="text" class="form-control required" aria-required="true" placeholder="Benjamin Monterrosa Delgado">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group"><label class="col-lg-3 control-label">Tipo de Cliente </label>
-
-                                            <div class="col-lg-5">
-
-                                                <div class="radio radio-info radio-inline">
-                                            <input type="radio" id="inlineRadio1" value="option1" name="radioInline" >
-                                            <label for="inlineRadio1"> Natural </label>
-                                                </div>
-
-                                                <div class="radio radio-inline">
-                                            <input type="radio" id="inlineRadio2" value="option2" name="radioInline" checked="">
-                                            <label for="inlineRadio2"> Juridico </label>
-                                                </div>
-
-                                            </div>
-                                        </div>
                                         <div class="form-group"><label class="col-lg-3 control-label">DUI </label>
 
                                             <div class="col-lg-4"><input type="text" class="form-control"  placeholder="05022187-9" ></div>

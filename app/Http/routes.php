@@ -23,10 +23,11 @@ Route::Resource('/RegistroProveedor','ProveedoresController');
 Route::Resource('/RegistroCliente','ClientesController');
 Route::Resource('/MostrarListaProv','ProveedoresController@Mostrar');
 Route::Resource('/MostrarListaCli','ClientesController@Mostrar');
-Route::get('/VerCliente','ClientesController@Ver');
+Route::match(['get','post'],'/VerCliente/{id}','ClientesController@Ver');
+//Route::get('/VerCliente','ClientesController@Ver');
 Route::match(['get','post'],'/municipio/{id}','ClientesController@municipios');
 Route::match(['get','post'],'/municipio/{id}','ProveedoresController@municipios');
-//Route::get('/VerProveedor','ProveedoresController@verpro');
+
 Route::match(['get','post'],'/VerProveedor/{id}','ProveedoresController@Ver');
 Route::get('/ModificarProv','ProveedoresController@modificarpro');
 Route::get('/ModificarCli','ClientesController@ModificarCli');
