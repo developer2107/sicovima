@@ -400,39 +400,60 @@ class VentasController extends Controller
         echo $id;
         echo $motivoProd;
         echo $cant;
-        $vv = inventarioProductoTerminado::where('id_Producto',$id)->get()->last();
-        $doc = producto::find($vv->id_Producto);
-         
-        defectuosoPT::create([
-            'cantidad_DPT'=>2,
-            'descripcion_DPT'=>"Greeee",
-            'id_Producto'=>4,
-        ]);   
-        $vv->nuevaExistencia_IPT=$vv->nuevaExistencia_IPT-$cant;
+        // $vv = inventarioProductoTerminado::where('id_Producto',$id)->get()->last();
+        // $proo = producto::find($vv->id_Producto);
 
-        producto::create([
-            'tipo_Prod'=>$doc->tipo_Prod,
-            'estilo_Prod'=>$doc->estilo_Prod,
-            'descripcion_Prod'=>$doc->, 
-            'precio_Prod'=>$doc->precio_Prod, 
-            'color_Prod'=>$doc->color_Prod, 
-            'talla_Prod'=>$doc->talla_Prod, 
-            'imagen_Prod'=>$doc->imagen_Prod, 
-            'estado_Prod'=>1,
-            'estado2_Prod'=>1,
-        ]);
+        // if ($vv->nuevaExistencia_IPT!=1) {
+
+        //     inventarioProductoTerminado::create([
+        //         'tipoMovimiento_IPT'=>4,//salida por defecto
+        //         'existencias_IPT'=>$vv->nuevaExistencia_IPT,//es el primer registro
+        //         'cantidad_IPT'=>1,//defectuosos solo se pueden sacar 1 a la vez por el estado y el tipo de movimiento
+        //         'fechaMov_IPT'=>$ultProd->created_at,
+        //         'nuevaExistencia_IPT'=>$vv->nuevaExistencia_IPT+1,
+        //         'id_Producto'=>$proo->id,
+        //     ]);
+
+        //     $ultProd = producto::create([
+        //         'tipo_Prod'=>$proo->tipo_Prod,
+        //         'estilo_Prod'=>$proo->estilo_Prod,
+        //         'descripcion_Prod'=>$proo->descripcion_Prod, 
+        //         'precio_Prod'=>$proo->precio_Prod, 
+        //         'color_Prod'=>$proo->color_Prod, 
+        //         'talla_Prod'=>$proo->talla_Prod, 
+        //         'imagen_Prod'=>$proo->imagen_Prod, 
+        //         'estado_Prod'=>1,
+        //         'estado2_Prod'=>1,
+        //     ]);
+
+        //     inventarioProductoTerminado::create([
+        //         'tipoMovimiento_IPT'=>3,//entrada por defecto
+        //         'existencias_IPT'=>0,//es el primer registro
+        //         'cantidad_IPT'=>1,//defectuosos solo se pueden insertar 1 a la vez por el estado
+        //         'fechaMov_IPT'=>$ultProd->created_at,
+        //         'nuevaExistencia_IPT'=>0+1,
+        //         'id_Producto'=>$ultProd->id,
+        //     ]);
+
+        //     defectuosoPT::create([
+        //         'cantidad_DPT'=>1,
+        //         'descripcion_DPT'=>$motivoProd,
+        //         'id_Producto'=>$ultProd->id,
+        //     ]); 
         
-        // 
-        inventarioProductoTerminado::create([
-                'tipoMovimiento_IPT'=>1,
-                'existencias_IPT'=>$vv->existencias_IPT,
-                'cantidad_IPT'=>$cant,
-                'fechaMov_IPT'=>"2015-08-08",
-                'nuevaExistencia_IPT'=>$vv->nuevaExistencia_IPT-$cant,
-                'id_Producto'=>$id,
-            ]);
-        return 0;
 
+        // }else{
+        //     $proo->estado2_Prod = 1;
+        //     $proo->save();
 
+        //     defectuosoPT::create([
+        //         'cantidad_DPT'=>1,
+        //         'descripcion_DPT'=>$motivoProd,
+        //         'id_Producto'=>$proo->id,
+        //     ]); 
+        
+        // }
+        
+        // return 0;
     }
 }

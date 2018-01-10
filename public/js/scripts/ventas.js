@@ -189,10 +189,9 @@ function agregarMotivoProd(id){
 }
 
 function agregarMotivoEstProd(){
-	var cant = $("#canti").val();
 	var motivo = $("#motivoProd").val();
-	console.log(idMotProd+motivo+cant);
-	var ruta="/github/sicovima/public/motivoProd/"+idMotProd+"/"+motivo+"/"+cant;
+	console.log(idMotProd+motivo);
+	var ruta="/github/sicovima/public/motivoProd/"+idMotProd+"/"+motivo;
 	$.get(ruta,function(res){
 		location.href="/github/sicovima/public/ProductosTerminados";
 	});
