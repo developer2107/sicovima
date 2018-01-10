@@ -27,12 +27,13 @@ class InventarioPTController extends Controller
         $producto = producto::find($id);
         $inventariopt = inventarioProductoTerminado::all();
         $defectuosopt = defectuosoPT::all();
-        $exis = inventarioProductoTerminado::find($producto->id);
-        //$productos = producto::where('estado_Prod',1)->get();        
-
-        $inventarioProductoTerminados = inventarioProductoTerminado::all();
+        // $exis = inventarioProductoTerminado::find($producto->id);
+        // //$productos = producto::where('estado_Prod',1)->get();        
+        // $inventarioProductoTerminados = inventarioProductoTerminado::all();
+        $exis = inventarioProductoTerminado::where('id_Producto',$producto->id)->get()->last();
+            
        
-        return view("Proyecto.Desarrollo.InventarioPT.VerInventarioPT",compact('producto','inventariopt','defectuosopt'));
+        return view("Proyecto.Desarrollo.InventarioPT.VerInventarioPT",compact('producto','inventariopt','defectuosopt','exis'));
     }
 
     public function Mostrar()

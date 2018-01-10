@@ -7,16 +7,10 @@
         <h2>Productos Terminados</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="index.html">Prodcutos Terminados</a>
-            </li>
-            <li>
-                <a href="index.html">Mostrar Lista</a>
-            </li>
-            <li>
-                <a href="index.html">Buscar</a>
+                <a href={!! asset('ProductosTerminados') !!}>Lista de Productos Terminados</a>
             </li>
             <li class="active">
-                <strong>Ver Productos Terminados</strong>
+                <strong>Ver Producto Terminado</strong>
             </li>
         </ol>
     </div>
@@ -83,32 +77,60 @@
 
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Existencias</label>
-                                    <div class="col-lg-6 input-group m-b">
-                                        {!! Form::text('existencias',null,['class'=>'form-control','readonly'=>'readonly'])!!}
+                                    <div class="col-lg-2 input-group m-b">
+                                        {!! Form::text('existencias',$exis->nuevaExistencia_IPT,['class'=>'form-control','readonly'=>'readonly'])!!}
                                         
                                     </div>
                                 </div>
 
+                                
+<!--#########################--><?php if (($producto->estado_Prod==0)&&($producto->estado2_Prod==0)): ?>
                                 <div class="form-group">
-                                    <label class="col-lg-4 control-label">Estado1</label>
-                                    <div class="col-lg-6 input-group m-b">
-                                        {!! Form::text('estado1',$producto->estado_Prod,['class'=>'form-control','readonly'=>'readonly'])!!}   
+                                    <label class="col-lg-4 control-label">Estado</label>
+                                    <div class="col-lg-7 input-group m-b">
+                                    {!! Form::text('estado1',"En pedido y En buenas condiciones",['class'=>'form-control','readonly'=>'readonly'])!!}
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="col-lg-4 control-label">Estado2</label>
-                                    <div class="col-lg-6 input-group m-b">
-                                        {!! Form::text('estado2',$producto->estado2_Prod,['class'=>'form-control','readonly'=>'readonly'])!!}   
+<!--#########################--><?php else: ?>
+<!--#########################-->    <?php if (($producto->estado_Prod==1)&&($producto->estado2_Prod==0)): ?>
+                                    <div class="form-group">
+                                        <label class="col-lg-4 control-label">Estado</label>
+                                        <div class="col-lg-7 input-group m-b">
+                                            {!! Form::text('estado1',"Disponible para vender y En buenas condiciones",['class'=>'form-control','readonly'=>'readonly'])!!}
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-lg-4 control-label">Detalle</label>
-                                    <div class="col-lg-6 input-group m-b">
-                                        {!! Form::textarea('descripcion_DPT',null,['class' => 'note-codable','size' => '40x3','readonly'=>'readonly'])!!}
-                                    </div>
-                                </div>                               
+<!--#########################-->    <?php else: ?>
+<!--#########################-->        <?php if (($producto->estado_Prod==0)&&($producto->estado2_Prod==1)): ?>
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Estado</label>
+                                            <div class="col-lg-7 input-group m-b">
+                                                {!! Form::text('estado1',"En pedido y Dañado",['class'=>'form-control','readonly'=>'readonly'])!!}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Detalle</label>
+                                            <div class="col-lg-7 input-group m-b">
+                                                {!! Form::textarea('descripcion_DPT',null,['class' => 'note-codable','size' => '40x3','readonly'=>'readonly'])!!}
+                                            </div>
+                                        </div>
+<!--#########################-->        <?php else: ?>
+<!--#########################-->            <?php if (($producto->estado_Prod==1)&&($producto->estado2_Prod==1)): ?>
+                                            <div class="form-group">
+                                                <label class="col-lg-4 control-label">Estado</label>
+                                                <div class="col-lg-7 input-group m-b">
+                                                    {!! Form::text('estado1',"Disponible para vender y Dañado",['class'=>'form-control','readonly'=>'readonly'])!!}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-4 control-label">Detalle</label>
+                                                <div class="col-lg-7 input-group m-b">
+                                                    {!! Form::textarea('descripcion_DPT',null,['class' => 'note-codable','size' => '40x3','readonly'=>'readonly'])!!}
+                                                </div>
+                                            </div>
+<!--#########################-->            <?php endif ?>
+<!--#########################-->        <?php endif ?>
+<!--#########################-->    <?php endif ?>
+<!--#########################--><?php endif ?>                             
                             </form>
                         </div>
                     </div>
