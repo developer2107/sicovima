@@ -93,7 +93,7 @@ Route::get('/RegistrarUsuario','SeguridadController@Registrar');
 
 
 Route::group(['prefix' => 'admin'], function(){
-      Route::resource('pedidos','PedidosController');
+      Route::resource('Pedidos','PedidosController');
 });
 
 Route::group(['prefix' => 'admin'], function(){
