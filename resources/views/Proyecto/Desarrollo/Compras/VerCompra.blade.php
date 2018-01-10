@@ -44,9 +44,9 @@
                     </div>
                     <label class="col-lg-3 control-label">Proveedor</label>
                     <div class="col-md-8">
-                        <div class="input-group">
+                        {{-- <div class="input-group"> --}}
                          {!! Form::text('nombre_Prov',$proveedor->nombre_Prov,['class'=>'form-control','id'=>'nombre_Prov','readonly'=>'readonly']) !!}
-                        </div>
+                        {{-- </div> --}}
                     </div>
                 </div>
                 <br>
@@ -60,7 +60,7 @@
                             <?php   $dato = explode("-",(String)$compra->fecha_Com);
                                     $fecha = $dato[2]." / ".$dato[1]." / ".$dato[0];
                             ?>
-                            {!! Form::text('fecha_Com',$fecha,['class' =>'form-control']) !!}
+                            {!! Form::text('fecha_Com',$fecha,['class' =>'form-control','readonly'=>'readonly']) !!}
                         </div>
                     </div>
                 </div>

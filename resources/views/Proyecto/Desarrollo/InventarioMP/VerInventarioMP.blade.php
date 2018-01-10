@@ -35,16 +35,7 @@
                         </div>
             <div class="ibox-content">
                 <form class="form-horizontal">
-                    <div class="row">
-                      <div class="col-md-1">
-                      </div>
-                        <label class="col-lg-3 control-label">Numero Factura</label>
-                        <div class="col-md-8">
-                          <div class="input-group">
-                            {!! Form::text('numFac_Com',null,['class'=>'form-control','placeholder' => '1234'])!!}
-                          </div>
-                        </div>
-                    </div>
+
                     <br>
                     <div class="row">
                       <div class="col-md-1">
@@ -52,7 +43,7 @@
                         <label class="col-lg-3 control-label">Proveedor</label>
                         <div class="col-md-8">
                           <div class="input-group">
-                            {!! Form::text('nombre_Prov',null,['class'=>'form-control','placeholder' => 'Deposito de Telas'])!!}
+                            {{-- {!! Form::text('nombre_Prov',$proveedor->nombre_Prov,['class'=>'form-control','id'=>'nombre_Prov','readonly'=>'readonly']) !!} --}}
                           </div>
                         </div>
                     </div>
@@ -82,18 +73,6 @@
                     <div class="row">
                       <div class="col-md-1">
                       </div>
-                        <label class="col-lg-3 control-label">Fecha Compra</label>
-                        <div class="col-md-8">
-                          <div class="input-group date">
-                            {{-- <span class="input-group-addon"><i class="fa fa-calendar"></i></span> --}}
-                            {!! Form::text('fecha_Com', '03/04/2014',['class' =>'form-control']) !!}
-                          </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                      <div class="col-md-1">
-                      </div>
                         <label class="col-lg-3 control-label">Nombre de materia Prima</label>
                         <div class="col-md-8">
                           <div class="input-group">
@@ -108,34 +87,47 @@
                         <label class="col-lg-3 control-label">Existencia</label>
                         <div class="col-md-8">
                           <div class="input-group">
-                            {!! Form::text('existencias_IMP',null,['class'=>'form-control','placeholder' => '89'])!!}
+                            {!! Form::text('existencias_IMP',$existencia->nuevaExistencia_IMP,['class'=>'form-control','readonly'=>'readonly'])!!}
                           </div>
                         </div>
                     </div>
                     <br>
+                    <?php  if ($materiaPrima->estado_MP==1): ?>
                     <div class="row">
                       <div class="col-md-1">
                       </div>
                         <label class="col-lg-3 control-label">Estado</label>
                         <div class="col-md-8">
                           <div class="input-group">
-                            {!! Form::text('descripcion_DMP',null,['class'=>'form-control','placeholder' => 'Defectuoso o Bueno'])!!}
+                            {!! Form::text('descripcion_DMP',"Bueno",['class'=>'form-control','readonly'=>'readonly'])!!}
                           </div>
                         </div>
                     </div>
+                    <?php else: ?>
+                    <div class="row">
+                      <div class="col-md-1">
+                      </div>
+                        <label class="col-lg-3 control-label">Estado</label>
+                        <div class="col-md-8">
+                          <div class="input-group">
+                            {!! Form::text('descripcion_DMP',"Defectuoso",['class'=>'form-control','readonly'=>'readonly'])!!}
+                          </div>
+                        </div>
+                    </div>
+                    <?php endif ?>
                     <br>
                     <div class="row">
                       <div class="col-md-1">
                       </div>
-                        <label class="col-lg-3 control-label">Total</label>
+                        <label class="col-lg-3 control-label">Precio</label>
                         <div class="col-md-4">
                           <div class="input-group">
                             <span class="input-group-addon">$</span>
-                            {!! Form::number('totalVIMP',null,['class'=>'form-control','placeholder' => '80.45']) !!}
+                            {!! Form::number('totalVIMP',$materiaPrima->precio_MP,['class'=>'form-control','readonly'=>'readonly']) !!}
                           </div>
                         </div>
                     </div>
-                    <br>
+                    <br><br>
                     <div class="row">
                       <div class="col-md-1">
                       </div>

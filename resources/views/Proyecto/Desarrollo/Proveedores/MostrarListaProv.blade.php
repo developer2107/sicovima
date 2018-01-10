@@ -51,7 +51,7 @@
                                 <td align="rihgt"><font size="4" >{{$telefonoP-> numero_TelefonoProv}}</font></td>
                                 <td align="left"><font size="4" >{{$prov-> tipoMercaderia_Prov}}</font></td>
                                 <td align="center">
-                                  <a href="VerProveedor" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
+                                  <a href="VerProveedor/{{$prov->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
                                   </a>
                                   <a href="ModificarProv" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
                                 </td>
