@@ -25,7 +25,7 @@
                     <div class="col-lg-3">
                         <div class="input-group m-b">
                             <span class="input-group-addon">$</span>
-                            {!! Form::number('total_pedido',0.00,['class'=>'touchspin2 form-control','step'=>'any', 'id'=>'totalEnPedido','readonly'=>'readonly','step'=>'.01']) !!}
+                            {!! Form::number('total_Ped',0.00,['class'=>'touchspin2 form-control','step'=>'any','name'=>'total_Ped', 'id'=>'total_Ped','readonly'=>'readonly','step'=>'.01']) !!}
                         </div>
                     </div>
                 </div>

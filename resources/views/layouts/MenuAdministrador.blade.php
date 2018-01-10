@@ -100,7 +100,7 @@
 
     {!! Html::script('js/scripts/ventas.js') !!}
     {!! Html::script('js/scripts/compras.js') !!}
-    {!! Html::script('js/scripts/Pedido.js') !!}
+    {!! Html::script('js/scripts/Pedidos.js') !!}
     {!! Html::script('js/scripts/clientes.js') !!}
     {!! Html::script('js/scripts/proveedores.js') !!}
 
@@ -643,7 +643,8 @@
                     reader.onload = (function(theFile) {
                         return function(e) {
                           // Insertamos la imagen
-                         document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                         document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'+
+                       '"<input type="hidden" name="codImagen" id="codImagen" value="'+ e.target.result +'"/>"'].join('');
                         };
                     })(f);
 

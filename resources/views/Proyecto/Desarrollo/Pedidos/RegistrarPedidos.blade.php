@@ -3,7 +3,7 @@
 
 @section('content')
 
-{!!Form::open(['class' =>'form-horizontal form-label-left input_mask','route' =>'RegistrarPedido.store','method' =>'POST'])!!}
+{!!Form::open(['class' =>'form-horizontal form-label-left input_mask','route' =>'RegistrarPedido.store','method' =>'POST', 'enctype'='multipart/form-data'])!!}
 
 
 <div class="row wrapper border-bottom white-bg page-heading">
