@@ -53,13 +53,6 @@
 
                             </div>
                         </div>
-                        <div class="col-md-2">
-                         <label class="font-bold">              </label>
-                            <div class="input-group bootstrap-touchspin">
-                                {!! Form::submit('Generar',['class'=>'btn btn-outline btn-primary dim']) !!}
-
-                            </div>
-                        </div>
                     </div>
 
 

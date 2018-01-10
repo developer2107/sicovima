@@ -3,18 +3,13 @@
        <div class="modal-content animated fadeIn">
            <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                   <h4>Preview image</h4>
-                   <div class="img-preview img-preview-sm">
-                   <img src=""></div>
-                   <h4>Comon method</h4>
-
+                   <h4>Imagen Previsualizada</h4>
+                   <output id="list"></output>{{--  --}}
+                   <br />
                    <div class="btn-group">
+                     {!! Form::file('files',null ,['class' => 'btn btn-primary','id'=>'files', 'name'=>'files[]']) !!}
 
-                       <label title="Upload image file" for="inputImage" class="btn btn-primary">
-
-                            {!! Form::file('file',['class'=>'hidden', 'type'=>'file', 'accept'=>'image/*' ,'id'=>'inputImage']) !!}
-                            SUBIR IMAGEN
-                       </label>
+                            {{-- <input class="btn btn-primary" type="file" id="files" name="files[]" /> --}}
 
                </div>
            </div>
