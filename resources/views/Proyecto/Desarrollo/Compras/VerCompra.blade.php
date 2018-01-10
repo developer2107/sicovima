@@ -116,6 +116,5 @@
 </div>
 
 <br>
-
 {!! Form::close() !!}
 @stop

@@ -38,6 +38,13 @@ Route::Resource('/RegistrarCompra','CompraController');
 Route::match(['get','post'],'/VerCompra/{id}','CompraController@Ver');
 // Route::Resource('/VerCompra','CompraController@Ver');
 
+Route::get('/ModificarMateriaPrima','MateriaPrimaController@Modificar');
+Route::Resource('/ControlMateriaPrima','InventarioMPController@Mostrar');
+//Route::Resource('/VerMateriaPrima','InventarioMPController@Ver');
+Route::match(['get','post'],'/VerInventarioMP/{id}','InventarioMPController@Ver');
+Route::Resource('/RegistroMateriaP','MateriaPrimaController');
+Route::get('/Login','LoginController@index');
+
 
 /* DE AQUI ABAJO ESTAN LAS RUTAS DE GRECIA*/
 
@@ -75,11 +82,6 @@ Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar')
 
 /* DE AQUI ABAJO ESTAN LAS RUTAS DE BENJAMIN*/
 
-Route::get('/ModificarMateriaPrima','MateriaPrimaController@Modificar');
-Route::get('/ControlMateriaPrima','InventarioMPController@Mostrar');
-Route::Resource('/VerMateriaPrima','InventarioMPController@Ver');
-Route::Resource('/RegistroMateriaP','MateriaPrimaController');
-Route::get('/Login','LoginController@index');
 Route::get('/BuscarUsuario','SeguridadController@Buscar');
 Route::get('/VerUsuario','SeguridadController@Ver');
 Route::get('/ModificarUsuario','SeguridadController@Modificar');
