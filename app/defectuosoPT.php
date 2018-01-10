@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class defectuosoPT extends Model
 {
-    protected $table = 'defectuosaPT';
+    protected $table = 'defectuosoPT';
+    protected $fillable = ['cantidad_DPT','descripcion_DPT','fecha_DPT','id_Producto'];
 
 
-public function inventarioProductoTerminado(){
-   return $this->belongsTo('cliente');
-}
+	public function inventarioProductoTerminado(){
+	   return $this->belongsTo('cliente');
+	}
 }

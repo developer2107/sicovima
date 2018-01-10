@@ -4,6 +4,7 @@ namespace SICOVIMA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SICOVIMA\producto;
+use SICOVIMA\defectuosoPT;
 use SICOVIMA\inventarioProductoTerminado;
 
 use SICOVIMA\Http\Requests;
@@ -21,20 +22,17 @@ class InventarioPTController extends Controller
         return view("Proyecto.Desarrollo.InventarioPT.InventarioPT");
     }
 
-    public function Ver()
+    public function Ver($id)
     {
-        $venta = venta::find($id);
-        $clientes = cliente::all();
-        $cliente = cliente::all();
-        $productos = producto::where('estado_Prod',1)->get();        
-        $arrayC = [];
-        foreach ($clientes as $cliente) {
-            $arrayC[$cliente->id]=$cliente->nombre_Cli;
-        }
+        $producto = producto::find($id);
+        $inventariopt = inventarioProductoTerminado::all();
+        $defectuosopt = defectuosoPT::all();
+        $exis = inventarioProductoTerminado::find($producto->id);
+        //$productos = producto::where('estado_Prod',1)->get();        
 
         $inventarioProductoTerminados = inventarioProductoTerminado::all();
        
-        return view("Proyecto.Desarrollo.InventarioPT.VerInventarioPT",compact('arrayC','inventarioProductoTerminados','venta','productos','cliente','clientes'));
+        return view("Proyecto.Desarrollo.InventarioPT.VerInventarioPT",compact('producto','inventariopt','defectuosopt'));
     }
 
     public function Mostrar()
