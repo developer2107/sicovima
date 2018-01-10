@@ -58,7 +58,7 @@
                               <td align="left"><font size="4" >{{$mat-> tipo_MP}}</font></td>
                               <td align="left"><font size="4" >{{$aux}}</font></td>
                               <td align="center">
-                              <a href="VerMateriaPrima" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a>
+                              <a href="VerInventarioMP/{{$mat->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a>
                               <a href="ModificarMateriaPrima" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></a>
                               <a class='btn btn-danger btn-circle' type='button'><i class='fa fa-times'></i></a>
                             </td>

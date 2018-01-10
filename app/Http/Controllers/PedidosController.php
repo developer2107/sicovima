@@ -118,6 +118,8 @@ class PedidosController extends Controller
     // comprender.....
     {
 
+      dd($request->all());
+
       $contador=count($request['tipop']);
       $contador1=count($request['cantidad_DPed']);
       $tipo_Prod=$request['tipop'];
