@@ -121,10 +121,12 @@
                                                     {!! Form::text('estado1',"Disponible para vender y Dañado",['class'=>'form-control','readonly'=>'readonly'])!!}
                                                 </div>
                                             </div>
+
+
                                             <div class="form-group">
                                                 <label class="col-lg-4 control-label">Detalle</label>
                                                 <div class="col-lg-7 input-group m-b">
-                                                    {!! Form::textarea('descripcion_DPT',null,['class' => 'note-codable','size' => '40x3','readonly'=>'readonly'])!!}
+                                                    {!! Form::textarea('descripcion_DPT',$defec->descripcion_DPT,['class' => 'note-codable','size' => '40x3','readonly'=>'readonly'])!!}
                                                 </div>
                                             </div>
 <!--#########################-->            <?php endif ?>
