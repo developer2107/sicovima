@@ -1,9 +1,11 @@
 <?php
 
 namespace SICOVIMA\Http\Controllers;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 use Input;
+use Image;
 use SICOVIMA\producto;
 use SICOVIMA\pedido;
 use SICOVIMA\cliente;
@@ -99,7 +101,7 @@ class PedidosController extends Controller
      {
        $cliente = cliente::all();
        $producto = \SICOVIMA\producto::orderBy('id','ASC')->paginate(5);
-       return view('Proyecto.Desarrollo.pedidos.create')->with('producto', $producto)->with('cliente',$cliente);
+       return view('Proyecto.Desarrollo.Pedidos.create')->with('producto', $producto)->with('cliente',$cliente);
      }
 
     public function create()
@@ -118,7 +120,7 @@ class PedidosController extends Controller
     // comprender.....
     {
 
-      dd($request->all());
+      // dd($request->all());
 
       $contador=count($request['tipop']);
       $contador1=count($request['cantidad_DPed']);
@@ -128,14 +130,14 @@ class PedidosController extends Controller
       $precio_Prod=$request['preciop'];
       $color_Prod=$request['colorp'];
       $talla_Prod=$request['tallap'];
-      $imagen_Prod='987272';
       $cantidad_DPed=$request['cantidadp'];
       $subtotal_DPed=$request['subtotalp'];
       $subtotalVenta_DPed=$request['subtotalventap'];
       $id_cliente=$request['clienteRegPed'];
+      $codImagen = $request['files'];
+      $total_Ped = $request['total_Ped'];
 
-
-
+      // dd($total_Ped);
       //recore los valores que tiene la tabla para guardarlos
           for($a=0;$a<$contador;$a++){
             //metodo guardar producto, al principio del controlador se declara el namaspace
@@ -146,7 +148,9 @@ class PedidosController extends Controller
             'precio_Prod'=>$precio_Prod[$a],
             'color_Prod'=>$color_Prod[$a],
             'talla_Prod'=>$talla_Prod[$a],
-            'imagen_Prod'=>$imagen_Prod,
+            'imagen_Prod'=>$codImagen[$a],
+            'estado_Prod' => 0,//estado en pedido
+            'estado2_Prod' => 0,//matener en cero
         ]);
       }
 
@@ -158,7 +162,7 @@ class PedidosController extends Controller
         'anticipo_Ped'=>$request['anticipo_Ped'],
         'fechaRecibir_Ped'=>$request['fechaRecibir_Ped'],
         'fechaEntregar_Ped'=>$request['fechaEntregar_Ped'],
-        'id_Cliente'=>$request['clienteRegPed'],
+        'id_Cliente'=>$request['clientes'],
       ]);
 
       //dd($p->all());
@@ -173,6 +177,7 @@ class PedidosController extends Controller
 
       //dd($id_cliente);
 
+
       //al tener variables ingresadas atraves del modal que se guardaron en array recorre para guardar
       for ($i=0; $i <$cont ; $i++) {
         # code..
@@ -183,9 +188,11 @@ class PedidosController extends Controller
         'id_Producto'=>$id_producto,
         'id_Pedido'=>$id_pedido,
       ]);
-            }
+    }
 
-            return view('Proyecto.Desarrollo.Pedidos.RegistrarPedidos');
+    $cliente = cliente::all();
+    $producto = \SICOVIMA\producto::orderBy('id','ASC')->paginate(5);
+            return view('Proyecto.Desarrollo.Pedidos.create')->with('producto', $producto)->with('cliente',$cliente);
     }
 
     /**

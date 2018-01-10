@@ -4,14 +4,18 @@
            <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                    <h4>Imagen Previsualizada</h4>
-                   <output id="list"></output>{{--  --}}
+                   <output id="list"></output>
                    <br />
                    <div class="btn-group">
-                     {!! Form::file('files',null ,['class' => 'btn btn-primary','id'=>'files', 'name'=>'files[]']) !!}
+                     {{-- {!! Form::file('files',null ,['class' => 'btn btn-primary','id'=>'files', 'name'=>'files[]']) !!}
+                     --}}
+                            <input class="btn btn-primary" type="file" id="files" name="files" />
+                            {{-- <input type="file" onchange="previewFile()"><br>
+                            <img src="" height="200" alt="Image preview..."> --}}
 
-                            {{-- <input class="btn btn-primary" type="file" id="files" name="files[]" /> --}}
 
-               </div>
+                   </div>
+
            </div>
 
 

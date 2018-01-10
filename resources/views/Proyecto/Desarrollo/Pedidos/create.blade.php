@@ -2,7 +2,7 @@
 
 
 @section('content')
-{!!Form::open(['class' =>'form-horizontal form-label-left input_mask','route' =>'admin.pedidos.store','method' =>'POST'])!!}
+{!!Form::open(['class' =>'form-horizontal form-label-left input_mask','route' =>'admin.Pedidos.store','method' =>'POST','files'=>true,'enctype'=>'multipart/form-data'])!!}
 
 
 <div class="row wrapper border-bottom white-bg page-heading">

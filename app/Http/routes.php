@@ -56,7 +56,7 @@ Route::match(['get','post'],'/VerInventarioPT/{id}','InventarioPTController@Ver'
 Route::Resource('/RegistrarVenta','VentasController');
 Route::Resource('/ListadeVentas','VentasController@Mostrar');
 Route::match(['get','post'],'/motivo/{id}/{motivo}','VentasController@motivos');
-Route::match(['get','post'],'/motivoProd/{id}/{motivoProd}/{cant}','VentasController@motivosProd');
+Route::match(['get','post'],'/motivoProd/{id}/{motivoProd}','InventarioPTController@motivosProd');
 Route::get('RegistrarVentas/{id}','VentasController@getResponsables');
 Route::resource('venta','ventasController');
 Route::match(['get','post'],'/responsable/{id}','VentasController@responsables');
@@ -94,7 +94,7 @@ Route::get('/RegistrarUsuario','SeguridadController@Registrar');
 
 
 Route::group(['prefix' => 'admin'], function(){
-      Route::resource('pedidos','PedidosController');
+      Route::resource('Pedidos','PedidosController');
 });
 
 Route::group(['prefix' => 'admin'], function(){
