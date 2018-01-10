@@ -45,9 +45,13 @@ class ProveedoresController extends Controller
     }
 
 
-    public function verpro()
+    public function ver($id)
     {
-      return view("Proyecto.Desarrollo.Proveedores.VerProveedor");
+      $proveedor = proveedor::find($id);
+      //$proveedor = proveedor::find($materiaPrima->id_Proveedor);
+      //$existencia = inventarioMateriaPrima::where('id_MateriaPrima',$materiaPrima->id)->get()->last();
+
+      return view('Proyecto.Desarrollo.Proveedores.VerProveedor',compact('proveedor'));
     }
 
      public function modificarpro()
@@ -140,7 +144,7 @@ class ProveedoresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return view("Proyecto.Desarrollo.Proveedores.RegistroProveedor");
     }
 
     /**

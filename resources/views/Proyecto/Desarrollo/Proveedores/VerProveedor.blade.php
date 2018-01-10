@@ -1,7 +1,7 @@
 @extends('layouts.MenuAdministrador')
 
 @section('content')
-
+{!! Form::model($proveedor,['route'=>['RegistroProveedor.update',$proveedor->id], 'method'=>'PUT','autocomplete'=>'off']) !!}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Ver Proveedores</h2>
@@ -116,7 +116,7 @@
                         </div>
                 </div>
 
-<div class="col-lg-5">
+   <div class="col-lg-5">
         <div class="ibox-content">
             <div class="carousel slide" id="carousel1">
                 <div class="carousel-inner">
@@ -127,7 +127,6 @@
             </div>
         </div>
     </div>
-
 </div>
-
-                @stop
+{!! Form::close() !!}
+@stop

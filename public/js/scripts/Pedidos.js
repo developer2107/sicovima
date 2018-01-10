@@ -1,8 +1,26 @@
+function previewFile() {
+  var preview = document.querySelector('img');
+  var file    = document.querySelector('input[type=file]').files[0];
+  var reader  = new FileReader();
+
+  alert(reader());
+
+  reader.onloadend = function () {
+    preview.src = reader.result;
+  }
+
+  if (file) {
+    reader.readAsDataURL(file);
+  } else {
+    preview.src = "";
+  }
+}
+
 
 $(document).on('ready',function(){
 
 $('#agregarPedido').click(function(){
-  alert("aqui");
+  // alert("aqui");
   var accion = $("#agregarPedido").val();
   if (accion == "Agregar") {
 
@@ -16,13 +34,30 @@ $('#agregarPedido').click(function(){
   var Talla = $("#talla_Prod").val();
   var Descripcion = $("#descripcion_Prod").val();
   var Precio = $("#precio_Prod").val();
-  var Imagen =$("#files").val();
   var subTotal_DPed= $("#subTotal_DPed").val();
   var tabla=$("#tablaPedidos");
-  var total=parseFloat($("#totalEnPedido").val());
+  var total=parseFloat($("#total_Ped").val());
+  // var Imagen = $("#files").val();
+  var codImagen = $("#codImagen").val();
 
-  // alert(Tipo);
-  var total=parseFloat($("#totalEnPedido").val());
+  // var canvas, ctx, dataURL, base64;
+  //     canvas = document.createElement("canvas");
+  //     ctx = canvas.getContext("2d");
+  //     canvas.width = Imagen.width;
+  //     canvas.height = Imagen.height;
+  //     ctx.drawImage(Imagen, 0, 0);
+  //     dataURL = canvas.toDataURL("image/jpg");
+  //     base64 = dataURL.replace(/^data:image\/png;base64,/, "");
+  //     alert(base64);
+
+  // var Imagen = $("#files").val().replace("C:\\fakepath\\", "");
+
+  // var Imagen = $("#files").val().replace("C:\\fakepath\\", "");
+  //
+  // var cod = window.btoa(unescape(encodeURIComponent(Imagen)));
+  alert(codImagen);
+
+  var total=parseFloat($("#total_Ped").val());
   var subtotalVenta_DPed= ((parseFloat(subTotal_DPed)+parseFloat(Precio))*parseFloat(Cantidad));
 
   // var Prueba = parseFloat(subtotalVenta_DPed);
@@ -39,7 +74,7 @@ $('#agregarPedido').click(function(){
   "<td>"+
   "<input type='hidden' name='subtotalventap[]' value='"+subtotalVenta_DPed+"'>"+
   "<input type='hidden' name='subtotalp[]' value='"+subTotal_DPed+"'>"+
-  "<input type='hidden' name='files[]' value='"+Imagen+"'>"+
+  "<input type='hidden' name='files[]' value='"+codImagen+"'>"+
   "<input type='hidden' name='tipop[]' value='"+Tipo+"'>"+
   "<input type='hidden' name='estilop[]' value='"+Estilo+"'>"+
   "<input type='hidden' name='cantidadp[]' value='"+Cantidad+"'>"+
@@ -56,7 +91,7 @@ $('#agregarPedido').click(function(){
 
   total = total + subtotalVenta_DPed;
 
-  $("#totalEnPedido").val(total.toFixed(2));
+  $("#total_Ped").val(total.toFixed(2));
 
   //Limpiar campos
   $("#tipo_Prod").val("");
@@ -69,6 +104,7 @@ $('#agregarPedido').click(function(){
   $("#precio_Prod").val("");
   $("#Resultado").val("");
   $("#subTotal_DPed").val("");
+  $("#files").val("");
 
 }else{
 
@@ -86,118 +122,9 @@ $('#tablaPedidos').on('click','#Eliminar',function(e){
   var aux = ((Eli_Ganancia+precio)*Eli_Cantidad);
   total = total - aux;
   $(this).parent('td').parent('tr').remove();
-  $("#totalEnPedido").val(total.toFixed(2));
+  $("#total_Ped").val(total.toFixed(2));
   var indice = productosAgregados.indexOf(id_Pedido);
   productosAgregados.splice(indice,1);
 });
 
 });
-
-
-
-
-// function guardarPedidos(){
-//     vnombre=validarNombre();
-//     vcorreo=validarCorreo();
-//     vtelefono=validarTelefono();
-//     if(vnombre==false || vcorreo==false || vtelefono==false){
-//
-//     }else{
-//       alert("Todo bien");
-//     }
-//
-// }
-
-
-
-// function validarNombre(){
-//   nombre=$("#nombre").val();
-//   val= true;
-//     cont=0;
-//
-//     var errores= [];
-//     if(nombre!=""){
-//       $.get('/blissey/public/existeNombreProveedor/'+nombre,function(data){
-//         if(data=="true"){
-//
-//         }
-//       });
-//     }
-//     if(nombre==""){
-//       errores[cont]="El campo drogería es obligatorio";
-//
-//       cont=cont+1;
-//     }else if(nombre.length<5){
-//       errores[cont]="El campo drogería debe contener mínimo 5 caracteres";
-//       cont=cont+1;
-//     }else if(nombre.length>50){
-//       errores[cont]="El campo drogería debe contener máximo 50 caracteres";
-//       cont=cont+1;
-//     }
-//     if(cont>0){
-//       val= false;
-//     }
-//     for(a=0;a<cont;a++){
-//       new PNotify({
-//         title: 'Error!',
-//         text: errores[a],
-//         type: 'error',
-//         styling: 'bootstrap3'
-//       });
-//     }
-//     return val;
-// }
-//
-// function validarCorreo(){
-//   correo=$("#correo").val();
-//   val= true;
-//     cont=0;
-//     var errores= [];
-//     if(correo==""){
-//       errores[cont]="El campo correo es obligatorio";
-//       cont=cont+1;
-//     }
-//     if(cont>0){
-//       val= false;
-//     }
-//     for(a=0;a<cont;a++){
-//       new PNotify({
-//         title: 'Error!',
-//         text: errores[a],
-//         type: 'error',
-//         styling: 'bootstrap3'
-//       });
-//     }
-//     return val;
-// }
-// function validarTelefono(){
-//   telefono=$("#telefono").val();
-//   val= true;
-//     cont=0;
-//     var errores= [];
-//     if(telefono==""){
-//       errores[cont]="El campo teléfono es obligatorio";
-//       cont=cont+1;
-//     }else if(telefono.length!=9){
-//       errores[cont]="El campo teléfono debe contener 9 caracteres";
-//       cont=cont+1;
-//     }
-//     if(cont>0){
-//       val= false;
-//     }
-//     for(a=0;a<cont;a++){
-//       new PNotify({
-//         title: 'Error!',
-//         text: errores[a],
-//         type: 'error',
-//         styling: 'bootstrap3'
-//       });
-//     }
-//     return val;
-// }
-// function sleep(miliseconds) {
-//    var currentTime = new Date().getTime();
-//
-//    while (currentTime + miliseconds >= new Date().getTime()) {
-//    }
-// }

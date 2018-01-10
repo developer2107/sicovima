@@ -26,7 +26,8 @@ Route::Resource('/MostrarListaCli','ClientesController@Mostrar');
 Route::get('/VerCliente','ClientesController@Ver');
 Route::match(['get','post'],'/municipio/{id}','ClientesController@municipios');
 Route::match(['get','post'],'/municipio/{id}','ProveedoresController@municipios');
-Route::get('/VerProveedor','ProveedoresController@verpro');
+//Route::get('/VerProveedor','ProveedoresController@verpro');
+Route::match(['get','post'],'/VerProveedor/{id}','ProveedoresController@Ver');
 Route::get('/ModificarProv','ProveedoresController@modificarpro');
 Route::get('/ModificarCli','ClientesController@ModificarCli');
 Route::get('/DarBajaProv','ProveedoresController@darbajaprov');
@@ -36,7 +37,6 @@ Route::Resource('/ListadeCompras','CompraController@Mostrar');
 Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
 Route::Resource('/RegistrarCompra','CompraController');
 Route::match(['get','post'],'/VerCompra/{id}','CompraController@Ver');
-// Route::Resource('/VerCompra','CompraController@Ver');
 
 Route::get('/ModificarMateriaPrima','MateriaPrimaController@Modificar');
 Route::Resource('/ControlMateriaPrima','InventarioMPController@Mostrar');
@@ -93,7 +93,7 @@ Route::get('/RegistrarUsuario','SeguridadController@Registrar');
 
 
 Route::group(['prefix' => 'admin'], function(){
-      Route::resource('pedidos','PedidosController');
+      Route::resource('Pedidos','PedidosController');
 });
 
 Route::group(['prefix' => 'admin'], function(){

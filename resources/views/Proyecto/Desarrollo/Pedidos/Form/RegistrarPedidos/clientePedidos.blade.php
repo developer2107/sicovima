@@ -5,7 +5,7 @@
                 <div class="carousel-inner">
 
                     <div class="item active">
-                        <img alt="image" class="img-responsive" src="img/Mada-Denim-Blanco4.jpg">
+                        <img alt="image" class="img-responsive" src="../img/Mada-Denim-Blanco4.jpg">
                     </div>
 
                 </div>
@@ -57,7 +57,7 @@
                 <div class="col-md-4">
                     <div class="input-group date">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        {!! Form::text('fecha_Ven',null,['class' =>'form-control']) !!}
+                        {!! Form::text('fecha_Ped',null,['class' =>'form-control']) !!}
                     </div>
                 </div>
                 <br>

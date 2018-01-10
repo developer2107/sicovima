@@ -5,6 +5,8 @@ namespace SICOVIMA\Http\Controllers;
 use Illuminate\Http\Request;
 use SICOVIMA\materiaPrima;
 use SICOVIMA\compra;
+use SICOVIMA\proveedor;
+use SICOVIMA\inventarioMateriaPrima;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 
@@ -24,9 +26,10 @@ class InventarioMPController extends Controller
     {
 
         $materiaPrima = materiaPrima::find($id);
-        $compra = compra::get();
+        $proveedor = proveedor::find($materiaPrima->id_Proveedor);
+        $existencia = inventarioMateriaPrima::where('id_MateriaPrima',$materiaPrima->id)->get()->last();
 
-        return view('Proyecto.Desarrollo.InventarioMP.VerInventarioMP',compact('materiaPrima','compra'));
+        return view('Proyecto.Desarrollo.InventarioMP.VerInventarioMP',compact('materiaPrima','proveedor','existencia'));
     }
 
     public function Mostrar()
@@ -54,7 +57,7 @@ class InventarioMPController extends Controller
      */
     public function store(Request $request)
     {
-    
+
     }
 
     /**

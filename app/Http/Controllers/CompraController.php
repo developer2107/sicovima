@@ -30,15 +30,10 @@ class CompraController extends Controller
     public function Ver($id)
     {
       $compra = compra::find($id);
-      $proveedores = proveedor::get();
-
-      $arrayP = [];
-      foreach ($proveedores as $proveedor) {
-          $arrayP[$proveedor->id]=$proveedor-> nombre_Prov;
-      }
+      $proveedor = proveedor::find($compra->id_Proveedor);
 
       $inventarioMateriaPrima = \SICOVIMA\inventarioMateriaPrima::all();
-      return view('Proyecto.Desarrollo.Compras.VerCompra',compact('inventarioMateriaPrima','compra','arrayP','proveedor'));
+      return view('Proyecto.Desarrollo.Compras.VerCompra',compact('inventarioMateriaPrima','compra','proveedor'));
     }
 
     public function Registrar()
