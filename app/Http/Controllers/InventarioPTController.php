@@ -31,9 +31,8 @@ class InventarioPTController extends Controller
         // //$productos = producto::where('estado_Prod',1)->get();        
         // $inventarioProductoTerminados = inventarioProductoTerminado::all();
         $exis = inventarioProductoTerminado::where('id_Producto',$producto->id)->get()->last();
-            
-       
-        return view("Proyecto.Desarrollo.InventarioPT.VerInventarioPT",compact('producto','inventariopt','defectuosopt','exis'));
+        $defec = defectuosoPT::where('id_Producto',$producto->id)->get()->last();
+        return view("Proyecto.Desarrollo.InventarioPT.VerInventarioPT",compact('producto','inventariopt','defectuosopt','exis','defec'));
     }
 
     public function Mostrar()

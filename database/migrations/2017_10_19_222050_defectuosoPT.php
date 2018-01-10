@@ -16,7 +16,6 @@ class DefectuosoPT extends Migration
             $table->increments('id');
             $table->double('cantidad_DPT', 5 , 2);
             $table->string('descripcion_DPT');
-            $table->date('fecha_DPT');
             $table->integer('id_Producto')->unsigned();
             $table->foreign('id_Producto')->references('id')->on('producto');
             $table->rememberToken();

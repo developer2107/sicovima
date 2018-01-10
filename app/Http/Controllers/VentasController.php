@@ -15,6 +15,8 @@ use SICOVIMA\clienteJuridico;
 use SICOVIMA\producto;
 use SICOVIMA\inventarioProductoTerminado;
 use SICOVIMA\estadoDocumento;
+use SICOVIMA\defectuosoPT;
+
 
 class VentasController extends Controller
 {
@@ -392,5 +394,45 @@ class VentasController extends Controller
 
         $ventas = venta::with('cliente')->get();
         return 0;
+    }
+
+    public static function motivosProd($id,$motivoProd,$cant){
+        echo $id;
+        echo $motivoProd;
+        echo $cant;
+        $vv = inventarioProductoTerminado::where('id_Producto',$id)->get()->last();
+        $doc = producto::find($vv->id_Producto);
+         
+        defectuosoPT::create([
+            'cantidad_DPT'=>2,
+            'descripcion_DPT'=>"Greeee",
+            'id_Producto'=>4,
+        ]);   
+        $vv->nuevaExistencia_IPT=$vv->nuevaExistencia_IPT-$cant;
+
+        producto::create([
+            'tipo_Prod'=>$doc->tipo_Prod,
+            'estilo_Prod'=>$doc->estilo_Prod,
+            'descripcion_Prod'=>$doc->, 
+            'precio_Prod'=>$doc->precio_Prod, 
+            'color_Prod'=>$doc->color_Prod, 
+            'talla_Prod'=>$doc->talla_Prod, 
+            'imagen_Prod'=>$doc->imagen_Prod, 
+            'estado_Prod'=>1,
+            'estado2_Prod'=>1,
+        ]);
+        
+        // 
+        inventarioProductoTerminado::create([
+                'tipoMovimiento_IPT'=>1,
+                'existencias_IPT'=>$vv->existencias_IPT,
+                'cantidad_IPT'=>$cant,
+                'fechaMov_IPT'=>"2015-08-08",
+                'nuevaExistencia_IPT'=>$vv->nuevaExistencia_IPT-$cant,
+                'id_Producto'=>$id,
+            ]);
+        return 0;
+
+
     }
 }

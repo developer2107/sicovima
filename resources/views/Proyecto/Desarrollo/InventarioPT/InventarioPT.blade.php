@@ -48,6 +48,7 @@
                       </thead>
                       <tbody>
                         @foreach($producto as $prod)
+                        <?php $cadena='agregarMotivoProd('.$prod->id.');'; ?>
                         <?php
                           $inv = SICOVIMA\inventarioProductoTerminado::where('id_Producto',$prod->id)->get()->last();
                           if ($inv->nuevaExistencia_IPT!=0) {
@@ -67,7 +68,7 @@
                             <?php endif ?>
                           <td align="center">
                             <a href="VerInventarioPT/{{$prod->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-danger btn-circle" data-toggle="modal" type="button" data-target="#myModalAnular" onclick=""><i class="fa fa-times"></i></a>
+                            <a class="btn btn-danger btn-circle" data-toggle="modal" type="button" data-target="#myModalAnular" onclick="{{$cadena}}"><i class="fa fa-times"></i></a>
                           </td>
                         </tr>
                         <?php } ?>
@@ -97,21 +98,20 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group"><label>Cantidad</label>
-                            {!! Form::number('cant',null,['class' => 'note-codable','size' => '34x5','id'=>'cant']) !!}
+                            {!! Form::number('canti',null,['class' => 'note-codable','size' => '34x5','id'=>'canti']) !!}
                         </div>
                     </div>
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-3">
                         <div class="form-group"><label>Descripcion</label>
-                            {!! Form::textarea('motivo',null,['class' => 'note-codable','size' => '34x5','id'=>'motivo']) !!}
+                            {!! Form::textarea('motivoProd',null,['class' => 'note-codable','size' => '34x5','id'=>'motivoProd']) !!}
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="modal-footer">
-              {!! Form::button('Agregar',['class'=>'btn btn-primary','id'=>'agregarMotivoEst','type'=>'button', 'value'=>'Agregar','onclick'=>'agregarMotivoEst()','data-dismiss'=>'modal']) !!}
+              {!! Form::button('Agregar',['class'=>'btn btn-primary','id'=>'agregarMotivoEstProd','type'=>'button', 'value'=>'Agregar','onclick'=>'agregarMotivoEstProd()','data-dismiss'=>'modal']) !!}
                 <button type="button" class="btn btn-white" data-dismiss="modal" id="cerrarM">Cerrar</button>
             </div>
         </div>

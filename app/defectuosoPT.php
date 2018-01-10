@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class defectuosoPT extends Model
 {
     protected $table = 'defectuosoPT';
-    protected $fillable = ['cantidad_DPT','descripcion_DPT','fecha_DPT','id_Producto'];
+    protected $fillable = ['cantidad_DPT','descripcion_DPT','id_Producto'];
 
 
 	public function inventarioProductoTerminado(){

@@ -4,6 +4,7 @@ var gananciag;
 var costog;
 var subtotalg;
 var idMot;
+var idMotProd;
 
 $(document).on('ready',function(){
 	var a_producto;
@@ -139,6 +140,21 @@ $(document).on('ready',function(){
 		
 	});
 
+	$('#agregarMotivoProd').click(function(){
+		var accion = $("#agregarMotivoProd").val();
+		if (accion == "Agregar") {
+			var obtener=$('#ventasTabla').find('option:selected');
+		//alert(obtener.val());
+			var idCliente =obtener.val();
+			var ruta="/github/sicovima/public/motivo/"+idCliente;
+
+		}else{
+			
+		}
+
+		
+	});
+
 
 });
 
@@ -166,5 +182,18 @@ function agregarMotivoEst(){
 	var ruta="/github/sicovima/public/motivo/"+idMot+"/"+motivo;
 	$.get(ruta,function(res){
 		location.href="/github/sicovima/public/ListadeVentas";
+	});
+}
+function agregarMotivoProd(id){
+	idMotProd=id;
+}
+
+function agregarMotivoEstProd(){
+	var cant = $("#canti").val();
+	var motivo = $("#motivoProd").val();
+	console.log(idMotProd+motivo+cant);
+	var ruta="/github/sicovima/public/motivoProd/"+idMotProd+"/"+motivo+"/"+cant;
+	$.get(ruta,function(res){
+		location.href="/github/sicovima/public/ProductosTerminados";
 	});
 }
