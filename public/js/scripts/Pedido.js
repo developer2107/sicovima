@@ -16,7 +16,7 @@ $('#agregarPedido').click(function(){
   var Talla = $("#talla_Prod").val();
   var Descripcion = $("#descripcion_Prod").val();
   var Precio = $("#precio_Prod").val();
-  var Imagen =$("#inputImage").val();
+  var Imagen =$("#files").val();
   var subTotal_DPed= $("#subTotal_DPed").val();
   var tabla=$("#tablaPedidos");
   var total=parseFloat($("#totalEnPedido").val());
@@ -39,7 +39,7 @@ $('#agregarPedido').click(function(){
   "<td>"+
   "<input type='hidden' name='subtotalventap[]' value='"+subtotalVenta_DPed+"'>"+
   "<input type='hidden' name='subtotalp[]' value='"+subTotal_DPed+"'>"+
-  "<input type='hidden' name='imagenp[]' value='"+Imagen+"'>"+
+  "<input type='hidden' name='files[]' value='"+Imagen+"'>"+
   "<input type='hidden' name='tipop[]' value='"+Tipo+"'>"+
   "<input type='hidden' name='estilop[]' value='"+Estilo+"'>"+
   "<input type='hidden' name='cantidadp[]' value='"+Cantidad+"'>"+
@@ -48,7 +48,6 @@ $('#agregarPedido').click(function(){
   "<input type='hidden' name='tallap[]' value='"+Talla+"'>"+
   "<input type='hidden' name='descripcionp[]' value='"+Descripcion+"'>"+
   "<input type='hidden' name='preciop[]' value='"+Precio+"'>"+
-  "<input  type='hidden' name='id[]' value=''/>" +
   "<a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>"+
   "</td>"+
   "</tr>";
