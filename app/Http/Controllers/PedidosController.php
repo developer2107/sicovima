@@ -86,9 +86,17 @@ class PedidosController extends Controller
       }
 
 
-    public function Ver()
+    public function Ver($id)
     {
-        return view("Proyecto.Desarrollo.Pedidos.VerPedido");//
+      $idDetallePedido= detallePedido::find($id);
+      $detallePedido=detallePedido::find($id)->with('producto', 'pedido')->get();
+      $inventarioMateriaPrima=\SICOVIMA\inventarioMateriaPrima::find($id)->with('materiaPrima')->get();
+
+
+      // $prueba= $detallePedido->id->get();
+      // dd($detallePedido->id);
+
+        return view('Proyecto.Desarrollo.Pedidos.IniciarPedido')->with('idDetallePedido', $idDetallePedido)->with('detallePedido', $detallePedido)->with('inventarioMateriaPrima', $inventarioMateriaPrima);
     }
 
     /**
@@ -203,11 +211,8 @@ class PedidosController extends Controller
      */
     public function show($id)
     {
-      $detallePedido=detallePedido::find($id)->with('producto', 'pedido')->get();
-      $detalleProducto=\SICOVIMA\detalleProducto::find($id)->with('producto','inventarioMateriaPrima')->get();
-      $inventarioMateriaPrima=\SICOVIMA\inventarioMateriaPrima::find($id)->with('materiaPrima')->get();
 
-        return view('Proyecto.Desarrollo.pedidos.IniciarPedido')->with('detallePedido', $detallePedido)->with('detalleProducto', $detalleProducto)->with('inventarioMateriaPrima', $inventarioMateriaPrima);
+      //
     }
 
     /**
