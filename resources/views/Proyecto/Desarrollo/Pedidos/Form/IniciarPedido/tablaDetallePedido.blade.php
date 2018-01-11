@@ -18,12 +18,13 @@
                         <tbody>
                           @foreach($detallePedido as $detallePedido)
                         <tr>
-
+                          <?php   $dato=explode("-",(String)$detallePedido->pedido->fecha_Ped);
+                          $fecha =$dato[2]."/".$dato[1]."/".$dato[0];?>
 
                             <td>{{$detallePedido->cantidad_DPed}}</td>
                             <td>{{$detallePedido->producto->tipo_Prod}}</td>
                             <td>{{$detallePedido->producto->tipo_Prod}}</td>
-                            <td>{{$detallePedido->pedido->fecha_Ped}}</td>
+                            <td>{{$fecha}}</td>
                             <td>
                                 <a class="btn btn-primary btn-circle" type="button" data-toggle="modal" data-target="#myModal7"><i class="fa fa-eye"></i>
                                 </a>

@@ -97,6 +97,7 @@ Route::get('/RegistrarUsuario','SeguridadController@Registrar');
 
 Route::group(['prefix' => 'admin'], function(){
       Route::resource('Pedidos','PedidosController');
+      Route::match(['get','post'],'/IniciarPedido/{id}','PedidosController@Ver');
 });
 
 Route::group(['prefix' => 'admin'], function(){
