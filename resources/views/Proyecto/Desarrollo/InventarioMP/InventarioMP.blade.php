@@ -60,7 +60,6 @@
                               <td align="center">
                               <a href="VerInventarioMP/{{$mat->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a>
                               <a href="ModificarMateriaPrima" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></a>
-                              <a class='btn btn-danger btn-circle' type='button'><i class='fa fa-times'></i></a>
                             </td>
                           </tr>
                               @endforeach

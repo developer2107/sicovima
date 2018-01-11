@@ -44,7 +44,7 @@
                                 <!-- </div> -->
                                 </div>
                             </div>
-                            <br><?php  if ($cliente->tipo_Cli==0): ?>
+                            <br><?php  if ($cliente->tipo_Cli==1): ?>
                             <div class="row">
                               <div class="col-md-1">
                               </div>
@@ -72,12 +72,8 @@
                               <div class="col-md-1">
                               </div>
                               <?php
-                                $dui = SICOVIMA\Http\Controllers\ClientesController::dui($cliente->id_Cliente);
-                                if ($dui == "false") {
-                                    $dui = "";
-                                }else{
-                                    $dui = $dui->DUI_CN;
-                                }
+                                $dui = SICOVIMA\Http\Controllers\ClientesController::dui($cliente->id);
+                                
                               ?>
                               <label class="col-lg-2 control-label">DUI</label>
                                 <div class="col-md-9">
@@ -113,10 +109,15 @@
                               <div class="col-md-1">
                               </div>
                               <label class="col-lg-2 control-label">Teléfono</label>
-                                <div class="col-md-9">
-                                <div class="input-group">
-                                   {!! Form::text('numeroTelefono_Cli',null,['class'=>'form-control','id'=>'numeroTelefono_Cli']) !!} 
-                                </div>
+                                <div class="col-md-8">
+                                 <?php 
+                                 $telefonos=$cliente->telefonoCliente;
+                                 ?>
+                                 <?php foreach ($telefonos as $telefono): ?>
+                                 <div class="input-group">
+                                   {!! Form::text('numeroTelefono_Cli',$telefono->numero_TelefonoCli,['class'=>'form-control','id'=>'numeroTelefono_Cli','readonly'=>'readonly']) !!} 
+                                 </div>
+                                 <?php endforeach ?> 
                                 </div>
                             </div>
                             <br>
@@ -143,12 +144,16 @@
                             </div>
                             <br>
                             <div class="row">
+                            <?php 
+                            $municipio = SICOVIMA\municipio::find($cliente->id_Municipio);
+                            $departamento = SICOVIMA\departamento::find($municipio->id_Departamento);
+                             ?>
                               <div class="col-md-1">
                               </div>
                               <label class="col-lg-2 control-label">Departamento</label>
                                 <div class="col-md-9">
                                 <div class="input-group">
-                                   {!! Form::text('nombre_Depa',null,['class'=>'form-control','id'=>'nombre_Depa']) !!} 
+                                   {!! Form::text('nombre_Depa',$departamento->nombre_Depa,['class'=>'form-control','id'=>'nombre_Depa','readonly'=>'readonly']) !!} 
                                 </div>
                                 </div>
                             </div>
@@ -159,7 +164,7 @@
                               <label class="col-lg-2 control-label">Municipio</label>
                                 <div class="col-md-9">
                                 <div class="input-group">
-                                   {!! Form::text('nombre_Muni',null,['class'=>'form-control','id'=>'nombre_Muni']) !!} 
+                                   {!! Form::text('nombre_Muni',$municipio->nombre_Muni,['class'=>'form-control','id'=>'nombre_Muni','readonly'=>'readonly']) !!} 
                                 </div>
                                 </div>
                             </div>
@@ -183,7 +188,7 @@
                             <div class="carousel slide" id="carousel1">
                                 <div class="carousel-inner">
                                     <div class="item active">
-                                        <img alt="image" class="img-responsive" src="img/mada.jpg">
+                                        <img alt="image" class="img-responsive" src="../img/Mada-Denim-Blanco4.jpg">
                                     </div>
                                 </div>
                             </div>

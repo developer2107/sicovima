@@ -87,16 +87,15 @@
                         <div class="col-sm-7">
                         {!! Form::submit('Cancelar',['class'=>'btn btn-outline btn-primary dim']) !!}
                         </div>
-                </div>
                     </div>
+                </div>
 
-
-<div class="col-lg-5">
+    <div class="col-lg-5">
         <div class="ibox-content">
             <div class="carousel slide" id="carousel1">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img alt="image" class="img-responsive" src="img/mada.jpg">
+                        <img alt="image" class="img-responsive" src="img/Mada-Denim-Blanco4.jpg">
                     </div>
                 </div>
             </div>

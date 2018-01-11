@@ -73,7 +73,7 @@
             <div class="carousel slide" id="carousel1">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img alt="image" class="img-responsive" src="img/Mada-Denim-Blanco2.jpg">
+                        <img alt="image" class="img-responsive" src="../img/Mada-Denim-Blanco4.jpg">
                     </div>
                 </div>
             </div>

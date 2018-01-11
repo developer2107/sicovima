@@ -58,7 +58,7 @@
                                                  </a>
                                                  <a href="ModificarCompra/{{$com->id}}" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
                                                  </a>
-                                                 <a class='btn btn-danger btn-circle' type='button'><i class='fa fa-times'></i></a>
+                                                 <a href="EliminarCompra/{{$com->id}}" class='btn btn-danger btn-circle' type='button'><i class='fa fa-times'></i></a>
                                                  {{-- <a class="btn btn-warning btn-circle" type="button"><i class="fa fa-times"></i>
                                                  </a> --}}
                                             </tr>

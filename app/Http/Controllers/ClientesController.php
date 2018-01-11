@@ -181,9 +181,9 @@ class ClientesController extends Controller
     public static function dui($id){
         $dui = clienteNatural::where('id_Cliente','=',$id)->get()->first();
         if (count($dui)>0) {
-            return $dui;
+            return $dui->DUI_CN;
         }else{
-            return "false";
+            return "";
         }
 
     }

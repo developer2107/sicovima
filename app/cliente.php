@@ -28,7 +28,7 @@ return $this->belongsTo('\SICOVIMA\municipio','id_Municipio');
 }
 
 public function telefonoCliente(){
-return $this->hasMany('\SICOVIMA\telefonoCliente','id');
+return $this->hasMany('\SICOVIMA\telefonoCliente','id_Cliente');
 }
 
 public function clienteJuridico(){

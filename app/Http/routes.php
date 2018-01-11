@@ -38,12 +38,14 @@ Route::Resource('/ListadeCompras','CompraController@Mostrar');
 Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
 Route::Resource('/RegistrarCompra','CompraController');
 Route::match(['get','post'],'/VerCompra/{id}','CompraController@Ver');
+Route::match(['get','post'],'/EliminarCompra/{id}','CompraController@destroy');
 
 Route::get('/ModificarMateriaPrima','MateriaPrimaController@Modificar');
 Route::Resource('/ControlMateriaPrima','InventarioMPController@Mostrar');
 //Route::Resource('/VerMateriaPrima','InventarioMPController@Ver');
 Route::match(['get','post'],'/VerInventarioMP/{id}','InventarioMPController@Ver');
 Route::Resource('/RegistroMateriaP','MateriaPrimaController');
+Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambio');
 Route::get('/Login','LoginController@index');
 
 

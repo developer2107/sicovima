@@ -116,6 +116,11 @@
        @include('Proyecto.Globales.BarraSuperior')
 
        <div class="wrapper wrapper-content">
+        @if(Session::has('message'))
+        <div class="alert alert-success">
+           Mensaje: <a class="alert-link" href="#">{{Session::get('message')}}</a>.
+        </div>
+        @endif
            @yield('content')
 
            @include('Proyecto.Globales.PiePagina')

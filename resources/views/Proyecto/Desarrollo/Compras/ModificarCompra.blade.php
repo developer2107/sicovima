@@ -74,7 +74,7 @@ use SICOVIMA\detalleCompra;  ?>
                 </div>
             </div>
             <div class="ibox-content">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="tablaMateria">
                     <thead>
                     <tr>
                         <th>Cantidad</th>
@@ -107,13 +107,13 @@ use SICOVIMA\detalleCompra;  ?>
                         <?php
                            $total1 = $detalle->subtotal_DCom + $total1;
                         ?>
-                        <td style='cursor:pointer;'>
+                        <td>
                           <input type='hidden' name='cantidadc[]' id="cdh{{$indice}}" value='{{$detalle->cant_DCom}}'>
                           <input type='hidden' name='idc[]' value='{{$materiaP-> id}}'>
                           <input type='hidden' name='subTotalc[]' id="sth{{$indice}}" value='{{$detalle-> subtotal_DCom}}'>
                           <input type='hidden' name='id[]' value='{{$detalle-> id}}'>
                           <a class='btn btn-success btn-circle' type='button' id='ModificarDetalleMP'><i class='fa fa-pencil-square-o' data-dismiss="modal" data-toggle="modal" data-target="#myModal6" onclick="{{$cadena}}"></i></a>
-                          <a class='btn btn-danger btn-circle  deleteCompra' type='button' id='Eliminar'><i class='fa fa-times'></i></a>
+                          <a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>
                        </td>
 
                     </tr>

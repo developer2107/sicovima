@@ -7,6 +7,7 @@ use Input;
 use SICOVIMA\proveedor;
 use SICOVIMA\materiaPrima;
 use SICOVIMA\compra;
+use Session;
 use SICOVIMA\detalleCompra;
 use Redirect;
 use SICOVIMA\Http\Requests;
@@ -214,7 +215,8 @@ class CompraController extends Controller
 
          $compra = compra::with('proveedor')->get();
 
-         return view("Proyecto.Desarrollo.Compras.MostrarListadeCompras")->with('compra', $compra);
+         return redirect('/ListadeCompras')->with('compra',$compra);
+         
     }
 
     /**
@@ -225,9 +227,26 @@ class CompraController extends Controller
      */
     public function destroy($id)
     {
+        $compra = compra::find($id);
+        $eliminarCompra = detalleCompra::where('id_Compra',$id)->get();
+        foreach ($eliminarCompra as $e) {
+          $inventario = \SICOVIMA\inventarioMateriaPrima::where('id_MateriaPrima',$e-> id_MateriaPrima)->get()->last();
+
+          \SICOVIMA\inventarioMateriaPrima::create([
+            'tipoMovimiento_IMP'=>2,
+            'existencias_IMP'=>$inventario-> nuevaExistencia_IMP,
+            'cantidad_IMP'=>$e-> cant_DCom,
+            'fechaMov_IMP'=>$compra-> fecha_Com,
+            'nuevaExistencia_IMP'=>$inventario -> nuevaExistencia_IMP - $e-> cant_DCom,
+            'id_MateriaPrima'=>$e-> id_MateriaPrima,
+          ]);
+
+          $e->delete();
+        }
         Compra::destroy($id);
-        Session::flash('message','Detalle eliminado correctamente');
-        return view("Proyecto.Desarrollo.Compras.RegistrarCompras");
+        Session::flash('message','Compra eliminada correctamente');
+        $compra = compra::with('proveedor')->get();
+         return redirect('/ListadeCompras')->with('compra',$compra);
     }
 
 }
