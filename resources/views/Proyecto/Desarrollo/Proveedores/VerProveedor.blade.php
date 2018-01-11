@@ -1,7 +1,7 @@
 @extends('layouts.MenuAdministrador')
 
 @section('content')
-{!! Form::model($cliente,['route'=>['RegistroCliente.update',$cliente->id], 'method'=>'PUT','autocomplete'=>'off']) !!}
+{!! Form::model($proveedor,['route'=>['RegistroProveedor.update',$proveedor->id], 'method'=>'PUT','autocomplete'=>'off']) !!}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Ver Proveedores</h2>

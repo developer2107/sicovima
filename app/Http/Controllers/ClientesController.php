@@ -177,4 +177,14 @@ class ClientesController extends Controller
         }
 
     }
+
+    public static function dui($id){
+        $dui = clienteNatural::where('id_Cliente','=',$id)->get()->first();
+        if (count($dui)>0) {
+            return $dui;
+        }else{
+            return "false";
+        }
+
+    }
 }
