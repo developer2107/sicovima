@@ -58,8 +58,8 @@
 
 
             <li>
-                <a href="Login">
-                    <i class="fa fa-sign-out"></i> Log out
+                <a href="logout">
+                    <i class="fa fa-sign-out"></i> Cerrar Sesión
                 </a>
             </li>
         </ul>

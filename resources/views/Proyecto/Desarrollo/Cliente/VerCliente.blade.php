@@ -125,10 +125,15 @@
                               <div class="col-md-1">
                               </div>
                               <label class="col-lg-2 control-label">Correo Electronico</label>
-                                <div class="col-md-9">
-                                <div class="input-group">
-                                   {!! Form::text('correo_CorreoCli',null,['class'=>'form-control','id'=>'correo_CorreoCli']) !!} 
-                                </div>
+                                <div class="col-md-8">
+                                <?php 
+                                 $correos=$cliente->correoCliente;
+                                 ?>
+                                 <?php foreach ($correos as $correo): ?>
+                                <!-- <div class="input-group"> -->
+                                   {!! Form::text('correo_CorreoCli',$correo->correo_CorreoCli,['class'=>'form-control','id'=>'correo_CorreoCli','readonly'=>'readonly']) !!} 
+                                <!-- </div> -->
+                                <?php endforeach ?> 
                                 </div>
                             </div>
                             <br>

@@ -29,5 +29,9 @@ class Kernel extends HttpKernel
         'auth' => \SICOVIMA\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \SICOVIMA\Http\Middleware\RedirectIfAuthenticated::class,
+
+        'admin' => \SICOVIMA\Http\Middleware\admin::class,
+        'usuario' => \SICOVIMA\Http\Middleware\usuario::class,
+        'comun' => \SICOVIMA\Http\Middleware\comun::class,
     ];
 }

@@ -20,7 +20,7 @@ public function cliente(){
 }
 
 public function correoCliente(){
-return $this->hasMany('\SICOVIMA\correoCliente','id');
+return $this->hasMany('\SICOVIMA\correoCliente','id_Cliente');
 }
 
 public function municipio(){
