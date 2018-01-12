@@ -102,7 +102,7 @@ Route::Resource('/ListadePedidosSinIniciar','PedidosController@ListaSinIniciar')
 Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar');
 
 
-Route::Resource('/IniciarPedido','PedidosController@Ver');
+Route::Resource('/IniciarPedido','PedidosController@IniciarPedido');
 Route::Resource('Pedidos','PedidosController');
 
 Route::get('/BuscarUsuario','SeguridadController@Buscar');
