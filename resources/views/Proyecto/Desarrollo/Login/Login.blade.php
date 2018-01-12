@@ -49,19 +49,20 @@
             </div>
             <div class="col-md-6">
                 <div class="ibox-content">
-                    <form class="m-t" role="form" action='sicovima/public/'>
+                        <form method="POST" action="authenticate" autocomplete="off">
+                        {{ csrf_field()}}
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Username" required="">
+                            <input type="text" class="form-control" name="name" placeholder="Username" required="">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password" required="">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required="">
                         </div>
-                        <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                        <button type="submit" class="btn btn-primary block full-width m-b">Ingresar</button>
 
                         <a href="#">
                             <small>Forgot password?</small>
                         </a>
-                    </form>
+                        </form>
                 </div>
             </div>
         </div>

@@ -83,11 +83,13 @@
 
 
                           <tr>
+                            <?php   $dato=explode("-",(String)$det->pedido-> fechaEntregar_Ped);
+                            $fecha =$dato[2]."/".$dato[1]."/".$dato[0];?>
                               <td align="left"><font size="4" >{{$det ->pedido->cliente-> id}}</font></td>
                               <td align="left"><font size="4" ></font>{{$det->producto->tipo_Prod}}  {{$det->producto->descripcion_Prod}}</td>
-                              <td align="rihgt"><font size="4" ></font>{{$det->pedido-> fechaEntregar_Ped}}</td>
+                              <td align="rihgt"><font size="4" ></font>{{$fecha}}</td>
                               <td align="center">
-                            <a class="btn btn-primary btn-rounded" href="{{route('admin.pedidos.show', $det->id )}}">Iniciar</a>
+                            <a class="btn btn-primary btn-rounded" href="admin/IniciarPedido/{{$det->id}}">Iniciar</a>
                               </tr>
                               @endforeach
                           </tbody>

@@ -47,9 +47,10 @@ class ClientesController extends Controller
       return view("Proyecto.Desarrollo.Cliente.MostrarListaCli");
     }
 
-    public function Ver()
+    public function Ver($id)
     {
-      return view("Proyecto.Desarrollo.Cliente.VerCliente");
+        $cliente = cliente::find($id);
+        return view("Proyecto.Desarrollo.Cliente.VerCliente",compact('cliente'));
     }
 
     public function ModificarCli()
@@ -96,7 +97,7 @@ class ClientesController extends Controller
         }else{
             if ($tipo==1) {
                 $clienteJuridico = clienteJuridico::create([
-                    'NIT_CJ'=>$request->duiCliente,
+                    'NIT_CJ'=>$request->nitCliente,
                     'nombreResponsable_CJ'=>$request->nombreResponsable,
                     'id_Cliente'=>$cliente->id,
                     'RNC_CJ'=>$request->rncCliente,
@@ -173,6 +174,46 @@ class ClientesController extends Controller
             return $municipio;# code...
         }else{
             return "false";
+        }
+
+    }
+
+    public static function dui($id){
+        $dui = clienteNatural::where('id_Cliente','=',$id)->get()->first();
+        if (count($dui)>0) {
+            return $dui->DUI_CN;
+        }else{
+            return "";
+        }
+
+    }
+
+    public static function nit($id){
+        $nit = clienteJuridico::where('id_Cliente','=',$id)->get()->first();
+        if (count($nit)>0) {
+            return $nit->NIT_CJ;
+        }else{
+            return "";
+        }
+
+    }
+
+    public static function nombreR($id){
+        $nombreR = clienteJuridico::where('id_Cliente','=',$id)->get()->first();
+        if (count($nombreR)>0) {
+            return $nombreR->nombreResponsable_CJ;
+        }else{
+            return "";
+        }
+
+    }
+
+    public static function rnc($id){
+        $rnc = clienteJuridico::where('id_Cliente','=',$id)->get()->first();
+        if (count($rnc)>0) {
+            return $rnc->RNC_CJ;
+        }else{
+            return "";
         }
 
     }

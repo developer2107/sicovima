@@ -46,13 +46,13 @@
                       <td align="rihgt"><font size="4" >{{$telefonoC-> numero_TelefonoCli}}</font></td>
                       <td align="left"><font size="4" >
                         @if ($cli-> tipo_Cli )
-                          Natural
-                        @else
                           Juridico
+                        @else
+                          Natural
                         @endif
                       </font></td>
                       <td align="center">
-                        <a href="VerCliente" class="btn btn-primary btn-circle" type="button">
+                        <a href="VerCliente/{{$cli->id}}" class="btn btn-primary btn-circle" type="button">
                           <i class="fa fa-eye"></i>
                         </a>
                         <a href="ModificarCli" class="btn btn-success btn-circle" type="button">

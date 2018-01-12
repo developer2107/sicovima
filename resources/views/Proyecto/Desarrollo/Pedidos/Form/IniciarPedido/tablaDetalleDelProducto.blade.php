@@ -7,34 +7,17 @@
             </div>
 
             <div class="ibox-content">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="tablaDetalleMateriaPrima">
                     <thead>
                     <tr>
                         <th>ID</th>
                         <th>Materia Prima</th>
-                        <th>Cantidad</th>
+                        <th>Existencias</th>
+                        <th>Cantidad a Usar</th>
                         <th>Subtotal</th>
                         <th>Acciones</th>
                     </tr>
                     </thead>
-                    <tbody>
-                      @foreach($inventarioMateriaPrima as $inventarioMateriaPrima)
-                      @foreach($detallePedido as $detallePedido)
-                    <tr>
-                      <td>{{$detallePedido->producto->id}}</td>
-                      <td>{{$inventarioMateriaPrima->materiaPrima->nombre_MP}}</td>
-                        <td>{{$detallePedido->cantidad_DPed}}</td>
-                        <td>{{$detallePedido->subtotal_DPed}}</td>
-                        <td>
-                            <a class="btn btn-success btn-circle" type="button" data-toggle="modal" data-target="#myModal9"><i class="fa fa-pencil-square-o"></i>
-                            </a>
-                            <a class="btn btn-warning btn-circle" type="button"><i class="fa fa-times"></i>
-                            </a>
-                        </td>
-                    </tr>
-                  @endforeach
-                  @endforeach
-                    </tbody>
                 </table>
                 <div class="row">
                     <div class="col-xs-8"></div>
@@ -44,7 +27,7 @@
                     <div class="col-lg-3">
                         <div class="input-group m-b">
                             <span class="input-group-addon">$</span>
-                            {!! Form::number('costo',null,['class'=>'touchspin2 form-control','step'=>'any']) !!}
+                            {!! Form::number('costo',0.00,['class'=>'touchspin2 form-control','step'=>'any', 'id'=>'costo']) !!}
                         </div>
                     </div>
                 </div>

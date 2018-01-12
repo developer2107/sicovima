@@ -1,6 +1,8 @@
 @extends('layouts.MenuAdministrador')
 
 @section('content')
+
+  {!! Form::model($idDetallePedido,['route'=>['RegistrarCompra.update',$idDetallePedido->id], 'method'=>'PUT','autocomplete'=>'off']) !!}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Iniciar Pedido</h2>
@@ -36,7 +38,7 @@
                         <label class="col-lg-2 control-label">Cliente</label>
                         <div class="col-md-3">
                             <div class="input-group">
-                            	{!! Form::text('nombre_Cli','{{$pedido->cliente->nombre_Cli}}',['class'=>'form-control','disabled'=>'disabled','readonly'=>'readonly']) !!}
+                            	{!! Form::text('nombre_Cli',$idDetallePedido->pedido->cliente->nombre_Cli,['class'=>'form-control','disabled'=>'disabled','readonly'=>'readonly']) !!}
                             	<!-- Este es no editable -->
                             </div>
                         </div>
@@ -49,8 +51,25 @@
                     <label class="col-lg-2 control-label">Responsable</label>
                         <div class="col-lg-8">
                             <div class="input-group">
-                            	{!! Form::text('nombreResponsable_CJ','{{$cliente->nombre_Cli}}',['class'=>'form-control','disabled'=>'disabled','readonly'=>'readonly']) !!}
-                            	<!-- Este es no editable -->
+                              <?php
+                              if ($idDetallePedido->pedido->cliente->tipo_Cli == 'FALSE') {
+                                # code...
+                                ?>
+                                {!! Form::text('nombreResponsable_CJ','',['class'=>'form-control','disabled'=>'disabled','readonly'=>'readonly']) !!}
+                              	<!-- Este es no editable -->
+                                <?php
+                              }else {
+                                $Responsable=\SICOVIMA\clienteJuridico::where('id_Cliente', $idDetallePedido->pedido->cliente->id)->value('nombreResponsable_CJ');
+                                // $nombre = \SICOVIMA\clienteJuridico::find($Responsable->id);
+
+                                ?>
+                                {!! Form::text('nombreResponsable_CJ',$Responsable,['class'=>'form-control','disabled'=>'disabled','readonly'=>'readonly']) !!}
+                              	<!-- Este es no editable -->
+
+                                 <?php
+                                   }
+                               ?>
+
                             </div>
                         </div>
                     </div>
@@ -63,7 +82,7 @@
                         <div class="col-md-4">
                             <div class="input-group date">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                {!! Form::text('fecha_Ped', 'null',['class'=>'form-control']) !!}
+                                {!! Form::text('fecha_Ped', $idDetallePedido->pedido->fecha_Ped,['class'=>'form-control']) !!}
                                 <!-- Este es no editable -->
                             </div>
                         </div>
@@ -84,7 +103,7 @@
                 <div class="carousel-inner">
 
                     <div class="item active">
-                        <img alt="image" class="img-responsive" src="img/mada.jpg">
+                        <img alt="image" class="img-responsive" src={!! asset('../img/Mada-Demin-Blanco3.jpg') !!}>
                     </div>
 
                 </div>
@@ -96,6 +115,24 @@
 
 @include('Proyecto.Desarrollo.Pedidos.Form.IniciarPedido.tablaDetallePedido')
 
+<div class="row">
+    <div class="ibox">
+        <div class="ibox-content">
+            <div class="row">
+            <br>
+                <div class="col-xs-4">
+                </div>
+
+                <div class="col-xs-2">
+                    <div class="input-group bootstrap-touchspin">
+                      <a type="button" class="btn btn-outline btn-primary dim" data-toggle="modal" data-target="#myModalTabla">Agregar Materia Prima</a>
+                 </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @include('Proyecto.Desarrollo.Pedidos.Form.IniciarPedido.tablaDetalleDelProducto')
 
@@ -261,4 +298,5 @@
         </div>
     </div>
 </div>
+{!!Form::close()!!}
 @stop

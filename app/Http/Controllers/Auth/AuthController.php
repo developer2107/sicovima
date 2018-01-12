@@ -4,6 +4,8 @@ namespace SICOVIMA\Http\Controllers\Auth;
 
 use SICOVIMA\User;
 use Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use SICOVIMA\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -62,4 +64,17 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    protected function login(){
+        return view("Proyecto.Desarrollo.Login.Login");
+    }
+
+    protected function authenticate(Request $request){
+        if (Auth::attempt(['name' => $request['name'], 'password' => $request['password']])) {
+            //Bitacora::bitacora('login','users','usuarios',Auth::user()->id);
+            return redirect('/');
+        }
+        return redirect('login');
+    }
+
 }

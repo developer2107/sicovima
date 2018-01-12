@@ -27,7 +27,8 @@ class InventarioMPController extends Controller
 
         $materiaPrima = materiaPrima::find($id);
         $proveedor = proveedor::find($materiaPrima->id_Proveedor);
-        $existencia = inventarioMateriaPrima::where('id_MateriaPrima',$materiaPrima->id)->get()->last();
+        $existencia= $materiaPrima->obtenerCantidad($materiaPrima-> id);
+        //$existencia = inventarioMateriaPrima::where('id_MateriaPrima',$materiaPrima->id)->get()->last();
 
         return view('Proyecto.Desarrollo.InventarioMP.VerInventarioMP',compact('materiaPrima','proveedor','existencia'));
     }
@@ -103,5 +104,17 @@ class InventarioMPController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function Cambio($id)
+    {
+       $cambio = materiaPrima::find($id);
+       if ($cambio->estado_MP) {
+           $cambio->estado_MP= 0;
+       } else {
+           $cambio->estado_MP= 1;
+       }
+       $cambio-> save();
+       return redirect('/VerInventarioMP/'.$id);
     }
 }

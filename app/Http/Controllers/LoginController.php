@@ -3,7 +3,7 @@
 namespace SICOVIMA\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 
@@ -83,5 +83,11 @@ class LoginController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('login');
     }
 }

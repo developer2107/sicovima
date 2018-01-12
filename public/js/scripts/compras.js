@@ -25,12 +25,17 @@ $('#agregarCompras').click(function(){
     $("#total_Com").val(parseFloat(total).toFixed(2));
 
     $("#Compra_producto").append("<tr>"+
-      "</td><td>"+cantidad+"</td><td>"+nombre_MP+" "+color_MP+"</td><td>"+
-      "<td><input type='hidden' name='cantidadc[]' value='"+cantidad+"'>"+
+      "<td>"+cantidad+"</td>"+
+      "<td>"+nombre_MP+" "+color_MP+"</td>"+
+      "<td>"+parseFloat(precio_MP).toFixed(2)+"</td>"+
+      "<td>"+parseFloat(c).toFixed(2)+"</td>"+
+      "<td>"+
+      "<input type='hidden' name='cantidadc[]' value='"+cantidad+"'>"+
       "<input type='hidden' name='idc[]' value='"+id_MP+"'>"+
       "<input type='hidden' name='subTotalc[]' value='"+c+"'>"+
       "<input type='hidden' name='id[]' value=''>"+
-      parseFloat(precio_MP).toFixed(2)+"</td><td>"+parseFloat(c).toFixed(2)+"</td><td class='deleteCompra' style='cursor:pointer;'>Eliminar</td></tr>");
+      "<a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>"+
+      "</td></tr>");
   }else{
       var totalT = parseFloat($("#total_Com").val());
       var precio = parseFloat(subtotalg)/parseFloat(cantidadg);
@@ -45,17 +50,16 @@ $('#agregarCompras').click(function(){
 
   }
 });
-
-});
-
-$(document).on("click",".deleteCompra",function(){
-var totalF=parseFloat($(this).parents('tr').find('input:eq(2)').val());
+$('#tablaMateria').on('click','#Eliminar',function(e){
+  var totalF=parseFloat($(this).parents('tr').find('input:eq(2)').val());
 console.log(totalF);
 $(this).parent('td').parent('tr').remove();
 
 var total=parseFloat($("#total_Com").val());
     total=total-(totalF);
      document.getElementById("total_Com").value=total.toFixed(2);
+});
+  
 });
 
 function modificarDetalleMP(indice){

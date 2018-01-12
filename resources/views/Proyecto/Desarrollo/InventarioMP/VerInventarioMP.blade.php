@@ -37,16 +37,7 @@
                 <form class="form-horizontal">
 
                     <br>
-                    <div class="row">
-                      <div class="col-md-1">
-                      </div>
-                        <label class="col-lg-3 control-label">Proveedor</label>
-                        <div class="col-md-8">
-                          <div class="input-group">
-                            {{-- {!! Form::text('nombre_Prov',$proveedor->nombre_Prov,['class'=>'form-control','id'=>'nombre_Prov','readonly'=>'readonly']) !!} --}}
-                          </div>
-                        </div>
-                    </div>
+                    
                     <br>
                     <div class="row">
                       <div class="col-md-1">
@@ -87,7 +78,7 @@
                         <label class="col-lg-3 control-label">Existencia</label>
                         <div class="col-md-8">
                           <div class="input-group">
-                            {!! Form::text('existencias_IMP',$existencia->nuevaExistencia_IMP,['class'=>'form-control','readonly'=>'readonly'])!!}
+                            {!! Form::text('existencias_IMP',$existencia,['class'=>'form-control','readonly'=>'readonly'])!!}
                           </div>
                         </div>
                     </div>
@@ -134,7 +125,8 @@
                         <label class="col-lg-4 control-label"></label>
                         <div class="col-md-4">
                           <div class="input-group m-b">
-                            {!! Form::submit('Modificar Estado',['class'=>'btn btn-outline btn-primary dim']) !!}
+                            <a href="/github/sicovima/public/CambioEstadoMP/{{$materiaPrima->id}}" class="btn btn-outline btn-primary dim">Modificar Estado</a>
+                            
                           </div>
                         </div>
                     </div>
@@ -143,17 +135,17 @@
         </div>
     </div>
 
-                <div class="col-lg-5">
-                    <div class="ibox-content">
-                        <div class="carousel slide" id="carousel1">
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <img alt="image" class="img-responsive" src="img/mada.jpg">
-                                </div>
-                            </div>
-                        </div>
+    <div class="col-lg-5">
+        <div class="ibox-content">
+            <div class="carousel slide" id="carousel1">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img alt="image" class="img-responsive" src="../img/Mada-Denim-Blanco4.jpg">
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
             </div>
         </div>
     </div>

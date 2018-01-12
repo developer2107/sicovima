@@ -7,10 +7,10 @@
             </div>
             <div class="ibox-content">
 
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="tablaMateria">
                     <thead>
                     <tr>
-                        <th></th>
+                        
                         <th>Cantidad</th>
                         <th>Descripción</th>
                         <th>Precio Unitario</th>

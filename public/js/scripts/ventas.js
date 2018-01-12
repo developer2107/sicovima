@@ -38,13 +38,11 @@ $(document).on('ready',function(){
 		$("#agregarVentas").val("Agregar");
 		$("#cantidad").val("");
 		$("#gananciau").val("");
-		
 	});
 
 	$('#agregarVentas').click(function(){
 		var accion = $("#agregarVentas").val();
 		if (accion == "Agregar") {
-
 			var cantidad=$("#cantidad").val();
 
 		if ((parseFloat(cantidad) <= parseFloat(a_existencia))&&(!productosAgregados.includes(a_id))) {
@@ -65,7 +63,7 @@ $(document).on('ready',function(){
 			"<input  type='hidden' name='id[]' value=''/>" +
 			"<a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>"+
 			"</td>"+
-			"</tr>";        
+			"</tr>";
 			total = total + subtotal;
 			tabla.append(detalles);
 			$("#cantidad").val("");
@@ -101,15 +99,13 @@ $(document).on('ready',function(){
 			console.log(subtotalg);
 			$('#totalVenta').val(total.toFixed(2));
 		}
-
-		
 	});
+	
 	$('#CancelarRegistroVenta').click(function(){
 		var tabla = $("#tablaProductos");
 		tabla.remove();
-
-		
 	});
+
 	$('#tablaProductos').on('click','#Eliminar',function(e){
 		var total=parseFloat($("#totalVenta").val());
 		var cantidadE=parseFloat($(this).parents('tr').find('input:eq(1)').val());
@@ -131,14 +127,22 @@ $(document).on('ready',function(){
 	// 	//alert(obtener.val());
 	// 		var idCliente =obtener.val();
 	// 		var ruta="/github/sicovima/public/motivo/"+idCliente;
-
-	// 	}else{
-			
-	// 	}
-
-		
+	// 	}else{		
+	// 	}	
 	// });
 
+	$('#agregarMotivoProd').click(function(){
+		var accion = $("#agregarMotivoProd").val();
+		if (accion == "Agregar") {
+			var obtener=$('#ventasTabla').find('option:selected');
+		//alert(obtener.val());
+			var idCliente =obtener.val();
+			var ruta="/github/sicovima/public/motivo/"+idCliente;
+
+		}else{
+
+		}
+	});
 
 });
 

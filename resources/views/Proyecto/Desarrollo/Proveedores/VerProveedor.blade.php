@@ -23,108 +23,138 @@
 
 <div id="contenido">
 
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-title">
-                                    <h5></h5>
-
-                                </div>
-                                <div class="ibox-content">
-                                    <form class="form-horizontal">
-                                     <br>
-
-                                          <div class="form-group"><label class="col-lg-3 control-label">Nombre </label>
-
-                                            <div class="col-lg-9">
-                                                <input id="name" name="name" type="text" class="form-control required" aria-required="true" placeholder="Deposito de Telas S.A. de C.V.">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group"><label class="col-lg-3 control-label">NIT </label>
-
-                                            <div class="col-lg-5">
-                                                <input type="text" class="form-control" placeholder="1089-763425-463-5">
-                                            </div>
-                                        </div>
-                                        <div class="form-group"><label class="col-lg-3 control-label">Tipo de Mercadería</label>
-
-                                            <div class="col-lg-5">
-
-                                                <select class="form-control m-b" name="account">
-                                                        <option>Telas</option>
-                                                 </select>
-
-                                            </div>
-
-                                        </div>
-
-                                       <div class="form-group"><label class="col-lg-3 control-label">Correo Electronico </label>
-                                         <div class="col-lg-9">
-                                          <input type="text" class="form-control" placeholder="depositoTelas94@hotmail.com">
-
-                                          </div>
-                                       </div>
-
-                                       <div class="form-group"><label class="col-lg-3 control-label">Teléfono </label>
-
-                                            <div class="col-lg-5">
-                                            <input type="text" class="form-control" placeholder="2326-6453">
-
-                                            </div>
-
-                                        </div>
-
-                                         <div class="form-group"><label class="col-lg-3 control-label">Dirección </label>
-
-                                            <div class="col-lg-9">
-                                                <input id="name" name="name" type="text" class="form-control required" aria-required="true" placeholder="final av. 14 de Julio Ba. Guadalupe">
-                                            </div>
-                                        </div>
-
-                                     <div class="form-group"><label class="col-lg-3 control-label">Departamento </label>
-
-                                            <div class="col-lg-9">
-
-                                                <select class="form-control m-b" name="account">
-                                                        <option>San Vicente</option>
-                                                 </select>
-
-                                            </div>
-
-                                     </div>
-
-                                     <div class="form-group"><label class="col-lg-3 control-label">Municipio </label>
-
-                                            <div class="col-lg-9">
-
-                                                <select class="form-control m-b" name="account">
-                                                        <option>San Sebastián</option>
-                                                 </select>
-
-                                            </div>
-
-                                     </div>
-
-                                     <div class="col-sm-offset-4">
-                                       <button class="btn btn-outline btn-primary dim" type="button">Dar de Baja</button>
-                                    </div>
-
-                                    </form>
-                                </div><div class="form-group">
-                            </div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Proveedor</h5>
                         </div>
-                </div>
+                      <div class="ibox-content">
+                      <form class="form-horizontal">
+                      <br>
+                      <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                          <label class="col-lg-3 control-label">Nombre</label>
+                          <div class="col-md-8">
+                            <div class="input-group">
+                             {!! Form::text('nombre_Prov',$proveedor->nombre_Prov,['class'=>'form-control','id'=>'nombre_Prov','readonly'=>'readonly']) !!} 
+                            </div>
+                          </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                          <label class="col-lg-3 control-label">NIT</label>
+                          <div class="col-md-8">
+                            <div class="input-group">
+                              {!! Form::text('NIT_Prov',$proveedor->NIT_Prov,['class'=>'form-control','id'=>'nombre_NIT','readonly'=>'readonly']) !!} 
+                            </div>
+                          </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                          <label class="col-lg-3 control-label">Tipo de Mercadería</label>
+                          <div class="col-md-8">
+                            <div class="input-group">
+                              {!! Form::text('tipoMercaderia_Prov',$proveedor->tipoMercaderia_Prov,['class'=>'form-control','id'=>'tipoMercaderia_Prov','readonly'=>'readonly']) !!} 
+                            </div>
+                          </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                          <label class="col-lg-3 control-label">Teléfono</label>
+                          <div class="col-md-8">
+                           <?php 
+                                 $telefonos=$cliente->telefonoCliente;
+                            ?>
+                                 <?php foreach ($telefonos as $telefono): ?>
+                            <div class="input-group">
+                              {!! Form::text('tipoMercaderia_Prov',null,['class'=>'form-control','id'=>'tipoMercaderia_Prov']) !!} 
+                            </div>
+                          </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                          <label class="col-lg-3 control-label">Correo Electronico</label>
+                          <div class="col-md-8">
+                            <div class="input-group">
+                               {!! Form::text('tipoMercaderia_Prov',null,['class'=>'form-control','id'=>'tipoMercaderia_Prov']) !!} 
+                            </div>
+                          </div>
+                      </div>                
+                      <br>
+                      <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                          <label class="col-lg-3 control-label">Dirección</label>
+                          <div class="col-md-8">
+                            <div class="input-group">
+                              {!! Form::text('direccion_Prov',$proveedor->direccion_Prov,['class'=>'form-control','id'=>'direccion_Prov','readonly'=>'readonly']) !!} 
+                            </div>
+                          </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                          <label class="col-lg-3 control-label">Departamento</label>
+                          <div class="col-md-8">
+                            <div class="input-group">
+                              <!-- {!! Form::text('tipoMercaderia_Prov',null,['class'=>'form-control','id'=>'tipoMercaderia_Prov']) !!} --> 
+                            </div>
+                          </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                          <label class="col-lg-3 control-label">Municipio</label>
+                          <div class="col-md-8">
+                            <div class="input-group">
+                              <!-- {!! Form::text('tipoMercaderia_Prov',null
+                              ,['class'=>'form-control','id'=>'tipoMercaderia_Prov']) !!} -->
+                            </div>
+                          </div>
+                      </div>
+                      <br><br>
+                      <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                          <label class="col-lg-4 control-label"></label>
+                          <div class="col-md-4">
+                            <div class="input-group m-b">
+                              {!! Form::submit('Dar de Baja',['class'=>'btn btn-outline btn-primary dim']) !!}
+                            </div>
+                          </div>
+                      </div>
 
-   <div class="col-lg-5">
-        <div class="ibox-content">
-            <div class="carousel slide" id="carousel1">
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img alt="image" class="img-responsive" src="img/mada.jpg">
-                    </div>
-                </div>
-            </div>
+                      </form>
+               </div>
+          </div>
+     </div>
+                      <div class="col-lg-5">
+                           <div class="ibox-content">
+                               <div class="carousel slide" id="carousel1">
+                                   <div class="carousel-inner">
+                                       <div class="item active">
+                                           <img alt="image" class="img-responsive" src="../img/Mada-Denim-Blanco4.jpg">
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+           </div>
         </div>
     </div>
 </div>

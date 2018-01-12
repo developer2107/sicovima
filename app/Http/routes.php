@@ -15,38 +15,65 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/guardarUsuario', function () {
 
+		$para = 'ingridayala_94@hotmail.com';
+		$asunto = 'Prueba de SMTP local';
+		$mensaje = 'Mensaje de prueba';
+		$cabeceras = 'From: brendacgmaradiaga@gmail.com' ."\r\n" .
+		'Reply-To: brendacgmaradiaga@gmail.com' . "\r\n" .
+		'X-Mailer: PHP/' . phpversion();
+
+		if(mail($para, $asunto, $mensaje, $cabeceras)) {
+		echo 'Correo enviado correctamente';
+		} else {
+		echo 'Error al enviar mensaje';
+		}
+
+});
 
 /* DE AQUI ABAJO ESTAN LAS RUTAS DE BRENDA*/
+
+
+
+//Rutas de login
+Route::get('/cerrar', 'Auth\AuthController@cerrar');
+Route::get('/login', 'Auth\AuthController@login');
+Route::get('/logout', 'LoginController@logout');
+Route::post('/authenticate', 'Auth\AuthController@authenticate');
+
+/* DE AQUI ABAJO ESTAN LAS RUTAS DE GRECIA*/
+
+
+
+
+/* DE AQUI ABAJO ESTAN LAS RUTAS DE BENJAMIN*/
 
 Route::Resource('/RegistroProveedor','ProveedoresController');
 Route::Resource('/RegistroCliente','ClientesController');
 Route::Resource('/MostrarListaProv','ProveedoresController@Mostrar');
 Route::Resource('/MostrarListaCli','ClientesController@Mostrar');
-Route::get('/VerCliente','ClientesController@Ver');
+Route::match(['get','post'],'/VerCliente/{id}','ClientesController@Ver');
 Route::match(['get','post'],'/municipio/{id}','ClientesController@municipios');
 Route::match(['get','post'],'/municipio/{id}','ProveedoresController@municipios');
-Route::get('/VerProveedor','ProveedoresController@verpro');
+Route::match(['get','post'],'/VerProveedor/{id}','ProveedoresController@Ver');
 Route::get('/ModificarProv','ProveedoresController@modificarpro');
 Route::get('/ModificarCli','ClientesController@ModificarCli');
 Route::get('/DarBajaProv','ProveedoresController@darbajaprov');
 Route::get('/DarBajaCli','ClientesController@darbajacli');
 
-Route::Resource('/ListadeCompras','CompraController@Mostrar');
+
 Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
 Route::Resource('/RegistrarCompra','CompraController');
 Route::match(['get','post'],'/VerCompra/{id}','CompraController@Ver');
-// Route::Resource('/VerCompra','CompraController@Ver');
+Route::match(['get','post'],'/EliminarCompra/{id}','CompraController@destroy');
+Route::Resource('/ListadeCompras','CompraController@Mostrar');
 
 Route::get('/ModificarMateriaPrima','MateriaPrimaController@Modificar');
 Route::Resource('/ControlMateriaPrima','InventarioMPController@Mostrar');
-//Route::Resource('/VerMateriaPrima','InventarioMPController@Ver');
 Route::match(['get','post'],'/VerInventarioMP/{id}','InventarioMPController@Ver');
 Route::Resource('/RegistroMateriaP','MateriaPrimaController');
-Route::get('/Login','LoginController@index');
-
-
-/* DE AQUI ABAJO ESTAN LAS RUTAS DE GRECIA*/
+Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambio');
 
 Route::Resource('Bitacora','BitacoraController');
 Route::match(['get','post'],'/ModificarVenta/{id}','VentasController@Modificar');
@@ -62,14 +89,6 @@ Route::match(['get','post'],'/responsable/{id}','VentasController@responsables')
 Route::Resource('/ProductosTerminados','InventarioPTController@Mostrar');
 Route::Resource('/VerProductosTerminados','InventarioPTController@Ver');
 
-
-//---------------------------------------------------------------------------
-
-// Route::Resource('/ListadeCompras','CompraController@Mostrar');
-// Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
-// Route::Resource('/RegistrarCompra','CompraController');
-// Route::Resource('/VerCompra','CompraController@Ver');
-
 Route::Resource('/ListadePedidos','PedidosController@Mostrar');
 Route::Resource('/RegistrarPedido','PedidosController');
 Route::Resource('/IniciarPedido','PedidosController@Iniciar');
@@ -81,10 +100,17 @@ Route::Resource('/ListadePedidosaEntregar','PedidosController@ListaaEntregar');
 Route::Resource('/ListadePedidosSinIniciar','PedidosController@ListaSinIniciar');
 Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar');
 
-
-/* DE AQUI ABAJO ESTAN LAS RUTAS DE BENJAMIN*/
-
 Route::get('/BuscarUsuario','SeguridadController@Buscar');
 Route::get('/VerUsuario','SeguridadController@Ver');
 Route::get('/ModificarUsuario','SeguridadController@Modificar');
 Route::get('/RegistrarUsuario','SeguridadController@Registrar');
+
+Route::group(['middleware' => 'admin'], function(){
+
+	
+});
+
+Route::group(['middleware' => 'comun'], function(){
+
+
+});
