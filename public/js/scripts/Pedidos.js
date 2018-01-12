@@ -1,66 +1,150 @@
-function previewFile() {
-  var preview = document.querySelector('img');
-  var file    = document.querySelector('input[type=file]').files[0];
-  var reader  = new FileReader();
-
-  alert(reader());
-
-  reader.onloadend = function () {
-    preview.src = reader.result;
-  }
-
-  if (file) {
-    reader.readAsDataURL(file);
-  } else {
-    preview.src = "";
-  }
-}
-
 
 $(document).on('ready',function(){
+  var existencia_i;
+  var materiaPrimaAgregada=[];
+  var subtotal_i;
+  var id_i;
+  var materiaPrima_i;
 
-  var existencia;
-  var productosAgregados[];
-  var subtotal;
-  var id;
-  var materiaPrima
+  $('#tablaPedidoIniciar').on('click','#AddCant',function(e){
+    id_i=$(this).parents('tr').find('input:eq(0)').val();
+    materiaPrima_i=$(this).parents('tr').find('input:eq(1)').val();
+    existencia_i=$(this).parents('tr').find('input:eq(2)').val();
+    subtotal_i=$(this).parents('tr').find('input:eq(3)').val();
+    alert(existencia);
+    $("#agregarPedidoIniciado").val("Agregar");
+    $("#cantidad").val("");
 
-  $('#tablaPedidoIniciar').DataTable({
-    "order":[[2,"asc"]],
-    "language":{
-    "lengthMenu": "Mostrar _MENU_ registro por pagina",
-    "info": "Mostrando pagina _PAGE_ de _PAGE_",
-      "infoEmpty": "No hay registros disponibles",
-      "infoFiltered": "(filtrada de _MAX_ registros)",
-      "loadingRecords": "Cargando...",
-      "processing":     "Procesando...",
-      "search": "Buscar:",
-      "zeroRecords":		"No se encontraron registro coincidentes",
-
-      "paginate": {
-        "next":		"Siguiente",
-        "previous":	"Anterior"
-      },
-    }
   });
-  $('#tablaDetalleMateriaPrima').DataTable({
-    "order":[[2,"asc"]],
-    "language":{
-    "lengthMenu": "Mostrar _MENU_ registro por pagina",
-    "info": "Mostrando pagina _PAGE_ de _PAGE_",
-      "infoEmpty": "No hay registros disponibles",
-      "infoFiltered": "(filtrada de _MAX_ registros)",
-      "loadingRecords": "Cargando...",
-      "processing":     "Procesando...",
-      "search": "Buscar:",
-      "zeroRecords":		"No se encontraron registro coincidentes",
 
-      "paginate": {
-        "next":		"Siguiente",
-        "previous":	"Anterior"
-      },
-    }
+  $('#agregarPedidoIniciado').click(function(){
+		var accion = $("#agregarPedidoIniciado").val();
+		if (accion == "Agregar") {
+			var cantidad=$("#cantidad").val();
+
+		if ((parseFloat(cantidad) <= parseFloat(existencia_i))&&(!materiaPrimaAgregada.includes(id_i))) {
+			var total=parseFloat($("#costo").val());
+      var existencia =(parseFloat(existencia_i)-parseFloat(cantidad));
+			var tabla=$("#tablaDetalleMateriaPrima");
+			var subtotal=(parseFloat(subtotal_i)*parseFloat(cantidad));
+			var datosinicio="<tr>"+
+			"<td>"+ id_i +"</td>"+
+			"<td>"+ materiaPrima_i +"</td>"+
+			"<td>"+ existencia_i +"</td>"+
+			"<td>"+ cantidad +"</td>"+
+			"<td>"+ subtotal.toFixed(2) +"</td>"+
+			"<td>"+
+      "<td>"+ "<input  type='hidden' name='idI[]' value='"+id_i+"'/>" +
+      "<input  type='hidden' name='nuevaexistencia[]' value='"+existencia+"'/>" +
+			"<input type='hidden' name='cantidadI[]' value='"+cantidad+"'/>" +
+			"<input  type='hidden' name='subtotalI[]'step='.01' value='"+subtotal_i+"'/>" +
+			"<input  type='hidden' name='id[]' value=''/>" +
+			"<a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>"+
+			"</td>"+
+			"</tr>";
+			total = total + subtotal;
+			tabla.append(datosinicio);
+			$("#cantidad").val("");
+			$("#costo").val(total.toFixed(2));
+
+			//$('#myModal6').modal('hide');
+			var objeto=document.getElementById("cerraM");
+			//$('#myModal6').setAttribute('data-dismiss','modal');
+			objeto.click();
+			materiaPrimaAgregada.push(id_i);
+			}else{
+				if (!parseFloat(cantidad) <= parseFloat(existencia_i)) {
+					alert("La cantidad solicitada no esta disponible");
+				}else{
+					alert("No puede elejir la misma materia prima");
+				}
+
+		};
+		}else{
+			var total=parseFloat($("#costo").val());
+			var cantidad=$("#cantidad").val();
+			var subtotal=(parseFloat(costog)*parseFloat(cantidad));
+			console.log(indiceg+costog);
+			$('#cd'+indiceg).text(cantidad);
+			$('#st'+indiceg).text(subtotal);
+			$('#gn'+indiceg).text(gananciau);
+			$('#cdDV'+indiceg).val(cantidad);
+			$('#gnDV'+indiceg).val(gananciau);
+			total=total-subtotalg;
+			total=total+subtotal;
+			console.log(subtotalg);
+			$('#totalVenta').val(total.toFixed(2));
+		}
+
+
+	});
+
+  $('#tablaDetalleMateriaPrima').on('click','#Eliminar',function(e){
+		var total=parseFloat($("#costo").val());
+		var cantidadIT=parseFloat($(this).parents('tr').find('input:eq(2)').val());
+		precio=parseFloat($(this).parents('tr').find('input:eq(3)').val());
+		id_Materia=parseFloat($(this).parents('tr').find('input:eq(0)').val());
+		var aux = ((precio*cantidadIT));
+		total = total - aux;
+		$(this).parent('td').parent('tr').remove();
+		$("#costo").val(total.toFixed(2));
+		var indice = materiaPrimaAgregada.indexOf(id_Materia);
+		materiaPrimaAgregada.splice(indice,1);
+	});
+
+
+  $('#CancelarInicioDePedido').click(function(){
+		var tabla = $("#tablaDetalleMateriaPrima");
+		tabla.remove();
+    $("#costo").val("");
   });
+
+
+});
+
+
+// $(document).on('ready',function(){
+//
+//
+//   $('#tablaPedidoIniciar').DataTable({
+//     "order":[[2,"asc"]],
+//     "language":{
+//     "lengthMenu": "Mostrar _MENU_ registro por pagina",
+//     "info": "Mostrando pagina _PAGE_ de _PAGE_",
+//       "infoEmpty": "No hay registros disponibles",
+//       "infoFiltered": "(filtrada de _MAX_ registros)",
+//       "loadingRecords": "Cargando...",
+//       "processing":     "Procesando...",
+//       "search": "Buscar:",
+//       "zeroRecords":		"No se encontraron registro coincidentes",
+//
+//       "paginate": {
+//         "next":		"Siguiente",
+//         "previous":	"Anterior"
+//       },
+//     }
+//   });
+//   $('#tablaDetalleMateriaPrima').DataTable({
+//     "order":[[2,"asc"]],
+//     "language":{
+//     "lengthMenu": "Mostrar _MENU_ registro por pagina",
+//     "info": "Mostrando pagina _PAGE_ de _PAGE_",
+//       // "infoEmpty": "No hay registros disponibles",
+//       "infoFiltered": "(filtrada de _MAX_ registros)",
+//       "loadingRecords": "Cargando...",
+//       "processing":     "Procesando...",
+//       "search": "Buscar:",
+//       "zeroRecords":		"No se encontraron registro coincidentes",
+//
+//       "paginate": {
+//         "next":		"Siguiente",
+//         "previous":	"Anterior"
+//       },
+//     }
+//   });
+// });
+
+$(document).on('ready',function(){
 
 $('#agregarPedido').click(function(){
   var accion = $("#agregarPedido").val();
@@ -82,30 +166,10 @@ $('#agregarPedido').click(function(){
   // var Imagen = $("#files").val();
   var codImagen = $("#codImagen").val();
 
-  // var canvas, ctx, dataURL, base64;
-  //     canvas = document.createElement("canvas");
-  //     ctx = canvas.getContext("2d");
-  //     canvas.width = Imagen.width;
-  //     canvas.height = Imagen.height;
-  //     ctx.drawImage(Imagen, 0, 0);
-  //     dataURL = canvas.toDataURL("image/jpg");
-  //     base64 = dataURL.replace(/^data:image\/png;base64,/, "");
-  //     alert(base64);
-
-  // var Imagen = $("#files").val().replace("C:\\fakepath\\", "");
-
-  // var Imagen = $("#files").val().replace("C:\\fakepath\\", "");
-  //
-  // var cod = window.btoa(unescape(encodeURIComponent(Imagen)));
   alert(codImagen);
 
   var total=parseFloat($("#total_Ped").val());
   var subtotalVenta_DPed= ((parseFloat(subTotal_DPed)+parseFloat(Precio))*parseFloat(Cantidad));
-
-  // var Prueba = parseFloat(subtotalVenta_DPed);
-
-  // alert(subtotalVenta_DPed);
-  // alert(Prueba);
 
   var datos= "<tr>"+
   "<td>"+Tipo+"</td>"+
@@ -169,80 +233,23 @@ $('#tablaPedidos').on('click','#Eliminar',function(e){
   productosAgregados.splice(indice,1);
 });
 
-$('#tablaPedidoIniciar').on('click','#AddCant',function(e){
-  var id=$(this).parents('tr').find('input:eq(0)').val();
-  var materiaPrima=$(this).parents('tr').find('input:eq(1)').val();
-  var existencia=$(this).parents('tr').find('input:eq(2)').val();
-  var subtotal=$(this).parents('tr').find('input:eq(3)').val();
-  alert(existencia);
-  $("#agregarPedidoIniciado").val("Agregar");
-  $("#cantidad").val("");
-
-});
-
-$('#agregarPedidoIniciado').click(function(){
-  alert("Agregar");
-  var accion = $("#agregarPedidoIniciado").val();
-  if (accion == "Agregar") {
+});//cierre completo
 
 
-    var cantidad=$("#cantidad").val();
+function previewFile() {
+  var preview = document.querySelector('img');
+  var file    = document.querySelector('input[type=file]').files[0];
+  var reader  = new FileReader();
 
-  if ((parseFloat(cantidad) <= parseFloat(existencia))&&(!productosAgregados.includes(id))) {
-    alert("entro");
-    var costo=parseFloat($("#costo").val());
-    var tabla=$("#tablaDetalleMateriaPrima");
-    var existencia_i = parseFloat(existencia)-parseFloat(cantidad);
-    var subtotal_i=(parseFloat(subtotal))*parseFloat(cantidad);
-    var datos="<tr>"+
-    "<td>"+ id +"</td>"+
-    "<td>"+ materiaPrima +"</td>"+
-    "<td>"+ existencia_i +"</td>"+
-    "<td>"+ cantidad +"</td>"+
-    "<td>"+ subtotal_i.toFixed(2) +"</td>"+
-    "<td>"+
-    "<input  type='hidden' name='subtotal[]' value='"+subtotal+"'/>" +
-    "<a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>"+
-    "</td>"+
-    "</tr>";
+  alert(reader());
 
-    costo = costo + subtotal_i;
-    tabla.append(datos);
-    $("#cantidad").val("");
-    $("#costo").val(total.toFixed(2));
-
-    //$('#myModal6').modal('hide');
-    var objeto=document.getElementById("cerraM");
-    //$('#myModal6').setAttribute('data-dismiss','modal');
-    objeto.click();
-    productosAgregados.push(id);
-    }else{
-      if (!parseFloat(cantidad) <= parseFloat(existencia)) {
-        alert("La cantidad solicitada no esta disponible");
-      }else{
-        alert("No puede elejir el mismo producto");
-      }
-
-  };
-  }else{
-    var total=parseFloat($("#totalVenta").val());
-    var cantidad=$("#cantidad").val();
-    var gananciau=$("#gananciau").val();
-    var subtotal=(parseFloat(gananciau)+parseFloat(costog))*parseFloat(cantidad);
-    console.log(indiceg+costog);
-    $('#cd'+indiceg).text(cantidad);
-    $('#st'+indiceg).text(subtotal);
-    $('#gn'+indiceg).text(gananciau);
-    $('#cdDV'+indiceg).val(cantidad);
-    $('#gnDV'+indiceg).val(gananciau);
-    total=total-subtotalg;
-    total=total+subtotal;
-    console.log(subtotalg);
-    $('#totalVenta').val(total.toFixed(2));
+  reader.onloadend = function () {
+    preview.src = reader.result;
   }
 
-
-
-});
-
-});//cierre completo
+  if (file) {
+    reader.readAsDataURL(file);
+  } else {
+    preview.src = "";
+  }
+}

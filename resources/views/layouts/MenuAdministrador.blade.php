@@ -100,7 +100,7 @@
 
     {!! Html::script('js/scripts/ventas.js') !!}
     {!! Html::script('js/scripts/compras.js') !!}
-    {!! Html::script('js/scripts/Pedidos.js') !!}
+    {!! Html::script('js/scripts/pedidos.js') !!}
     {!! Html::script('js/scripts/clientes.js') !!}
     {!! Html::script('js/scripts/proveedores.js') !!}
     {!! Html::script('js/scripts/inventarioPT.js') !!}
