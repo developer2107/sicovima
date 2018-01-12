@@ -27,7 +27,7 @@
             <div class="ibox-content">
               <div class="table-responsive">
                 <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                  <table id="ventasTabla" class="display" cellspacing="0" width="100%">
+                  <table  class="table table-striped table-bordered dataTables-example display" cellspacing="100" width="100%">
                     <thead>
                       <tr>
                        <th align="left">Cliente</th>

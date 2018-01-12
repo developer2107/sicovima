@@ -4,7 +4,6 @@ var gananciag;
 var costog;
 var subtotalg;
 var idMot;
-var idMotProd;
 
 $(document).on('ready',function(){
 	var a_producto;
@@ -125,35 +124,20 @@ $(document).on('ready',function(){
 		productosAgregados.splice(indice,1);
 	});
 
-	$('#agregarMotivo').click(function(){
-		var accion = $("#agregarMotivo").val();
-		if (accion == "Agregar") {
-			var obtener=$('#ventasTabla').find('option:selected');
-		//alert(obtener.val());
-			var idCliente =obtener.val();
-			var ruta="/github/sicovima/public/motivo/"+idCliente;
+	// $('#agregarMotivo').click(function(){
+	// 	var accion = $("#agregarMotivo").val();
+	// 	if (accion == "Agregar") {
+	// 		var obtener=$('#ventasTabla').find('option:selected');
+	// 	//alert(obtener.val());
+	// 		var idCliente =obtener.val();
+	// 		var ruta="/github/sicovima/public/motivo/"+idCliente;
 
-		}else{
+	// 	}else{
 			
-		}
+	// 	}
 
 		
-	});
-
-	$('#agregarMotivoProd').click(function(){
-		var accion = $("#agregarMotivoProd").val();
-		if (accion == "Agregar") {
-			var obtener=$('#ventasTabla').find('option:selected');
-		//alert(obtener.val());
-			var idCliente =obtener.val();
-			var ruta="/github/sicovima/public/motivo/"+idCliente;
-
-		}else{
-			
-		}
-
-		
-	});
+	// });
 
 
 });
@@ -179,20 +163,11 @@ function agregarMotivo(id){
 
 function agregarMotivoEst(){
 	var motivo = $("#motivo").val();
-	var ruta="/github/sicovima/public/motivo/"+idMot+"/"+motivo;
+	console.log(idMot+"  "+motivo);
+	var ruta="/github/sicovima/public/motivov/"+idMot+"/"+motivo;
+	console.log(idMot+"  "+motivo);
 	$.get(ruta,function(res){
 		location.href="/github/sicovima/public/ListadeVentas";
 	});
 }
-function agregarMotivoProd(id){
-	idMotProd=id;
-}
 
-function agregarMotivoEstProd(){
-	var motivo = $("#motivoProd").val();
-	console.log(idMotProd+motivo);
-	var ruta="/github/sicovima/public/motivoProd/"+idMotProd+"/"+motivo;
-	$.get(ruta,function(res){
-		location.href="/github/sicovima/public/ProductosTerminados";
-	});
-}

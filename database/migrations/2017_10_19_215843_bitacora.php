@@ -14,13 +14,10 @@ class Bitacora extends Migration
     {
         Schema::create('bitacora', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('operacion_Bit');
-            $table->string('modificado_Bit');
-            $table->string('tabla_Bit');
-            $table->date('fecha_Bit');
-            $table->string('hora_Bit');
+            $table->string('accion_Bit');
+            $table->string('comentario_Bit');
             $table->integer('id_Usuario')->unsigned();
-            $table->foreign('id_Usuario')->references('id')->on('usuario');
+            $table->foreign('id_Usuario')->references('id')->on('users');
             $table->rememberToken();
             $table->timestamps();
         });

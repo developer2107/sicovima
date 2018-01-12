@@ -4,37 +4,19 @@ namespace SICOVIMA\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use SICOVIMA\Http\Requests;
+use SICOVIMA\Http\Requests\UsuariocRequest;
 use SICOVIMA\Http\Controllers\Controller;
-use SICOVIMA\departamento;
-use SICOVIMA\municipio;
-use SICOVIMA\cliente;
-use SICOVIMA\clienteJuridico;
-use SICOVIMA\clienteNatural;
-use SICOVIMA\correoCliente;
-use SICOVIMA\telefonoCliente;
+use SICOVIMA\bitacora;
+use SICOVIMA\users;
 
 class BitacoraController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view("Proyecto.Desarrollo.Seguridad.Bitacora");
+        $usuario=$request->usuario;
+        $bitacoras=bitacora::buscar($usuario);
+        return view('bitacoras.index',compact('bitacoras','usuario'));
     
-    }
-    
-    public function Mostrar()
-    {
-    
-    }
-
-    public function create()
-    {
-      return view("Proyecto.Desarrollo.Seguridad.Bitacora");
-    }
-
-    public function Ver()
-    {
-     return view("Proyecto.Desarrollo.Seguridad.Bitacora");
     }
 
     public function store(Request $request)

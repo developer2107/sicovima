@@ -26,8 +26,7 @@ Route::Resource('/MostrarListaCli','ClientesController@Mostrar');
 Route::get('/VerCliente','ClientesController@Ver');
 Route::match(['get','post'],'/municipio/{id}','ClientesController@municipios');
 Route::match(['get','post'],'/municipio/{id}','ProveedoresController@municipios');
-//Route::get('/VerProveedor','ProveedoresController@verpro');
-Route::match(['get','post'],'/VerProveedor/{id}','ProveedoresController@Ver');
+Route::get('/VerProveedor','ProveedoresController@verpro');
 Route::get('/ModificarProv','ProveedoresController@modificarpro');
 Route::get('/ModificarCli','ClientesController@ModificarCli');
 Route::get('/DarBajaProv','ProveedoresController@darbajaprov');
@@ -37,6 +36,7 @@ Route::Resource('/ListadeCompras','CompraController@Mostrar');
 Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
 Route::Resource('/RegistrarCompra','CompraController');
 Route::match(['get','post'],'/VerCompra/{id}','CompraController@Ver');
+// Route::Resource('/VerCompra','CompraController@Ver');
 
 Route::get('/ModificarMateriaPrima','MateriaPrimaController@Modificar');
 Route::Resource('/ControlMateriaPrima','InventarioMPController@Mostrar');
@@ -54,8 +54,8 @@ Route::match(['get','post'],'/VerVenta/{id}','VentasController@Ver');
 Route::match(['get','post'],'/VerInventarioPT/{id}','InventarioPTController@Ver');
 Route::Resource('/RegistrarVenta','VentasController');
 Route::Resource('/ListadeVentas','VentasController@Mostrar');
-Route::match(['get','post'],'/motivo/{id}/{motivo}','VentasController@motivos');
-Route::match(['get','post'],'/motivoProd/{id}/{motivoProd}','InventarioPTController@motivosProd');
+Route::match(['get','post'],'/motivov/{idMot}/{motivo}','VentasController@AddMotivoVenta');
+Route::match(['get','post'],'/motivop/{idMotProd}/{motivoProd}/{descuentoProd}','InventarioPTController@motivosProd');
 Route::get('RegistrarVentas/{id}','VentasController@getResponsables');
 Route::resource('venta','ventasController');
 Route::match(['get','post'],'/responsable/{id}','VentasController@responsables');
@@ -88,34 +88,3 @@ Route::get('/BuscarUsuario','SeguridadController@Buscar');
 Route::get('/VerUsuario','SeguridadController@Ver');
 Route::get('/ModificarUsuario','SeguridadController@Modificar');
 Route::get('/RegistrarUsuario','SeguridadController@Registrar');
-
-
-
-
-Route::group(['prefix' => 'admin'], function(){
-      Route::resource('Pedidos','PedidosController');
-});
-
-Route::group(['prefix' => 'admin'], function(){
-      Route::resource('cliente','ClientesController');
-});
-
-// Route::group(['prefix' => 'admin'], function(){
-//       Route::resource('compra','CompraController');
-// });
-
-Route::group(['prefix' => 'admin'], function(){
-      Route::resource('inventarioMP','InventarioMPController');
-});
-
-Route::group(['prefix' => 'admin'], function(){
-      Route::resource('inventarioPT','InventarioPTController');
-});
-
-Route::group(['prefix' => 'admin'], function(){
-      Route::resource('login','LoginController');
-});
-
-Route::group(['prefix' => 'admin'], function(){
-      Route::resource('proveedor','ProveedoresController');
-});

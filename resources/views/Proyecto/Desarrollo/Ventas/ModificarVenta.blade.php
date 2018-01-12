@@ -87,7 +87,7 @@
             <div class="carousel slide" id="carousel1">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img alt="image" class="img-responsive" src="img/mada.jpg">
+                        <img alt="image" class="img-responsive" src="../img/Mada-Denim-Blanco4.jpg">
                     </div>
                 </div>
             </div>
@@ -166,7 +166,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="row">
     <div class="col-lg-2">
