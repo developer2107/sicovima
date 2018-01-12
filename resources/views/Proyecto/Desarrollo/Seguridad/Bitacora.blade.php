@@ -70,30 +70,34 @@
               <tr>
                 <th>Fecha</th>
                 <th>Hora</th>
-                <th>Operacion</th>
-                <th>Modificado</th>
-                <th>Tabla</th>
+                <th>Accion</th>
+                <th>Descripcion</th>
                 <th>Usuario</th>
               </tr>
             </thead>
-            <tbody>            
-              <tr class="gradeC">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td> 
-              </tr>
-            </tbody>
+            <tbody>
+<?php foreach($bitas as $bita): ?>
+<tr>
+  <?php   
+  $dato = explode("-",(String)$bita->created_at);
+  $fecha = $dato[2]."/".$dato[1]."/".$dato[0];
+  $usu = SICOVIMA\users::find($bita->id_Usuario);
+  ?>
+  <td align="rihgt" style = "width:15%"><font size="4" ></font>{{$fecha}}</td>
+  <td align="rihgt" style = "width:10%"><font size="4" ></font>{{$bita->created_at}}</td>
+  <td align="rihgt" style = "width:20%"><font size="4" ></font>{{$bita->accion_Bit}}</td>
+  <td align="rihgt" style = "width:30%"><font size="4" ></font>{{$bita->comentario_Bit}}</td>
+  <td align="rihgt" style = "width:20%"><font size="4" ></font>{{$usu->name}}</td>
+</tr>
+<?php endforeach ?>
+                    </tbody>
             <tfoot>
             <tr>
               <th>Fecha</th>
-              <th>Hora</th>
-              <th>Operacion</th>
-              <th>Modificado</th>
-              <th>Tabla</th>
-              <th>Usuario</th>
+                <th>Hora</th>
+                <th>Accion</th>
+                <th>Descripcion</th>
+                <th>Usuario</th>
             </tr>
             </tfoot>
           </table>

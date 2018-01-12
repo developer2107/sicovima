@@ -11,12 +11,11 @@ use SICOVIMA\users;
 
 class BitacoraController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $usuario=$request->usuario;
-        $bitacoras=bitacora::buscar($usuario);
-        return view('bitacoras.index',compact('bitacoras','usuario'));
-    
+        $bitas = bitacora::all();
+        $userss = users::all();
+        return view('Proyecto.Desarrollo.Seguridad.Bitacora',compact('bitas','userss'));
     }
 
     public function store(Request $request)
