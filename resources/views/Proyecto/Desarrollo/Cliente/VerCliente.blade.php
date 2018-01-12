@@ -171,7 +171,7 @@
                             <?php 
                             $municipio = SICOVIMA\municipio::find($cliente->id_Municipio);
                             $departamento = SICOVIMA\departamento::find($municipio->id_Departamento);
-                             ?>
+                            ?>
                               <div class="col-md-1">
                               </div>
                               <label class="col-lg-2 control-label">Departamento</label>

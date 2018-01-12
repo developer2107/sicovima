@@ -57,8 +57,8 @@ Route::match(['get','post'],'/VerCliente/{id}','ClientesController@Ver');
 Route::match(['get','post'],'/municipio/{id}','ClientesController@municipios');
 Route::match(['get','post'],'/municipio/{id}','ProveedoresController@municipios');
 Route::match(['get','post'],'/VerProveedor/{id}','ProveedoresController@Ver');
-Route::get('/ModificarProv','ProveedoresController@modificarpro');
-Route::get('/ModificarCli','ClientesController@ModificarCli');
+Route::match(['get','post'],'/ModificarProv/{id}','ProveedoresController@Modificar');
+Route::match(['get','post'],'/ModificarCli/{id}','ClientesController@Modificar');
 Route::get('/DarBajaProv','ProveedoresController@darbajaprov');
 Route::get('/DarBajaCli','ClientesController@darbajacli');
 
@@ -69,7 +69,8 @@ Route::match(['get','post'],'/VerCompra/{id}','CompraController@Ver');
 Route::match(['get','post'],'/EliminarCompra/{id}','CompraController@destroy');
 Route::Resource('/ListadeCompras','CompraController@Mostrar');
 
-Route::get('/ModificarMateriaPrima','MateriaPrimaController@Modificar');
+// Route::get('/ModificarMateriaPrima','MateriaPrimaController@Modificar');
+Route::match(['get','post'],'/ModificarMateriaPrima/{id}','MateriaPrimaController@Modificar');
 Route::Resource('/ControlMateriaPrima','InventarioMPController@Mostrar');
 Route::match(['get','post'],'/VerInventarioMP/{id}','InventarioMPController@Ver');
 Route::Resource('/RegistroMateriaP','MateriaPrimaController');

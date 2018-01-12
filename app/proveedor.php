@@ -24,7 +24,8 @@ public function proveedor(){
  }
 
 public function correoProveedor(){
-return $this->hasMany('correoProveedor');
+// return $this->hasMany('correoProveedor');
+ return $this->hasMany('\SICOVIMA\correoProveedor','id_Proveedor');
 }
 
 public function compra(){

@@ -8,9 +8,6 @@
             <li>
                 <a href="index.html">Seguridad</a>
             </li>
-            <li>
-                <a href="index.html">Control de Usuario</a>
-            </li>
             <li class="active">
                 <strong>Bitacora</strong>
             </li>
@@ -70,30 +67,37 @@
               <tr>
                 <th>Fecha</th>
                 <th>Hora</th>
-                <th>Operacion</th>
-                <th>Modificado</th>
-                <th>Tabla</th>
+                <th>Acción</th>
+                <th>Descripción</th>
                 <th>Usuario</th>
+                <th>Opción</th>
               </tr>
             </thead>
-            <tbody>            
-              <tr class="gradeC">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td> 
-              </tr>
-            </tbody>
+            <tbody>
+<?php foreach($bitas as $bita): ?>
+<tr>
+  <?php   
+  $dato = explode("-",(String)$bita->created_at);
+  $fecha = $dato[2]."/".$dato[1]."/".$dato[0];
+  $usu = SICOVIMA\users::find($bita->id_Usuario);
+  ?>
+  <td align="rihgt" style = "width:15%"><font size="4" ></font>{{$fecha}}</td>
+  <td align="rihgt" style = "width:10%"><font size="4" ></font>{{$bita->created_at}}</td>
+  <td align="rihgt" style = "width:20%"><font size="4" ></font>{{$bita->accion_Bit}}</td>
+  <td align="rihgt" style = "width:30%"><font size="4" ></font>{{$bita->comentario_Bit}}</td>
+  <td align="rihgt" style = "width:20%"><font size="4" ></font>{{$usu->name}}</td>
+  <td align="rihgt" style = "width:20%"><font size="4" ></font><a href="VerVenta/{{$ven->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
+</tr>
+<?php endforeach ?>
+                    </tbody>
             <tfoot>
             <tr>
               <th>Fecha</th>
               <th>Hora</th>
-              <th>Operacion</th>
-              <th>Modificado</th>
-              <th>Tabla</th>
+              <th>Acción</th>
+              <th>Descripción</th>
               <th>Usuario</th>
+              <th>Opción</th>
             </tr>
             </tfoot>
           </table>

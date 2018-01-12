@@ -164,7 +164,7 @@ class PedidosController extends Controller
 
 
       //guardar pedido
-    pedido::create([
+    $ped = pedido::create([
         'fecha_Ped'=>$request['fecha_Ped'],
         'total_Ped'=>$request['total_Ped'],
         'anticipo_Ped'=>$request['anticipo_Ped'],
@@ -172,6 +172,10 @@ class PedidosController extends Controller
         'fechaEntregar_Ped'=>$request['fechaEntregar_Ped'],
         'id_Cliente'=>$request['clientes'],
       ]);
+
+      // $aux = cliente::find($ped->id_Cliente);
+      // bitacora::bitacoras('Registro','Registro de pedido'.$ped->id.' al cliente: '.$aux->nombre_Cli);
+
 
       //dd($p->all());
 

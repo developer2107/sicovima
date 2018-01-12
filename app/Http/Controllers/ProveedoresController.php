@@ -54,9 +54,10 @@ class ProveedoresController extends Controller
       return view('Proyecto.Desarrollo.Proveedores.VerProveedor',compact('proveedor'));
     }
 
-     public function modificarpro()
+     public function Modificar($id)
     {
-      return view("Proyecto.Desarrollo.Proveedores.ModificarProv");
+      $proveedor = proveedor::find($id);
+      return view("Proyecto.Desarrollo.Proveedores.ModificarProv",compact('proveedor'));
     }
 
      public function darbajaprov()
@@ -168,4 +169,6 @@ class ProveedoresController extends Controller
             return "false";
         }
     }
+
+
 }
