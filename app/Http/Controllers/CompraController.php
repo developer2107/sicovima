@@ -92,6 +92,9 @@ class CompraController extends Controller
        'id_Proveedor'=>$request['nombre_Prov'],
      ]);
 
+      // $aux = proveedor::find($compra->id_Proveedor);
+      // bitacora::bitacoras('Registro','Registro de compra '.$compra->id.' a proveedor: '.$aux->nombre_Prov);
+
        for ($j=0; $j < $contador ; $j++) {
          \SICOVIMA\detalleCompra::create([
           'cant_DCom'=>$cantidad[$j],
@@ -188,6 +191,9 @@ class CompraController extends Controller
          'id_Proveedor'=>$request['nombre_Prov'],
        ]);
 
+      // $aux = proveedor::find($compra->id_Proveedor);
+      // bitacora::bitacoras('Registro','Registro de compra '.$compra->id.' por modificacion, a proveedor: '.$aux->nombre_Prov);
+
          for ($j=0; $j < $contador ; $j++) {
            \SICOVIMA\detalleCompra::create([
             'cant_DCom'=>$cantidad[$j],
@@ -242,8 +248,13 @@ class CompraController extends Controller
           ]);
 
           $e->delete();
+        
         }
         Compra::destroy($id);
+        
+        // $aux = proveedor::find($compra->id_Proveedor);
+        // bitacora::bitacoras('Eliminacion','Eliminar la compra '.$compra->id.' a proveedor: '.$aux->nombre_Prov);
+
         Session::flash('message','Compra eliminada correctamente');
         $compra = compra::with('proveedor')->get();
          return redirect('/ListadeCompras')->with('compra',$compra);

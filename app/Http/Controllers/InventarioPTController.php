@@ -136,6 +136,10 @@ class InventarioPTController extends Controller
                 'estado2_Prod'=>1,
             ]);
 
+            //bitacora::bitacoras('Modificacion','Modificacion de producto '.$proo->id.': '.$proo->tipo_Prod.' '.$proo->estilo_Prod);
+            //bitacora::bitacoras('Registro','Registro de producto defectuoso'.$ultProd->id.' por modificacion: '.$ultProd->tipo_Prod.' '.$ultProd->estilo_Prod);
+
+
             inventarioProductoTerminado::create([
                 'tipoMovimiento_IPT'=>3,//entrada por defecto
                 'existencias_IPT'=>0,//es el primer registro
@@ -164,6 +168,8 @@ class InventarioPTController extends Controller
                 'id_Producto'=>$proo->id,
                 'descuento_DPT'=>$descuentoProd,
             ]); 
+
+            //bitacora::bitacoras('Modificaion','Modificacion de producto'.$proo->id.' por defectuoso: '.$proo->tipo_Prod.' '.$proo->estilo_Prod);
         
         }
         

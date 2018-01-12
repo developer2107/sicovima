@@ -94,6 +94,9 @@ class ClientesController extends Controller
             'DUI_CN'=>$request->duiCliente,
             'id_Cliente'=>$cliente->id,
         ]); # code...
+
+            //bitacora::bitacoras('Registro','Registro de cliente natural'.$clienteNatural->id.': '.$cliente->nombre_Cli);
+        
         }else{
             if ($tipo==1) {
                 $clienteJuridico = clienteJuridico::create([
@@ -102,6 +105,9 @@ class ClientesController extends Controller
                     'id_Cliente'=>$cliente->id,
                     'RNC_CJ'=>$request->rncCliente,
                 ]);
+
+                //bitacora::bitacoras('Registro','Registro de cliente juridico '.$clienteJuridico->id.': '.$cliente->nombre_Cli);
+
             }else{
                 echo "No existe";
             }

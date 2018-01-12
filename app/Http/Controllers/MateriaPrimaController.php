@@ -66,6 +66,9 @@ class MateriaPrimaController extends Controller
             'unidadMedida_MP'=>$request['unidadMedida_MP'],
             'estado_MP'=>true,
         ]);
+
+            //bitacora::bitacoras('Registro','Registro de materia prima '.$materiaPrima->id.': '.$materiaPrima->nombre_MP);
+
         }else{
           return view('Proyecto.Desarrollo.InventarioMP.RegistroMateriaP');
         }
