@@ -14,7 +14,13 @@
         </li>
         </ol>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-6">
+    </div>
+    <div class="col-sm-2">
+        <br>
+        <div class=" m-t-sm">
+            <a href="#" class="btn btn-primary startTour"><i class="fa fa-play"></i> Start Tour</a>
+        </div>
     </div>
 </div>
 <br>

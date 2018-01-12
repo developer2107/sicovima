@@ -8,9 +8,6 @@
             <li>
                 <a href="index.html">Seguridad</a>
             </li>
-            <li>
-                <a href="index.html">Control de Usuario</a>
-            </li>
             <li class="active">
                 <strong>Bitacora</strong>
             </li>
@@ -70,9 +67,10 @@
               <tr>
                 <th>Fecha</th>
                 <th>Hora</th>
-                <th>Accion</th>
-                <th>Descripcion</th>
+                <th>Acción</th>
+                <th>Descripción</th>
                 <th>Usuario</th>
+                <th>Opción</th>
               </tr>
             </thead>
             <tbody>
@@ -88,16 +86,18 @@
   <td align="rihgt" style = "width:20%"><font size="4" ></font>{{$bita->accion_Bit}}</td>
   <td align="rihgt" style = "width:30%"><font size="4" ></font>{{$bita->comentario_Bit}}</td>
   <td align="rihgt" style = "width:20%"><font size="4" ></font>{{$usu->name}}</td>
+  <td align="rihgt" style = "width:20%"><font size="4" ></font><a href="VerVenta/{{$ven->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
 </tr>
 <?php endforeach ?>
                     </tbody>
             <tfoot>
             <tr>
               <th>Fecha</th>
-                <th>Hora</th>
-                <th>Accion</th>
-                <th>Descripcion</th>
-                <th>Usuario</th>
+              <th>Hora</th>
+              <th>Acción</th>
+              <th>Descripción</th>
+              <th>Usuario</th>
+              <th>Opción</th>
             </tr>
             </tfoot>
           </table>
