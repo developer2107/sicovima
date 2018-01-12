@@ -115,6 +115,24 @@
 
 @include('Proyecto.Desarrollo.Pedidos.Form.IniciarPedido.tablaDetallePedido')
 
+<div class="row">
+    <div class="ibox">
+        <div class="ibox-content">
+            <div class="row">
+            <br>
+                <div class="col-xs-4">
+                </div>
+
+                <div class="col-xs-2">
+                    <div class="input-group bootstrap-touchspin">
+                      <a type="button" class="btn btn-outline btn-primary dim" data-toggle="modal" data-target="#myModalTabla">Agregar Materia Prima</a>
+                 </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @include('Proyecto.Desarrollo.Pedidos.Form.IniciarPedido.tablaDetalleDelProducto')
 

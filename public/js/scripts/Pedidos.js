@@ -19,8 +19,50 @@ function previewFile() {
 
 $(document).on('ready',function(){
 
+  var existencia;
+  var productosAgregados[];
+  var subtotal;
+  var id;
+  var materiaPrima
+
+  $('#tablaPedidoIniciar').DataTable({
+    "order":[[2,"asc"]],
+    "language":{
+    "lengthMenu": "Mostrar _MENU_ registro por pagina",
+    "info": "Mostrando pagina _PAGE_ de _PAGE_",
+      "infoEmpty": "No hay registros disponibles",
+      "infoFiltered": "(filtrada de _MAX_ registros)",
+      "loadingRecords": "Cargando...",
+      "processing":     "Procesando...",
+      "search": "Buscar:",
+      "zeroRecords":		"No se encontraron registro coincidentes",
+
+      "paginate": {
+        "next":		"Siguiente",
+        "previous":	"Anterior"
+      },
+    }
+  });
+  $('#tablaDetalleMateriaPrima').DataTable({
+    "order":[[2,"asc"]],
+    "language":{
+    "lengthMenu": "Mostrar _MENU_ registro por pagina",
+    "info": "Mostrando pagina _PAGE_ de _PAGE_",
+      "infoEmpty": "No hay registros disponibles",
+      "infoFiltered": "(filtrada de _MAX_ registros)",
+      "loadingRecords": "Cargando...",
+      "processing":     "Procesando...",
+      "search": "Buscar:",
+      "zeroRecords":		"No se encontraron registro coincidentes",
+
+      "paginate": {
+        "next":		"Siguiente",
+        "previous":	"Anterior"
+      },
+    }
+  });
+
 $('#agregarPedido').click(function(){
-  // alert("aqui");
   var accion = $("#agregarPedido").val();
   if (accion == "Agregar") {
 
@@ -127,44 +169,55 @@ $('#tablaPedidos').on('click','#Eliminar',function(e){
   productosAgregados.splice(indice,1);
 });
 
+$('#tablaPedidoIniciar').on('click','#AddCant',function(e){
+  var id=$(this).parents('tr').find('input:eq(0)').val();
+  var materiaPrima=$(this).parents('tr').find('input:eq(1)').val();
+  var existencia=$(this).parents('tr').find('input:eq(2)').val();
+  var subtotal=$(this).parents('tr').find('input:eq(3)').val();
+  alert(existencia);
+  $("#agregarPedidoIniciado").val("Agregar");
+  $("#cantidad").val("");
+
+});
+
 $('#agregarPedidoIniciado').click(function(){
+  alert("Agregar");
   var accion = $("#agregarPedidoIniciado").val();
   if (accion == "Agregar") {
 
+
     var cantidad=$("#cantidad").val();
 
-  if ((parseFloat(cantidad) <= parseFloat(a_existencia))&&(!productosAgregados.includes(a_id))) {
-    var total=parseFloat($("#totalVenta").val());
-    var gananciau=$("#gananciau").val();
-    var tabla=$("#tablaProductos");
-    var subtotal=(parseFloat(gananciau)+parseFloat(a_precio))*parseFloat(cantidad);
-    var detalles="<tr>"+
-    "<td>"+ a_producto +"</td>"+
+  if ((parseFloat(cantidad) <= parseFloat(existencia))&&(!productosAgregados.includes(id))) {
+    alert("entro");
+    var costo=parseFloat($("#costo").val());
+    var tabla=$("#tablaDetalleMateriaPrima");
+    var existencia_i = parseFloat(existencia)-parseFloat(cantidad);
+    var subtotal_i=(parseFloat(subtotal))*parseFloat(cantidad);
+    var datos="<tr>"+
+    "<td>"+ id +"</td>"+
+    "<td>"+ materiaPrima +"</td>"+
+    "<td>"+ existencia_i +"</td>"+
     "<td>"+ cantidad +"</td>"+
-    "<td>"+ a_precio +"</td>"+
-    "<td>"+ gananciau +"</td>"+
-    "<td>"+ subtotal.toFixed(2) +"</td>"+
-    "<td>"+ "<input  type='hidden' name='idV[]' value='"+a_id+"'/>" +
-    "<input type='hidden' name='cantidadV[]' value='"+cantidad+"'/>" +
-    "<input  type='hidden' name='costoProdV[]'step='.01' value='"+a_precio+"'/>" +
-    "<input  type='hidden' name='gananciaV[]' step='.01' value='"+gananciau+"'/>" +
-    "<input  type='hidden' name='id[]' value=''/>" +
+    "<td>"+ subtotal_i.toFixed(2) +"</td>"+
+    "<td>"+
+    "<input  type='hidden' name='subtotal[]' value='"+subtotal+"'/>" +
     "<a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>"+
     "</td>"+
     "</tr>";
-    total = total + subtotal;
-    tabla.append(detalles);
+
+    costo = costo + subtotal_i;
+    tabla.append(datos);
     $("#cantidad").val("");
-    $("#gananciau").val("");
-    $("#totalVenta").val(total.toFixed(2));
+    $("#costo").val(total.toFixed(2));
 
     //$('#myModal6').modal('hide');
     var objeto=document.getElementById("cerraM");
     //$('#myModal6').setAttribute('data-dismiss','modal');
     objeto.click();
-    productosAgregados.push(a_id);
+    productosAgregados.push(id);
     }else{
-      if (!parseFloat(cantidad) <= parseFloat(a_existencia)) {
+      if (!parseFloat(cantidad) <= parseFloat(existencia)) {
         alert("La cantidad solicitada no esta disponible");
       }else{
         alert("No puede elejir el mismo producto");
@@ -189,6 +242,7 @@ $('#agregarPedidoIniciado').click(function(){
   }
 
 
-});
 
 });
+
+});//cierre completo
