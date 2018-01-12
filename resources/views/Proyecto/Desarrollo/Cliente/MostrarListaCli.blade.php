@@ -55,7 +55,7 @@
                         <a href="VerCliente/{{$cli->id}}" class="btn btn-primary btn-circle" type="button">
                           <i class="fa fa-eye"></i>
                         </a>
-                        <a href="ModificarCli" class="btn btn-success btn-circle" type="button">
+                        <a href="ModificarCli/{{$cli->id}}" class="btn btn-success btn-circle" type="button">
                           <i class="fa fa-pencil-square-o"></i>
                         </a>
                       </td>

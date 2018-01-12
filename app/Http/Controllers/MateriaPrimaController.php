@@ -3,7 +3,7 @@
 namespace SICOVIMA\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use SICOVIMA\materiaPrima;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 
@@ -15,9 +15,10 @@ class MateriaPrimaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function Modificar()
+    public function Modificar($id)
     {
-        return view("Proyecto.Desarrollo.InventarioMP.ModificarMateriaPrima");
+        $materiaPrima = materiaPrima::find($id);
+        return view("Proyecto.Desarrollo.InventarioMP.ModificarMateriaPrima",compact('materiaPrima'));
     }
 
     public function Ver()
@@ -103,7 +104,19 @@ class MateriaPrimaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $materiaPrimaM = materiaPrima::find($id);
+        $materiaPrimaM->delete();
 
+        $materiaPrima = \SICOVIMA\materiaPrima::create([
+            'nombre_MP'=>$request['nombre_MP'],
+            'tipo_MP'=>$request['tipo_MP'],
+            'color_MP'=>$request['color_MP'],
+            'precio_MP'=>$request['precio_MP'],
+            'unidadMedida_MP'=>$request['unidadMedida_MP'],
+            'estado_MP'=>true,
+        ]);
+
+        return redirect('/ControlMateriaPrima')->with('compra',$compra);
     }
 
     /**

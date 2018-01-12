@@ -1,7 +1,9 @@
+<?php use SICOVIMA\departamento;
+ ?>
 @extends('layouts.MenuAdministrador')
 
 @section('content')
-
+{!! Form::model($proveedor,['route'=>['RegistroProveedor.update',$proveedor->id], 'method'=>'PUT']) !!}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Modificar Proveedor</h2>
@@ -36,80 +38,70 @@
 
                                           <div class="form-group"><label class="col-lg-3 control-label">Nombre </label>
 
-                                            <div class="col-lg-9">
-                                                <input id="name" name="name" type="text" class="form-control required" aria-required="true" placeholder="Deposito de Telas S.A. de C.V.">                                                
-                                            </div>
+                                        <div class="col-lg-9">
+                                          {!! Form::text('nombre_Prov', null,['id' => 'nombre_Prov','class' =>'form-control']) !!}
                                         </div>
-
-                                        <div class="form-group"><label class="col-lg-3 control-label">NIT </label>
-
-                                            <div class="col-lg-5">
-                                                <input type="text" class="form-control" placeholder="1089-763425-463-5">                                               
-                                            </div>
-                                        </div>
-                                        <div class="form-group"><label class="col-lg-3 control-label">Tipo de Mercadería</label>
-
-                                            <div class="col-lg-5">
-                                                
-                                                <select class="form-control m-b" name="account">
-                                                        <option>Tela </option>
-                                                 </select>
-                                           
-                                            </div> 
-                                            
-                                        </div>
-
-                                       <div class="form-group"><label class="col-lg-3 control-label">Correo Electronico </label>
-                                         <div class="col-lg-9">
-                                          <input type="text" class="form-control" placeholder="depositoTelas94@hotmail.com">
-                                          
-                                          </div>
-                                       </div>  
-
-                                       <div class="form-group"><label class="col-lg-3 control-label">Teléfono </label>
-
-                                            <div class="col-lg-5">
-                                            <input type="text" class="form-control" placeholder="2326-6453"> 
-
-                                            </div>
-                                       
-                                        </div>
-
-                                         <div class="form-group"><label class="col-lg-3 control-label">Dirección </label>
-
-                                            <div class="col-lg-9">
-                                                <input id="name" name="name" type="text" class="form-control required" aria-required="true" placeholder="final av. 14 de Julio Ba. Guadalupe">                                            
-                                            </div>
-                                        </div>
-
-                                     <div class="form-group"><label class="col-lg-3 control-label">Departamento </label>
-
-                                            <div class="col-lg-9">
-                                                
-                                                <select class="form-control m-b" name="account">
-                                                        <option>San Vicente</option>
-                                                 </select>
-                                           
-                                            </div> 
-                                           
-                                     </div> 
-
-                                     <div class="form-group"><label class="col-lg-3 control-label">Municipio </label>
-
-                                            <div class="col-lg-9">
-                                                
-                                                <select class="form-control m-b" name="account">
-                                                        <option>San Sebastián</option>
-                                                 </select>
-                                           
-                                            </div> 
-                                           
-                                     </div>
-
-                                     <div class="col-sm-offset-4">   
-                                          <button class="btn btn-outline btn-primary dim" type="button">Modificar</button>
                                     </div>
-                                       
+
+                                    <div class="form-group"><label class="col-lg-3 control-label">NIT </label>
+
+                                        <div class="col-lg-5">
+                                          {!! Form::text('NIT_Prov',null,['id' => 'NIT_Prov','class' =>'form-control','data-mask'=>'9999-999999-999-9']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="form-group"><label class="col-lg-3 control-label">Tipo de Mercadería</label>
+
+                                        <div class="col-lg-5">
+                                            {!! Form::select('tipoMercaderia_Prov',['Seleccionar tipo de materia prima',\SICOVIMA\materiaPrima::arrayTipoMercaderia()],'',['id' => 'tipoMercaderia_Prov','class'=>'chosen-select','style'=>'width:300px']) !!}
+                                        </div>
+                                        <div class="col-lg-4">
+                                          <input type="text" class="form-control" id="otroMercaderia" style="Display:none" name="otroMer" >
+                                        </div>
+                                    </div>
+
+                                  <div id="idCorreos">
+                                   <div class="row">
+                                       <div class="form-group">
+                                           <label class="col-lg-3 control-label">Correo Electronico</label>
+                                           <div class="col-lg-7">
+                                               {!! Form::email('cor[]',null,['id' => 'correoCliente','class'=>'form-control','placeholder'=>'JuanPerez@ejemplo.com','style' => 'width:300px']) !!}
+                                           </div>
+                                           <div class="col-lg-1">
+                                               <button class="btn btn-default  dim " type="button" id="AddCorreo" name="AddCorreo">
+                                                   <i class="fa fa-plus"></i>
+                                               </button>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   </div>
+
+                                      <div id="idTelefonos">
+                                          <div class="row">
+                                              <div class="form-group">
+                                                  <label class="col-lg-3 control-label">Teléfono </label>
+                                                  <div class="col-lg-4" >
+                                                      {!! Form::text('tel[]',null,['id' => 'telCliente','class'=>'form-control','data-mask'=>'(+999) 9999-9999','placeholder'=>'(+      )         -     ','style' => 'width:140px']) !!}
+                                                  </div>
+                                                  <div class="col-lg-1">
+                                                      <button class="btn btn-default  dim " type="button" id="AddTelefono" name="AddTelefono">
+                                                          <i class="fa fa-plus"></i>
+                                                      </button>
+                                                  </div>
+                                              </div>
+                                              <br>
+                                          </div>
+                                      </div>
+
+                                        <div class="form-group">
+                                        <label class="col-lg-3 control-label">Dirección </label>
+                                        <div class="col-lg-9">
+                                          {!! Form::text('direccion_Prov',null,['id' => 'direccion_Prov','class' =>'form-control']) !!}
+                                        </div>
+                                      </div>
+
+                                    
+
+                                 <br>
                                     </form>
                                 </div><div class="form-group">  
                             </div>
@@ -129,5 +121,5 @@
     </div>
 
 </div>
-                             
-                @stop
+{!! Form::close() !!}                             
+@stop

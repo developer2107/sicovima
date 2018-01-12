@@ -39,10 +39,10 @@
                         <div class="col-md-1">
                         </div>
                           <label class="col-lg-3 control-label">Nombre</label>
-                          <div class="col-md-8">
-                            <div class="input-group">
+                          <div class="col-md-7">
+                            <!-- <div class="input-group"> -->
                              {!! Form::text('nombre_Prov',$proveedor->nombre_Prov,['class'=>'form-control','id'=>'nombre_Prov','readonly'=>'readonly']) !!} 
-                            </div>
+                            <!-- </div> -->
                           </div>
                       </div>
                       <br>
@@ -74,12 +74,13 @@
                           <label class="col-lg-3 control-label">Teléfono</label>
                           <div class="col-md-8">
                            <?php 
-                                 $telefonos=$cliente->telefonoCliente;
+                                 $telefonos=$proveedor->telefonoProveedor;
                             ?>
-                                 <?php foreach ($telefonos as $telefono): ?>
+                            <?php foreach ($telefonos as $telefono): ?>
                             <div class="input-group">
-                              {!! Form::text('tipoMercaderia_Prov',null,['class'=>'form-control','id'=>'tipoMercaderia_Prov']) !!} 
+                              {!! Form::text('numero_TelefonoProv',$telefono->numero_TelefonoProv,['class'=>'form-control','id'=>'numero_TelefonoProv','readonly'=>'readonly']) !!} 
                             </div>
+                            <?php endforeach ?> 
                           </div>
                       </div>
                       <br>
@@ -87,10 +88,15 @@
                         <div class="col-md-1">
                         </div>
                           <label class="col-lg-3 control-label">Correo Electronico</label>
-                          <div class="col-md-8">
-                            <div class="input-group">
-                               {!! Form::text('tipoMercaderia_Prov',null,['class'=>'form-control','id'=>'tipoMercaderia_Prov']) !!} 
-                            </div>
+                          <div class="col-md-7">
+                          <?php 
+                            $correos=$proveedor->correoProveedor;
+                          ?>
+                          <?php foreach ($correos as $correo): ?>
+                            <!-- <div class="input-group"> -->
+                               {!! Form::text('correo_CorreoProv',$correo->correo_CorreoProv,['class'=>'form-control','id'=>'correo_CorreoProv','readonly'=>'readonly']) !!} 
+                            <!-- </div> -->
+                          <?php endforeach ?> 
                           </div>
                       </div>                
                       <br>
@@ -98,20 +104,24 @@
                         <div class="col-md-1">
                         </div>
                           <label class="col-lg-3 control-label">Dirección</label>
-                          <div class="col-md-8">
-                            <div class="input-group">
+                          <div class="col-md-7">
+                            <!-- <div class="input-group"> -->
                               {!! Form::text('direccion_Prov',$proveedor->direccion_Prov,['class'=>'form-control','id'=>'direccion_Prov','readonly'=>'readonly']) !!} 
-                            </div>
+                            <!-- </div> -->
                           </div>
                       </div>
                       <br>
                       <div class="row">
+                       <?php 
+                         $municipio = SICOVIMA\municipio::find($proveedor->id_Municipio);
+                         $departamento = SICOVIMA\departamento::find($municipio->id_Departamento);
+                       ?>
                         <div class="col-md-1">
                         </div>
                           <label class="col-lg-3 control-label">Departamento</label>
                           <div class="col-md-8">
                             <div class="input-group">
-                              <!-- {!! Form::text('tipoMercaderia_Prov',null,['class'=>'form-control','id'=>'tipoMercaderia_Prov']) !!} --> 
+                              {!! Form::text('nombre_Depa',$departamento->nombre_Depa,['class'=>'form-control','id'=>'nombre_Depa','readonly'=>'readonly']) !!} 
                             </div>
                           </div>
                       </div>
@@ -122,8 +132,7 @@
                           <label class="col-lg-3 control-label">Municipio</label>
                           <div class="col-md-8">
                             <div class="input-group">
-                              <!-- {!! Form::text('tipoMercaderia_Prov',null
-                              ,['class'=>'form-control','id'=>'tipoMercaderia_Prov']) !!} -->
+                              {!! Form::text('nombre_Muni',$municipio->nombre_Muni,['class'=>'form-control','id'=>'nombre_Muni','readonly'=>'readonly']) !!}
                             </div>
                           </div>
                       </div>

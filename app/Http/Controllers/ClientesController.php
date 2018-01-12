@@ -53,9 +53,10 @@ class ClientesController extends Controller
         return view("Proyecto.Desarrollo.Cliente.VerCliente",compact('cliente'));
     }
 
-    public function ModificarCli()
+    public function Modificar($id)
     {
-      return view("Proyecto.Desarrollo.Cliente.ModificarCli");
+        $cliente = cliente::find($id);
+        return view("Proyecto.Desarrollo.Cliente.ModificarCli",compact('cliente'));;
     }
 
     public function darbajacli()
