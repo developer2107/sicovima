@@ -97,7 +97,7 @@ class ClientesController extends Controller
         }else{
             if ($tipo==1) {
                 $clienteJuridico = clienteJuridico::create([
-                    'NIT_CJ'=>$request->duiCliente,
+                    'NIT_CJ'=>$request->nitCliente,
                     'nombreResponsable_CJ'=>$request->nombreResponsable,
                     'id_Cliente'=>$cliente->id,
                     'RNC_CJ'=>$request->rncCliente,
@@ -192,6 +192,26 @@ class ClientesController extends Controller
         $nit = clienteJuridico::where('id_Cliente','=',$id)->get()->first();
         if (count($nit)>0) {
             return $nit->NIT_CJ;
+        }else{
+            return "";
+        }
+
+    }
+
+    public static function nombreR($id){
+        $nombreR = clienteJuridico::where('id_Cliente','=',$id)->get()->first();
+        if (count($nombreR)>0) {
+            return $nombreR->nombreResponsable_CJ;
+        }else{
+            return "";
+        }
+
+    }
+
+    public static function rnc($id){
+        $rnc = clienteJuridico::where('id_Cliente','=',$id)->get()->first();
+        if (count($rnc)>0) {
+            return $rnc->RNC_CJ;
         }else{
             return "";
         }

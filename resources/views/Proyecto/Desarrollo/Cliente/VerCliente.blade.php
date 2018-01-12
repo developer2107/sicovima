@@ -99,10 +99,27 @@
                             <div class="row">
                               <div class="col-md-1">
                               </div>
+                              <?php
+                                $rnc = SICOVIMA\Http\Controllers\ClientesController::rnc($cliente->id);
+                              ?>
+                              <label class="col-lg-2 control-label">RNC</label>
+                                <div class="col-md-9">
+                                <div class="input-group">
+                                   {!! Form::text('RNC_CJ',$rnc,['class'=>'form-control','id'=>'RNC_CJ','readonly'=>'readonly']) !!} 
+                                </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                              <div class="col-md-1">
+                              </div>
+                              <?php
+                                $nombreR = SICOVIMA\Http\Controllers\ClientesController::nombreR($cliente->id);  
+                              ?>
                               <label class="col-lg-2 control-label">Nombre Responsable</label>
                                 <div class="col-md-8">
                                 <!-- <div class="input-group"> -->
-                                   {!! Form::text('nombreResponsable_CJ',null,['class'=>'form-control','id'=>'nombreResponsable_CJ']) !!} 
+                                   {!! Form::text('nombreResponsable_CJ',$nombreR,['class'=>'form-control','id'=>'nombreResponsable_CJ','readonly'=>'readonly']) !!} 
                                 <!-- </div> -->
                                 </div>
                             </div>

@@ -71,6 +71,21 @@
                       <div class="row">
                         <div class="col-md-1">
                         </div>
+                          <label class="col-lg-3 control-label">Teléfono</label>
+                          <div class="col-md-8">
+                           <?php 
+                                 $telefonos=$cliente->telefonoCliente;
+                            ?>
+                                 <?php foreach ($telefonos as $telefono): ?>
+                            <div class="input-group">
+                              {!! Form::text('tipoMercaderia_Prov',null,['class'=>'form-control','id'=>'tipoMercaderia_Prov']) !!} 
+                            </div>
+                          </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-md-1">
+                        </div>
                           <label class="col-lg-3 control-label">Correo Electronico</label>
                           <div class="col-md-8">
                             <div class="input-group">
@@ -78,17 +93,6 @@
                             </div>
                           </div>
                       </div>                
-                      <br>
-                      <div class="row">
-                        <div class="col-md-1">
-                        </div>
-                          <label class="col-lg-3 control-label">Teléfono</label>
-                          <div class="col-md-8">
-                            <div class="input-group">
-                              {!! Form::text('tipoMercaderia_Prov',null,['class'=>'form-control','id'=>'tipoMercaderia_Prov']) !!} 
-                            </div>
-                          </div>
-                      </div>
                       <br>
                       <div class="row">
                         <div class="col-md-1">

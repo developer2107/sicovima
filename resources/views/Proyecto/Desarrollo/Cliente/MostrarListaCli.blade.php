@@ -46,9 +46,9 @@
                       <td align="rihgt"><font size="4" >{{$telefonoC-> numero_TelefonoCli}}</font></td>
                       <td align="left"><font size="4" >
                         @if ($cli-> tipo_Cli )
-                          Natural
-                        @else
                           Juridico
+                        @else
+                          Natural
                         @endif
                       </font></td>
                       <td align="center">

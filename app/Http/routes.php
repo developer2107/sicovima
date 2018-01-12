@@ -49,10 +49,6 @@ Route::post('/authenticate', 'Auth\AuthController@authenticate');
 
 /* DE AQUI ABAJO ESTAN LAS RUTAS DE BENJAMIN*/
 
-
-
-Route::group(['middleware' => 'admin'], function(){
-
 Route::Resource('/RegistroProveedor','ProveedoresController');
 Route::Resource('/RegistroCliente','ClientesController');
 Route::Resource('/MostrarListaProv','ProveedoresController@Mostrar');
@@ -109,6 +105,10 @@ Route::get('/BuscarUsuario','SeguridadController@Buscar');
 Route::get('/VerUsuario','SeguridadController@Ver');
 Route::get('/ModificarUsuario','SeguridadController@Modificar');
 Route::get('/RegistrarUsuario','SeguridadController@Registrar');
+
+
+Route::group(['middleware' => 'admin'], function(){
+
 	
 });
 
