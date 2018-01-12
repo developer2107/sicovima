@@ -37,16 +37,7 @@
                 <form class="form-horizontal">
 
                     <br>
-                    <div class="row">
-                      <div class="col-md-1">
-                      </div>
-                        <label class="col-lg-3 control-label">Proveedor</label>
-                        <div class="col-md-8">
-                          <div class="input-group">
-                            {{-- {!! Form::text('nombre_Prov',$proveedor->nombre_Prov,['class'=>'form-control','id'=>'nombre_Prov','readonly'=>'readonly']) !!} --}}
-                          </div>
-                        </div>
-                    </div>
+                    
                     <br>
                     <div class="row">
                       <div class="col-md-1">

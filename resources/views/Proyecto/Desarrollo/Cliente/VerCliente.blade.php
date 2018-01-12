@@ -72,8 +72,7 @@
                               <div class="col-md-1">
                               </div>
                               <?php
-                                $dui = SICOVIMA\Http\Controllers\ClientesController::dui($cliente->id);
-                                
+                                $dui = SICOVIMA\Http\Controllers\ClientesController::dui($cliente->id);  
                               ?>
                               <label class="col-lg-2 control-label">DUI</label>
                                 <div class="col-md-9">
@@ -86,10 +85,13 @@
                             <div class="row">
                               <div class="col-md-1">
                               </div>
+                              <?php
+                                $nit = SICOVIMA\Http\Controllers\ClientesController::nit($cliente->id);
+                              ?>
                               <label class="col-lg-2 control-label">NIT</label>
                                 <div class="col-md-9">
                                 <div class="input-group">
-                                   {!! Form::text('NIT_CJ',null,['class'=>'form-control','id'=>'NIT_CJ']) !!} 
+                                   {!! Form::text('NIT_CJ',$nit,['class'=>'form-control','id'=>'NIT_CJ','readonly'=>'readonly']) !!} 
                                 </div>
                                 </div>
                             </div>
@@ -173,7 +175,7 @@
                                 </div>
                                 </div>
                             </div>
-                            <br>
+                            <br><br>
                             <div class="row">
                               <div class="col-md-1">
                               </div>

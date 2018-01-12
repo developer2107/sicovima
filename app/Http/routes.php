@@ -34,6 +34,25 @@ Route::get('/guardarUsuario', function () {
 
 /* DE AQUI ABAJO ESTAN LAS RUTAS DE BRENDA*/
 
+
+
+//Rutas de login
+Route::get('/cerrar', 'Auth\AuthController@cerrar');
+Route::get('/login', 'Auth\AuthController@login');
+Route::get('/logout', 'LoginController@logout');
+Route::post('/authenticate', 'Auth\AuthController@authenticate');
+
+/* DE AQUI ABAJO ESTAN LAS RUTAS DE GRECIA*/
+
+
+
+
+/* DE AQUI ABAJO ESTAN LAS RUTAS DE BENJAMIN*/
+
+
+
+Route::group(['middleware' => 'admin'], function(){
+
 Route::Resource('/RegistroProveedor','ProveedoresController');
 Route::Resource('/RegistroCliente','ClientesController');
 Route::Resource('/MostrarListaProv','ProveedoresController@Mostrar');
@@ -61,14 +80,6 @@ Route::match(['get','post'],'/VerInventarioMP/{id}','InventarioMPController@Ver'
 Route::Resource('/RegistroMateriaP','MateriaPrimaController');
 Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambio');
 
-//Rutas de login
-Route::get('/cerrar', 'Auth\AuthController@cerrar');
-Route::get('/login', 'Auth\AuthController@login');
-Route::get('/logout', 'LoginController@logout');
-Route::post('/authenticate', 'Auth\AuthController@authenticate');
-
-/* DE AQUI ABAJO ESTAN LAS RUTAS DE GRECIA*/
-
 Route::Resource('Bitacora','BitacoraController');
 Route::match(['get','post'],'/ModificarVenta/{id}','VentasController@Modificar');
 Route::match(['get','post'],'/VerVenta/{id}','VentasController@Ver');
@@ -94,16 +105,10 @@ Route::Resource('/ListadePedidosaEntregar','PedidosController@ListaaEntregar');
 Route::Resource('/ListadePedidosSinIniciar','PedidosController@ListaSinIniciar');
 Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar');
 
-
-/* DE AQUI ABAJO ESTAN LAS RUTAS DE BENJAMIN*/
-
 Route::get('/BuscarUsuario','SeguridadController@Buscar');
 Route::get('/VerUsuario','SeguridadController@Ver');
 Route::get('/ModificarUsuario','SeguridadController@Modificar');
 Route::get('/RegistrarUsuario','SeguridadController@Registrar');
-
-Route::group(['middleware' => 'admin'], function(){
-
 	
 });
 

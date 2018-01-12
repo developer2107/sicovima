@@ -187,4 +187,14 @@ class ClientesController extends Controller
         }
 
     }
+
+    public static function nit($id){
+        $nit = clienteJuridico::where('id_Cliente','=',$id)->get()->first();
+        if (count($nit)>0) {
+            return $nit->NIT_CJ;
+        }else{
+            return "";
+        }
+
+    }
 }
