@@ -27,7 +27,7 @@
                     <div class="col-lg-3">
                         <div class="input-group m-b">
                             <span class="input-group-addon">$</span>
-                            {!! Form::number('costo',0.00,['class'=>'touchspin2 form-control','step'=>'any', 'id'=>'costo']) !!}
+                            {!! Form::number('costo',0.00,['class'=>'touchspin2 form-control','step'=>'any', 'id'=>'costo','name'=>'costo', 'readonly'=>'readonly','step'=>'.01']) !!}
                         </div>
                     </div>
                 </div>

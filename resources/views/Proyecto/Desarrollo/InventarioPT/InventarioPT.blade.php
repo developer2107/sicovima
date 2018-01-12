@@ -32,9 +32,7 @@
               <div class="ibox-content">
                 <div class="table-responsive">
                   <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                    <br>
-                    
-                    <table id="example" class="display" cellspacing="100" width="100%">
+                    <table id="example" class="table table-striped table-bordered display" cellspacing="100" width="100%">
                       <thead>
                         <tr>
                           <th align="left"><font size="3" >Tipo</font></th>
@@ -48,7 +46,7 @@
                       </thead>
                       <tbody>
                         @foreach($producto as $prod)
-                        <?php $cadena='agregarMotivoProd('.$prod->id.');'; ?>
+                        <?php $cadenap='agregarMotivoProd('.$prod->id.');'; ?>
                         <?php
                           $inv = SICOVIMA\inventarioProductoTerminado::where('id_Producto',$prod->id)->get()->last();
                           if ($inv->nuevaExistencia_IPT!=0) {
@@ -66,9 +64,12 @@
                             <?php else: ?>
                             <font size="4" >Bien</font></td> 
                             <?php endif ?>
-                          <td align="center">
+                          <td style = "width:12%">
                             <a href="VerInventarioPT/{{$prod->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-danger btn-circle" data-toggle="modal" type="button" data-target="#myModalAnular" onclick="{{$cadena}}"><i class="fa fa-times"></i></a>
+                            <?php if ($prod->estado2_Prod==0): ?>
+                              <a class="btn btn-danger btn-circle" data-toggle="modal" type="button" data-target="#myModalAnularp" onclick="{{$cadenap}}"><i class="fa fa-times"></i></a>
+                            <?php else: ?>
+                            <?php endif ?>
                           </td>
                         </tr>
                         <?php } ?>
@@ -85,33 +86,41 @@
     </div>
   </div>
 
-<div class="modal inmodal" id="myModalAnular" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+<div class="modal inmodal" id="myModalAnularp" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content animated fadeIn">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
                 <i class="fa fa-clipboard modal-icon"></i>
                 <h4 class="modal-title">¿Producto Defectuoso?</h4>
                 <small></small>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group"><label>Cantidad</label>
-                            {!! Form::number('canti',null,['class' => 'note-codable','size' => '34x5','id'=>'canti']) !!}
-                        </div>
+                  <div class="col-md-2">
+                  </div>
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Descuento</label>
+                    <div class="col-lg-3 input-group m-b">
+                      <span class="input-group-addon">$</span>
+                      {!! Form::number('descuento',null,['class'=>'touchspin2 form-control','step'=>'.01','id'=>'descuento'])!!}
                     </div>
-                    <div class="col-md-2">
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-md-2">
+                  </div>
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Descripcion</label>
+                    <div class="col-lg-3 input-group m-b">
+                      {!! Form::textarea('motivoProd',null,['class' => 'note-codable','size' => '34x5','id'=>'motivoProd']) !!}
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group"><label>Descripcion</label>
-                            {!! Form::textarea('motivoProd',null,['class' => 'note-codable','size' => '34x5','id'=>'motivoProd']) !!}
-                        </div>
-                    </div>
+                  </div>
                 </div>
             </div>
             <div class="modal-footer">
-              {!! Form::button('Agregar',['class'=>'btn btn-primary','id'=>'agregarMotivoEstProd','type'=>'button', 'value'=>'Agregar','onclick'=>'agregarMotivoEstProd()','data-dismiss'=>'modal']) !!}
+              {!! Form::button('Agregar',['class'=>'btn btn-primary','id'=>'agregarMotivoEstProd','type'=>'button', 'value'=>'Agregarp','onclick'=>'agregarMotivoEstProd()','data-dismiss'=>'modal']) !!}
                 <button type="button" class="btn btn-white" data-dismiss="modal" id="cerrarM">Cerrar</button>
             </div>
         </div>

@@ -56,7 +56,6 @@ Route::Resource('/MostrarListaCli','ClientesController@Mostrar');
 Route::match(['get','post'],'/VerCliente/{id}','ClientesController@Ver');
 Route::match(['get','post'],'/municipio/{id}','ClientesController@municipios');
 Route::match(['get','post'],'/municipio/{id}','ProveedoresController@municipios');
-
 Route::match(['get','post'],'/VerProveedor/{id}','ProveedoresController@Ver');
 Route::match(['get','post'],'/ModificarProv/{id}','ProveedoresController@Modificar');
 Route::match(['get','post'],'/ModificarCli/{id}','ClientesController@Modificar');
@@ -83,8 +82,8 @@ Route::match(['get','post'],'/VerVenta/{id}','VentasController@Ver');
 Route::match(['get','post'],'/VerInventarioPT/{id}','InventarioPTController@Ver');
 Route::Resource('/RegistrarVenta','VentasController');
 Route::Resource('/ListadeVentas','VentasController@Mostrar');
-Route::match(['get','post'],'/motivo/{id}/{motivo}','VentasController@motivos');
-Route::match(['get','post'],'/motivoProd/{id}/{motivoProd}','InventarioPTController@motivosProd');
+Route::match(['get','post'],'/motivov/{idMot}/{motivo}','VentasController@AddMotivoVenta');
+Route::match(['get','post'],'/motivop/{idMotProd}/{motivoProd}/{descuentoProd}','InventarioPTController@motivosProd');
 Route::get('RegistrarVentas/{id}','VentasController@getResponsables');
 Route::resource('venta','ventasController');
 Route::match(['get','post'],'/responsable/{id}','VentasController@responsables');
@@ -107,7 +106,6 @@ Route::get('/VerUsuario','SeguridadController@Ver');
 Route::get('/ModificarUsuario','SeguridadController@Modificar');
 Route::get('/RegistrarUsuario','SeguridadController@Registrar');
 
-
 Route::group(['middleware' => 'admin'], function(){
 
 	
@@ -117,33 +115,3 @@ Route::group(['middleware' => 'comun'], function(){
 
 
 });
-
-
-// Route::group(['prefix' => 'admin'], function(){
-//       Route::resource('Pedidos','PedidosController');
-//       Route::match(['get','post'],'/IniciarPedido/{id}','PedidosController@Ver');
-// });
-
-// Route::group(['prefix' => 'admin'], function(){
-//       Route::resource('cliente','ClientesController');
-// });
-
-// Route::group(['prefix' => 'admin'], function(){
-//       Route::resource('compra','CompraController');
-// });
-
-// Route::group(['prefix' => 'admin'], function(){
-//       Route::resource('inventarioMP','InventarioMPController');
-// });
-
-// Route::group(['prefix' => 'admin'], function(){
-//       Route::resource('inventarioPT','InventarioPTController');
-// });
-
-// Route::group(['prefix' => 'admin'], function(){
-//       Route::resource('login','LoginController');
-// });
-
-// Route::group(['prefix' => 'admin'], function(){
-//       Route::resource('proveedor','ProveedoresController');
-// });

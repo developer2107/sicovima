@@ -14,7 +14,13 @@
         </li>
         </ol>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-6">
+    </div>
+    <div class="col-sm-2">
+        <br>
+        <div class=" m-t-sm">
+            <a href="#" class="btn btn-primary startTour"><i class="fa fa-play"></i> Start Tour</a>
+        </div>
     </div>
 </div>
 <br>
@@ -87,6 +93,7 @@
     </div>
     <br>
 </div>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
@@ -122,6 +129,7 @@
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-lg-2">
     </div>
@@ -168,8 +176,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content animated fadeIn">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
-                </button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                 <i class="fa fa-clipboard modal-icon"></i>
                 <h4 class="modal-title">¿Cual desea llevar?</h4>
                 <small></small>
@@ -184,7 +191,7 @@
                             <div class="ibox-content">
                                 <div class="table-responsive">
                                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                                    <table cellspacing="0" width="100%" class="table table-bordered" id="tablaProductosTerm">
+                                    <table cellspacing="0" width="100%" class="table table-striped table-bordered display dataTables-example" id="tablaProductosTerm">
                                         <thead>
                                           <tr>
                                             <th>Estilo</th>
@@ -222,19 +229,19 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+            </div>
         </div>
     </div>
 </div>
-
 
 <div class="modal inmodal" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
@@ -271,6 +278,7 @@
         </div>
     </div>
 </div>
+
 
 {!! Form::close() !!}
 @stop

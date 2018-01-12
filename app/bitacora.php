@@ -3,13 +3,23 @@
 namespace SICOVIMA;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
+use DB;
 
 class bitacora extends Model
 {
     protected $table = 'bitacora';
+    protected $fillable = ['accion_Bit','comentario_Bit','id_Usuario'];
 
+	public static function bitacoras($accion_Bit,$comentario_Bit){
 
-public function usuario(){
-   return $this->belongsTo('\SICOVIMA\usuario','id_Usuario');
-}
+	   if (Auth::check()==1) {
+	   	bitacora::create([
+	   		'accion_Bit'=>$accion_Bit,
+	   		'comentario_Bit'=>$comentario_Bit,
+	   		'id_Usuario'=>$Auth::user()->id,]);
+	   	# code...
+	   }
+
+	}
 }

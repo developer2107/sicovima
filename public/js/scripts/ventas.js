@@ -4,7 +4,6 @@ var gananciag;
 var costog;
 var subtotalg;
 var idMot;
-var idMotProd;
 
 $(document).on('ready',function(){
 	var a_producto;
@@ -39,7 +38,6 @@ $(document).on('ready',function(){
 		$("#agregarVentas").val("Agregar");
 		$("#cantidad").val("");
 		$("#gananciau").val("");
-
 	});
 
 	$('#agregarVentas').click(function(){
@@ -101,15 +99,13 @@ $(document).on('ready',function(){
 			console.log(subtotalg);
 			$('#totalVenta').val(total.toFixed(2));
 		}
-
-
 	});
+	
 	$('#CancelarRegistroVenta').click(function(){
 		var tabla = $("#tablaProductos");
 		tabla.remove();
-
-
 	});
+
 	$('#tablaProductos').on('click','#Eliminar',function(e){
 		var total=parseFloat($("#totalVenta").val());
 		var cantidadE=parseFloat($(this).parents('tr').find('input:eq(1)').val());
@@ -124,20 +120,16 @@ $(document).on('ready',function(){
 		productosAgregados.splice(indice,1);
 	});
 
-	$('#agregarMotivo').click(function(){
-		var accion = $("#agregarMotivo").val();
-		if (accion == "Agregar") {
-			var obtener=$('#ventasTabla').find('option:selected');
-		//alert(obtener.val());
-			var idCliente =obtener.val();
-			var ruta="/github/sicovima/public/motivo/"+idCliente;
-
-		}else{
-
-		}
-
-
-	});
+	// $('#agregarMotivo').click(function(){
+	// 	var accion = $("#agregarMotivo").val();
+	// 	if (accion == "Agregar") {
+	// 		var obtener=$('#ventasTabla').find('option:selected');
+	// 	//alert(obtener.val());
+	// 		var idCliente =obtener.val();
+	// 		var ruta="/github/sicovima/public/motivo/"+idCliente;
+	// 	}else{		
+	// 	}	
+	// });
 
 	$('#agregarMotivoProd').click(function(){
 		var accion = $("#agregarMotivoProd").val();
@@ -150,10 +142,7 @@ $(document).on('ready',function(){
 		}else{
 
 		}
-
-
 	});
-
 
 });
 
@@ -178,20 +167,11 @@ function agregarMotivo(id){
 
 function agregarMotivoEst(){
 	var motivo = $("#motivo").val();
-	var ruta="/github/sicovima/public/motivo/"+idMot+"/"+motivo;
+	console.log(idMot+"  "+motivo);
+	var ruta="/github/sicovima/public/motivov/"+idMot+"/"+motivo;
+	console.log(idMot+"  "+motivo);
 	$.get(ruta,function(res){
 		location.href="/github/sicovima/public/ListadeVentas";
 	});
 }
-function agregarMotivoProd(id){
-	idMotProd=id;
-}
 
-function agregarMotivoEstProd(){
-	var motivo = $("#motivoProd").val();
-	console.log(idMotProd+motivo);
-	var ruta="/github/sicovima/public/motivoProd/"+idMotProd+"/"+motivo;
-	$.get(ruta,function(res){
-		location.href="/github/sicovima/public/ProductosTerminados";
-	});
-}

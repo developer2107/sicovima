@@ -130,10 +130,10 @@ class VentasController extends Controller
     public function store(Request $request)
     {
 
-        $cantidadV=$request->cantidadV;
-        $idV=$request->idV;
-        $costoProdV=$request->costoProdV;
-        $gananciaV=$request->gananciaV;
+        $cantidadV = $request->cantidadV;
+        $idV = $request->idV;
+        $costoProdV = $request->costoProdV;
+        $gananciaV = $request->gananciaV;
 
         $documento = documento::create([
             'tipo_Doc'=>$request->tipo_Doc,
@@ -154,6 +154,9 @@ class VentasController extends Controller
             'id_Cliente'=>$request->clientes,
             'estado_Ven'=>0,
         ]);
+
+        // $aux = cliente::find($request->clientes);
+        // bitacora::bitacoras('Registro','Registro de venta '.$venta->id.' a cliente: '.$aux->nombre_Cli);
 
         for ($i=0; $i < count($idV); $i++) {
             $inventario = inventarioProductoTerminado::where('id_Producto',$idV[$i])->get()->last();
@@ -235,6 +238,9 @@ class VentasController extends Controller
         $doc->estado_Doc = 1;//estado anulada
         $doc->save();
 
+        // $aux2 = cliente::find($venta2->id_Cliente);
+        // bitacora::bitacoras('Modificacion','Modificacion de venta '.$id.' a cliente: '.$aux2->nombre_Cli);
+
         estadoDocumento::create([
             'motivo_EstadoDoc'=>$request->motivoEstado,
             'id_Documento'=>$docVenta->id_Documento,
@@ -272,6 +278,9 @@ class VentasController extends Controller
             'id_Cliente'=>$request->clientes,
             'estado_Ven'=>0,
         ]);
+
+        // $aux = cliente::find($request->clientes);
+        // bitacora::bitacoras('Registro','Nuevo registro de venta '.$venta->id.' por modificacion, a cliente: '.$aux->nombre_Cli);
 
         for ($i=0; $i < count($idV); $i++) {
 
@@ -378,82 +387,25 @@ class VentasController extends Controller
 
     }
 
-    public static function motivos($id,$motivo){
-        $docVenta = documentoVenta::where('id_Venta',$id)->get()->first();
+    public static function AddMotivoVenta($idMot,$motivo){
+        
+        $docVenta = documentoVenta::where('id_Venta',$idMot)->get()->first();
         $doc = documento::find($docVenta->id_Documento);
         $doc->estado_Doc = 1;//estado anulada
         $doc->save();
-        $venta3 = venta::find($id);
-        $venta3->estado_Ven = 2;//Anulada-Eliminada
+        $venta3 = venta::find($idMot);
+        $venta3->estado_Ven = 1;//Anulada-Eliminada
         $venta3->save();
-       
+        
+        // $aux = cliente::find($venta3->id_Cliente);
+        // bitacora::bitacoras('Anulacion','Anulacion de venta '.$venta3->id.' a cliente: '.$aux->nombre_Cli);
+
         estadoDocumento::create([
             'motivo_EstadoDoc'=>$motivo,
             'id_Documento'=>$docVenta->id_Documento,
         ]);        
-
         $ventas = venta::with('cliente')->get();
         return 0;
     }
 
-    public static function motivosProd($id,$motivoProd,$cant){
-        echo $id;
-        echo $motivoProd;
-        echo $cant;
-        // $vv = inventarioProductoTerminado::where('id_Producto',$id)->get()->last();
-        // $proo = producto::find($vv->id_Producto);
-
-        // if ($vv->nuevaExistencia_IPT!=1) {
-
-        //     inventarioProductoTerminado::create([
-        //         'tipoMovimiento_IPT'=>4,//salida por defecto
-        //         'existencias_IPT'=>$vv->nuevaExistencia_IPT,//es el primer registro
-        //         'cantidad_IPT'=>1,//defectuosos solo se pueden sacar 1 a la vez por el estado y el tipo de movimiento
-        //         'fechaMov_IPT'=>$ultProd->created_at,
-        //         'nuevaExistencia_IPT'=>$vv->nuevaExistencia_IPT+1,
-        //         'id_Producto'=>$proo->id,
-        //     ]);
-
-        //     $ultProd = producto::create([
-        //         'tipo_Prod'=>$proo->tipo_Prod,
-        //         'estilo_Prod'=>$proo->estilo_Prod,
-        //         'descripcion_Prod'=>$proo->descripcion_Prod, 
-        //         'precio_Prod'=>$proo->precio_Prod, 
-        //         'color_Prod'=>$proo->color_Prod, 
-        //         'talla_Prod'=>$proo->talla_Prod, 
-        //         'imagen_Prod'=>$proo->imagen_Prod, 
-        //         'estado_Prod'=>1,
-        //         'estado2_Prod'=>1,
-        //     ]);
-
-        //     inventarioProductoTerminado::create([
-        //         'tipoMovimiento_IPT'=>3,//entrada por defecto
-        //         'existencias_IPT'=>0,//es el primer registro
-        //         'cantidad_IPT'=>1,//defectuosos solo se pueden insertar 1 a la vez por el estado
-        //         'fechaMov_IPT'=>$ultProd->created_at,
-        //         'nuevaExistencia_IPT'=>0+1,
-        //         'id_Producto'=>$ultProd->id,
-        //     ]);
-
-        //     defectuosoPT::create([
-        //         'cantidad_DPT'=>1,
-        //         'descripcion_DPT'=>$motivoProd,
-        //         'id_Producto'=>$ultProd->id,
-        //     ]); 
-        
-
-        // }else{
-        //     $proo->estado2_Prod = 1;
-        //     $proo->save();
-
-        //     defectuosoPT::create([
-        //         'cantidad_DPT'=>1,
-        //         'descripcion_DPT'=>$motivoProd,
-        //         'id_Producto'=>$proo->id,
-        //     ]); 
-        
-        // }
-        
-        // return 0;
-    }
 }

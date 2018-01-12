@@ -98,6 +98,8 @@ class ProveedoresController extends Controller
             'estado_Prov'=>1,//true---> activo
         ]);
 
+      //bitacora::bitacoras('Registro','Registro de proveedor '.$proveedor->id.': '.$proveedor->nombre_Prov);
+      
       for ($i=0; $i < count($tel); $i++) {
           telefonoProveedor::create([
           'numero_TelefonoProv'=>$tel[$i],
