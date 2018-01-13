@@ -31,7 +31,7 @@
                              </div>
                              <div class="col-md-4">
                                  <div class="form-group"><label>Talla</label>
-                                     {!! Form::select('talla_Prod', ['0' => 'Seleccionar','1' => 'XS', '2' => 'S', '3' => 'M', '4' => 'L', '5' => 'XL', '6' => 'XXL', '7' => 'XXXL'],'' ,['class' => 'form-control m-b','style' => 'width:115px','id'=>'talla_Prod']) !!}
+                                     {!! Form::select('talla_Prod', ['0' => 'Seleccionar','XS' => 'XS', 'S' => 'S', 'M' => 'M', 'L' => 'L', 'XL' => 'XL', 'XXL' => 'XXL', 'XXXL' => 'XXXL'],'' ,['class' => 'form-control m-b','style' => 'width:115px','id'=>'talla_Prod']) !!}
 
                                  </div>
                              </div>
@@ -51,7 +51,7 @@
                                  </div>
 
                                  <div class="form-group"><label>Categoria</label>
-                                     {!! Form::select('categoria_Prod', ['0' => 'Seleccionar','1' => 'Niña', '2' => 'Niño', '3' => 'Mujer', '4' => 'Hombre'],'' ,['class' => 'form-control m-b','style' => 'width:150px','id'=>'categoria_Prod']) !!}
+                                     {!! Form::select('categoria_Prod', ['0' => 'Seleccionar','Niña' => 'Niña', 'Niño' => 'Niño', 'Mujer' => 'Mujer', 'Hombre' => 'Hombre'],'' ,['class' => 'form-control m-b','style' => 'width:150px','id'=>'categoria_Prod']) !!}
 
                                  </div>
                                </div>

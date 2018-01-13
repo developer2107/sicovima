@@ -10,6 +10,8 @@ use SICOVIMA\producto;
 use SICOVIMA\pedido;
 use SICOVIMA\cliente;
 use SICOVIMA\detallePedido;
+use SICOVIMA\inventarioMateriaPrima;
+use SICOVIMA\materiaPrima;
 use Redirect;
 use SICOVIMA\Http\Requests\PedidosRequest;
 
@@ -88,14 +90,54 @@ class PedidosController extends Controller
 
     public function IniciarPedido($id)
     {
+      $producto= producto::all();
       $idDetallePedido= detallePedido::find($id);
       $detallePedido=detallePedido::find($id)->with('producto', 'pedido')->get();
-      $inventarioMateriaPrima=\SICOVIMA\inventarioMateriaPrima::all();
+      $inventarioMateriaPrima=inventarioMateriaPrima::all();
+      $materiaPrima = materiaPrima::all();
+
+      $cont = count($inventarioMateriaPrima);
+      $cont1 = count($materiaPrima);
+
+      $val= array_pluck($inventarioMateriaPrima,['nuevaExistencia_IMP']);
+      $existencia_I=array_pluck($inventarioMateriaPrima,['existencias_IMP']);
+      $tipo_M=array_pluck($inventarioMateriaPrima,['tipoMovimiento_IMP']);
+      $id_MatI= array_pluck($inventarioMateriaPrima,['id_MateriaPrima']);
+      $id_Mat = array_pluck($materiaPrima,['id']);
+      $array = array_pluck($materiaPrima, ['nombre_MP']);
+      $arrayproducto=[];
+
+      for ($i=0; $i < $cont; $i++) {
+        for ($j=0; $j < $cont1 ; $j++) {
+          # code...
+        # code...
+        if ($tipo_M[$i] == '1') {
+          # code...
+          dd($tipo_M[$i]);
+
+          if ($existencia_I[$i] >= '1' ) {
+
+            # code...
+            if ($id_MatI[$i] != $id_Mat[$j]) {
+              # code...
+              $arrayproducto=$array[$j];
+            }
+
+          }else if ( $id_MatI[$i] != $id_Mat[$j]) {
+            # code...
+            $arrayproducto=$array[$j];
+          }
+        }
+      }
+    }
+      dd($arrayproducto);
+
+
 
       // $prueba= $detallePedido->id->get();
       // dd($detallePedido->id);
 
-        return view('Proyecto.Desarrollo.Pedidos.IniciarPedido')->with('idDetallePedido', $idDetallePedido)->with('detallePedido', $detallePedido)->with('inventarioMateriaPrima', $inventarioMateriaPrima);
+        return view('Proyecto.Desarrollo.Pedidos.IniciarPedido')->with('materiaPrima', $materiaPrima)->with('producto', $producto)->with('arrayproducto', $arrayproducto)->with('idDetallePedido', $idDetallePedido)->with('detallePedido', $detallePedido)->with('inventarioMateriaPrima', $inventarioMateriaPrima);
     }
 
     /**
