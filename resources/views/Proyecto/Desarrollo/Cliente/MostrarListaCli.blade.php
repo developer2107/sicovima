@@ -58,6 +58,9 @@
                         <a href="ModificarCli/{{$cli->id}}" class="btn btn-success btn-circle" type="button">
                           <i class="fa fa-pencil-square-o"></i>
                         </a>
+                        <a href="/github/sicovima/public/darBajaCli/{{$cli->id}}" class="btn btn-warning btn-circle" type="button">
+                          <i class="fa fa-times"></i>
+                        </a>
                       </td>
                    </tr>
                 @endforeach

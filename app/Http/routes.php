@@ -53,6 +53,8 @@ Route::match(['get','post'],'/ModificarProv/{id}','ProveedoresController@Modific
 
 Route::Resource('/RegistroCliente','ClientesController');
 Route::Resource('/MostrarListaCli','ClientesController@Mostrar');
+Route::match(['get','post'],'/darBajaCli/{id}','ClientesController@bajaCli');
+Route::match(['get','post'],'/darAltaCli/{id}','ClientesController@altaCli');
 Route::match(['get','post'],'/VerCliente/{id}','ClientesController@Ver');
 Route::match(['get','post'],'/municipio/{id}','ClientesController@municipios');
 Route::match(['get','post'],'/ModificarCli/{id}','ClientesController@Modificar');

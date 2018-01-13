@@ -57,7 +57,7 @@
                         @endif
                       </font></td>
                       <td align="center">
-                        <a class="btn btn-primary btn-rounded" href="#">Dar de Alta</a>
+                        <a href="/github/sicovima/public/darAltaCli/{{$cli->id}}" class="btn btn-primary btn-rounded">Dar de Alta</a>
                       </td>
                       </tr>
                        @endforeach
