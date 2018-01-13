@@ -16,7 +16,6 @@ class Proveedor extends Migration
             $table->increments('id');
             $table->string('nombre_Prov');
             $table->string('NIT_Prov');
-            $table->string('tipoMercaderia_Prov');
             $table->string('direccion_Prov');
             $table->boolean('estado_Prov');
             $table->integer('id_Municipio')->unsigned();

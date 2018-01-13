@@ -8,6 +8,7 @@ use SICOVIMA\municipio;
 use SICOVIMA\departamento;
 use SICOVIMA\correoProveedor;
 use SICOVIMA\telefonoProveedor;
+use SICOVIMA\proveedorTipoMercaderia;
 use SICOVIMA\tipoMercaderia;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
@@ -98,14 +99,24 @@ class ProveedoresController extends Controller
       $proveedor = proveedor::create([
             'nombre_Prov'=>$request->nombre_Prov,
             'NIT_Prov'=>$request->NIT_Prov,
-            'tipoMercaderia_Prov'=>$request->tipoMercaderia_Prov,
             'direccion_Prov'=>$request->direccion_Prov,
             'id_Municipio'=>$request->municipios,
             'estado_Prov'=>1,//true---> activo
         ]);
 
+        $tipos=tipoMercaderia::where('estado_TM',1)->get();
+        foreach ($tipos as $tipo) {
+          echo $request['cb'.(String)$tipo->id];
+          if($request['cb'.(String)$tipo->id]==1){
+          proveedorTipoMercaderia::create([
+            'id_Proveedor'=>$proveedor->id,
+            'id_tipoMercaderia'=>$tipo->id,
+          ]);
+          }
+        }
+
       //bitacora::bitacoras('Registro','Registro de proveedor '.$proveedor->id.': '.$proveedor->nombre_Prov);
-      
+
       for ($i=0; $i < count($tel); $i++) {
           telefonoProveedor::create([
           'numero_TelefonoProv'=>$tel[$i],
@@ -119,7 +130,7 @@ class ProveedoresController extends Controller
           'id_Proveedor'=>$proveedor->id,
       ]);
       }
-        return redirect("/RegistroProveedor");
+        //return redirect("/RegistroProveedor");
     }
 
     /**
@@ -179,7 +190,7 @@ class ProveedoresController extends Controller
     public function bajaProv($id)
     {
        $bajaProv = proveedor::find($id);
-       
+
            $bajaProv->estado_Prov= 0;
 
        $bajaProv-> save();

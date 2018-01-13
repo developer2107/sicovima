@@ -36,7 +36,6 @@
                           <tr>
                                 <th align="left">Nombre</th>
                                 <th align="left">Telefono</th>
-                                <th align="left">Tipo de mercaderia</th>
                                 <th align="left">Opciones</th>
 
                          </tr>
@@ -48,8 +47,7 @@
                                 <?php
                                   $telefonoP = SICOVIMA\proveedor::numeroTelefono($prov->id);
                                 ?>
-                                <td align="rihgt"><font size="4" >{{$telefonoP-> numero_TelefonoProv}}</font></td>
-                                <td align="left"><font size="4" >{{$prov-> tipoMercaderia_Prov}}</font></td>
+                                <td align="rihgt"><font size="4" >{{$telefonoP}}</font></td>
                                 <td align="center">
                                   <a href="VerProveedor/{{$prov->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
                                   </a>

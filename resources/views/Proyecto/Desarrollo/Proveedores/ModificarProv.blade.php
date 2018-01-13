@@ -17,20 +17,20 @@
         </ol>
     </div>
     <div class="col-sm-8">
-        
+
     </div>
 </div>
 
 <br>
 
 <div id="contenido">
-                    
+
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <h5>Proveedor</h5>
-                                    
+
                                 </div>
                                 <div class="ibox-content">
                         <form class="form-horizontal">
@@ -49,15 +49,6 @@
                             <div class="col-md-8">
                               <div class="input-group">
                                 {!! Form::text('NIT_Prov',null,['id' => 'NIT_Prov','class' =>'form-control','data-mask'=>'9999-999999-999-9']) !!}
-                              </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <label class="col-lg-3 control-label">Tipo de Mercadería</label>
-                            <div class="col-md-8">
-                              <div class="input-group">
-                                {!! Form::select('tipoMercaderia_Prov',\SICOVIMA\materiaPrima::arrayTipoMercaderia(),'',['placeholder'=>'Seleccionar tipo de materia prima','id' => 'tipoMercaderia_Prov','class'=>'chosen-select','style'=>'width:300px']) !!}
                               </div>
                             </div>
                         </div>
@@ -114,7 +105,7 @@
                                   <div class="input-group">
                                     <select class = "form-control" name = "departamentos" id = "departamentos">
                                     <option value="0">Seleccione un Departamento</option>
-                                    
+
                                     </select>
                                   </div>
                               </div>
@@ -128,7 +119,7 @@
                                 <div class="input-group">
                                   <select class = "form-control" name = "municipios" id = "municipios">
                                   <option value="0">Seleccione un Municipio</option>
-                                  
+
                                   </select>
                                 </div>
                               </div>
@@ -147,18 +138,49 @@
                         </div>
                 </div>
 
-<div class="col-lg-5">
-        <div class="ibox-content">
-            <div class="carousel slide" id="carousel1">
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img alt="image" class="img-responsive" src="../img/Mada-Denim-Blanco4.jpg">
+                <div class="col-lg-6">
+                  <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                  <h5>Tipo de mercadería que distribuye el proveedor</h5>
+                </div>
+                <div class="ibox-content">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                          <th align="left">Nombre</th>
+                          <th align="left">Opción</th>
+
+                   </tr>
+                  </thead>
+                  <tbody>
+                    <?php $tipos= SICOVIMA\TipoMercaderia::where('estado_TM',1)->get(); ?>
+                    @foreach ($tipos as $tipo)
+                      <tr>
+                        <td><font size="3" >{{$tipo->nombre_TM}}</font></td>
+                        <td>
+                          <input type="hidden" name="cb{{$tipo->id}}" id="cb{{$tipo->id}}" value="0">
+                          <input type="checkbox"  style="width:25px; height:25px;" onclick="cambioCB({{$tipo->id}})">
+                        </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+                </div>
+                </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-{!! Form::close() !!}                             
-@stop
+                </div>
+
+                 <br><br>
+                {!! Form::close() !!}
+                @stop
+                <script type="text/javascript">
+                  function cambioCB(id){
+                    valor=$('#cb'+id).val();
+                    if(valor=="1"){
+                      $('#cb'+id).val("0");
+                    }else{
+                      $('#cb'+id).val("1");
+                    }
+                  }
+                </script>

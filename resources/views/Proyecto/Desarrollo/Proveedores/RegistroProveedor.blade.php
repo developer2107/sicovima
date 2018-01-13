@@ -29,7 +29,7 @@
             <div class="col-lg-6">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5></h5>
+                                <h5>Registro de Proveedor</h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link">
                                     </a>
@@ -58,16 +58,6 @@
                                           {!! Form::text('NIT_Prov',null,['id' => 'NIT_Prov','class' =>'form-control','data-mask'=>'9999-999999-999-9']) !!}
                                         </div>
                                     </div>
-                                    <div class="form-group"><label class="col-lg-3 control-label">Tipo de Mercadería</label>
-
-                                        <div class="col-lg-5">
-                                            {!! Form::select('tipoMercaderia_Prov',\SICOVIMA\materiaPrima::arrayTipoMercaderia(),'',['placeholder'=>'Seleccionar Tipo de Materia Prima','id' => 'tipoMercaderia_Prov','class'=>'chosen-select','style'=>'width:300px']) !!}
-                                        </div>
-                                        <div class="col-lg-4">
-                                          <input type="text" class="form-control" id="otroMercaderia" style="Display:none" name="otroMer" >
-                                        </div>
-                                    </div>
-
                                   <div id="idCorreos">
                                    <div class="row">
                                        <div class="form-group">
@@ -152,20 +142,49 @@
                     </div>
 
 
-<div class="col-lg-5">
-        <div class="ibox-content">
-            <div class="carousel slide" id="carousel1">
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img alt="image" class="img-responsive" src="img/Mada-Denim-Blanco4.jpg">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="col-lg-6">
+  <div class="ibox float-e-margins">
+<div class="ibox-title">
+  <h5>Tipo de mercadería que distribuye el proveedor</h5>
+</div>
+<div class="ibox-content">
+<table class="table table-striped">
+  <thead>
+    <tr>
+          <th align="left">Nombre</th>
+          <th align="left">Opción</th>
 
+   </tr>
+  </thead>
+  <tbody>
+    <?php $tipos= SICOVIMA\TipoMercaderia::where('estado_TM',1)->get(); ?>
+    @foreach ($tipos as $tipo)
+      <tr>
+        <td><font size="3" >{{$tipo->nombre_TM}}</font></td>
+        <td>
+          <input type="hidden" name="cb{{$tipo->id}}" id="cb{{$tipo->id}}" value="0">
+          <input type="checkbox"  style="width:25px; height:25px;" onclick="cambioCB({{$tipo->id}})">
+        </td>
+      </tr>
+    @endforeach
+  </tbody>
+</table>
+</div>
+</div>
+    </div>
+</div>
 </div>
 
  <br><br>
 {!! Form::close() !!}
 @stop
+<script type="text/javascript">
+  function cambioCB(id){
+    valor=$('#cb'+id).val();
+    if(valor=="1"){
+      $('#cb'+id).val("0");
+    }else{
+      $('#cb'+id).val("1");
+    }
+  }
+</script>

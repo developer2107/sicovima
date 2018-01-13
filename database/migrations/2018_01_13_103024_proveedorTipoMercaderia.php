@@ -12,12 +12,12 @@ class ProveedorTipoMercaderia extends Migration
      */
     public function up()
     {
-      Schema::create('ProveedorTipoMercaderia', function (Blueprint $table) {
+      Schema::create('proveedorTipoMercaderia', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('id_Proveedor')->unsigned();
           $table->foreign('id_Proveedor')->references('id')->on('proveedor');
           $table->integer('id_tipoMercaderia')->unsigned();
-          $table->foreign('id_tipoMercaderia')->references('id')->on('TipoMercaderia');
+          $table->foreign('id_tipoMercaderia')->references('id')->on('tipoMercaderia');
           $table->rememberToken();
           $table->timestamps();
       });
