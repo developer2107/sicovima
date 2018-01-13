@@ -62,7 +62,7 @@ use SICOVIMA\proveedor; ?>
                     <div class="col-md-2">
                         <label class="font-bold"></label>
                         <div class="input-group bootstrap-touchspin">
-                            <a href="" class="btn btn-outline btn-primary dim" data-toggle="modal" data-target="#modalMateriaPrima" type="button">Agregar Detalle de Compra</a>
+                            <a href="" class="btn btn-outline btn-primary dim" data-toggle="modal" data-target="#modalMateriaPrima" type="button">Agregar Materia Prima</a>
                         </div>
                     </div>
                 </div>

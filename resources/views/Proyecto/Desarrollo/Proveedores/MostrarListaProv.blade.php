@@ -54,6 +54,9 @@
                                   <a href="VerProveedor/{{$prov->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
                                   </a>
                                   <a href="ModificarProv/{{$prov->id}}" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
+                                  </a>
+                                  <a href="/github/sicovima/public/darBajaProv/{{$prov->id}}" class="btn btn-warning btn-circle" type="button"><i class="fa fa-times"></i>
+                                  </a>
                                 </td>
                              </tr>
                           @endforeach

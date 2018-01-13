@@ -34,55 +34,33 @@
                         <tr>
                             <th>Nombre</th>
                          
-                            <th>Tipo de Cliente</th>
-
                             <th>Teléfono</th>
 
-                            <th>Acciones</th>
+                            <th>Tipo de Cliente</th>
+
+                            <th>Opción</th>
                         </tr>
                         </thead>
                         <tbody>     
-                        
-                            <tr class="gradeC">
-                                    <td>Jazmin Yancy Morales Romero</td>
-                                    <td>Natural</td>
-                                    <td class="center">7913-6714</td>
-                                 <td>
-                                  <a class="btn btn-primary btn-rounded" href="#">Dar de Alta</a> 
-                                </td> 
-                            </tr>
-                            <tr class="gradeC">
-                               <td>Rafael Antonio Contreras Rodriguez</td>
-                                    <td>Juridico</td>
-                                    <td class="center">2223-6764</td>
-                                 <td>
-                                     <a class="btn btn-primary btn-rounded" href="#">Dar de Alta</a> 
-                                </td> 
-                            </tr>
-                            <tr class="gradeU">
-                               <td>Saul Lenin Flores Parada</td>
-                                    <td>Natural</td>
-                                    <td class="center">2223-6789</td>
-                                 <td>
-                                     <a class="btn btn-primary btn-rounded" href="#">Dar de Alta</a> 
-                                </td> 
-                            </tr>
-                            <tr class="gradeU">
-                               <td>Griselda maria Molina Mendez</td>
-                                    <td>Juridico</td>
-                                    <td class="center">2221-6342</td>
-                                 <td>
-                                     <a class="btn btn-primary btn-rounded" href="#">Dar de Alta</a> 
-                                </td> 
-                            </tr>
-                            <tr class="gradeU">
-                               <td>Rocío Evelin Miranda Guerrero</td>
-                                    <td>Natural</td>
-                                    <td class="center">7623-8974</td>
-                                 <td>
-                                    <a class="btn btn-primary btn-rounded" href="#">Dar de Alta</a> 
-                                </td> 
-                            </tr>
+                        @foreach($cliente as $cli)
+                      <tr>
+                      <td align="left"><font size="4" >{{$cli-> nombre_Cli}}</font></td>
+                      <?php
+                        $telefonoC = SICOVIMA\cliente::numeroTelefonoCliente($cli->id);
+                      ?>
+                      <td align="rihgt"><font size="4" >{{$telefonoC-> numero_TelefonoCli}}</font></td>
+                      <td align="left"><font size="4" >
+                        @if ($cli-> tipo_Cli )
+                          Juridico
+                        @else
+                          Natural
+                        @endif
+                      </font></td>
+                      <td align="center">
+                        <a class="btn btn-primary btn-rounded" href="#">Dar de Alta</a>
+                      </td>
+                      </tr>
+                       @endforeach
                         </tbody>
                         <tfoot>
                         <tr>
@@ -92,7 +70,7 @@
      
                             <th>Teléfono</th>
 
-                           <th>Acciones</th>
+                           <th>Opción</th>
                         </tr>
                         </tfoot>
                     </table>
