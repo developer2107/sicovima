@@ -19,7 +19,7 @@
     <div class="col-sm-2">
         <br>
         <div class=" m-t-sm">
-            <a href="#" class="btn btn-primary startTour"><i class="fa fa-play"></i>Ayuda</a>
+            <a href="#" class="btn btn-primary startTour1"><i class="fa fa-info-circle" id="step1"></i>  Ayuda</a>
         </div>
     </div>
 </div>
@@ -28,9 +28,10 @@
     <div class="col-lg-7">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Venta</h5>
+                <h5>Venta</h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-default btn-circle startTour2" type="button"><i class="fa fa-info"></i></button>
             </div>
-            <div class="ibox-content" id="step1">
+            <div class="ibox-content">
                 <div class="p-sm">
             <br>
                 <div class="row">
@@ -38,7 +39,7 @@
                     </div>
                     <label class="col-lg-2 control-label">Cliente</label>
                     <div class="col-md-6">
-                        <div class="input-group">
+                        <div class="input-group" id="step01">
                            <select class = "chosen-select" name = "clientes" id = "clientes"  style="width:300px">
                                 <option value="0">Seleccione</option>
                                 @foreach ($cliente as $v)
@@ -54,7 +55,7 @@
                     </div>
                     <label class="col-lg-2 control-label">Responsable</label>
                     <div class="col-lg-7">
-                        <div class="input-group">
+                        <div class="input-group" id="step2">
                             {!! Form::text('nombreResponsable',null,['id' => 'nombreResponsable','class'=>'form-control','readonly'=>'readonly','style' => 'width:300px']) !!}
                         </div>
                     </div>
@@ -66,13 +67,14 @@
                     <label class="col-lg-2 control-label">Fecha</label>
                     <div class="col-md-4">
                         <div class="input-group date">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <span class="input-group-addon" id="step3"><i class="fa fa-calendar"></i></span>
                             {!! Form::text('fecha_Ven',null,['class' =>'form-control']) !!}
+                            <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="input-group bootstrap-touchspin">
-                             <a type="button" class="btn btn-outline btn-primary dim" data-toggle="modal" data-target="#myModalTabla">Agregar producto</a>
+                             <a type="button" class="btn btn-outline btn-primary dim" data-toggle="modal" data-target="#myModalTabla" id="step4">Agregar producto</a>
                         </div>
                     </div>
                     <br>
@@ -175,7 +177,7 @@
 <br>
 
 <div class="modal inmodal fade" id="myModalTabla" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg" id="step5">
         <div class="modal-content animated fadeIn">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
@@ -287,6 +289,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
 
     <!-- Custom and plugin javascript -->
     <script src="js/inspinia.js"></script>
@@ -295,56 +298,110 @@
     <!-- Bootstrap Tour -->
     <script src="js/plugins/bootstrapTour/bootstrap-tour.min.js"></script>
 
-
 <script>
 
     $(document).ready(function (){
 
         // Instance the tour
-        var tour = new Tour({
+        var tour1 = new Tour({
             steps: [{
-
                     element: "#step1",
-                    title: "Title of my step",
-                    content: "Introduce new users to your product by walking them through it step by step.",
+                    title: "Ayuda",
+                    content: "Para abrir el servicio de ayuda pulse el boton con el icono de informacion 'i' para iniciar en cada panel correspondiente.",
+                    placement: "bottom",
+                    backdrop: true,
+                    backdropContainer: '#wrapper',
+                    onShown: function (tour){
+                        $('body').addClass('tour-open')
+                    },
+                    onHidden: function (tour){
+                        $('body').removeClass('tour-close')
+                    }
+                }
+            ]});
+
+        // Initialize the tour
+        tour1.init();
+
+        $('.startTour1').click(function(){
+            tour1.restart();
+
+            // Start the tour
+            // tour.start();
+        })
+
+    });
+
+</script>
+<script>
+
+    $(document).ready(function (){
+
+        // Instance the tour
+        var tour2 = new Tour({
+            steps: [{
+                    element: "#step01",
+                    title: "Selección de cliente",
+                    content: "Seleccione el cliente al cual realizará la venta, en esta lista se le muestran todos los clientes jurídicos y naturales.",
                     placement: "top"
                 },
                 {
+
                     element: "#step2",
-                    title: "Title of my step",
-                    content: "Content of my step",
-                    placement: "top",
-                    backdrop: true,
-                    backdropContainer: '#wrapper',
-                    onShown: function (tour){
-                        $('body').addClass('tour-open')
-                    },
-                    onHidden: function (tour){
-                        $('body').removeClass('tour-close')
-                    }
+                    title: "Presentación de encargado",
+                    content: "Si en el paso anterior se seleccionó un cliente jurídico, en este panel se carga el responsable de dicho cliente, si seleccionó un cliente natural, no se mostrará nada en el panel, ya que éste tipo de cliente no posee responsable.",
+                    placement: "top"
                 },
                 {
+
                     element: "#step3",
-                    title: "Title of my step",
-                    content: "Content of my step",
-                    placement: "top",
-                    backdrop: true,
-                    backdropContainer: '#wrapper',
-                    onShown: function (tour){
-                        $('body').addClass('tour-open')
-                    },
-                    onHidden: function (tour){
-                        $('body').removeClass('tour-close')
-                    }
+                    title: "Elección de fecha",
+                    content: "Elegir del calendario la fecha en la que se realiza la venta, seleccionando en primer lugar el mes, y luego el día.",
+                    placement: "top"
                 },
                 {
                     element: "#step4",
+                    title: "Agregar producto",
+                    content: "Al presionar este botón, se despliega una ventana, en la cual podemos elegir el producto que se quiere vender.",
+                    placement: "top",
+                    backdrop: true,
+                    backdropContainer: '#wrapper',
+                    onShown: function (tour){
+                        $('body').addClass('tour-open')
+                    },
+                    onHidden: function (tour){
+                        $('body').removeClass('tour-close')
+                    }
+                },
+                {
+                    element: "#step5",
+                    title: "Title of my step",
+                    content: "Content of my step",
+                    placement: "top",
+                    backdrop: true,
+                    backdropContainer: '#wrapper',
+                    onShown: function (tour){
+                        $('body').addClass('tour-open')
+                    },
+                    onHidden: function (tour){
+                        $('body').removeClass('tour-close')
+                    }
+                },
+                {
+
+                    element: "#step6",
                     title: "Title of my step",
                     content: "Introduce new users to your product by walking them through it step by step.",
                     placement: "top"
                 },
                 {
-                    element: "#step5",
+                    element: "#step7",
+                    title: "Title of my step",
+                    content: "Introduce new users to your product by walking them through it step by step.",
+                    placement: "top"
+                },
+                {
+                    element: "#step8",
                     title: "Title of my step",
                     content: "Introduce new users to your product by walking them through it step by step.",
                     placement: "top"
@@ -352,10 +409,10 @@
             ]});
 
         // Initialize the tour
-        tour.init();
+        tour2.init();
 
-        $('.startTour').click(function(){
-            tour.restart();
+        $('.startTour2').click(function(){
+            tour2.restart();
 
             // Start the tour
             // tour.start();
