@@ -4,6 +4,15 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>SICOVIMA | Industrias MADA</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Bootstrap Tour -->
+    <link href="css/plugins/bootstrapTour/bootstrap-tour.min.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 	<link href="css/animate.css" rel="stylesheet">
@@ -479,5 +488,33 @@
                 autoclose: true
             });
     </script>
+    <script>
+
+    $(document).ready(function (){
+
+        // Instance the tour
+        var tour = new Tour({
+            steps: [{
+
+                    element: "#step1",
+                    title: "Title of my step",
+                    content: "Introduce new users to your product by walking them through it step by step.",
+                    placement: "top"
+                }
+            ]});
+
+        // Initialize the tour
+        tour.init();
+
+        $('.startTour').click(function(){
+            tour.restart();
+
+            // Start the tour
+            // tour.start();
+        })
+
+    });
+
+</script>
 </body>
 </html>

@@ -9,6 +9,9 @@ use SICOVIMA\Http\Controllers\Controller;
 use SICOVIMA\departamento;
 use SICOVIMA\municipio;
 use SICOVIMA\cliente;
+use Mail;
+use DB;
+use SICOVIMA\User;
 use SICOVIMA\clienteJuridico;
 use SICOVIMA\clienteNatural;
 use SICOVIMA\correoCliente;
@@ -62,6 +65,58 @@ class ClientesController extends Controller
     public function darbajacli()
     {
       return view("Proyecto.Desarrollo.Cliente.DarBajaCli");
+    }
+
+    // public function Correo(Request $request)
+    // {
+    //     Mail::raw("Este es un mensaje",function($msj) use ($request){
+    //         $msj->subject('Este es un mensaje');
+    //         $msj->to('ingridayala_94@hotmail.com');
+    //     });
+    // }
+
+    public function correo(Request $request){
+        $usuario= User::where('email',$request['email'])->get()->first();
+
+        if(count($usuario)==1){
+          $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        $cad = "";
+        for($i=0;$i<12;$i++)
+        {
+            $cad .= substr($str,rand(0,62),1);
+        }
+
+      DB::beginTransaction();
+       DB::table('users')
+            ->where('email',$request['email'])
+            ->update([
+            'password'=>bcrypt($cad),
+            ]);
+
+        $mensaje='Su usuario es: '.$usuario->name.' Su contraseña es :'.$cad;
+
+        try {
+        Mail::raw($mensaje,function($msj) use ($request){
+            $msj->subject('Nueva contraseña en SICOVIMA');
+             try {
+            $msj->to($request['email']);
+          } catch (\Swift_RfcComplianceException $e) {
+            DB::rollback();
+            return redirect('/login')->with('error','Lo sentimos el correo no pudo ser enviado');
+          }
+        });
+      }catch (\Swift_TransportException $e) {
+        DB::rollback();
+        return redirect('/login')->with('error','Revise el acceso a internet');
+      }
+        DB::commit();
+        return redirect('/login')->with('message','Usuario y nueva contraseña enviados');
+        }
+        else{
+
+            return redirect('/login')->with('error','Ningún usuario registrado con ese correo');
+        }
+
     }
 
     /**
@@ -162,7 +217,52 @@ class ClientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tel = $request->tel;
+        $cor = $request->cor;
+        $cliente = cliente::find($id);
+
+        $cliente->nombre_Cli=$request->nombre_Cli;
+        $cliente->direccion_Cli=$request->direccion_Cli;
+        $cliente->save();
+
+        if ($cliente->tipo_Cli) {
+            $clienteJuridico = SICOVIMA\clienteJuridico::where('id_Cliente',$cliente->id)->get()->first();
+            $clienteJuridico->NIT_CJ=$request->NIT_CJ;
+            $clienteJuridico->RNC_CJ=$request->RNC_CJ;
+            $clienteJuridico->nombreResponsable_CJ=$request->nombreResponsable_CJ;
+            $clienteJuridico->save();
+        } else {
+            $clienteNatural = SICOVIMA\clienteNatural::where('id_Cliente',$cliente->id)->get()->first();
+            $clienteNatural->DUI_CN=$request->DUI_CN;
+            $clienteNatural->save();
+        }
+
+        $telefonosViejos = $cliente->telefonoCliente;
+        $correosViejos = $cliente->correoCliente;
+
+        foreach ($telefonosViejos as $telefono) {
+           $telefono->delete();
+        }
+
+        foreach ($correosViejos as $correo) {
+           $correo->delete();
+        }
+
+        for ($i=0; $i < count($tel); $i++) {
+            telefonoCliente::create([
+            'numero_TelefonoCli'=>$tel[$i],
+            'id_Cliente'=>$cliente->id,
+        ]);
+        }
+
+        for ($i=0; $i < count($cor); $i++) {
+            correoCliente::create([
+            'correo_CorreoCli'=>$cor[$i],
+            'id_Cliente'=>$cliente->id,
+        ]);
+        }
+
+        return redirect('/MostrarListaCli');
     }
 
     /**

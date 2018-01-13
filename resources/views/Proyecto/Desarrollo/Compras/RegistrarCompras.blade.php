@@ -53,9 +53,9 @@ use SICOVIMA\proveedor; ?>
                     <div class="col-md-3">
                         <div class="form-group" id="data_2">
                              {!! Form::Label('Fecha de Compra') !!}
-                            <div class="input-group date">
+                            <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                {!! Form::text('fecha_Com',null,['class'=>'form-control']) !!}
+                                {!! Form::date('fecha_Com',null,['class'=>'form-control']) !!}
                             </div>
                         </div>
                     </div>

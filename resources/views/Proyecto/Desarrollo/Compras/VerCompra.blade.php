@@ -95,7 +95,28 @@
                       <th>Sub Total</th>
                     </thead>
                     <tbody>
-
+                        <?php
+                          $total=0;
+                          $indice=0;
+                          foreach ($compra->detalleCompra as $key => $detalle):
+                      ?>
+                      <?php
+                          $mat=SICOVIMA\materiaPrima::find($detalle->id_MateriaPrima);
+                          $subtotal=($detalle->subtotal_DCom)*$detalle->cant_DCom;
+                          $cadena='modificarDetalleMP('.$indice.');';
+                          $icd="cd".$indice;
+                      ?>
+                          <tr>
+                             <td style = "width:10%" id="cd{{$indice}}">{{$detalle->cant_DCom}}</td>
+                             <td style = "width:40%">{{$mat->nombre_MP." ".$mat->color_MP}}</td>
+                             <td style = "width:10%" id="ct{{$indice}}">{{$detalle->subtotal_DCom}}</td>
+                             <td style = "width:10%" id="st{{$indice}}">{{$subtotal}}</td>
+                          </tr>
+                      <?php
+                          $total=$total+$subtotal;
+                          $indice++;
+                          endforeach
+                      ?>
                     </tbody>
                 </table>
                 <div class="row">
@@ -106,7 +127,7 @@
                     <div class="col-lg-3">
                         <div class="input-group m-b">
                             <span class="input-group-addon">$</span>
-                            {!! Form::number('total_Com',$compra->total_Com,['class'=>'touchspin2 form-control','step'=>'any', 'id'=>'total_Com','readonly'=>'readonly','step'=>'.01']) !!}
+                            {!! Form::number('total_Com',$total,['class'=>'touchspin2 form-control','step'=>'any', 'id'=>'total_Com','readonly'=>'readonly','step'=>'.01']) !!}
                         </div>
                     </div>
                 </div>

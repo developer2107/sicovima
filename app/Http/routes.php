@@ -63,6 +63,7 @@ Route::match(['get','post'],'/ModificarCli/{id}','ClientesController@Modificar')
 Route::get('/DarBajaProv','ProveedoresController@darbajaprov');
 Route::get('/DarBajaCli','ClientesController@darbajacli');
 
+Route::match(['get','post'],'/correo','ClientesController@Correo');
 
 Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
 Route::Resource('/RegistrarCompra','CompraController');
@@ -78,6 +79,7 @@ Route::Resource('/RegistroMateriaP','MateriaPrimaController');
 Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambio');
 
 Route::Resource('Bitacora','BitacoraController');
+Route::Resource('Tour','BitacoraController@Tour');
 Route::match(['get','post'],'/ModificarVenta/{id}','VentasController@Modificar');
 Route::match(['get','post'],'/VerVenta/{id}','VentasController@Ver');
 Route::match(['get','post'],'/VerInventarioPT/{id}','InventarioPTController@Ver');
