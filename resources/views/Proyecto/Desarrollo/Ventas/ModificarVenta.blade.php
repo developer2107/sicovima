@@ -66,7 +66,7 @@
                             <?php   $dato = explode("-",(String)$venta->fecha_Ven);
                                     $fecha = $dato[2]."/".$dato[1]."/".$dato[0];
                             ?>
-                            {!! Form::text('fecha_Ven',$fecha,['class' =>'form-control']) !!}
+                            {!! Form::text('fecha_Ven',$fecha,['class' =>'form-control','readonly'=>'readonly']) !!}
 
                         </div>
                     </div>

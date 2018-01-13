@@ -65,10 +65,10 @@
                     <div class="col-md-1">
                     </div>
                     <label class="col-lg-2 control-label">Fecha</label>
-                    <div class="col-md-4">
+                    <div class="col-md-4" id="step3">
                         <div class="input-group date">
-                            <span class="input-group-addon" id="step3"><i class="fa fa-calendar"></i></span>
-                            {!! Form::text('fecha_Ven',null,['class' =>'form-control']) !!}
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            {!! Form::text('fecha_Ven',null,['class' =>'form-control','readonly'=>'readonly']) !!}
                             <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
                         </div>
                     </div>
