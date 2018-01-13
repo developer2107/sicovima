@@ -1,3 +1,4 @@
+var contadorTelefono=0;
 $(document).on('ready',function(){
 
 	$('#departamentos').on('change',function(e){
@@ -26,8 +27,8 @@ $(document).on('ready',function(){
 
 		var telCliente ='';
 		var telefono = $("#idTelefonos");
-		var cadena="<div class='row'><div class='form-group'><label class='col-lg-3 control-label'></label><div class='col-lg-4' ><input type='text' class='form-control' data-mask='(+999) 9999-9999' placeholder='(+      )         -     ' style='width:140px' name='tel[]' value='"+telCliente+"'/></div></div></div><br>";
-
+		var cadena="<div class='row' id='r"+contadorTelefono+"'><div class='form-group'><label class='col-lg-3 control-label'></label><div class='col-lg-4' ><input type='text' class='form-control' data-mask='(+999) 9999-9999' placeholder='(+      )         -     ' style='width:140px' name='tel[]' value='"+telCliente+"'/></div><div class='col-lg-1'><button class='btn btn-default  dim' type='button' onclick='deleteTelefono("+contadorTelefono+")' ><i class='fa fa-minus'></i></button></div></div><br></div>";
+		contadorTelefono=contadorTelefono+1;
 		telefono.append(cadena);
 
 	});
@@ -53,3 +54,9 @@ $(document).on('ready',function(){
 	// });
 
 });
+
+function deleteTelefono(contador){
+	console.log(contador);
+	$("#r"+contador).remove();
+
+}

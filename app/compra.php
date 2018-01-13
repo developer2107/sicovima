@@ -15,4 +15,8 @@ class compra extends Model
        return $this->belongsTo('\SICOVIMA\proveedor','id_Proveedor');
     }
 
+    public function detalleCompra(){
+	return $this->hasMany('\SICOVIMA\detalleCompra','id_Compra');
+}
+
 }

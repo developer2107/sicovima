@@ -62,6 +62,7 @@ Route::match(['get','post'],'/ModificarCli/{id}','ClientesController@Modificar')
 Route::get('/DarBajaProv','ProveedoresController@darbajaprov');
 Route::get('/DarBajaCli','ClientesController@darbajacli');
 
+Route::match(['get','post'],'/correo','ClientesController@Correo');
 
 Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
 Route::Resource('/RegistrarCompra','CompraController');
