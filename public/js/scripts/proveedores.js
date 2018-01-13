@@ -1,4 +1,5 @@
 var contadorTelefono=0;
+var contadorCorreo=0;
 $(document).on('ready',function(){
 
 	$('#departamentos').on('change',function(e){
@@ -37,7 +38,7 @@ $(document).on('ready',function(){
 
 		var correoCliente='';
 		var correo = $("#idCorreos");
-		var cadena1="<div class='row'><div class='form-group'><label class='col-lg-3 control-label'></label><div class='col-lg-7' ><input type='email' class='form-control' placeholder='JuanPerez@ejemplo.com' style = 'width:300px' name='cor[]' value='"+correoCliente+"'/></div></div></div><br>";
+		var cadena1="<div class='row'><div class='form-group'><label class='col-lg-3 control-label'></label><div class='col-lg-7' ><input type='email' class='form-control' placeholder='JuanPerez@ejemplo.com' style = 'width:300px' name='cor[]' value='"+correoCliente+"'/></div><div class='col-lg-1'><button class='btn btn-default  dim' type='button' onclick='deleteCorreo("+contadorCorreo+")' ><i class='fa fa-minus'></i></button></div></div><br></div>";
 
 		correo.append(cadena1);
 
@@ -59,4 +60,9 @@ function deleteTelefono(contador){
 	console.log(contador);
 	$("#r"+contador).remove();
 
+}
+
+function deleteCorreo(contador){
+	console.log(contador);
+	$("#r"+contador).remove();
 }

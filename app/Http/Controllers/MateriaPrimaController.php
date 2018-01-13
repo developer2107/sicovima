@@ -108,18 +108,15 @@ class MateriaPrimaController extends Controller
     public function update(Request $request, $id)
     {
         $materiaPrimaM = materiaPrima::find($id);
-        $materiaPrimaM->delete();
 
-        $materiaPrima = \SICOVIMA\materiaPrima::create([
-            'nombre_MP'=>$request['nombre_MP'],
-            'tipo_MP'=>$request['tipo_MP'],
-            'color_MP'=>$request['color_MP'],
-            'precio_MP'=>$request['precio_MP'],
-            'unidadMedida_MP'=>$request['unidadMedida_MP'],
-            'estado_MP'=>true,
-        ]);
+        $materiaPrimaM->nombre_MP=$request->nombre_MP;
+        $materiaPrimaM->tipo_MP=$request->tipo_MP;
+        $materiaPrimaM->color_MP=$request->color_MP;
+        $materiaPrimaM->precio_MP=$request->precio_MP;
+        $materiaPrimaM->unidadMedida_MP=$request->unidadMedida_MP;
+        $materiaPrimaM->save();
 
-        return redirect('/ControlMateriaPrima')->with('compra',$compra);
+        return redirect('/ControlMateriaPrima');
     }
 
     /**

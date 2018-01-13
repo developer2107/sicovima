@@ -37,7 +37,17 @@
                 <form class="form-horizontal">
 
                     <br>
-                    
+                    <br>
+                    <div class="row">
+                      <div class="col-md-1">
+                      </div>
+                        <label class="col-lg-3 control-label">Nombre</label>
+                        <div class="col-md-6">
+                          <!-- <div class="input-group"> -->
+                            {!! Form::text('nombre_MP',$materiaPrima->nombre_MP,['class'=>'form-control','readonly'=>'readonly'])!!}
+                          <!-- </div> -->
+                        </div>
+                    </div>
                     <br>
                     <div class="row">
                       <div class="col-md-1">
@@ -57,17 +67,6 @@
                         <div class="col-md-8">
                           <div class="input-group">
                             {!! Form::text('tipo_MP',$materiaPrima->tipo_MP,['class'=>'form-control','readonly'=>'readonly'])!!}
-                          </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                      <div class="col-md-1">
-                      </div>
-                        <label class="col-lg-3 control-label">Nombre de materia Prima</label>
-                        <div class="col-md-8">
-                          <div class="input-group">
-                            {!! Form::text('nombre_MP',$materiaPrima->nombre_MP,['class'=>'form-control','readonly'=>'readonly'])!!}
                           </div>
                         </div>
                     </div>
