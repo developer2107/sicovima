@@ -48,7 +48,10 @@ public static function numeroTelefono($id_Proveedor){
        }else{
          return "";
        }
+       }
+  public function proveedorTipoMercaderia(){
+       return $this->hasMany('\SICOVIMA\proveedorTipoMercaderia','id_Proveedor');
+       }
 
-}
 
 }

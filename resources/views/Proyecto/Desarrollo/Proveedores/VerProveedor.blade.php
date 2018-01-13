@@ -41,7 +41,7 @@
                           <label class="col-lg-3 control-label">Nombre</label>
                           <div class="col-md-7">
                             <!-- <div class="input-group"> -->
-                             {!! Form::text('nombre_Prov',$proveedor->nombre_Prov,['class'=>'form-control','id'=>'nombre_Prov','readonly'=>'readonly']) !!} 
+                             {!! Form::text('nombre_Prov',$proveedor->nombre_Prov,['class'=>'form-control','id'=>'nombre_Prov','readonly'=>'readonly']) !!}
                             <!-- </div> -->
                           </div>
                       </div>
@@ -52,7 +52,7 @@
                           <label class="col-lg-3 control-label">NIT</label>
                           <div class="col-md-8">
                             <div class="input-group">
-                              {!! Form::text('NIT_Prov',$proveedor->NIT_Prov,['class'=>'form-control','id'=>'nombre_NIT','readonly'=>'readonly']) !!} 
+                              {!! Form::text('NIT_Prov',$proveedor->NIT_Prov,['class'=>'form-control','id'=>'nombre_NIT','readonly'=>'readonly']) !!}
                             </div>
                           </div>
                       </div>
@@ -63,8 +63,14 @@
                           <label class="col-lg-3 control-label">Tipo de Mercadería</label>
                           <div class="col-md-8">
                             <div class="input-group">
-                              {!! Form::text('tipoMercaderia_Prov',$proveedor->tipoMercaderia_Prov,['class'=>'form-control','id'=>'tipoMercaderia_Prov','readonly'=>'readonly']) !!} 
-                            </div>
+                              @foreach ($proveedor->proveedorTipoMercaderia as $prtm)
+                                {!! Form::text('tipoMercaderia_Prov',$prtm->tipoMercaderia->nombre_TM,['class'=>'form-control','id'=>'tipoMercaderia_Prov','readonly'=>'readonly']) !!}
+                              @endforeach
+                              @if (count($proveedor->proveedorTipoMercaderia )==0)
+                                No agregado
+                              @endif
+                              </div>
+                              <br>
                           </div>
                       </div>
                       <br>
@@ -73,14 +79,17 @@
                         </div>
                           <label class="col-lg-3 control-label">Teléfono</label>
                           <div class="col-md-8">
-                           <?php 
+                           <?php
                                  $telefonos=$proveedor->telefonoProveedor;
                             ?>
                             <?php foreach ($telefonos as $telefono): ?>
                             <div class="input-group">
-                              {!! Form::text('numero_TelefonoProv',$telefono->numero_TelefonoProv,['class'=>'form-control','id'=>'numero_TelefonoProv','readonly'=>'readonly']) !!} 
+                              {!! Form::text('numero_TelefonoProv',$telefono->numero_TelefonoProv,['class'=>'form-control','id'=>'numero_TelefonoProv','readonly'=>'readonly']) !!}
                             </div>
-                            <?php endforeach ?> 
+                            <?php endforeach ?>
+                            @if (count($telefonos )==0)
+                              No agregado
+                            @endif
                           </div>
                       </div>
                       <br>
@@ -89,16 +98,20 @@
                         </div>
                           <label class="col-lg-3 control-label">Correo Electronico</label>
                           <div class="col-md-7">
-                          <?php 
+                          <?php
                             $correos=$proveedor->correoProveedor;
                           ?>
                           <?php foreach ($correos as $correo): ?>
                             <!-- <div class="input-group"> -->
-                               {!! Form::text('correo_CorreoProv',$correo->correo_CorreoProv,['class'=>'form-control','id'=>'correo_CorreoProv','readonly'=>'readonly']) !!} 
+                               {!! Form::text('correo_CorreoProv',$correo->correo_CorreoProv,['class'=>'form-control','id'=>'correo_CorreoProv','readonly'=>'readonly']) !!}
                             <!-- </div> -->
-                          <?php endforeach ?> 
+                          <?php endforeach ?>
+                          @if (count($correos )==0)
+                            No agregado
+                          @endif
                           </div>
-                      </div>                
+
+                      </div>
                       <br>
                       <div class="row">
                         <div class="col-md-1">
@@ -106,13 +119,13 @@
                           <label class="col-lg-3 control-label">Dirección</label>
                           <div class="col-md-7">
                             <!-- <div class="input-group"> -->
-                              {!! Form::text('direccion_Prov',$proveedor->direccion_Prov,['class'=>'form-control','id'=>'direccion_Prov','readonly'=>'readonly']) !!} 
+                              {!! Form::text('direccion_Prov',$proveedor->direccion_Prov,['class'=>'form-control','id'=>'direccion_Prov','readonly'=>'readonly']) !!}
                             <!-- </div> -->
                           </div>
                       </div>
                       <br>
                       <div class="row">
-                       <?php 
+                       <?php
                          $municipio = SICOVIMA\municipio::find($proveedor->id_Municipio);
                          $departamento = SICOVIMA\departamento::find($municipio->id_Departamento);
                        ?>
@@ -121,7 +134,7 @@
                           <label class="col-lg-3 control-label">Departamento</label>
                           <div class="col-md-8">
                             <div class="input-group">
-                              {!! Form::text('nombre_Depa',$departamento->nombre_Depa,['class'=>'form-control','id'=>'nombre_Depa','readonly'=>'readonly']) !!} 
+                              {!! Form::text('nombre_Depa',$departamento->nombre_Depa,['class'=>'form-control','id'=>'nombre_Depa','readonly'=>'readonly']) !!}
                             </div>
                           </div>
                       </div>
