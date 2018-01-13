@@ -71,33 +71,22 @@
                                         <tbody>
                                           @foreach($inventarioMateriaPrima as $inventarioMateriaPrima)
                                           {{-- @foreach($detallePedido as $detallePedido) --}}
-                                          @if ($inventarioMateriaPrima->tipoMovimiento_IMP == 1)
-                                            @if ($inventarioMateriaPrima->existencias_IMP >= 1)
-
-
                                         <tr>
                                           <td>{{$inventarioMateriaPrima->materiaPrima->id}}</td>
                                           <td>{{$inventarioMateriaPrima->materiaPrima->nombre_MP}}</td>
-                                            <td>{{$inventarioMateriaPrima->existencias_IMP}}</td>
+                                            <td>{{$inventarioMateriaPrima->nuevaExistencia_IMP}}</td>
                                             <td>
                                               <input type="hidden" name="id" value='{{$inventarioMateriaPrima->materiaPrima->id}}'/>
                                               <input type="hidden" name="materiaPrima" value='{{$inventarioMateriaPrima->materiaPrima->nombre_MP}}'/>
-                                              <input type="hidden" name="existencia" value='{{$inventarioMateriaPrima->existencias_IMP}}'/>
+                                              <input type="hidden" name="existencia" value='{{$inventarioMateriaPrima->nuevaExistencia_IMP}}'/>
                                               <input type="hidden" name="precio" value='{{$inventarioMateriaPrima->materiaPrima->precio_MP}}'/>
                                               <input type="hidden" name="cantidad_IMP" value='{{$inventarioMateriaPrima->cantidad_IMP}}'/>
-                                              {{-- <input type="hidden" name="id" value='{{$detallePedido->producto->id}}'/>
-                                              <input type="hidden" name="materiaPrima" value='{{$inventarioMateriaPrima->materiaPrima->nombre_MP}}'/>
-                                              <input type="hidden" name="existencia" value='{{$detallePedido->cantidad_DPed}}'/>
-                                              <input type="hidden" name="subtotal" value='{{$detallePedido->subtotal_DPed}}'/>
-                                              <input type="hidden" name="prueba" value="100"/> --}}
                                               <a class="btn btn-info btn-circle" type="button" id="AddCant" data-dismiss="modal" data-toggle="modal" data-target="#myModal77">
                                               <i class="fa fa-check"></i>
                                               </a>
                                             </td>
                                         </tr>
                                       {{-- @endforeach --}}
-                                      @endif
-                                      @endif
                                       @endforeach
                                         </tbody>
                                     </table>
@@ -168,8 +157,8 @@
                               {{-- AQUI --}}
                               <select name="tipo_MP" id="tipo_MP" onchange="ShowSelected();">
                               <option value="" disabled selected >Seleccione una Materia Prima:</option>
-                              @foreach($inventarioMateriaPrima as $inventarioMateriaPrima)
-                                  <option value='{{$inventarioMateriaPrima->id}}'>{{$inventarioMateriaPrima->materiaPrima->nombre_MP}}
+                              @foreach($materiaPrima as $materiaPrima)
+                                  <option value='{{$materiaPrima->id}}'>{{$materiaPrima->nombre_MP}}
                                   @endforeach
 
                             </select>
@@ -177,28 +166,10 @@
 
                         </div>
                     </div>
-                    <div class="form-group"><label class="col-lg-3 control-label">Precio</label>
-                        <div class="col-lg-4">
-                            <div class="input-group m-b">
-                                <span class="input-group-addon">$</span>
-                                {!! Form::number('precio_MP',null,['class'=>'touchspin2 form-control','step'=>'any']) !!}
-                                <!-- Este es no editable -->
-                            </div>
-                       </div>
-                    </div>
                     <div class="form-group"><label class="col-lg-3 control-label">Cantidad</label>
                         <div class="col-lg-2">
                             {!! Form::number('cant_DCom',null,['class'=>'form-control']) !!}
                         </div>
-                    </div>
-
-                    <div class="form-group"><label class="col-lg-3 control-label">Subtotal</label>
-                        <div class="col-lg-4">
-                            <div class="input-group m-b">
-                                <span class="input-group-addon">$</span>
-                                {!! Form::number('subTotal_DCom',null,['class'=>'touchspin2 form-control','step'=>'any']) !!}
-                            </div>
-                       </div>
                     </div>
                 </form>
             </div>

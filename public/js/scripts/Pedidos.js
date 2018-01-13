@@ -51,19 +51,18 @@ $(document).on('ready',function(){
     "<input  type='hidden' name='estilo_p' value='"+ estilo_p+"'/>" +
     "<input  type='hidden' name='color_p' value='"+ color_p+"'/>" +
     "<input  type='hidden' name='descripcion_p' value='"+ descripcion_p+"'/>" +
-    "<a class='btn btn-success btn-circle' type='button' id='AddCant' data-toggle='modal' data-target='#myModal8'><i class='fa fa-pencil-square-o'></i></a>"+
+    "<a class='btn btn-success btn-circle' type='button' id='AddCant' data-toggle='modal' data-target='#myModalTabla'><i class='fa fa-pencil-square-o'></i></a>"+
     "</td>"+
     "</tr>";
 
       tabla_p.append(datos_p);
 
-      $("#modalTablaInicio").val("Agregar");
-
-
   });
 
-  $('#modalTablaInicio').on('click', '#AddCant',function(e){
-    // alert("jajajajaja");
+  $('#Prueba').on('click', '#AddCant',function(e){
+    alert("hola");
+    var id_Pr = $("input#id").val();
+    alert(id_Pr);
   });
 
 });

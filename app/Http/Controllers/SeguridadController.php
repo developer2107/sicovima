@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 
+use SICOVIMA\users;
+
 class SeguridadController extends Controller
 {
     /**
@@ -28,7 +30,7 @@ class SeguridadController extends Controller
         return view("Proyecto.Desarrollo.Seguridad.ModificarUsuario");
     }
 
-    public function Registrar()
+    public function index()
     {
         return view("Proyecto.Desarrollo.Seguridad.RegistrarUsuario");
     }
@@ -40,7 +42,7 @@ class SeguridadController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -51,7 +53,24 @@ class SeguridadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $name = $request['name'];
+      $tipo_Usuario = $request['radioInline'];
+      $nameUsers = $request['nameUsers'];
+      $email = $request['email'];
+      $password = $request['password'];
+      $fecha= date('d-m-Y');
+
+      $Usuario = \SICOVIMA\Users::create([
+        'name'=> $name,
+        'email'=> $email,
+        'password' => bcrypt($password),
+        'tipo' => $tipo_Usuario,
+        'nombreUsuario_Usu' => $nameUsers,
+        'fechaRegistro_Usu' => $fecha,
+      ]);
+
+      dd($Usuario);
+
     }
 
     /**

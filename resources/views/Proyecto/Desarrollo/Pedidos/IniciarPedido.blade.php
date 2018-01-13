@@ -129,8 +129,11 @@ use SICOVIMA\producto;
                 </div>
 
                 <div class="col-xs-2">
-                    <div class="input-group bootstrap-touchspin">
-                      <a type="button" class="btn btn-outline btn-primary dim" data-toggle="modal" data-target="#myModalTabla">Agregar Materia Prima</a>
+                    <div class="input-group bootstrap-touchspin" id="Prueba">
+                      
+                      <input type="hidden" name="id" value='100'/>
+                      <a type="button" class="btn btn-outline btn-primary dim" id="AddCant" data-toggle="modal" data-target="#myModalTabla">Agregar Materia Prima</a>
+
                  </div>
                     </div>
                 </div>

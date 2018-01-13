@@ -30,6 +30,6 @@ class ProveedorTipoMercaderia extends Migration
      */
      public function down()
      {
-         Schema::drop('detalleProducto');
+         Schema::drop('proveedorTipoMercaderia');
      }
 }
