@@ -1,3 +1,8 @@
+<?php
+use SICOVIMA\producto;
+
+ ?>
+
 @extends('layouts.MenuAdministrador')
 
 @section('content')
@@ -162,74 +167,6 @@
 
 
 @include('Proyecto.Desarrollo.Pedidos.Form.IniciarPedido.modalDetalle')
-
-<div class="modal inmodal" id="myModal8" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content animated fadeIn">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <i class="fa fa-clipboard modal-icon"></i>
-                <h4 class="modal-title">Materia Prima</h4>
-                <small>Agregue la materia prima necesaria para su pedido</small>
-            </div>
-
-
-            <div class="modal-body">
-                 <div class="ibox-content">
-                <form class="form-horizontal">
-                    <br>
-
-                    <div class="form-group"><label class="col-lg-3 control-label">Tipo</label>
-
-                        <div class="col-lg-7">
-                            {!! Form::select('tipo_MP', ['1' => 'Tela', '2' => 'Hilo', '3' => 'Zipper', '4' => 'Boton', '5' => 'Remache'],'Seleccionar' ,['class' => 'chosen-select','data-placeholder'=>'Seleccionar','style' => 'width:300px','tabindex' => '2']) !!}
-                        </div>
-                    </div>
-                    <div class="form-group"><label class="col-lg-3 control-label">Materia Prima</label>
-
-                        <div class="col-lg-9">
-
-                            <div class="input-group">
-                            	{!! Form::select('nombre_MP', ['1' => 'Denim'],'Seleccionar' ,['class' => 'chosen-select','data-placeholder'=>'Seleccionar','style' => 'width:300px','tabindex' => '2']) !!}
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="form-group"><label class="col-lg-3 control-label">Precio</label>
-                        <div class="col-lg-4">
-                            <div class="input-group m-b">
-                                <span class="input-group-addon">$</span>
-                                {!! Form::number('precio_MP',null,['class'=>'touchspin2 form-control','step'=>'any']) !!}
-                                <!-- Este es no editable -->
-                            </div>
-                       </div>
-                    </div>
-                    <div class="form-group"><label class="col-lg-3 control-label">Cantidad</label>
-                        <div class="col-lg-2">
-                            {!! Form::number('cant_DCom',null,['class'=>'form-control']) !!}
-                        </div>
-                    </div>
-
-                    <div class="form-group"><label class="col-lg-3 control-label">Subtotal</label>
-                        <div class="col-lg-4">
-                            <div class="input-group m-b">
-                                <span class="input-group-addon">$</span>
-                                {!! Form::number('subTotal_DCom',null,['class'=>'touchspin2 form-control','step'=>'any']) !!}
-                            </div>
-                       </div>
-                    </div>
-                </form>
-            </div>
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Agregar</button>
-                <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="modal inmodal" id="myModal9" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">

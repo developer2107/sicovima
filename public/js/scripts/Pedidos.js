@@ -1,3 +1,72 @@
+// function ShowSelected()
+// {
+//   var select = document.getElementById("addLocationIdReq"); /*Obtener el SELECT */
+// var valor = select.options[select .selectedIndex].value; /* Obtener el valor */
+//     alert(valor);
+// }
+
+// $(document).ready(function(){
+// var id = $('#tipo_MP').val();    //#addLocationIdReq es el identificador
+//                                           // de tu elemento
+// alert(id);
+// });
+
+jQuery(document).ready(function(){
+
+    jQuery.getScript( "//harvesthq.github.io/chosen/chosen.jquery.js" )
+        .done(function( script, textStatus ) {
+            jQuery(".chosen1").chosen();
+            jQuery(".chosen2").chosen({max_selected_options: 2});
+            jQuery(".chosen2").bind("chosen:maxselected", function () {alert("Máximo número de elementos seleccionado")});
+            jQuery(".chosen3").chosen({allow_single_deselect: true, disable_search_threshold: 100});
+        })
+        .fail(function( jqxhr, settings, exception ) {
+             alert("Error");
+    });
+
+});
+
+$(document).on('ready',function(){
+  $('#tablaDetallePedido').on('click','#AddCant',function(e){
+    var tabla_p =$('#modalTablaInicio');
+    $("#limpio").empty();
+    var id_p = $(this).parents('tr').find('input:eq(0)').val();
+    var cantidad_p = $(this).parents('tr').find('input:eq(1)').val();
+    var tipo_p = $(this).parents('tr').find('input:eq(2)').val();
+    var talla_p = $(this).parents('tr').find('input:eq(3)').val();
+    var estilo_p = $(this).parents('tr').find('input:eq(4)').val();
+    var color_p = $(this).parents('tr').find('input:eq(5)').val();
+    var descripcion_p = $(this).parents('tr').find('input:eq(6)').val();
+
+    var datos_p = "<tr>"+
+    "<td>"+ cantidad_p +"</td>"+
+    "<td>"+ talla_p +"</td>"+
+    "<td>"+ estilo_p +"</td>"+
+    "<td>"+ color_p +"</td>"+
+    "<td>"+ descripcion_p +"</td>"+
+    "<td>"+ "<input  type='hidden' name='idP' value='"+id_p+"'/>" +
+    "<input  type='hidden' name='cantidad' value='"+cantidad_p+"'/>" +
+    "<input type='hidden' name='tipo_p' value='"+tipo_p+"'/>" +
+    "<input  type='hidden' name='talla_p'value='"+talla_p+"'/>" +
+    "<input  type='hidden' name='estilo_p' value='"+ estilo_p+"'/>" +
+    "<input  type='hidden' name='color_p' value='"+ color_p+"'/>" +
+    "<input  type='hidden' name='descripcion_p' value='"+ descripcion_p+"'/>" +
+    "<a class='btn btn-success btn-circle' type='button' id='AddCant' data-toggle='modal' data-target='#myModal8'><i class='fa fa-pencil-square-o'></i></a>"+
+    "</td>"+
+    "</tr>";
+
+      tabla_p.append(datos_p);
+
+      $("#modalTablaInicio").val("Agregar");
+
+
+  });
+
+  $('#modalTablaInicio').on('click', '#AddCant',function(e){
+    // alert("jajajajaja");
+  });
+
+});
 
 $(document).on('ready',function(){
   var existencia_i;
@@ -11,7 +80,6 @@ $(document).on('ready',function(){
     materiaPrima_i=$(this).parents('tr').find('input:eq(1)').val();
     existencia_i=$(this).parents('tr').find('input:eq(2)').val();
     subtotal_i=$(this).parents('tr').find('input:eq(3)').val();
-    alert(existencia);
     $("#agregarPedidoIniciado").val("Agregar");
     $("#cantidad").val("");
 
@@ -33,7 +101,6 @@ $(document).on('ready',function(){
 			"<td>"+ existencia_i +"</td>"+
 			"<td>"+ cantidad +"</td>"+
 			"<td>"+ subtotal.toFixed(2) +"</td>"+
-			"<td>"+
       "<td>"+ "<input  type='hidden' name='idI[]' value='"+id_i+"'/>" +
       "<input  type='hidden' name='nuevaexistencia[]' value='"+existencia+"'/>" +
 			"<input type='hidden' name='cantidadI[]' value='"+cantidad+"'/>" +
@@ -46,7 +113,7 @@ $(document).on('ready',function(){
 			tabla.append(datosinicio);
 			$("#cantidad").val("");
 			$("#costo").val(total.toFixed(2));
-      
+
       alert(materiaPrimaAgregada.val());
 
 			//$('#myModal6').modal('hide');
@@ -63,19 +130,7 @@ $(document).on('ready',function(){
 
 		};
 		}else{
-			var total=parseFloat($("#costo").val());
-			var cantidad=$("#cantidad").val();
-			var subtotal=(parseFloat(costog)*parseFloat(cantidad));
-			console.log(indiceg+costog);
-			$('#cd'+indiceg).text(cantidad);
-			$('#st'+indiceg).text(subtotal);
-			$('#gn'+indiceg).text(gananciau);
-			$('#cdDV'+indiceg).val(cantidad);
-			$('#gnDV'+indiceg).val(gananciau);
-			total=total-subtotalg;
-			total=total+subtotal;
-			console.log(subtotalg);
-			$('#totalVenta').val(total.toFixed(2));
+
 		}
 
 

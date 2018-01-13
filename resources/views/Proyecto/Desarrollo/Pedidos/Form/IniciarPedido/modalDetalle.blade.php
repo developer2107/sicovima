@@ -13,7 +13,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="modalTablaInicio">
                         <thead>
                         <tr>
                             <th>Cantidad</th>
@@ -24,18 +24,7 @@
                             <th>Accion</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>5</td>
-                            <td>S</td>
-                            <td>Hombre</td>
-                            <td>Azul</td>
-                            <td>Acampanado</td>
-                            <td>
-                                <a class="btn btn-success btn-circle" type="button" data-toggle="modal" data-target="#myModal8"><i class="fa fa-pencil-square-o"></i>
-                                </a>
-                            </td>
-                        </tr>
+                        <tbody id="limpio">
 
                         </tbody>
                     </table>
@@ -44,7 +33,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+                <a type="button" class="btn btn-white" data-dismiss="modal" id="cerrarMT" >Cerrar</a>
             </div>
         </div>
     </div>
@@ -150,6 +139,75 @@
             <div class="modal-footer">
                 <input class="btn btn-primary" name="agregarPedidoIniciado" id="agregarPedidoIniciado" type="button" value="Agregar" data-dismiss="modal"/>
                 <button type="button" class="btn btn-white" data-dismiss="modal" id="cerrarM">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="myModal8" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <i class="fa fa-clipboard modal-icon"></i>
+                <h4 class="modal-title">Materia Prima</h4>
+                <small>Agregue la materia prima necesaria para su pedido</small>
+            </div>
+
+
+            <div class="modal-body">
+                 <div class="ibox-content">
+                <form class="form-horizontal">
+                    <br>
+
+                    <div class="form-group"><label class="col-lg-3 control-label">Materia Prima</label>
+
+                        <div class="col-lg-9">
+
+                            <div class="input-group">
+                              {{-- AQUI --}}
+                              <select name="tipo_MP" id="tipo_MP" onchange="ShowSelected();">
+                              <option value="" disabled selected >Seleccione una Materia Prima:</option>
+                              @foreach($inventarioMateriaPrima as $inventarioMateriaPrima)
+                                  <option value='{{$inventarioMateriaPrima->id}}'>{{$inventarioMateriaPrima->materiaPrima->nombre_MP}}
+                                  @endforeach
+
+                            </select>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-lg-3 control-label">Precio</label>
+                        <div class="col-lg-4">
+                            <div class="input-group m-b">
+                                <span class="input-group-addon">$</span>
+                                {!! Form::number('precio_MP',null,['class'=>'touchspin2 form-control','step'=>'any']) !!}
+                                <!-- Este es no editable -->
+                            </div>
+                       </div>
+                    </div>
+                    <div class="form-group"><label class="col-lg-3 control-label">Cantidad</label>
+                        <div class="col-lg-2">
+                            {!! Form::number('cant_DCom',null,['class'=>'form-control']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group"><label class="col-lg-3 control-label">Subtotal</label>
+                        <div class="col-lg-4">
+                            <div class="input-group m-b">
+                                <span class="input-group-addon">$</span>
+                                {!! Form::number('subTotal_DCom',null,['class'=>'touchspin2 form-control','step'=>'any']) !!}
+                            </div>
+                       </div>
+                    </div>
+                </form>
+            </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Agregar</button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
