@@ -43,7 +43,7 @@
                         <label class="col-lg-3 control-label">Tipo</label>
                         <div class="col-md-8">
                           <div class="input-group">
-                            {!! Form::text('tipo_MP',null,['class'=>'form-control','id' => 'tipo_MP'])!!}
+                            {!! Form::select('tipo_MP',\SICOVIMA\materiaPrima::arrayTipoMercaderia(),null,['placeholder'=>'Seleccionar Tipo de Materia Prima','id' => 'tipoMercaderia_Prov','class'=>'chosen-select','style'=>'width:300px']) !!}
                           </div>
                         </div>
                     </div>

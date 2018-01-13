@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoMercaderiasTable extends Migration
+class TipoMercaderia extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateTipoMercaderiasTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_mercaderias', function (Blueprint $table) {
+        Schema::create('tipoMercaderia', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre_TM');
             $table->boolean('estado_TM');
@@ -27,6 +27,6 @@ class CreateTipoMercaderiasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tipo_mercaderias');
+        Schema::drop('tipoMercaderia');
     }
 }

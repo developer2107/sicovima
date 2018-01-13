@@ -55,7 +55,8 @@
                                     <div class="form-group"><label class="col-lg-3 control-label">Tipo </label>
 
                                         <div class="col-lg-5">
-                                          {!! Form::text('tipo_MP',null,['id' => 'tipo_MP','class' =>'form-control']) !!}
+                                          {!! Form::select('tipo_MP',\SICOVIMA\materiaPrima::arrayTipoMercaderia(),'',['placeholder'=>'Seleccionar Tipo de Materia Prima','id' => 'tipoMercaderia_Prov','class'=>'chosen-select','style'=>'width:300px']) !!}
+
                                         </div>
                                     </div>
                                     <div class="form-group"><label class="col-lg-3 control-label">Color
@@ -81,7 +82,7 @@
 
                             </div>
                             <div class="form-group"></div>
-                        
+
                         <div class="col-sm-5">
                         {!! Form::submit('Registrar',['class'=>'btn btn-outline btn-primary dim']) !!}
                         </div>

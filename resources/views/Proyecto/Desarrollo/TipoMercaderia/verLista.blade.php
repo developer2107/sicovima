@@ -4,13 +4,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-sm-4">
-    <h2>Lista de Clientes</h2>
+    <h2>Lista de Tipo de Mercadería</h2>
     <ol class="breadcrumb">
       <li>
-        <a href="index.html">Clientes</a>
+        <a href="index.html">Tipo de Mercadería</a>
       </li>
       <li class="active">
-        <strong>Lista de Clientes</strong>
+        <strong>Lista de Tipo de Mercadería</strong>
       </li>
     </ol>
     <input class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#Modal" type="button" value="Agregar" onclick="limpiarTM()"/>
