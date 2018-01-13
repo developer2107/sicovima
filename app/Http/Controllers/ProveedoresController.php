@@ -29,10 +29,16 @@ class ProveedoresController extends Controller
 
     public function Mostrar()
     {
-      $proveedor = proveedor::all();
+      $proveedor = proveedor::orderby('nombre_Prov')->where('estado_Prov',1)->get();
 
       return view("Proyecto.Desarrollo.Proveedores.MostrarListaProv")->with('proveedor', $proveedor);//
    }
+
+   public function MostrarPI()
+    {
+      $proveedor = proveedor::orderby('nombre_Prov')->where('estado_Prov',0)->get();
+      return view("Proyecto.Desarrollo.Proveedores.DarBajaProv")->with('proveedor', $proveedor);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -168,6 +174,24 @@ class ProveedoresController extends Controller
         }else{
             return "false";
         }
+    }
+
+    public function bajaProv($id)
+    {
+       $bajaProv = proveedor::find($id);
+       
+           $bajaProv->estado_Prov= 0;
+
+       $bajaProv-> save();
+       return redirect('/MostrarListaProv/'.$id);
+    }
+
+    public function altaProv($id)
+    {
+       $altaProv = proveedor::find($id);
+       $altaProv->estado_Prov= 1;
+       $altaProv-> save();
+       return redirect('/DarBajaProv/'.$id);
     }
 
 

@@ -35,10 +35,17 @@ class ClientesController extends Controller
     
     public function Mostrar()
     {
-      $cliente = cliente::all();
+      
+      $cliente = cliente::orderby('nombre_Cli')->where('estado_Cli',1)->get();
 
       return view("Proyecto.Desarrollo.Cliente.MostrarListaCli")->with('cliente', $cliente);
    }
+
+   public function MostrarCI()
+   {
+      $cliente = cliente::orderby('nombre_Cli')->where('estado_Cli',0)->get();
+      return view("Proyecto.Desarrollo.Cliente.DarBajaCli")->with('cliente', $cliente);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -60,11 +67,6 @@ class ClientesController extends Controller
     {
         $cliente = cliente::find($id);
         return view("Proyecto.Desarrollo.Cliente.ModificarCli",compact('cliente'));;
-    }
-
-    public function darbajacli()
-    {
-      return view("Proyecto.Desarrollo.Cliente.DarBajaCli");
     }
 
     // public function Correo(Request $request)
@@ -226,13 +228,13 @@ class ClientesController extends Controller
         $cliente->save();
 
         if ($cliente->tipo_Cli) {
-            $clienteJuridico = SICOVIMA\clienteJuridico::where('id_Cliente',$cliente->id)->get()->first();
+            $clienteJuridico = clienteJuridico::where('id_Cliente',$cliente->id)->get()->first();
             $clienteJuridico->NIT_CJ=$request->NIT_CJ;
             $clienteJuridico->RNC_CJ=$request->RNC_CJ;
             $clienteJuridico->nombreResponsable_CJ=$request->nombreResponsable_CJ;
             $clienteJuridico->save();
         } else {
-            $clienteNatural = SICOVIMA\clienteNatural::where('id_Cliente',$cliente->id)->get()->first();
+            $clienteNatural = clienteNatural::where('id_Cliente',$cliente->id)->get()->first();
             $clienteNatural->DUI_CN=$request->DUI_CN;
             $clienteNatural->save();
         }

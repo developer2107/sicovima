@@ -137,7 +137,7 @@
                           </div>
                       </div>
                       <br><br>
-                      <div class="row">
+                      <!-- <div class="row">
                         <div class="col-md-1">
                         </div>
                           <label class="col-lg-4 control-label"></label>
@@ -146,7 +146,7 @@
                               {!! Form::submit('Dar de Baja',['class'=>'btn btn-outline btn-primary dim']) !!}
                             </div>
                           </div>
-                      </div>
+                      </div> -->
 
                       </form>
                </div>

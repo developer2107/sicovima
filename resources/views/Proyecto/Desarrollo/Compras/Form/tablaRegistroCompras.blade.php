@@ -32,7 +32,7 @@
                         <div class="col-xs-2">
                             <div class="input-group m-b">
                                 <span class="input-group-addon">$</span>
-                                {!! Form::number('total_Com',0,['class'=>'form-control','id'=>'total_Com','step'=>'.01']) !!}
+                                {!! Form::number('total_Com',0,['class'=>'form-control','id'=>'total_Com','step'=>'.01','readonly'=>'readonly']) !!}
                             </div>
                         </div>
                     </div>

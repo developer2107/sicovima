@@ -33,9 +33,6 @@ Route::get('/guardarUsuario', function () {
 
 });
 
-/* DE AQUI ABAJO ESTAN LAS RUTAS DE BRENDA*/
-
-
 
 //Rutas de login
 Route::get('/cerrar', 'Auth\AuthController@cerrar');
@@ -43,26 +40,23 @@ Route::get('/login', 'Auth\AuthController@login');
 Route::get('/logout', 'LoginController@logout');
 Route::post('/authenticate', 'Auth\AuthController@authenticate');
 
-/* DE AQUI ABAJO ESTAN LAS RUTAS DE GRECIA*/
-
-
-
-
-/* DE AQUI ABAJO ESTAN LAS RUTAS DE BENJAMIN*/
+/*------------------------------------------------------------------*/
 
 Route::Resource('/RegistroProveedor','ProveedoresController');
-Route::Resource('/RegistroCliente','ClientesController');
 Route::Resource('/MostrarListaProv','ProveedoresController@Mostrar');
-Route::Resource('/MostrarListaCli','ClientesController@Mostrar');
-Route::match(['get','post'],'/VerCliente/{id}','ClientesController@Ver');
-Route::match(['get','post'],'/municipio/{id}','ClientesController@municipios');
+Route::match(['get','post'],'/darBajaProv/{id}','ProveedoresController@bajaProv');
+Route::match(['get','post'],'/darAltaProv/{id}','ProveedoresController@altaProv');
+Route::Resource('/DarBajaProv','ProveedoresController@MostrarPI');
 Route::match(['get','post'],'/municipio/{id}','ProveedoresController@municipios');
 Route::match(['get','post'],'/VerProveedor/{id}','ProveedoresController@Ver');
 Route::match(['get','post'],'/ModificarProv/{id}','ProveedoresController@Modificar');
-Route::match(['get','post'],'/ModificarCli/{id}','ClientesController@Modificar');
-Route::get('/DarBajaProv','ProveedoresController@darbajaprov');
-Route::get('/DarBajaCli','ClientesController@darbajacli');
 
+Route::Resource('/RegistroCliente','ClientesController');
+Route::Resource('/MostrarListaCli','ClientesController@Mostrar');
+Route::match(['get','post'],'/VerCliente/{id}','ClientesController@Ver');
+Route::match(['get','post'],'/municipio/{id}','ClientesController@municipios');
+Route::match(['get','post'],'/ModificarCli/{id}','ClientesController@Modificar');
+Route::Resource('/DarBajaCli','ClientesController@MostrarCI');
 Route::match(['get','post'],'/correo','ClientesController@Correo');
 
 Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
@@ -71,12 +65,13 @@ Route::match(['get','post'],'/VerCompra/{id}','CompraController@Ver');
 Route::match(['get','post'],'/EliminarCompra/{id}','CompraController@destroy');
 Route::Resource('/ListadeCompras','CompraController@Mostrar');
 
-// Route::get('/ModificarMateriaPrima','MateriaPrimaController@Modificar');
 Route::match(['get','post'],'/ModificarMateriaPrima/{id}','MateriaPrimaController@Modificar');
 Route::Resource('/ControlMateriaPrima','InventarioMPController@Mostrar');
 Route::match(['get','post'],'/VerInventarioMP/{id}','InventarioMPController@Ver');
 Route::Resource('/RegistroMateriaP','MateriaPrimaController');
 Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambio');
+
+/*------------------------------------------------------------------*/
 
 Route::Resource('Bitacora','BitacoraController');
 Route::Resource('Tour','BitacoraController@Tour');

@@ -38,52 +38,23 @@
 
                             <th>Teléfono</th>
 
-                            <th>Acciones</th>
+                            <th>Opción</th>
                         </tr>
                         </thead>
                         <tbody>     
-                        
-                            <tr class="gradeC">
-                                    <td>Industrias Cell S.A. de C.V. </td>
-                                    <td>Ziperes</td>
-                                    <td class="center">2326-5642</td>
-                                 <td>
-                                  <a class="btn btn-primary btn-rounded" href="#">Dar de Alta</a> 
-                                </td> 
-                            </tr>
-                            <tr class="gradeC">
-                               <td>Industrias El Hilar S.A. de C.V. </td>
-                                    <td>Lona</td>
-                                    <td class="center">7392-5364</td>
-                                 <td>
-                                  <a class="btn btn-primary btn-rounded" href="#">Dar de Alta</a> 
-                                </td> 
-                            </tr>
-                            <tr class="gradeU">
-                               <td>Industrias El Portal S.A. de C.V. </td>
-                                    <td>Botones</td>
-                                    <td class="center">2323-7523</td>
-                                 <td>
-                                  <a class="btn btn-primary btn-rounded" href="#">Dar de Alta</a> 
-                                </td> 
-                            </tr>
-                            <tr class="gradeU">
-                               <td>Industrias Fraisa S.A. de C.V. </td>
-                                    <td>Remaches</td>
-                                    <td class="center">2221-5428</td>
-                                 <td>
-                                <a class="btn btn-primary btn-rounded" href="#">Dar de Alta</a> 
-                                </td> 
-                            </tr>
-                            <tr class="gradeU">
-                               <td>Industrias Luisana S.A. de C.V.</td>
-                                    <td>Tela Lino</td>
-                                    <td class="center">7918-4215</td>
-                                 <td>
-                                <a class="btn btn-primary btn-rounded" href="#">Dar de Alta</a> 
-                                </td> 
-                            </tr>
-                           
+                        @foreach($proveedor as $prov)
+                            <tr>
+                                <td align="left"><font size="4" >{{$prov-> nombre_Prov}}</font></td>
+                                <?php
+                                  $telefonoP = SICOVIMA\proveedor::numeroTelefono($prov->id);
+                                ?>
+                                <td align="rihgt"><font size="4" >{{$telefonoP-> numero_TelefonoProv}}</font></td>
+                                <td align="left"><font size="4" >{{$prov-> tipoMercaderia_Prov}}</font></td>
+                                <td align="center">
+                                  <a href="/github/sicovima/public/darAltaProv/{{$prov->id}}" class="btn btn-primary btn-rounded">Dar de Alta</a>
+                                </td>
+                             </tr>
+                          @endforeach
                         </tbody>
                         <tfoot>
                         <tr>
@@ -93,7 +64,7 @@
      
                             <th>Teléfono</th>
 
-                           <th>Acciones</th>
+                           <th>Opción</th>
                         </tr>
                         </tfoot>
                     </table>
