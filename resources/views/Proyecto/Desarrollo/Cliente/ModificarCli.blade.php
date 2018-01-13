@@ -112,7 +112,7 @@
                     }
                     
                      ?>
-                        <div class="col-lg-5">
+                        <div class="col-lg-6">
                             {!! Form::text('NIT_CJ',$aux,['id' => 'nitCliente','class'=>'form-control','data-mask'=>'9999-999999-999-9','style' => 'width:155px']) !!}
                         </div>
                     </div>
