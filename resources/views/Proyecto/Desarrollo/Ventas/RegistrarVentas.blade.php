@@ -19,7 +19,7 @@
     <div class="col-sm-2">
         <br>
         <div class=" m-t-sm">
-            <a href="#" class="btn btn-primary startTour"><i class="fa fa-play"></i> Start Tour</a>
+            <a href="#" class="btn btn-primary startTour"><i class="fa fa-play"></i>Ayuda</a>
         </div>
     </div>
 </div>
@@ -30,7 +30,8 @@
             <div class="ibox-title">
                 <h5>Venta</h5>
             </div>
-            <div class="ibox-content">
+            <div class="ibox-content" id="step1">
+                <div class="p-sm">
             <br>
                 <div class="row">
                     <div class="col-md-1">
@@ -77,6 +78,7 @@
                     <br>
                 </div>
                 <br>
+            </div>
             </div>
         </div>
     </div>
@@ -280,5 +282,87 @@
 </div>
 
 
+<!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- Bootstrap Tour -->
+    <script src="js/plugins/bootstrapTour/bootstrap-tour.min.js"></script>
+
+
+<script>
+
+    $(document).ready(function (){
+
+        // Instance the tour
+        var tour = new Tour({
+            steps: [{
+
+                    element: "#step1",
+                    title: "Title of my step",
+                    content: "Introduce new users to your product by walking them through it step by step.",
+                    placement: "top"
+                },
+                {
+                    element: "#step2",
+                    title: "Title of my step",
+                    content: "Content of my step",
+                    placement: "top",
+                    backdrop: true,
+                    backdropContainer: '#wrapper',
+                    onShown: function (tour){
+                        $('body').addClass('tour-open')
+                    },
+                    onHidden: function (tour){
+                        $('body').removeClass('tour-close')
+                    }
+                },
+                {
+                    element: "#step3",
+                    title: "Title of my step",
+                    content: "Content of my step",
+                    placement: "top",
+                    backdrop: true,
+                    backdropContainer: '#wrapper',
+                    onShown: function (tour){
+                        $('body').addClass('tour-open')
+                    },
+                    onHidden: function (tour){
+                        $('body').removeClass('tour-close')
+                    }
+                },
+                {
+                    element: "#step4",
+                    title: "Title of my step",
+                    content: "Introduce new users to your product by walking them through it step by step.",
+                    placement: "top"
+                },
+                {
+                    element: "#step5",
+                    title: "Title of my step",
+                    content: "Introduce new users to your product by walking them through it step by step.",
+                    placement: "top"
+                }
+            ]});
+
+        // Initialize the tour
+        tour.init();
+
+        $('.startTour').click(function(){
+            tour.restart();
+
+            // Start the tour
+            // tour.start();
+        })
+
+    });
+
+</script>
 {!! Form::close() !!}
 @stop
