@@ -5,7 +5,7 @@
                     <h5>Detalles de Pedido</h5>
                 </div>
                 <div class="ibox-content">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="tablaDetallePedido">
                         <thead>
                         <tr>
                           <th>cantidad</th>
@@ -26,7 +26,16 @@
                             <td>{{$detallePedido->producto->tipo_Prod}}</td>
                             <td>{{$fecha}}</td>
                             <td>
-                                <a class="btn btn-primary btn-circle" type="button" data-toggle="modal" data-target="#myModal7"><i class="fa fa-eye"></i>
+                                <input  type='hidden' name='id' value={{ $detallePedido ->id}}/>
+                                <input  type='hidden' name='cantidad' value='{{ $detallePedido->cantidad_DPed }}'/>
+                                <input  type='hidden' name='tipo_Prod' value='{{ $detallePedido->producto->tipo_Prod }}'/>
+                                <input  type='hidden' name='tipo_Prod' value='{{ $detallePedido->producto->talla_Prod }}'/>
+                                <input  type='hidden' name='tipo_Prod' value='{{ $detallePedido->producto->estilo_Prod }}'/>
+                                <input  type='hidden' name='tipo_Prod' value='{{ $detallePedido->producto->color_Prod }}'/>
+                                <input  type='hidden' name='tipo_Prod' value='{{ $detallePedido->producto->descripcion_Prod }}'/>
+                                <input  type='hidden' name='fecha' value={{ $fecha }}/>
+
+                                <a class="btn btn-primary btn-circle" id="AddCant" type="button" data-toggle="modal" data-target="#myModal7"><i class="fa fa-eye"></i>
                                 </a>
                             </td>
                         </tr>

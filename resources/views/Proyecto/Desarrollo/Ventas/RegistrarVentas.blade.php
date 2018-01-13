@@ -17,9 +17,11 @@
     <div class="col-sm-6">
     </div>
     <div class="col-sm-2">
+        <div class="p-sm">
         <br>
         <div class=" m-t-sm">
             <a href="#" class="btn btn-primary startTour1"><i class="fa fa-info-circle" id="step1"></i>  Ayuda</a>
+        </div>
         </div>
     </div>
 </div>
@@ -33,7 +35,7 @@
             </div>
             <div class="ibox-content">
                 <div class="p-sm">
-            <br>
+                    <br>
                 <div class="row">
                     <div class="col-md-1">
                     </div>
@@ -69,7 +71,6 @@
                         <div class="input-group date">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                             {!! Form::text('fecha_Ven',null,['class' =>'form-control','readonly'=>'readonly']) !!}
-                            <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
                         </div>
                     </div>
                     <div class="col-md-1">
@@ -80,7 +81,7 @@
                     <br>
                 </div>
                 <br>
-            </div>
+                </div>
             </div>
         </div>
     </div>
@@ -177,7 +178,7 @@
 <br>
 
 <div class="modal inmodal fade" id="myModalTabla" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg" id="step5">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content animated fadeIn">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
@@ -204,7 +205,7 @@
                                             <th>Color</th>
                                             <th>Descripción</th>
                                             <th>Precio</th>
-                                            <th>Opción</th>          
+                                            <th>Opción</th>
                                           </tr>
                                         </thead>
                                         <tbody>
@@ -282,8 +283,8 @@
         </div>
     </div>
 </div>
-
-
+<!-- Bootstrap Tour -->
+    <script src="js/plugins/bootstrapTour/bootstrap-tour.min.js"></script>
 <!-- Mainly scripts -->
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -291,12 +292,9 @@
     <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
 
-    <!-- Custom and plugin javascript -->
+<!-- Custom and plugin javascript -->
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
-
-    <!-- Bootstrap Tour -->
-    <script src="js/plugins/bootstrapTour/bootstrap-tour.min.js"></script>
 
 <script>
 
@@ -353,11 +351,10 @@
                     placement: "top"
                 },
                 {
-
                     element: "#step3",
                     title: "Elección de fecha",
                     content: "Elegir del calendario la fecha en la que se realiza la venta, seleccionando en primer lugar el mes, y luego el día.",
-                    placement: "top"
+                    placement: "bottom"
                 },
                 {
                     element: "#step4",
@@ -421,5 +418,6 @@
     });
 
 </script>
+
 {!! Form::close() !!}
 @stop
