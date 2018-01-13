@@ -9,7 +9,7 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.*/
 Route::Resource('/TipoMercaderia','TipoMercaderiaController');
-Route::match(['get','post'],'/EliminarTM','TipoMercaderiaController@eliminar');
+Route::match(['get','post'],'/EliminarTM/{id}','TipoMercaderiaController@eliminar');
 Route::match(['get','post'],'/cambiarTM/{id}','TipoMercaderiaController@cambio');
 
 Route::get('/', function () {

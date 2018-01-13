@@ -10,7 +10,11 @@
         <a href="index.html">Tipo de Mercadería</a>
       </li>
       <li class="active">
-        <strong>Lista de Tipo de Mercadería</strong>
+        @if ($estado)
+          <strong>Activas</strong>
+        @else
+          <strong>Inactivas</strong>
+        @endif
       </li>
     </ol>
     <input class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#Modal" type="button" value="Agregar" onclick="limpiarTM()"/>

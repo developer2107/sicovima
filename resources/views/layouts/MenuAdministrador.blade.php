@@ -193,6 +193,11 @@ select {
            Mensaje: <a class="alert-link" href="#">{{Session::get('message')}}</a>.
         </div>
         @endif
+        @if(Session::has('error'))
+        <div class="alert alert-danger">
+           Mensaje: <a class="alert-link" href="#">{{Session::get('error')}}</a>.
+        </div>
+        @endif
            @yield('content')
 
            @include('Proyecto.Globales.PiePagina')
