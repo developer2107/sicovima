@@ -74,7 +74,10 @@ Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambi
 /*------------------------------------------------------------------*/
 
 Route::Resource('Bitacora','BitacoraController');
+Route::Resource('Reportes','BitacoraController@Reportes');
 Route::Resource('Tour','BitacoraController@Tour');
+Route::Resource('Factura','BitacoraController@Factura');
+Route::Resource('Reporte','BitacoraController@Reporte');
 Route::match(['get','post'],'/ModificarVenta/{id}','VentasController@Modificar');
 Route::match(['get','post'],'/VerVenta/{id}','VentasController@Ver');
 Route::match(['get','post'],'/VerInventarioPT/{id}','InventarioPTController@Ver');

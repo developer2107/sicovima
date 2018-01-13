@@ -48,4 +48,19 @@ class BitacoraController extends Controller
         return view('Proyecto.Desarrollo.Ventas.Tour');
    //
     }
+    public function Factura()
+    {
+        return view('Proyecto.Desarrollo.Ventas.Factura');
+   //
+    }
+    public function Reporte()
+    {
+        return view('Proyecto.Desarrollo.Ventas.Reporte');
+   //
+    }
+    public function Reportes()
+    {
+        return view('Proyecto.Desarrollo.Ventas.Reportes');
+   //
+    }
 }
