@@ -76,30 +76,39 @@
                                             <th>ID</th>
                                             <th>Materia Prima</th>
                                             <th>Existencias</th>
-                                            <th>Subtotal</th>
                                             <th>Acciones</th>
                                           </tr>
                                         </thead>
                                         <tbody>
                                           @foreach($inventarioMateriaPrima as $inventarioMateriaPrima)
-                                          @foreach($detallePedido as $detallePedido)
+                                          {{-- @foreach($detallePedido as $detallePedido) --}}
+                                          @if ($inventarioMateriaPrima->tipoMovimiento_IMP == 1)
+                                            @if ($inventarioMateriaPrima->existencias_IMP >= 1)
+
+
                                         <tr>
-                                          <td>{{$detallePedido->producto->id}}</td>
+                                          <td>{{$inventarioMateriaPrima->materiaPrima->id}}</td>
                                           <td>{{$inventarioMateriaPrima->materiaPrima->nombre_MP}}</td>
-                                            <td>{{$detallePedido->cantidad_DPed}}</td>
-                                            <td>{{$detallePedido->subtotal_DPed}}</td>
+                                            <td>{{$inventarioMateriaPrima->existencias_IMP}}</td>
                                             <td>
-                                              <input type="hidden" name="id" value='{{$detallePedido->producto->id}}'/>
+                                              <input type="hidden" name="id" value='{{$inventarioMateriaPrima->materiaPrima->id}}'/>
+                                              <input type="hidden" name="materiaPrima" value='{{$inventarioMateriaPrima->materiaPrima->nombre_MP}}'/>
+                                              <input type="hidden" name="existencia" value='{{$inventarioMateriaPrima->existencias_IMP}}'/>
+                                              <input type="hidden" name="precio" value='{{$inventarioMateriaPrima->materiaPrima->precio_MP}}'/>
+                                              <input type="hidden" name="cantidad_IMP" value='{{$inventarioMateriaPrima->cantidad_IMP}}'/>
+                                              {{-- <input type="hidden" name="id" value='{{$detallePedido->producto->id}}'/>
                                               <input type="hidden" name="materiaPrima" value='{{$inventarioMateriaPrima->materiaPrima->nombre_MP}}'/>
                                               <input type="hidden" name="existencia" value='{{$detallePedido->cantidad_DPed}}'/>
                                               <input type="hidden" name="subtotal" value='{{$detallePedido->subtotal_DPed}}'/>
-                                              <input type="hidden" name="prueba" value="100"/>
+                                              <input type="hidden" name="prueba" value="100"/> --}}
                                               <a class="btn btn-info btn-circle" type="button" id="AddCant" data-dismiss="modal" data-toggle="modal" data-target="#myModal77">
                                               <i class="fa fa-check"></i>
                                               </a>
                                             </td>
                                         </tr>
-                                      @endforeach
+                                      {{-- @endforeach --}}
+                                      @endif
+                                      @endif
                                       @endforeach
                                         </tbody>
                                     </table>

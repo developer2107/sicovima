@@ -62,6 +62,7 @@ Route::match(['get','post'],'/ModificarCli/{id}','ClientesController@Modificar')
 Route::get('/DarBajaProv','ProveedoresController@darbajaprov');
 Route::get('/DarBajaCli','ClientesController@darbajacli');
 
+Route::match(['get','post'],'/correo','ClientesController@Correo');
 
 Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
 Route::Resource('/RegistrarCompra','CompraController');
@@ -102,6 +103,10 @@ Route::Resource('/ListadePedidosaEntregar','PedidosController@ListaaEntregar');
 Route::Resource('/ListadePedidosSinIniciar','PedidosController@ListaSinIniciar');
 Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar');
 
+
+Route::Resource('/IniciarPedido','PedidosController@IniciarPedido');
+Route::Resource('Pedidos','PedidosController');
+
 Route::get('/BuscarUsuario','SeguridadController@Buscar');
 Route::get('/VerUsuario','SeguridadController@Ver');
 Route::get('/ModificarUsuario','SeguridadController@Modificar');
@@ -109,7 +114,7 @@ Route::get('/RegistrarUsuario','SeguridadController@Registrar');
 
 Route::group(['middleware' => 'admin'], function(){
 
-	
+
 });
 
 Route::group(['middleware' => 'comun'], function(){

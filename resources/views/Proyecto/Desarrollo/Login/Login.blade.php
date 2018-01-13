@@ -13,11 +13,21 @@
 
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    {!! Html::script('js/jquery-2.1.1.js') !!}
 
 </head>
 
 <body class="gray-bg">
-
+@if(Session::has('message'))
+        <div class="alert alert-success">
+           Mensaje: <a class="alert-link" href="#">{{Session::get('message')}}</a>.
+        </div>
+@endif
+@if(Session::has('error'))
+        <div class="alert alert-danger">
+           Mensaje: <a class="alert-link" href="#">{{Session::get('error')}}</a>.
+        </div>
+@endif
     <div class="loginColumns animated fadeInDown">
         <div class="row">
 
@@ -47,20 +57,35 @@
                         </div>
 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" id="entrada">
                 <div class="ibox-content">
                         <form method="POST" action="authenticate" autocomplete="off">
                         {{ csrf_field()}}
                         <div class="form-group">
-                            <input type="text" class="form-control" name="name" placeholder="Username" required="">
+                            <input type="text" class="form-control" name="name" placeholder="Usuario" required="">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" name="password" placeholder="Password" required="">
+                            <input type="password" class="form-control" name="password" placeholder="Contraseña" required="">
                         </div>
                         <button type="submit" class="btn btn-primary block full-width m-b">Ingresar</button>
 
-                        <a href="#">
-                            <small>Forgot password?</small>
+                        <a onclick="olvidar()">
+                            <small>¿Olvidaste tu contraseña?</small>
+                        </a>
+                        </form>
+                </div>
+            </div>
+            <div class="col-md-6" id="olvidoContra" style="display:none">
+                <div class="ibox-content">
+                        <form method="POST" action="correo" autocomplete="off">
+                        {{ csrf_field()}}
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" placeholder="Correo" required="">
+                        </div>
+                        <button type="submit" class="btn btn-primary block full-width m-b">Recuperar</button>
+
+                        <a onclick="regresar()">
+                            <small>Regresar</small>
                         </a>
                         </form>
                 </div>
@@ -80,3 +105,14 @@
 </body>
 
 </html>
+<script type="text/javascript">
+    function olvidar(){
+        $('#olvidoContra').css("display","block");
+        $('#entrada').css("display","none");
+    }
+
+    function regresar(){
+        $('#olvidoContra').css("display","none");
+        $('#entrada').css("display","block");
+    }
+</script>

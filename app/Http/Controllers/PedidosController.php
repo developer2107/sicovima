@@ -86,12 +86,11 @@ class PedidosController extends Controller
       }
 
 
-    public function Ver($id)
+    public function IniciarPedido($id)
     {
       $idDetallePedido= detallePedido::find($id);
       $detallePedido=detallePedido::find($id)->with('producto', 'pedido')->get();
-      $inventarioMateriaPrima=\SICOVIMA\inventarioMateriaPrima::find($id)->with('materiaPrima')->get();
-
+      $inventarioMateriaPrima=\SICOVIMA\inventarioMateriaPrima::all();
 
       // $prueba= $detallePedido->id->get();
       // dd($detallePedido->id);

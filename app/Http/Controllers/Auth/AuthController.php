@@ -70,6 +70,7 @@ class AuthController extends Controller
     }
 
     protected function authenticate(Request $request){
+        //if (Auth::attempt(['name' => $request['name'], 'password' => $request['password'],'estado'=>1])) {
         if (Auth::attempt(['name' => $request['name'], 'password' => $request['password']])) {
             //Bitacora::bitacora('login','users','usuarios',Auth::user()->id);
             return redirect('/');
