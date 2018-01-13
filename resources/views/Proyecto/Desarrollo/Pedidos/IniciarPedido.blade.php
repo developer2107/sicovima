@@ -103,7 +103,7 @@
                 <div class="carousel-inner">
 
                     <div class="item active">
-                        <img alt="image" class="img-responsive" src={!! asset('../img/Mada-Demin-Blanco3.jpg') !!}>
+                        <img alt="image" class="img-responsive" src={{ asset('/img/Mada-Denim-Blanco4.jpg') }}>
                     </div>
 
                 </div>

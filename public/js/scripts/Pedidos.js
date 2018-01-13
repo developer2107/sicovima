@@ -46,6 +46,8 @@ $(document).on('ready',function(){
 			tabla.append(datosinicio);
 			$("#cantidad").val("");
 			$("#costo").val(total.toFixed(2));
+      
+      alert(materiaPrimaAgregada.val());
 
 			//$('#myModal6').modal('hide');
 			var objeto=document.getElementById("cerraM");
@@ -103,46 +105,46 @@ $(document).on('ready',function(){
 });
 
 
-// $(document).on('ready',function(){
-//
-//
-//   $('#tablaPedidoIniciar').DataTable({
-//     "order":[[2,"asc"]],
-//     "language":{
-//     "lengthMenu": "Mostrar _MENU_ registro por pagina",
-//     "info": "Mostrando pagina _PAGE_ de _PAGE_",
-//       "infoEmpty": "No hay registros disponibles",
-//       "infoFiltered": "(filtrada de _MAX_ registros)",
-//       "loadingRecords": "Cargando...",
-//       "processing":     "Procesando...",
-//       "search": "Buscar:",
-//       "zeroRecords":		"No se encontraron registro coincidentes",
-//
-//       "paginate": {
-//         "next":		"Siguiente",
-//         "previous":	"Anterior"
-//       },
-//     }
-//   });
-//   $('#tablaDetalleMateriaPrima').DataTable({
-//     "order":[[2,"asc"]],
-//     "language":{
-//     "lengthMenu": "Mostrar _MENU_ registro por pagina",
-//     "info": "Mostrando pagina _PAGE_ de _PAGE_",
-//       // "infoEmpty": "No hay registros disponibles",
-//       "infoFiltered": "(filtrada de _MAX_ registros)",
-//       "loadingRecords": "Cargando...",
-//       "processing":     "Procesando...",
-//       "search": "Buscar:",
-//       "zeroRecords":		"No se encontraron registro coincidentes",
-//
-//       "paginate": {
-//         "next":		"Siguiente",
-//         "previous":	"Anterior"
-//       },
-//     }
-//   });
-// });
+$(document).on('ready',function(){
+
+
+  $('#tablaPedidoIniciar').DataTable({
+    "order":[[2,"asc"]],
+    "language":{
+    "lengthMenu": "Mostrar _MENU_ registro por pagina",
+    "info": "Mostrando pagina _PAGE_ de _PAGE_",
+      "infoEmpty": "No hay registros disponibles",
+      "infoFiltered": "(filtrada de _MAX_ registros)",
+      "loadingRecords": "Cargando...",
+      "processing":     "Procesando...",
+      "search": "Buscar:",
+      "zeroRecords":		"No se encontraron registro coincidentes",
+
+      "paginate": {
+        "next":		"Siguiente",
+        "previous":	"Anterior"
+      },
+    }
+  });
+  // $('#tablaDetalleMateriaPrima').DataTable({
+  //   "order":[[2,"asc"]],
+  //   "language":{
+  //   "lengthMenu": "Mostrar _MENU_ registro por pagina",
+  //   "info": "Mostrando pagina _PAGE_ de _PAGE_",
+  //     // "infoEmpty": "No hay registros disponibles",
+  //     "infoFiltered": "(filtrada de _MAX_ registros)",
+  //     "loadingRecords": "Cargando...",
+  //     "processing":     "Procesando...",
+  //     "search": "Buscar:",
+  //     "zeroRecords":		"No se encontraron registro coincidentes",
+  //
+  //     "paginate": {
+  //       "next":		"Siguiente",
+  //       "previous":	"Anterior"
+  //     },
+  //   }
+  // });
+});
 
 $(document).on('ready',function(){
 

@@ -102,6 +102,10 @@ Route::Resource('/ListadePedidosaEntregar','PedidosController@ListaaEntregar');
 Route::Resource('/ListadePedidosSinIniciar','PedidosController@ListaSinIniciar');
 Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar');
 
+
+Route::Resource('/IniciarPedido','PedidosController@IniciarPedido');
+Route::Resource('Pedidos','PedidosController');
+
 Route::get('/BuscarUsuario','SeguridadController@Buscar');
 Route::get('/VerUsuario','SeguridadController@Ver');
 Route::get('/ModificarUsuario','SeguridadController@Modificar');
@@ -109,7 +113,7 @@ Route::get('/RegistrarUsuario','SeguridadController@Registrar');
 
 Route::group(['middleware' => 'admin'], function(){
 
-	
+
 });
 
 Route::group(['middleware' => 'comun'], function(){
