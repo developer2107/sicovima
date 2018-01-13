@@ -7,9 +7,10 @@
 |
 | Here is where you can register all of the routes for an application.
 | It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+| and give it the controller to call when that URI is requested.*/
+Route::Resource('/TipoMercaderia','TipoMercaderiaController');
+Route::match(['get','post'],'/EliminarTM','TipoMercaderiaController@eliminar');
+Route::match(['get','post'],'/cambiarTM/{id}','TipoMercaderiaController@cambio');
 
 Route::get('/', function () {
     return view('welcome');
@@ -78,6 +79,7 @@ Route::Resource('/RegistroMateriaP','MateriaPrimaController');
 Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambio');
 
 Route::Resource('Bitacora','BitacoraController');
+Route::Resource('Tour','BitacoraController@Tour');
 Route::match(['get','post'],'/ModificarVenta/{id}','VentasController@Modificar');
 Route::match(['get','post'],'/VerVenta/{id}','VentasController@Ver');
 Route::match(['get','post'],'/VerInventarioPT/{id}','InventarioPTController@Ver');

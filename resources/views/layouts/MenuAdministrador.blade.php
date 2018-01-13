@@ -1,40 +1,51 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Bootstrap Tour -->
+    <link href="css/plugins/bootstrapTour/bootstrap-tour.min.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
         .thumb {
           height: 200px;
           border: 1px solid #000;
           margin: 10px 5px 0 0;
         }
-      </style>
+    </style>
+
     {!! Html::script('js/jquery-3.1.1.min.js') !!}
     {!! Html::script('bootstrap/js/jquery.js') !!}
     {!! Html::script('bootstrap/js/bootstrap.min.js') !!}
     {!! Html::script('js/jquery.dataTables.min.js') !!}
     {!! Html::script('js/jquery.min.js') !!}
+    
 
-
-        <script type="text/javascript">
-        $(document).ready(function(){
-            var maxField = 3; //Input fields increment limitation
-            var addButton = $('.add_button'); //Add button selector
-            var zona = $('.agregar_telefono'); //Input field wrapper
-            var x = 1; //Initial field counter is 1
-            $(addButton).click(function(){ //Once add button is clicked
-                if(x < maxField){ //Check maximum number of input fields
-                    x++; //Increment field counter
-                    var fieldHTML = '<div class="col-lg-4"><input type="text" class="form-control" name="field_telefono[]" data-mask="(999) 9999-9999"><a href="javascript:void(0);" class="remove_button" title="Remove field"><i class="material-icons">clear</i></a></div>'; //New input field html
-                    $(zona).append(fieldHTML); // Add field html
-                }
-            });
-            $(zona).on('click', '.remove_button', function(e){ //Once remove button is clicked
-                e.preventDefault();
-                $(this).parent('div').remove(); //Remove field html
-                x--; //Decrement field counter
-            });
-        });
-        </script>
+<script type="text/javascript">
+$(document).ready(function(){
+    var maxField = 3; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var zona = $('.agregar_telefono'); //Input field wrapper
+    var x = 1; //Initial field counter is 1
+    $(addButton).click(function(){ //Once add button is clicked
+        if(x < maxField){ //Check maximum number of input fields
+            x++; //Increment field counter
+            var fieldHTML = '<div class="col-lg-4"><input type="text" class="form-control" name="field_telefono[]" data-mask="(999) 9999-9999"><a href="javascript:void(0);" class="remove_button" title="Remove field"><i class="material-icons">clear</i></a></div>'; //New input field html
+            $(zona).append(fieldHTML); // Add field html
+        }
+    });
+    $(zona).on('click', '.remove_button', function(e){ //Once remove button is clicked
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+});
+</script>
  <script>
  function Iniciar(id){
             window.open("modProducto.php?id="+id,"_parent");
@@ -67,9 +78,7 @@
        }
  </script>
  <script type="text/javascript">
-
  </script>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -106,8 +115,11 @@
     {!! Html::script('js/scripts/inventarioPT.js') !!}
 
 
-<style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style></head>
-<body class=" pace-done"><div class="pace  pace-inactive"><div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%" data-progress="99">
+<style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style>
+</head>
+<body class="pace-done tour-open">
+    <div class="pace  pace-inactive">
+        <div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%" data-progress="99">
   <div class="pace-progress-inner"></div>
 </div>
 <div class="pace-activity"></div></div>
@@ -122,13 +134,18 @@
            Mensaje: <a class="alert-link" href="#">{{Session::get('message')}}</a>.
         </div>
         @endif
+        @if(Session::has('error'))
+        <div class="alert alert-danger">
+           Mensaje: <a class="alert-link" href="#">{{Session::get('error')}}</a>.
+        </div>
+        @endif
            @yield('content')
 
            @include('Proyecto.Globales.PiePagina')
        </div>
    </div>
 
-
+    
     <!-- Mainly scripts -->
     {!! Html::script('js/jquery-2.1.1.js') !!}
     {!! Html::script('js/bootstrap.min.js') !!}
@@ -660,6 +677,19 @@
 
               document.getElementById('files').addEventListener('change', archivo, false);
       </script>
+<!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- Bootstrap Tour -->
+    <script src="js/plugins/bootstrapTour/bootstrap-tour.min.js"></script>
+
 
 </body>
 </html>

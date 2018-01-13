@@ -42,4 +42,10 @@ class BitacoraController extends Controller
     {
         //
     }
+
+    public function Tour()
+    {
+        return view('Proyecto.Desarrollo.Ventas.Tour');
+   //
+    }
 }
