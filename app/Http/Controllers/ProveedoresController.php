@@ -64,7 +64,9 @@ class ProveedoresController extends Controller
      public function Modificar($id)
     {
       $proveedor = proveedor::find($id);
-      return view("Proyecto.Desarrollo.Proveedores.ModificarProv",compact('proveedor'));
+      $departamento = departamento::all();
+      $municipio = municipio::all();
+      return view("Proyecto.Desarrollo.Proveedores.ModificarProv",compact('proveedor','departamento','municipio'));
     }
 
      public function darbajaprov()

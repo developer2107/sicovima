@@ -18,7 +18,8 @@ class SeguridadController extends Controller
      */
     public function Buscar()
     {
-        return view("Proyecto.Desarrollo.Seguridad.BuscarUsuario");
+      $Usuario = users::all();
+        return view("Proyecto.Desarrollo.Seguridad.BuscarUsuario")->with('Usuario', $Usuario);
     }
     public function Ver()
     {
@@ -81,7 +82,8 @@ class SeguridadController extends Controller
      */
     public function show($id)
     {
-        //
+      $Usuarioedit = users::find($id);
+        return view("Proyecto.Desarrollo.Seguridad.VerUsuario")->with('Usuarioedit',$Usuarioedit);
     }
 
     /**
@@ -92,7 +94,7 @@ class SeguridadController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

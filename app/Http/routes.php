@@ -109,9 +109,8 @@ Route::Resource('/IniciarPedido','PedidosController@IniciarPedido');
 Route::Resource('Pedidos','PedidosController');
 Route::Resource('/RegistrarUsuario','SeguridadController');
 Route::Resource('/BuscarUsuario','SeguridadController@Buscar');
-
-Route::get('/VerUsuario','SeguridadController@Ver');
-Route::get('/ModificarUsuario','SeguridadController@Modificar');
+Route::get('/VerUsuario/{id}','SeguridadController@show');
+Route::get('/ModificarUsuario/{id}','SeguridadController@edit');
 
 Route::group(['middleware' => 'admin'], function(){
 
