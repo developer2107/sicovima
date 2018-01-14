@@ -83,7 +83,7 @@
 
 
                                     <div class="col-sm-offset-4">
-                                        <button class="btn btn-outline btn-primary dim" type="button">Cancelar</button>
+                                        <button class="btn btn-outline btn-primary" type="button">Cancelar</button>
                                         {!! Form::submit('Registrar',['class'=>'btn btn-outline btn-primary']) !!}
 
                                     </div>

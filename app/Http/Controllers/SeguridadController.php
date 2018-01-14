@@ -69,7 +69,7 @@ class SeguridadController extends Controller
         'fechaRegistro_Usu' => $fecha,
       ]);
 
-      dd($Usuario);
+      return view("Proyecto.Desarrollo.Seguridad.RegistrarUsuario");
 
     }
 
