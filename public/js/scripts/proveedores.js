@@ -1,7 +1,10 @@
 var contadorTelefono=0;
 var contadorCorreo=0;
 $(document).on('ready',function(){
-
+	if($('#modif').val()==1){
+		contadorTelefono=parseFloat($('#cot').val());
+		contadorCorreo=parseFloat($('#con').val());
+	}
 	$('#departamentos').on('change',function(e){
 		var obtener=$('#departamentos').find('option:selected');
 		var municipio=$('#municipios');
@@ -38,8 +41,8 @@ $(document).on('ready',function(){
 
 		var correoCliente='';
 		var correo = $("#idCorreos");
-		var cadena1="<div class='row'><div class='form-group'><label class='col-lg-3 control-label'></label><div class='col-lg-7' ><input type='email' class='form-control' placeholder='JuanPerez@ejemplo.com' style = 'width:300px' name='cor[]' value='"+correoCliente+"'/></div><div class='col-lg-1'><button class='btn btn-default  dim' type='button' onclick='deleteCorreo("+contadorCorreo+")' ><i class='fa fa-minus'></i></button></div></div><br></div>";
-
+		var cadena1="<div class='row' id='t"+contadorCorreo+"'><div class='form-group'><label class='col-lg-3 control-label'></label><div class='col-lg-7' ><input type='email' class='form-control' placeholder='JuanPerez@ejemplo.com' style = 'width:300px' name='cor[]' value='"+correoCliente+"'/></div><div class='col-lg-1'><button class='btn btn-default  dim' type='button' onclick='deleteCorreo("+contadorCorreo+")' ><i class='fa fa-minus'></i></button></div></div><br></div>";
+		contadorCorreo=contadorCorreo+1;
 		correo.append(cadena1);
 
 	});
@@ -64,5 +67,5 @@ function deleteTelefono(contador){
 
 function deleteCorreo(contador){
 	console.log(contador);
-	$("#r"+contador).remove();
+	$("#t"+contador).remove();
 }
