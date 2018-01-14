@@ -86,7 +86,6 @@ Route::Resource('/RegistrarVenta','VentasController');
 Route::Resource('/ReportesVenta','VentasController@Reportes');
 Route::Resource('/ListadeVentas','VentasController@Mostrar');
 Route::match(['get','post'],'/Recibo/{tipo}','VentasController@Recibo');
-Route::match(['get','post'],'/Factura/{tipo}','VentasController@Factura');
 Route::match(['get','post'],'/motivov/{idMot}/{motivo}','VentasController@AddMotivoVenta');
 Route::match(['get','post'],'/motivop/{idMotProd}/{motivoProd}/{descuentoProd}','InventarioPTController@motivosProd');
 Route::get('RegistrarVentas/{id}','VentasController@getResponsables');

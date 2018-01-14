@@ -136,7 +136,7 @@ class VentasController extends Controller
         $gananciaV = $request->gananciaV;
 
         $documento = documento::create([
-            'tipo_Doc'=>$request->tipo_Doc,
+            'tipo_Doc'=>1,//factura
             'tipoPago_Doc'=>2,
             'fechaEmision_Doc'=>$request->fecha_Ven,
             'estado_Doc'=>0,
@@ -182,13 +182,8 @@ class VentasController extends Controller
             'id_Venta'=>$venta->id,
             'id_Documento'=>$documento->id,
         ]);
-        if ($request->tipo_Doc = 1) {
-            return redirect("Recibo/1");
-        }else if ($request->tipo_Doc = 0) {
-            return redirect("Factura/1");# code...
-        }
-            # code...
-
+        
+            return redirect("Recibo/1");//factura
         
     }
 
@@ -265,7 +260,7 @@ class VentasController extends Controller
         }
 
         $documento = documento::create([
-            'tipo_Doc'=>$request->tipo_Doc,
+            'tipo_Doc'=>1,//factura
             'tipoPago_Doc'=>2,
             'fechaEmision_Doc'=>$request->fecha_Ven,
             'estado_Doc'=>0,//estado normal
@@ -420,11 +415,11 @@ class VentasController extends Controller
         return view("Proyecto.Desarrollo.Ventas.ReportesVenta",compact('ventas'))->with('ventas', $ventas);
     }
 
-    public function crearRecibo($datos,$vistaurlr,$tipo)
+    public function crearRecibo($datos,$vistaurl,$tipo)
     {
         $data = $datos;
         $date = date('Y-m-d');
-        $view = \View::make($vistaurlr, compact('data','date'))->render();
+        $view = \View::make($vistaurl, compact('data','date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
 
@@ -439,33 +434,9 @@ class VentasController extends Controller
 
     public function Recibo($tipo)
     {
-        $vistaurlr="Proyecto.Desarrollo.Ventas.Recibo";
+        $vistaurl="Proyecto.Desarrollo.Ventas.Recibo";
         $ventas=venta::all();
-        return $this->crearRecibo($ventas,$vistaurlr,$tipo);
-    }
-
-    public function crearFactura($datos,$vistaurlf,$tipo)
-    {
-        $data = $datos;
-        $date = date('Y-m-d');
-        $viewf = \View::make($vistaurlf, compact('data','date'))->render();
-        $pdff = \App::make('dompdf.wrapper');
-        $pdff->loadHTML($viewf);
-
-        if ($tipo==1) {
-            return $pdff->stream('Factura');
-        }
-        if ($tipo==2) {
-            return $pdff->download('Factura.pdf');
-        }
-
-    }
-
-    public function Factura($tipo)
-    {
-        $vistaurlf="Proyecto.Desarrollo.Ventas.Factura";
-        $ventas=venta::all();
-        return $this->crearFactura($ventas,$vistaurlf,$tipo);
+        return $this->crearRecibo($ventas,$vistaurl,$tipo);
     }
 
 }

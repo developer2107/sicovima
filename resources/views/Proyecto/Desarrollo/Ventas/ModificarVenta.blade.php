@@ -177,14 +177,10 @@
             </div>
             <div class="ibox-content">
                 <div class="row">
-                    <div class="col-md-3">
-                        <label class="font-bold">Documento</label>
-                        <div class="input-group bootstrap-touchspin">
-                            {!! Form::select('tipo_Doc', ['0' => 'Factura', '1' => 'Recibo'],'Seleccionar' ,['class' => 'form-control m-b','data-placeholder'=>'Seleccionar']) !!}
+                    <div class="col-md-1">
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="font-bold">Numero</label>
+                    <div class="col-md-4">
+                        <label class="font-bold">Numero de Factura</label>
                         <div class="input-group bootstrap-touchspin">
                             {!! Form::number('numeroDoc',null,['id' => 'numeroDoc','class'=>'form-control','style' => 'width:150px']) !!}
                         </div>
