@@ -3,33 +3,35 @@
 @section('content')
 
 <div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-sm-4">
-        <h2>Clientes Inactivos</h2>
-        <ol class="breadcrumb">
-            <li>
-                <a href="index.html">Clientes</a>
-            </li>
-            <li class="active">
-                <strong>Clientes Inactivos</strong>
-            </li>
-        </ol>
+    <div class="col-sm-6">
+      <h2>Clientes Inactivos</h2>
+      <ol class="breadcrumb">
+        <li>
+          <br>
+          <a href={!! asset('DarBajaCli') !!}>Clientes</a>
+        </li>
+          <li class="active">
+          <strong>Lista de Clientes Inactivos</strong>
+        </li>
+      </ol>
     </div>
     <div class="col-sm-8">
-        
     </div>
-</div>
-
-<div class="wrapper wrapper-content animated fadeInRight">
-            <div class="row">
-                <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Lista de Clientes</h5>
-                    </div>
-                    <div class="ibox-content">
-
-                        <div class="table-responsive">
-                    <table class="table table-striped table-bordered dataTables-example " >
+  </div>
+<br>
+<div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <h5>Listado de Clientes Inactivos</h5>
+              </div>
+              <div class="ibox-content">
+                <div class="table-responsive">
+                  <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                    <table id="example" class="table table-striped table-bordered display" cellspacing="100" width="100%">
                         <thead>
                         <tr>
                             <th>Nombre</th>
@@ -62,23 +64,15 @@
                       </tr>
                        @endforeach
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>Nombre</th>
-
-                            <th>Tipo de Cliente</th>
-     
-                            <th>Teléfono</th>
-
-                           <th>Opción</th>
-                        </tr>
-                        </tfoot>
-                    </table>
-                        </div>
-
-                    </div>
+                        </table>
+                  </div>
                 </div>
+              </div>
             </div>
-            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
    @stop
