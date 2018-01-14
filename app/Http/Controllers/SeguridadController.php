@@ -18,12 +18,13 @@ class SeguridadController extends Controller
      */
     public function Buscar()
     {
-      $Usuario = users::all();
+        $Usuario = users::orderBy('name','ASC')->paginate(5);
         return view("Proyecto.Desarrollo.Seguridad.BuscarUsuario")->with('Usuario', $Usuario);
     }
-    public function Ver()
+    public function Ver($id)
     {
-        return view("Proyecto.Desarrollo.Seguridad.VerUsuario");
+        $Usuarioedit = users::find($id);
+        return view("Proyecto.Desarrollo.Seguridad.VerUsuario")->with('Usuarioedit',$Usuarioedit);
     }
 
     public function Modificar()
@@ -33,7 +34,8 @@ class SeguridadController extends Controller
 
     public function index()
     {
-        return view("Proyecto.Desarrollo.Seguridad.RegistrarUsuario");
+      $Usuario = users::orderBy('name','ASC')->paginate(5);
+      return view("Proyecto.Desarrollo.Seguridad.BuscarUsuario")->with('Usuario', $Usuario);
     }
 
     /**
@@ -43,7 +45,7 @@ class SeguridadController extends Controller
      */
     public function create()
     {
-
+      return view("Proyecto.Desarrollo.Seguridad.RegistrarUsuario");
     }
 
     /**
@@ -70,7 +72,7 @@ class SeguridadController extends Controller
         'fechaRegistro_Usu' => $fecha,
       ]);
 
-      return view("Proyecto.Desarrollo.Seguridad.RegistrarUsuario");
+      return redirect()->route('Usuario.index');
 
     }
 
@@ -82,8 +84,8 @@ class SeguridadController extends Controller
      */
     public function show($id)
     {
-      $Usuarioedit = users::find($id);
-        return view("Proyecto.Desarrollo.Seguridad.VerUsuario")->with('Usuarioedit',$Usuarioedit);
+
+
     }
 
     /**
@@ -94,7 +96,8 @@ class SeguridadController extends Controller
      */
     public function edit($id)
     {
-
+      $Usu = users::find($id);
+      return view("Proyecto.Desarrollo.Seguridad.ModificarUsuario")->with('Usu', $Usu);
     }
 
     /**
@@ -106,7 +109,14 @@ class SeguridadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = users::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->tipo = $request->radioInline;
+        // $user->password = $request->password;
+        $user->save();
+
+        return redirect()->route('Usuario.index');
     }
 
     /**

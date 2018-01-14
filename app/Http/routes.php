@@ -107,10 +107,11 @@ Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar')
 
 Route::Resource('/IniciarPedido','PedidosController@IniciarPedido');
 Route::Resource('Pedidos','PedidosController');
-Route::Resource('/RegistrarUsuario','SeguridadController');
+Route::Resource('Usuario','SeguridadController');
+Route::Resource('/RegistrarUsuario','SeguridadController@create');
 Route::Resource('/BuscarUsuario','SeguridadController@Buscar');
-Route::get('/VerUsuario/{id}','SeguridadController@show');
-Route::get('/ModificarUsuario/{id}','SeguridadController@edit');
+Route::match(['get','post'],'/ModificarUsuario/{id}','SeguridadController@edit');
+Route::match(['get','post'],'/VerUsuario/{id}','SeguridadController@ver');
 
 Route::group(['middleware' => 'admin'], function(){
 

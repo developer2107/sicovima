@@ -47,7 +47,7 @@
                               <td>{{$Usuario->tipo}}</td>
                               <td>
                                 <a class="btn btn-primary btn-circle fa fa-eye" href="VerUsuario/{{$Usuario->id}}"></a>
-                                <a class="btn btn-success btn-circle fa fa-pencil-square-o" href="ModificarUsuario"></a>
+                                <a class="btn btn-success btn-circle fa fa-pencil-square-o" href="ModificarUsuario/{{$Usuario->id}}"></a>
                               </td>
                             </tr>
 

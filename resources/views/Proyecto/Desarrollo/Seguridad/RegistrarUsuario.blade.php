@@ -32,7 +32,7 @@
 
                                 </div>
                                 <div class="ibox-content">
-                                      {!! Form::open(['route'=>'RegistrarUsuario.store','class'=>'form-horizontal','method'=>'POST','autocomplete'=>'off']) !!}
+                                      {!! Form::open(['route'=>'Usuario.store','class'=>'form-horizontal','method'=>'POST','autocomplete'=>'off']) !!}
                                      <br>
 
                                           <div class="form-group"><label class="col-lg-3 control-label">Nombre Empleado</label>
@@ -101,7 +101,7 @@
             <div class="carousel slide" id="carousel1">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img alt="image" class="img-responsive" src="img/Mada-Denim-Blanco3.jpg">
+                        <img alt="image" class="img-responsive" src="{{asset('img/Mada-Denim-Blanco3.jpg')}}">
                     </div>
                 </div>
             </div>

@@ -65,7 +65,8 @@
                                         </div>
 
                                      <div class="col-sm-offset-4">
-                                        <a class="btn btn-outline btn-primary dim" href="{!! route('/ModificarUsuario',[$Usuarioedit->id]) !!}" type="button">Modificar</a>
+                                       {{-- {!!link_to_action('SeguridadController@edit', $title = 'Modificar', $parameters = [$Usuarioedit->id], $attributes = ['class'=>'btn btn-outline btn-primary' , 'type'=>'button']) !!} --}}
+                                        <a class="btn btn-outline btn-primary dim"  type="button" href="{{route('Usuario.edit', $Usuarioedit->id)}}">Modificar</a>
                                         <button class="btn btn-outline btn-primary dim" type="button">Dar de Baja</button>
                                     </div>
 
