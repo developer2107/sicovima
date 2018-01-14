@@ -311,7 +311,7 @@ class VentasController extends Controller
             'id_Documento'=>$documento->id,
         ]);
         
-        return redirect("/ListadeVentas");
+        return redirect("Recibo/1");//factura
         // $cantidadV=$request->cantidadV;
         // $idV=$request->idV;
         // $costoProdV=$request->costoProdV;

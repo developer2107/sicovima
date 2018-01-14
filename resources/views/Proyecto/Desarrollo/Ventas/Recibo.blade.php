@@ -91,6 +91,7 @@
         <div style="position: absolute;left: 650px; top: 349px; z-index: 1;"><h4>$ 504.95</h4></div>
         <div style="position: absolute;left: 650px; top: 374px; z-index: 1;"><h4>$ 504.95</h4></div>
         <div style="position: absolute;left: 650px; top: 399px; z-index: 1;"><h4>$ 504.95</h4></div>
-         
+        </div>
+         </div> 
 </body>
 </html>
