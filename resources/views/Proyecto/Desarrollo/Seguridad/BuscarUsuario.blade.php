@@ -29,29 +29,30 @@
                     <div class="ibox-content">
 
                         <div class="table-responsive">
-                          <table id="TablaSeguridad" class="display" cellspacing="0" width="100%">
+
+                      <table id="TablaSeguridad" class="display" cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th>Nombre</th>
-
                             <th>Tipo de Usuario</th>
-
                             <th>Acciones</th>
+                            {{-- <a class="btn btn-primary btn-circle fa fa-eye" href="VerUsuario"></a>
+                            <a class="btn btn-success btn-circle fa fa-pencil-square-o" href="ModificarUsuario"></a> --}}
                         </tr>
                         </thead>
                         <tbody>
+                          @foreach ($Usuario as $Usuario)
+                            <tr>
+                              <td>{{$Usuario->name}}</td>
+                              <td>{{$Usuario->tipo}}</td>
+                              <td>
+                                <a class="btn btn-primary btn-circle fa fa-eye" href="VerUsuario/{{$Usuario->id}}"></a>
+                                <a class="btn btn-success btn-circle fa fa-pencil-square-o" href="ModificarUsuario"></a>
+                              </td>
+                            </tr>
 
-                          <tbody>
-                        <tfoot>
-                        <tr>
-                            <th>Nombre</th>
-
-                            <th>Tipo de Usuario</th>
-
-
-                           <th>Acciones</th>
-                        </tr>
-                        </tfoot>
+                          @endforeach
+                        </tbody>
                     </table>
                         </div>
 
