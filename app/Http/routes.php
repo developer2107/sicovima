@@ -9,7 +9,7 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.*/
 Route::Resource('/TipoMercaderia','TipoMercaderiaController');
-Route::match(['get','post'],'/EliminarTM','TipoMercaderiaController@eliminar');
+Route::match(['get','post'],'/EliminarTM/{id}','TipoMercaderiaController@eliminar');
 Route::match(['get','post'],'/cambiarTM/{id}','TipoMercaderiaController@cambio');
 
 Route::get('/', function () {
@@ -53,6 +53,8 @@ Route::match(['get','post'],'/ModificarProv/{id}','ProveedoresController@Modific
 
 Route::Resource('/RegistroCliente','ClientesController');
 Route::Resource('/MostrarListaCli','ClientesController@Mostrar');
+Route::match(['get','post'],'/darBajaCli/{id}','ClientesController@bajaCli');
+Route::match(['get','post'],'/darAltaCli/{id}','ClientesController@altaCli');
 Route::match(['get','post'],'/VerCliente/{id}','ClientesController@Ver');
 Route::match(['get','post'],'/municipio/{id}','ClientesController@municipios');
 Route::match(['get','post'],'/ModificarCli/{id}','ClientesController@Modificar');
@@ -107,11 +109,11 @@ Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar')
 
 Route::Resource('/IniciarPedido','PedidosController@IniciarPedido');
 Route::Resource('Pedidos','PedidosController');
-
-Route::get('/BuscarUsuario','SeguridadController@Buscar');
-Route::get('/VerUsuario','SeguridadController@Ver');
-Route::get('/ModificarUsuario','SeguridadController@Modificar');
-Route::get('/RegistrarUsuario','SeguridadController@Registrar');
+Route::Resource('Usuario','SeguridadController');
+Route::Resource('/RegistrarUsuario','SeguridadController@create');
+Route::Resource('/BuscarUsuario','SeguridadController@Buscar');
+Route::match(['get','post'],'/ModificarUsuario/{id}','SeguridadController@edit');
+Route::match(['get','post'],'/VerUsuario/{id}','SeguridadController@ver');
 
 Route::group(['middleware' => 'admin'], function(){
 

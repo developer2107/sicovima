@@ -326,4 +326,22 @@ class ClientesController extends Controller
         }
 
     }
+
+    public function bajaCli($id)
+    {
+       $bajaCli = cliente::find($id);
+
+           $bajaCli->estado_Cli= 0;
+
+       $bajaCli-> save();
+       return redirect('/MostrarListaCli/'.$id);
+    }
+
+    public function altaCli($id)
+    {
+       $altaCli = cliente::find($id);
+       $altaCli->estado_Cli= 1;
+       $altaCli-> save();
+       return redirect('/DarBajaCli/'.$id);
+    }
 }

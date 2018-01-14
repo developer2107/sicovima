@@ -44,11 +44,14 @@ public static function arrayProveedores(){
 public static function numeroTelefono($id_Proveedor){
        $telefonoProveedor = telefonoProveedor::where('id_Proveedor',$id_Proveedor)->get()->first();
        if(count($telefonoProveedor)>0){
-         return $telefonoProveedor;
+         return $telefonoProveedor->numero_TelefonoProv;
        }else{
-         return [];
+         return "";
+       }
+       }
+  public function proveedorTipoMercaderia(){
+       return $this->hasMany('\SICOVIMA\proveedorTipoMercaderia','id_Proveedor');
        }
 
-}
 
 }

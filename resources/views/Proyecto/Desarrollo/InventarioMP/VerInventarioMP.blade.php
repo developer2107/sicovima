@@ -66,7 +66,7 @@
                         <label class="col-lg-3 control-label">Tipo</label>
                         <div class="col-md-8">
                           <div class="input-group">
-                            {!! Form::text('tipo_MP',$materiaPrima->tipo_MP,['class'=>'form-control','readonly'=>'readonly'])!!}
+                            {!! Form::text('tipo_MP',$materiaPrima->tipoMercaderia->nombre_TM,['class'=>'form-control','readonly'=>'readonly'])!!}
                           </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                         <div class="col-md-4">
                           <div class="input-group m-b">
                             <a href="/github/sicovima/public/CambioEstadoMP/{{$materiaPrima->id}}" class="btn btn-outline btn-primary dim">Modificar Estado</a>
-                            
+
                           </div>
                         </div>
                     </div>

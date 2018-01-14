@@ -15,10 +15,15 @@ class TipoMercaderiaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      $tipos=TipoMercaderia::where('estado_TM',1)->orderBy('nombre_TM')->get();
-        return view('Proyecto.Desarrollo.TipoMercaderia.verLista',compact('tipos'));
+      if($request->estado==""){
+        $estado=1;
+      }else{
+        $estado=$request->estado;
+      }
+      $tipos=TipoMercaderia::where('estado_TM',$estado)->orderBy('nombre_TM')->get();
+        return view('Proyecto.Desarrollo.TipoMercaderia.verLista',compact('tipos','estado'));
     }
 
     /**
@@ -77,13 +82,16 @@ class TipoMercaderiaController extends Controller
         $tipo=TipoMercaderia::find($id);
         if($tipo->estado_TM){
           $tipo->estado_TM=0;
+          $estado=1;
+          Session::flash('message','Registro inactivo');
         }
           else{
             $tipo->estado_TM=1;
+            $estado=0;
+            Session::flash('message','Registro activo');
           }
           $tipo->save();
-          Session::flash('message','Registro inactivo');
-          return redirect('/TipoMercaderia');
+        return redirect('/TipoMercaderia?estado='.$estado);
     }
 
     /**
@@ -117,13 +125,22 @@ class TipoMercaderiaController extends Controller
      */
     public function eliminar($id)
     {
+      $tipo=TipoMercaderia::find($id);
+      if($tipo->estado_TM){
+        $estado=1;
+      }else{
+        $estado=0;
+      }
+      $message="Registro eliminado";
+      $error="No puede eliminarse";
         try{
           TipoMercaderia::destroy($id);
-          Session::flash('message','Registro eliminado');}
-        catch (Exception $e) {
-          Session::flash('error','No se pudo eliminar el registro');
+          return redirect('/TipoMercaderia?estado='.$estado)->with('message','Registro eliminado');
         }
-        return redirect('/TipoMercaderia');
+        catch (\Exception $e) {
+          //si entra aqui es por que no se borra, tiene llave foranea
+        }
+        return redirect('/TipoMercaderia?estado='.$estado)->with('error','No puede eliminarse');
 
     }
 

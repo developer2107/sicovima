@@ -46,6 +46,17 @@
                               </li>
                           </ul>
                   </li>
+                  <li>
+                    <a href="#">Tipo de Mercadería <span class="fa arrow"></span></a>
+                          <ul class="nav nav-third-level">
+                              <li>
+                                  <a href={!! asset('TipoMercaderia') !!}>Tipo de Mercadería activa</a>
+                              </li>
+                              <li>
+                                  <a href={!! asset('TipoMercaderia?estado=0') !!}>Tipo de Mercadería inactiva</a>
+                              </li>
+                          </ul>
+                  </li>
                         <li><a href={!! asset('ProductosTerminados') !!}>Productos Terminados</a></li>
                     </ul>
                 </li>

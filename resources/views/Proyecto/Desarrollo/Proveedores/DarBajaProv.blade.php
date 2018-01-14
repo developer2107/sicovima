@@ -55,18 +55,6 @@
                                 </td>
                              </tr>
                           @endforeach
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>Nombre</th>
-
-                            <th>Tipo de Mercadería</th>
-     
-                            <th>Teléfono</th>
-
-                           <th>Opción</th>
-                        </tr>
-                        </tfoot>
                     </table>
                         </div>
 

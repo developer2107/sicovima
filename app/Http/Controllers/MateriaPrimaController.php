@@ -56,7 +56,7 @@ class MateriaPrimaController extends Controller
      */
     public function store(Request $request)
     {
-          $MP = \SICOVIMA\materiaPrima::where('nombre_MP',$request['nombre_MP'])->where('color_MP',$request['color_MP'])->count();
+          $MP = \SICOVIMA\materiaPrima::where('nombre_MP',$request['nombre_MP'])->where('color_MP',$request['color_MP'])->where('precio_MP',$request['precio_MP'])->count();
 
         if ($MP == 0) {
             $materiaPrima = \SICOVIMA\materiaPrima::create([

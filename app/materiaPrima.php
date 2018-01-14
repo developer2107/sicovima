@@ -17,7 +17,12 @@ class materiaPrima extends Model
 }
 
 public function materiaPrima(){
-return $this->haaMany('\SICOVIMA\materiaPrima','materiaPrima');
+return $this->hasMany('\SICOVIMA\materiaPrima','materiaPrima');
+}
+
+public function tipoMercaderia(){
+
+   return $this->belongsTo('\SICOVIMA\tipoMercaderia','tipo_MP');
 }
 
 public static function obtenerCantidad($id){
@@ -31,10 +36,10 @@ public static function obtenerCantidad($id){
 }
 
 public static function arrayTipoMercaderia(){
-     $tipoMercaderia= materiaPrima::get();
+     $tipoMercaderia= tipoMercaderia::where('estado_TM',1)->orderBy('nombre_TM')->get();
      $arraytipoMer=[];
      foreach ($tipoMercaderia as $tipoMer) {
-       $arraytipoMer[$tipoMer->id] = $tipoMer-> tipo_MP;
+       $arraytipoMer[$tipoMer->id] = $tipoMer-> nombre_TM;
      }
      //$arraytipoMer[0] = "Otro";
      return $arraytipoMer;
