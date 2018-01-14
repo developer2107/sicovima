@@ -45,25 +45,26 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Tipo de Cliente</label>
                     <div class="col-lg-5">
-                        <div class="radio radio-info radio-inline">
+                        <!-- <div class="radio radio-info radio-inline"> -->
                         <?php if ($cliente->tipo_Cli): ?>
-                            <input type="radio" id="natural" value="0" name="tipo_Cli" disable="false">
-                            <label for="0"> Natural </label>
-                        </div>
-                        <div class="radio radio-inline">
+                            {!! Form::text('tipo_Cli',"Juridico",['id' => 'tipo_Cli','class'=>'form-control','style' => 'width:300px','readonly'=>'readonly']) !!}
+                            <!-- <input type="radio" id="natural" value="0" name="tipo_Cli" disable="false"> -->
+                            <!-- <label for="0"> Natural </label> -->
+                        <!-- </div> -->
+                        <!-- <div class="radio radio-inline">
                             <input type="radio" id="juridico" value="1" name="tipo_Cli" checked="" disable="false">
-                            <label for="1"> Juridico </label>
+                            <label for="1"> Juridico </label> -->
                         <?php else: ?>
-                            <input type="radio" id="natural" value="0" name="tipo_Cli" checked="" disable="false">
+                            {!! Form::text('tipo_Cli',"Natural",['id' => 'tipo_Cli','class'=>'form-control','style' => 'width:300px']) !!}
+                            <!-- <input type="radio" id="natural" value="0" name="tipo_Cli" checked="" disable="false">
                             <label for="0"> Natural </label>
-                        </div>
-                        <div class="radio radio-inline">
+                        </div> -->
+                        <!-- <div class="radio radio-inline">
                             <input type="radio" id="juridico" value="1" name="tipo_Cli" disable="false">
-                            <label for="1"> Juridico </label>
+                            <label for="1"> Juridico </label> -->
                         <?php endif ?>
-
                             
-                        </div>
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
@@ -110,9 +111,8 @@
                         $aux2 ="";
                         $aux3 ="";
                     }
-                    
                      ?>
-                        <div class="col-lg-6">
+                        <div class="col-lg-5">
                             {!! Form::text('NIT_CJ',$aux,['id' => 'nitCliente','class'=>'form-control','data-mask'=>'9999-999999-999-9','style' => 'width:155px']) !!}
                         </div>
                     </div>
@@ -130,7 +130,7 @@
                 <div class="row">
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Nombre del Responsable </label>
-                        <div class="col-lg-9">
+                        <div class="col-lg-8">
                             {!! Form::text('nombreResponsable_CJ',$aux3,['id' => 'nombreResponsable','class'=>'form-control','style' => 'width:300px']) !!}
                         </div>
                     </div>
