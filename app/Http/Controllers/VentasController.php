@@ -183,7 +183,7 @@ class VentasController extends Controller
             'id_Documento'=>$documento->id,
         ]);
         
-            return redirect("Recibo/1");//factura
+            return redirect("Factura/1");//factura
         
     }
 
@@ -311,7 +311,7 @@ class VentasController extends Controller
             'id_Documento'=>$documento->id,
         ]);
         
-        return redirect("Recibo/1");//factura
+        return redirect("Factura/1");//factura
         // $cantidadV=$request->cantidadV;
         // $idV=$request->idV;
         // $costoProdV=$request->costoProdV;
@@ -415,7 +415,7 @@ class VentasController extends Controller
         return view("Proyecto.Desarrollo.Ventas.ReportesVenta",compact('ventas'))->with('ventas', $ventas);
     }
 
-    public function crearRecibo($datos,$vistaurl,$tipo)
+    public function crearFactura($datos,$vistaurl,$tipo)
     {
         $data = $datos;
         $date = date('Y-m-d');
@@ -424,19 +424,19 @@ class VentasController extends Controller
         $pdf->loadHTML($view);
 
         if ($tipo==1) {
-            return $pdf->stream('Recibo');
+            return $pdf->stream('Factura');
         }
         if ($tipo==2) {
-            return $pdf->download('Recibo.pdf');
+            return $pdf->download('Factura.pdf');
         }
 
     }
 
-    public function Recibo($tipo)
+    public function Factura($tipo)
     {
-        $vistaurl="Proyecto.Desarrollo.Ventas.Recibo";
+        $vistaurl="Proyecto.Desarrollo.Ventas.Factura";
         $ventas=venta::all();
-        return $this->crearRecibo($ventas,$vistaurl,$tipo);
+        return $this->crearFactura($ventas,$vistaurl,$tipo);
     }
 
 }
