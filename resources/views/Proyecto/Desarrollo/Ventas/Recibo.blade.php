@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Reporte Clientes</title>
+  <title>Recibo</title>
   <style>
   footer {
       position: fixed;

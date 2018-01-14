@@ -162,7 +162,7 @@
                     <div class="col-md-2">
                         <label class="font-bold">              </label>
                         <div class="input-group bootstrap-touchspin">
-                            {!! Form::submit('Registrar',['class'=>'btn btn-outline btn-primary dim']) !!}
+                            {!! Form::submit('Registrar',['class'=>'btn btn-outline btn-primary dim']) !!}<!-- //Recibo -->
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -213,7 +213,9 @@
                                                 <?php
                                                 $inv=SICOVIMA\inventarioProductoTerminado::where('id_Producto',$prod->id)->get()->last();
                                                 ?>
-                                            <tr>
+                                                <?php if ($inv->nuevaExistencia_IPT==0): ?>
+                                                <?php else: ?> 
+                                                    <tr>
                                                 <td align="left" id="estilo"><font size="4" >{{$prod-> tipo_Prod}} {{$prod-> estilo_Prod}}</font></td>
                                                 <td align="left"><font size="4" >{{$prod-> talla_Prod}}</font></td>
                                                 <td align="left"><font size="4" >{{$inv->nuevaExistencia_IPT}}</font></td>
@@ -231,6 +233,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
+                                                <?php endif ?>
                                             @endforeach
                                         </tbody>
                                     </table>

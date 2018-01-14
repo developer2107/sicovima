@@ -29,7 +29,7 @@
                     <ul class="nav nav-second-level collapse">
                         <li><a href={!! asset('RegistrarVenta') !!}>Registrar</a></li>
                         <li><a href={!! asset('ListadeVentas') !!}>Mostrar Lista</a></li>
-                        <li><a href="#">Reporte</a></li>
+                        <li><a href={!! asset('ReportesVenta') !!}>Reporte</a></li>
                     </ul>
                 </li>
                  <li>

@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 use SICOVIMA\Http\Requests\UsuariocRequest;
 use SICOVIMA\Http\Controllers\Controller;
 use SICOVIMA\bitacora;
-use SICOVIMA\users;
+use SICOVIMA\User;
 
 class BitacoraController extends Controller
 {
     public function index()
     {
         $bitas = bitacora::all();
-        $userss = users::all();
+        $userss = User::all();
         return view('Proyecto.Desarrollo.Seguridad.Bitacora',compact('bitas','userss'));
     }
 

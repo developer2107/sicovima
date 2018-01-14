@@ -58,7 +58,7 @@ class VentasController extends Controller
         $ventas = venta::with('cliente')->get();
         return view("Proyecto.Desarrollo.Ventas.MostrarListadeVentas",compact('ventas'))->with('ventas', $ventas);
     }
-
+    
     public function Index()
     {
         // producto::create([
@@ -182,8 +182,14 @@ class VentasController extends Controller
             'id_Venta'=>$venta->id,
             'id_Documento'=>$documento->id,
         ]);
+        if ($request->tipo_Doc = 1) {
+            return redirect("Recibo/1");
+        }else if ($request->tipo_Doc = 0) {
+            return redirect("Factura/1");# code...
+        }
+            # code...
 
-        return redirect("/RegistrarVenta");
+        
     }
 
     public function ListaProductos()
@@ -406,6 +412,60 @@ class VentasController extends Controller
         ]);        
         $ventas = venta::with('cliente')->get();
         return 0;
+    }
+
+    public function Reportes()
+    {
+        $ventas = venta::with('cliente')->get();
+        return view("Proyecto.Desarrollo.Ventas.ReportesVenta",compact('ventas'))->with('ventas', $ventas);
+    }
+
+    public function crearRecibo($datos,$vistaurlr,$tipo)
+    {
+        $data = $datos;
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurlr, compact('data','date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('Recibo');
+        }
+        if ($tipo==2) {
+            return $pdf->download('Recibo.pdf');
+        }
+
+    }
+
+    public function Recibo($tipo)
+    {
+        $vistaurlr="Proyecto.Desarrollo.Ventas.Recibo";
+        $ventas=venta::all();
+        return $this->crearRecibo($ventas,$vistaurlr,$tipo);
+    }
+
+    public function crearFactura($datos,$vistaurlf,$tipo)
+    {
+        $data = $datos;
+        $date = date('Y-m-d');
+        $viewf = \View::make($vistaurlf, compact('data','date'))->render();
+        $pdff = \App::make('dompdf.wrapper');
+        $pdff->loadHTML($viewf);
+
+        if ($tipo==1) {
+            return $pdff->stream('Factura');
+        }
+        if ($tipo==2) {
+            return $pdff->download('Factura.pdf');
+        }
+
+    }
+
+    public function Factura($tipo)
+    {
+        $vistaurlf="Proyecto.Desarrollo.Ventas.Factura";
+        $ventas=venta::all();
+        return $this->crearFactura($ventas,$vistaurlf,$tipo);
     }
 
 }
