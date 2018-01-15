@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 
-use SICOVIMA\users;
+use SICOVIMA\User;
 
 class SeguridadController extends Controller
 {
@@ -18,7 +18,7 @@ class SeguridadController extends Controller
      */
     public function index()
     {
-      $Usuario = users::orderBy('name','ASC')->orderBy('estado','ASC')->paginate(5);
+      $Usuario = User::orderBy('name','ASC')->orderBy('estado','ASC')->paginate(5);
       return view("Proyecto.Desarrollo.Seguridad.BuscarUsuario")->with('Usuario', $Usuario);
     }
 
@@ -51,7 +51,7 @@ class SeguridadController extends Controller
       $estado = $request['estado'];
 
 
-      $Usuario = \SICOVIMA\Users::create([
+      $Usuario = \SICOVIMA\User::create([
         'name'=> $name,
         'email'=> $email,
         'password' => bcrypt($password),
@@ -73,7 +73,7 @@ class SeguridadController extends Controller
      */
     public function show($id)
     {
-      $Usuarioedit = users::find($id);
+      $Usuarioedit = User::find($id);
       return view("Proyecto.Desarrollo.Seguridad.VerUsuario")->with('Usuarioedit',$Usuarioedit);
     }
 
@@ -86,7 +86,7 @@ class SeguridadController extends Controller
     public function edit($id)
     {
 
-      $Usu = users::find($id);
+      $Usu = User::find($id);
 
       return view("Proyecto.Desarrollo.Seguridad.ModificarUsuario")->with('Usu', $Usu);
 
@@ -101,7 +101,7 @@ class SeguridadController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $user = users::find($id);
+      $user = User::find($id);
       if ($request->accion === "estado") {
         # code...
         if ($request->estado === 'Activo') {

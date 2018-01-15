@@ -16,8 +16,8 @@ class usuario
     public function handle($request, Closure $next)
     {
         if (auth()->check()) {
-            if (Auth()->user()->tipo != 2) {
-              return redirect('/');  
+            if (Auth()->users()->tipo != 2) {
+              return redirect('/');
             }
             return $next($request);
         } else {
