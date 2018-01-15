@@ -112,6 +112,11 @@ Route::Resource('Usuario','SeguridadController');
 Route::Resource('/RegistrarUsuario','SeguridadController@create');
 Route::Resource('/BuscarUsuario','SeguridadController@Buscar');
 
+Route::get('backup', 'BackupController@index');
+Route::get('backup/create', 'BackupController@create');
+Route::get('backup/download/{file_name}', 'BackupController@download');
+Route::get('backup/delete/{file_name}', 'BackupController@delete');
+
 
 
 Route::group(['middleware' => 'admin'], function(){
