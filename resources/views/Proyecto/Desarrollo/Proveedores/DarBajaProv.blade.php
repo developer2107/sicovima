@@ -49,7 +49,7 @@
                                   $telefonoP = SICOVIMA\proveedor::numeroTelefono($prov->id);
                                 ?>
                                 <td align="rihgt"><font size="4" >{{$telefonoP-> numero_TelefonoProv}}</font></td>
-                                <td align="left"><font size="4" >{{$prov-> tipoMercaderia_Prov}}</font></td>
+                                <!-- <td align="left"><font size="4" >{{$prov-> tipoMercaderia_Prov}}</font></td> -->
                                 <td align="center">
                                   <a href="/github/sicovima/public/darAltaProv/{{$prov->id}}" class="btn btn-primary btn-rounded">Dar de Alta</a>
                                 </td>

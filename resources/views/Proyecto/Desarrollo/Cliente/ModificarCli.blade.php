@@ -1,3 +1,5 @@
+<?php use SICOVIMA\departamento;
+ ?>
 @extends('layouts.MenuAdministrador')
 
 @section('content')
@@ -178,14 +180,47 @@
                                 <div class="row">
                                   <div class="col-md-1">
                                   </div>
-                                  <label class="col-lg-2 control-label">Dirección</label>
+                                  <?php
+                                  $municipio2 = SICOVIMA\municipio::find($cliente->id_Municipio);
+                                  $departamento2 = SICOVIMA\departamento::find($municipio2->id_Departamento);
+                                  ?>
+                                  <label class="col-lg-2 control-label">Departamento</label>
                                     <div class="col-md-8">
                                     <!-- <div class="input-group"> -->
-                                       {!! Form::text('direccion_Cli',null,['id' => 'direccionCliente','class'=>'form-control','style' => 'width:350px']) !!}
+                                       <select class = "form-control" name = "departamentos" id = "departamentos">
+                                         <option value="0">Seleccione un Departamento</option>
+                                         @foreach ($departamento as $v)
+                                           @if ($v->id==$departamento2->id)
+                                             <option value={{$v->id}} selected>{{$v -> nombre_Depa}}</option>
+                                           @else
+                                             <option value={{$v->id}}>{{$v -> nombre_Depa}}</option>
+                                           @endif
+
+                                         @endforeach
+                                     </select>
                                     <!-- </div> -->
                                     </div>
                                 </div>
-
+                                <br>
+                                <div class="row">
+                                  <div class="col-md-1">
+                                  </div>
+                                  <label class="col-lg-2 control-label">Municipio</label>
+                                    <div class="col-md-8">
+                                    <!-- <div class="input-group"> -->
+                                       <select class = "form-control" name = "municipios" id = "municipios">
+                                      <option value="0">Seleccione un Municipio</option>
+                                      @foreach ($municipio as $muni)
+                                        @if ($muni->id==$municipio2->id)
+                                      <option value={{$muni->id}} selected>{{$muni -> nombre_Muni}}</option>
+                                    @else
+                                      <option value={{$muni->id}}>{{$muni -> nombre_Muni}}</option>
+                                    @endif
+                                      @endforeach
+                                  </select>
+                                    <!-- </div> -->
+                                    </div>
+                                </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-lg-3">

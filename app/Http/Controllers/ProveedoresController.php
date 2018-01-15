@@ -132,7 +132,7 @@ class ProveedoresController extends Controller
           'id_Proveedor'=>$proveedor->id,
       ]);
       }
-        //return redirect("/RegistroProveedor");
+        return redirect("/RegistroProveedor");
     }
 
     /**
