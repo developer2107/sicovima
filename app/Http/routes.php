@@ -95,7 +95,6 @@ Route::Resource('/ProductosTerminados','InventarioPTController@Mostrar');
 Route::Resource('/VerProductosTerminados','InventarioPTController@Ver');
 
 Route::Resource('/ListadePedidos','PedidosController@Mostrar');
-Route::Resource('/RegistrarPedido','PedidosController');
 Route::Resource('/IniciarPedido','PedidosController@Iniciar');
 Route::Resource('/FinalizarPedido','PedidosController@Finalizar');
 Route::Resource('/VerPedido','PedidosController@Ver');
@@ -108,9 +107,15 @@ Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar')
 
 Route::Resource('/IniciarPedido','PedidosController@IniciarPedido');
 Route::Resource('Pedidos','PedidosController');
+Route::Resource('RegistrarPedidos','PedidosController@Registrar');
 Route::Resource('Usuario','SeguridadController');
 Route::Resource('/RegistrarUsuario','SeguridadController@create');
 Route::Resource('/BuscarUsuario','SeguridadController@Buscar');
+
+Route::get('backup', 'BackupController@index');
+Route::get('backup/create', 'BackupController@create');
+Route::get('backup/download/{file_name}', 'BackupController@download');
+Route::get('backup/delete/{file_name}', 'BackupController@delete');
 
 
 

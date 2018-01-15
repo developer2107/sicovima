@@ -7,7 +7,7 @@ use SICOVIMA\producto;
 
 @section('content')
 
-  {!! Form::model($idDetallePedido,['route'=>['RegistrarCompra.update',$idDetallePedido->id], 'method'=>'PUT','autocomplete'=>'off']) !!}
+  {!! Form::model($detallePedido_e,['route'=>['RegistrarCompra.update',$detallePedido_e->id], 'method'=>'PUT','autocomplete'=>'off']) !!}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Iniciar Pedido</h2>
@@ -43,7 +43,7 @@ use SICOVIMA\producto;
                         <label class="col-lg-2 control-label">Cliente</label>
                         <div class="col-md-3">
                             <div class="input-group">
-                            	{!! Form::text('nombre_Cli',$idDetallePedido->pedido->cliente->nombre_Cli,['class'=>'form-control','disabled'=>'disabled','readonly'=>'readonly']) !!}
+                            	{!! Form::text('nombre_Cli',$detallePedido_e->pedido->cliente->nombre_Cli,['class'=>'form-control','disabled'=>'disabled','readonly'=>'readonly']) !!}
                             	<!-- Este es no editable -->
                             </div>
                         </div>
@@ -57,14 +57,14 @@ use SICOVIMA\producto;
                         <div class="col-lg-8">
                             <div class="input-group">
                               <?php
-                              if ($idDetallePedido->pedido->cliente->tipo_Cli == 'FALSE') {
+                              if ($detallePedido_e->pedido->cliente->tipo_Cli == 'FALSE') {
                                 # code...
                                 ?>
                                 {!! Form::text('nombreResponsable_CJ','',['class'=>'form-control','disabled'=>'disabled','readonly'=>'readonly']) !!}
                               	<!-- Este es no editable -->
                                 <?php
                               }else {
-                                $Responsable=\SICOVIMA\clienteJuridico::where('id_Cliente', $idDetallePedido->pedido->cliente->id)->value('nombreResponsable_CJ');
+                                $Responsable=\SICOVIMA\clienteJuridico::where('id_Cliente', $detallePedido_e->pedido->cliente->id)->value('nombreResponsable_CJ');
                                 // $nombre = \SICOVIMA\clienteJuridico::find($Responsable->id);
 
                                 ?>
@@ -87,7 +87,7 @@ use SICOVIMA\producto;
                         <div class="col-md-4">
                             <div class="input-group date">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                {!! Form::text('fecha_Ped', $idDetallePedido->pedido->fecha_Ped,['class'=>'form-control']) !!}
+                                {!! Form::text('fecha_Ped', $detallePedido_e->pedido->fecha_Ped,['class'=>'form-control']) !!}
                                 <!-- Este es no editable -->
                             </div>
                         </div>
@@ -130,7 +130,7 @@ use SICOVIMA\producto;
 
                 <div class="col-xs-2">
                     <div class="input-group bootstrap-touchspin" id="Prueba">
-                      
+
                       <input type="hidden" name="id" value='100'/>
                       <a type="button" class="btn btn-outline btn-primary dim" id="AddCant" data-toggle="modal" data-target="#myModalTabla">Agregar Materia Prima</a>
 
