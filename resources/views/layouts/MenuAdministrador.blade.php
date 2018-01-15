@@ -686,7 +686,7 @@
                     reader.onload = (function(theFile) {
                         return function(e) {
                           // Insertamos la imagen
-                         document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'+
+                         document.getElementById("list").innerHTML = ['<img class="thumb" width="200" height="200" src="', e.target.result,'" title="', escape(theFile.name), '"/>'+
                        '"<input type="hidden" name="codImagen" id="codImagen" value="'+ e.target.result +'"/>"'].join('');
                         };
                     })(f);

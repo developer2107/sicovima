@@ -69,7 +69,7 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          @foreach($inventarioMateriaPrima as $inventarioMateriaPrima)
+                                          @foreach($inventarioMateriaPrima_e as $inventarioMateriaPrima)
                                           {{-- @foreach($detallePedido as $detallePedido) --}}
                                         <tr>
                                           <td>{{$inventarioMateriaPrima->materiaPrima->id}}</td>

@@ -81,7 +81,7 @@
                  <li>
                     <a href="index.html"><i class="fa fa-pencil-square-o"></i><span class="nav-label">Pedidos</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                         <li><a href={!! asset('Pedidos') !!}>Registrar</a></li>
+                         <li><a href={!! asset('RegistrarPedidos') !!}>Registrar</a></li>
                         <li><a href={!! asset('ListadePedidosSinIniciar') !!}>Iniciar</a></li>
                         <li><a href={!! asset('ListadePedidosaFinalizar') !!}>Finalizar</a></li>
                         <li><a href={!! asset('ListadePedidosaEntregar') !!}>Entregar</a></li>

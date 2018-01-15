@@ -95,7 +95,6 @@ Route::Resource('/ProductosTerminados','InventarioPTController@Mostrar');
 Route::Resource('/VerProductosTerminados','InventarioPTController@Ver');
 
 Route::Resource('/ListadePedidos','PedidosController@Mostrar');
-Route::Resource('/RegistrarPedido','PedidosController');
 Route::Resource('/IniciarPedido','PedidosController@Iniciar');
 Route::Resource('/FinalizarPedido','PedidosController@Finalizar');
 Route::Resource('/VerPedido','PedidosController@Ver');
@@ -108,6 +107,7 @@ Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar')
 
 Route::Resource('/IniciarPedido','PedidosController@IniciarPedido');
 Route::Resource('Pedidos','PedidosController');
+Route::Resource('RegistrarPedidos','PedidosController@Registrar');
 Route::Resource('Usuario','SeguridadController');
 Route::Resource('/RegistrarUsuario','SeguridadController@create');
 Route::Resource('/BuscarUsuario','SeguridadController@Buscar');
