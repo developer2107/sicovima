@@ -166,7 +166,41 @@ class ProveedoresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return view("Proyecto.Desarrollo.Proveedores.VerProveedor");
+        $tel = $request->tel;
+        $cor = $request->cor;
+        $proveedor = proveedor::find($id);
+
+        $proveedor->nombre_Prov=$request->nombre_Prov;
+        $proveedor->NIT_Prov=$request->NIT_Prov;
+        $proveedor->direccion_Prov=$request->direccion_Prov;
+        $proveedor->save();
+
+        $telefonosViejos = $proveedor->telefonoProveedor;
+        $correosViejos = $proveedor->correoProveedor;
+
+        foreach ($telefonosViejos as $telefono) {
+           $telefono->delete();
+        }
+
+        foreach ($correosViejos as $correo) {
+           $correo->delete();
+        }
+
+        for ($i=0; $i < count($tel); $i++) {
+            telefonoProveedor::create([
+            'numero_TelefonoProv'=>$tel[$i],
+            'id_Proveedor'=>$proveedor->id,
+        ]);
+        }
+
+        for ($i=0; $i < count($cor); $i++) {
+            correoProveedor::create([
+            'correo_CorreoProv'=>$cor[$i],
+            'id_Proveedor'=>$proveedor->id,
+        ]);
+        }
+
+        return redirect('/MostrarListaProv');
     }
 
     /**

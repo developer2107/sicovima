@@ -66,7 +66,9 @@ class ClientesController extends Controller
     public function Modificar($id)
     {
         $cliente = cliente::find($id);
-        return view("Proyecto.Desarrollo.Cliente.ModificarCli",compact('cliente'));;
+        $departamento = departamento::all();
+        $municipio = municipio::all();
+        return view("Proyecto.Desarrollo.Cliente.ModificarCli",compact('cliente','departamento','municipio'));
     }
 
     // public function Correo(Request $request)
