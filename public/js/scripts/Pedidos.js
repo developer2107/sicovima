@@ -11,21 +11,6 @@
 // alert(id);
 // });
 
-jQuery(document).ready(function(){
-
-    jQuery.getScript( "//harvesthq.github.io/chosen/chosen.jquery.js" )
-        .done(function( script, textStatus ) {
-            jQuery(".chosen1").chosen();
-            jQuery(".chosen2").chosen({max_selected_options: 2});
-            jQuery(".chosen2").bind("chosen:maxselected", function () {alert("Máximo número de elementos seleccionado")});
-            jQuery(".chosen3").chosen({allow_single_deselect: true, disable_search_threshold: 100});
-        })
-        .fail(function( jqxhr, settings, exception ) {
-             alert("Error");
-    });
-
-});
-
 $(document).on('ready',function(){
   $('#tablaDetallePedido').on('click','#AddCant',function(e){
     var tabla_p =$('#modalTablaInicio');

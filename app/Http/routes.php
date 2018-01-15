@@ -111,8 +111,8 @@ Route::Resource('Pedidos','PedidosController');
 Route::Resource('Usuario','SeguridadController');
 Route::Resource('/RegistrarUsuario','SeguridadController@create');
 Route::Resource('/BuscarUsuario','SeguridadController@Buscar');
-Route::match(['get','post'],'/ModificarUsuario/{id}','SeguridadController@edit');
-Route::match(['get','post'],'/VerUsuario/{id}','SeguridadController@ver');
+
+
 
 Route::group(['middleware' => 'admin'], function(){
 

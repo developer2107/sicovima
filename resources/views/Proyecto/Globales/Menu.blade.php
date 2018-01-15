@@ -101,10 +101,10 @@
                                     <a href={!! asset('Bitacora') !!}>Bitacora</a>
                                 </li>
                                 <li>
-                                    <a href={!! asset('RegistrarUsuario') !!}>Registrar Nuevo Usuario</a>
+                                    <a href="{{route('Usuario.create')}}">Registrar Nuevo Usuario</a>
                                 </li>
                                 <li>
-                                    <a href={!! asset('BuscarUsuario') !!}>Buscar Usuario</a>
+                                    <a href="{{route('Usuario.index')}}">Buscar Usuario</a>
                                 </li>
                             </ul>
                         </li>

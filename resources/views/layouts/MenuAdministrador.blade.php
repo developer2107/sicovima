@@ -20,47 +20,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
   <style>
-  @import url("//harvesthq.github.io/chosen/chosen.css");
-body {
-  font-family: sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  background: #eee;
-}
 
-.container {
-  width: 80%;
-  margin: 1em auto;
-  padding: 1em 5%;
-  background: #fff;
-}
-h1, h2 {
-  margin-bottom: .5em;
-}
-h1 {
-  font-size: 2em;
-}
-h2 {
-  font-size: 1.6em;
-}
-
-p {
-  margin-bottom: 1em;
-}
-select {
-  width: 250px;
-}
-.chosen-container {
-  width: 250px;
-}
-.chosen-container-multi .chosen-choices li.search-field input[type="text"]{
-  height: 30px !important;
-}
-        .thumb {
-          height: 200px;
-          border: 1px solid #000;
-          margin: 10px 5px 0 0;
-        }
       </style>
     {!! Html::script('js/jquery-3.1.1.min.js') !!}
     {!! Html::script('bootstrap/js/jquery.js') !!}

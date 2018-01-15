@@ -36,6 +36,7 @@
                                      <br>
 
                                           <div class="form-group"><label class="col-lg-3 control-label">Nombre Empleado</label>
+                                            <input type="hidden" id="estado" name="estado" value="Activo">
 
                                             <div class="col-lg-9">
                                                 <input id="name" name="name" type="text" class="form-control required" aria-required="true">
