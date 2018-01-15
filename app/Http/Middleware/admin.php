@@ -16,13 +16,13 @@ class admin
     public function handle($request, Closure $next)
     {
         if (auth()->check()) {
-            if (Auth()->user()->tipo != 1) {
-              return redirect('/');  
+            if (Auth()->user()->tipo != "Administrador") {
+              return redirect('/');
             }
             return $next($request);
         } else {
             return redirect('/login');
         }
-    
+
     }
 }

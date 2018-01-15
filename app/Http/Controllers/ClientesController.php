@@ -32,10 +32,10 @@ class ClientesController extends Controller
 
         return view('Proyecto.Desarrollo.Cliente.RegistroCliente',compact('departamento','municipio'))->with('departamento', $departamento)->with('municipio', $municipio);
     }
-    
+
     public function Mostrar()
     {
-      
+
       $cliente = cliente::orderby('nombre_Cli')->where('estado_Cli',1)->get();
 
       return view("Proyecto.Desarrollo.Cliente.MostrarListaCli")->with('cliente', $cliente);
@@ -156,7 +156,7 @@ class ClientesController extends Controller
         ]); # code...
 
             //bitacora::bitacoras('Registro','Registro de cliente natural'.$clienteNatural->id.': '.$cliente->nombre_Cli);
-        
+
         }else{
             if ($tipo==1) {
                 $clienteJuridico = clienteJuridico::create([
