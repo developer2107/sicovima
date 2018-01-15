@@ -52,12 +52,12 @@ class SeguridadController extends Controller
 
 
       $Usuario = \SICOVIMA\User::create([
-        'name'=> $name,
+        'name'=> $nameUsers,
         'email'=> $email,
         'password' => bcrypt($password),
         'tipo' => $tipo_Usuario,
         'estado'=> $estado,
-        'nombreUsuario_Usu' => $nameUsers,
+        'nombreUsuario_Usu' => $name,
         'fechaRegistro_Usu' => $fecha,
       ]);
 
