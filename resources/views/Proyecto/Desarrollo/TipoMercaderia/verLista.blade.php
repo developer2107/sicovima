@@ -10,11 +10,7 @@
         <a href="index.html">Tipo de Mercadería</a>
       </li>
       <li class="active">
-        @if ($estado)
-          <strong>Activas</strong>
-        @else
-          <strong>Inactivas</strong>
-        @endif
+          <strong>Lista de Tipo de Mercadería</strong>
       </li>
     </ol>
     <input class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#Modal" type="button" value="Agregar" onclick="limpiarTM()"/>
@@ -36,7 +32,6 @@
               <thead>
                 <tr>
                   <th align="left">Nombre</th>
-                  <th align="left">Estado</th>
                   <th align="left">Opciones</th>
                 </tr>
               </thead>
@@ -46,15 +41,7 @@
                   <tr>
                       <input type="hidden" id="i{{$contador}}" value="{{$tipo->id}}">
                       <td align="left"><font size="4" id="n{{$contador}}">{{$tipo->nombre_TM}}</font></td>
-                      @if (!$tipo->estado_TM)
-                        <?php $aux="Activar" ?>
-                      @else
-                        <?php $aux="Desactivar" ?>
-                      @endif
-                      <td align="left">
-                        <a href="cambiarTM/{{$tipo->id}}" class='btn btn-info' type='button'>{{$aux}}</a>
 
-                      </td>
                       <td align="center">
                         <a class="btn btn-success btn-circle" onclick="modificarTM({{$contador}})" data-dismiss="modal" data-toggle="modal" data-target="#Modal">
                           <i class="fa fa-pencil-square-o"></i>

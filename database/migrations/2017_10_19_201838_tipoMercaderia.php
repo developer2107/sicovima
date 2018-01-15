@@ -13,7 +13,6 @@ class TipoMercaderia extends Migration
         Schema::create('tipoMercaderia', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre_TM');
-            $table->boolean('estado_TM');
             $table->timestamps();
         });
     }

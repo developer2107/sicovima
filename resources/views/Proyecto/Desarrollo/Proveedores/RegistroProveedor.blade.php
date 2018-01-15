@@ -157,7 +157,7 @@
    </tr>
   </thead>
   <tbody>
-    <?php $tipos= SICOVIMA\TipoMercaderia::where('estado_TM',1)->get(); ?>
+    <?php $tipos= SICOVIMA\TipoMercaderia::get(); ?>
     @foreach ($tipos as $tipo)
       <tr>
         <td><font size="3" >{{$tipo->nombre_TM}}</font></td>

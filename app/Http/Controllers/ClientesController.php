@@ -227,6 +227,7 @@ class ClientesController extends Controller
 
         $cliente->nombre_Cli=$request->nombre_Cli;
         $cliente->direccion_Cli=$request->direccion_Cli;
+        $cliente->id_Municipio=$request->municipios;
         $cliente->save();
 
         if ($cliente->tipo_Cli) {

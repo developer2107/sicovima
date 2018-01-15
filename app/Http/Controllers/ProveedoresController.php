@@ -106,7 +106,7 @@ class ProveedoresController extends Controller
             'estado_Prov'=>1,//true---> activo
         ]);
 
-        $tipos=tipoMercaderia::where('estado_TM',1)->get();
+        $tipos=tipoMercaderia::get();
         foreach ($tipos as $tipo) {
           echo $request['cb'.(String)$tipo->id];
           if($request['cb'.(String)$tipo->id]==1){
@@ -173,6 +173,7 @@ class ProveedoresController extends Controller
         $proveedor->nombre_Prov=$request->nombre_Prov;
         $proveedor->NIT_Prov=$request->NIT_Prov;
         $proveedor->direccion_Prov=$request->direccion_Prov;
+        $proveedor->id_Municipio=$request->municipios;
         $proveedor->save();
 
         $telefonosViejos = $proveedor->telefonoProveedor;
