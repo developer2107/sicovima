@@ -4,6 +4,7 @@ namespace SICOVIMA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SICOVIMA\TipoMercaderia;
+use SICOVIMA\proveedorTipoMercaderia;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 use Session;
@@ -142,6 +143,20 @@ class TipoMercaderiaController extends Controller
         }
         return redirect('/TipoMercaderia?estado='.$estado)->with('error','No puede eliminarse');
 
+    }
+
+    public static function buscar($id){
+      $arrayTM=[];
+      $tipos=proveedorTipoMercaderia::where('id_Proveedor',$id)->get();
+      $conteo=0;
+      foreach ($tipos as $tipo) {
+        foreach ($tipo->tipoMercaderia->materiaPrima as $mer) {
+          $mer->tipoMercaderia;
+          $arrayTM[$conteo]=$mer;
+          $conteo++;
+        }
+      }
+      return $arrayTM;
     }
 
 }

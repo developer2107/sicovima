@@ -42,12 +42,7 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
 
 /*------------------------------------------------------------------*/
 
-
-
-
-Route::group(['middleware' => 'admin'], function(){
-
-  Route::get('/', function () {
+Route::get('/', function () {
       return view('welcome');
   });
 
@@ -127,6 +122,9 @@ Route::group(['middleware' => 'admin'], function(){
   Route::get('backup/download/{file_name}', 'BackupController@download');
   Route::get('backup/delete/{file_name}', 'BackupController@delete');
 
+Route::match(['get','post'],'/buscarTipoMercaderia/{id}','TipoMercaderiaController@buscar');
+
+Route::group(['middleware' => 'admin'], function(){
 
 
 });

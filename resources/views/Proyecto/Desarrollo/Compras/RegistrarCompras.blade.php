@@ -45,7 +45,7 @@ use SICOVIMA\proveedor; ?>
                     <div class="col-md-4">
                         {!! Form::Label('Proveedor') !!}
                         <div class="input-group">
-                            {!! Form::select('nombre_Prov',proveedor::arrayProveedores(),'',['placeholder'=>'Seleccione el Proveedor','class'=>'chosen-select','data-placeholder'=>'Seleccione el Proveedor','style'=>'width:300px']) !!}
+                            {!! Form::select('nombre_Prov',proveedor::arrayProveedores(),'',['id'=>'cambioPR','placeholder'=>'Seleccione el Proveedor','class'=>'chosen-select','data-placeholder'=>'Seleccione el Proveedor','style'=>'width:300px']) !!}
 
                         </div>
                     </div>

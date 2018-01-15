@@ -36,7 +36,7 @@ use SICOVIMA\detalleCompra;  ?>
                         <div class="col-md-5">
                             <label class="font-bold">Proveedor</label>
                             <div class="input-group">
-                                {!! Form::select('nombre_Prov',proveedor::arrayProveedores(),$compra->nombre_Prov,['class'=>'chosen-select','data-placeholder'=>'ingrese','style'=>'width:300px']) !!}
+                                {!! Form::select('nombre_Prov',proveedor::arrayProveedores(),$compra->nombre_Prov,['id'=>'cambioPR','class'=>'chosen-select','data-placeholder'=>'ingrese','style'=>'width:300px']) !!}
                             </div>
                         </div>
 

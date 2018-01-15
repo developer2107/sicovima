@@ -201,6 +201,21 @@ class ProveedoresController extends Controller
         ]);
         }
 
+        $ptviejos=proveedorTipoMercaderia::where('id_Proveedor',$proveedor->id)->get();
+        foreach ($ptviejos as $ptv) {
+          $ptv->delete();
+        }
+        $tipos=tipoMercaderia::get();
+        foreach ($tipos as $tipo) {
+          echo $request['cb'.(String)$tipo->id];
+          if($request['cb'.(String)$tipo->id]==1){
+          proveedorTipoMercaderia::create([
+            'id_Proveedor'=>$proveedor->id,
+            'id_tipoMercaderia'=>$tipo->id,
+          ]);
+          }
+        }
+
         return redirect('/MostrarListaProv');
     }
 
