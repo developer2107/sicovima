@@ -45,7 +45,7 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
 
 Route::group(['middleware' => 'admin'], function(){
 
-Route::get('/', function () {
+  Route::get('/', function () {
       return view('welcome');
   });
 
@@ -76,6 +76,8 @@ Route::get('/', function () {
   Route::match(['get','post'],'/VerCompra/{id}','CompraController@Ver');
   Route::match(['get','post'],'/EliminarCompra/{id}','CompraController@destroy');
   Route::Resource('/ListadeCompras','CompraController@Mostrar');
+  Route::Resource('/ReportesCompra','CompraController@Reportes');
+  Route::Resource('/compras','CompraController@ReporteporProv');
 
   Route::match(['get','post'],'/ModificarMateriaPrima/{id}','MateriaPrimaController@Modificar');
   Route::Resource('/ControlMateriaPrima','InventarioMPController@Mostrar');
@@ -104,7 +106,7 @@ Route::get('/', function () {
 
   Route::Resource('/ListadePedidos','PedidosController@Mostrar');
   Route::Resource('/IniciarPedido','PedidosController@Iniciar');
-  Route::Resource('/FinalizarPedido','PedidosController@Finalizar');
+  Route::Resource('/FinalizarPedido','PedidosController@Finalizar');//este
   Route::Resource('/VerPedido','PedidosController@Ver');
   Route::Resource('/ModificarPedido','PedidosController@Modificar');
   Route::Resource('/EntregarPedido','PedidosController@Entregar');

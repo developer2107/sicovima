@@ -46,7 +46,7 @@ class CompraController extends Controller
 
     public function Mostrar()
     {
-      $compra = compra::with('proveedor')->get();
+      $compra = compra::with('proveedor')->orderBy('fecha_Com')->get();
 
       $materiaPrima=\SICOVIMA\materiaPrima::all();
       $detalleCompra=detalleCompra::all();
@@ -260,6 +260,18 @@ class CompraController extends Controller
         Session::flash('message','Compra eliminada correctamente');
         $compra = compra::with('proveedor')->get();
          return redirect('/ListadeCompras')->with('compra',$compra);
+    }
+
+    public function Reportes()
+    {
+        $compras = compra::with('proveedor')->get();
+        return view("Proyecto.Desarrollo.Compras.ReportesCompra",compact('compras'))->with('compras', $compras);
+    }
+
+    public function ReporteporProv()
+    {
+        $compras = compra::with('proveedor')->get();
+        return view("Proyecto.Desarrollo.Compras.compras",compact('compras'))->with('compras', $compras);
     }
 
 }

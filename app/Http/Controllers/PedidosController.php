@@ -30,11 +30,6 @@ class PedidosController extends Controller
         return view("Proyecto.Desarrollo.Pedidos.EntregarPedido");//
     }
 
-    public function Finalizar()
-    {
-        return view("Proyecto.Desarrollo.Pedidos.FinalizarPedido");//
-    }
-
     public function ListaaEntregar()
     {
         return view("Proyecto.Desarrollo.Pedidos.ListadePedidosaEntregar");//
@@ -42,7 +37,13 @@ class PedidosController extends Controller
 
     public function ListaaFinalizar()
     {
-        return view("Proyecto.Desarrollo.Pedidos.ListadePedidosaFinalizar");//
+      $pedido_f = pedido::with('cliente')->get();
+      $cliente_f = cliente::all();
+      $producto_f=\SICOVIMA\producto::all();
+      $detallePedido_f=detallePedido::with('pedido','producto')->where('estado', 1)->get();
+
+      $responsable = \SICOVIMA\clienteJuridico::all();
+        return view("Proyecto.Desarrollo.Pedidos.ListadePedidosaFinalizar")->with('pedido_f', $pedido_f)->with('producto_f', $producto_f)->with('detallePedido_f', $detallePedido_f)->with('cliente_f', $cliente_f)->with('pedido_f', $pedido_f);
     }
 
     public function Modificar()
@@ -81,7 +82,7 @@ class PedidosController extends Controller
       $pedido = pedido::with('cliente')->get();
       $cliente = cliente::all();
       $producto=\SICOVIMA\producto::all();
-      $detallePedido=detallePedido::with('pedido','producto')->get();
+      $detallePedido=detallePedido::with('pedido','producto')->where('estado', 0)->get();
 
       $responsable = \SICOVIMA\clienteJuridico::all();
 
@@ -99,7 +100,8 @@ class PedidosController extends Controller
        $pedido = pedido::with('cliente')->get();
        $cliente = cliente::all();
        $producto=\SICOVIMA\producto::all();
-       $detallePedido=detallePedido::with('pedido','producto')->get();
+       $detallePedido=detallePedido::with('pedido','producto')->where('estado', 0)->get();
+
 
        $responsable = \SICOVIMA\clienteJuridico::all();
 
@@ -126,18 +128,7 @@ class PedidosController extends Controller
     {
 
       // dd($request->all());
-      $prueba= producto::all();
-      foreach ($prueba as $prueba) {
-        # code...
-        $image = imagecreatefromstring($prueba->imagen_Prod);
-        $encoded_image = base64_encode($image);
-//You dont need to decode it again.
 
-dd($encoded_image);
-
-
-      }
-      dd($variable);
 
       $contador=count($request['tipop']);
       $contador1=count($request['cantidad_DPed']);
@@ -167,6 +158,7 @@ dd($encoded_image);
             'imagen_Prod'=>$codImagen[$a],
             'estado_Prod' => 0,//estado en pedido, 1= estado de producto ya no es pedido
             'estado2_Prod' => 0,//matener en cero, defectuoso es 1
+            'estado3_Prod' => 0,// 0 si esta en iniciar pedido, 1 si esta en finalizar, a la hora de listar en la tabla
         ]);
       }
 
@@ -233,9 +225,18 @@ dd($encoded_image);
       $prueb = inventarioMateriaPrima::all();
       $prueb2 = materiaPrima::all();
 
-      $cont = count($prueb);
-      $s=0;
-      return view('Proyecto.Desarrollo.Pedidos.IniciarPedido')->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);
+
+
+      if ($detallePedido_e->estado == true) {
+        # code...
+        return view("Proyecto.Desarrollo.Pedidos.FinalizarPedido")->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);;
+
+      }else {
+
+        return view('Proyecto.Desarrollo.Pedidos.IniciarPedido')->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);
+
+      }
+
     }
 
     /**
@@ -247,7 +248,15 @@ dd($encoded_image);
      */
     public function update(Request $request, $id)
     {
-      dd($request->all());
+      if ($request['estado'] === 'TRUE') {
+        # code...
+          $detallePedido_U = detallePedido::find($id);
+          $detallePedido_U->estado = $request->estado;
+          $detallePedido_U->save();
+      }
+
+      return redirect()->route('Pedidos.index');
+
     }
 
     /**
