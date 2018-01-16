@@ -364,15 +364,73 @@ class ClientesController extends Controller
       return view("Proyecto.Desarrollo.Cliente.ReportesCliente");
     }
 
-    public function ReporteCliAct()
+   public function crearReporteTodosCliente($vistaurl,$tipo)
     {
-         $cliente = cliente::orderby('nombre_Cli')->where('estado_Cli',1)->get();
-        return view("Proyecto.Desarrollo.Cliente.clientesActR")->with('cliente', $cliente);
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('clientesActR');
+        }
+        if ($tipo==2) {
+            return $pdf->download('clientesActR.pdf');
+        }
+
     }
 
-    public function ReporteCliIna()
+    public function ReportesCliente($tipo)
     {
-         $cliente = cliente::orderby('nombre_Cli')->where('estado_Cli',0)->get();
-        return view("Proyecto.Desarrollo.Cliente.clientesInaR")->with('cliente', $cliente);
+
+      $vistaurl="Proyecto.Desarrollo.Cliente.clientesActR";
+      return $this->crearReporteTodosCliente($vistaurl,$tipo);     
     }
+
+        public function crearReporteTodosClienteI($vistaurl,$tipo)
+    {
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('clientesInaR');
+        }
+        if ($tipo==2) {
+            return $pdf->download('clientesInaR.pdf');
+        }
+
+    }
+
+    public function ReportesCli($tipo)
+    {
+
+      $vistaurl="Proyecto.Desarrollo.Cliente.clientesInaR";
+      return $this->crearReporteTodosClienteI($vistaurl,$tipo);     
+    }
+
+    public function crearReporteTodosClienteJ($vistaurl,$tipo)
+    {
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('clientesJuridicos');
+        }
+        if ($tipo==2) {
+            return $pdf->download('clientesJuridicos.pdf');
+        }
+
+    }
+
+    public function ReportesJur($tipo)
+    {
+
+      $vistaurl="Proyecto.Desarrollo.Cliente.clientesJuridicos";
+      return $this->crearReporteTodosClienteJ($vistaurl,$tipo);     
+    }
+
 }

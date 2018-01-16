@@ -267,21 +267,66 @@ class ProveedoresController extends Controller
 
     public function Reportes()
     {
-
-     
-      return view("Proyecto.Desarrollo.Proveedores.ReportesProveedor");
+        // $compras = compra::with('cliente')->get();
+        return view("Proyecto.Desarrollo.Proveedores.ReportesProveedor");
     }
 
-    public function ReporteProvIna()
+    public function crearReporteTodosProveedor($vistaurl,$tipo)
     {
-         //$proveedor = proveedor::orderby('nombre_Prov')->where('estado_Prov',0)->get();
-        return view("Proyecto.Desarrollo.Proveedores.proveedoresInaR");
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('proveedoresActR');
+        }
+        if ($tipo==2) {
+            return $pdf->download('proveedoresActR.pdf');
+        }
+
     }
 
-    public function ReporteProvAct()
+    public function ReportesProveedor($tipo)
     {
-         $proveedor = proveedor::orderby('nombre_Prov')->where('estado_Prov',1)->get();
-        return view("Proyecto.Desarrollo.Proveedores.proveedoresActR")->with('proveedor', $proveedor);
+
+      $vistaurl="Proyecto.Desarrollo.Proveedores.proveedoresActR";
+      return $this->crearReporteTodosProveedor($vistaurl,$tipo);     
     }
+
+    public function crearReporteTodosProveedorI($vistaurl,$tipo)
+    {
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('proveedoresInaR');
+        }
+        if ($tipo==2) {
+            return $pdf->download('proveedoresInaR.pdf');
+        }
+
+    }
+
+    public function ReportesProv($tipo)
+    {
+
+      $vistaurl="Proyecto.Desarrollo.Proveedores.proveedoresInaR";
+      return $this->crearReporteTodosProveedorI($vistaurl,$tipo);     
+    }
+
+    // public function ReporteProvIna()
+    // {
+        
+    //     return view("Proyecto.Desarrollo.Proveedores.proveedoresInaR");
+    // }
+
+    // public function ReporteProvAct()
+    // {
+    //      $proveedor = proveedor::orderby('nombre_Prov')->where('estado_Prov',1)->get();
+    //     return view("Proyecto.Desarrollo.Proveedores.proveedoresActR")->with('proveedor', $proveedor);
+    // }
 
 }
