@@ -60,6 +60,7 @@ class SeguridadController extends Controller
         'nombreUsuario_Usu' => $name,
         'fechaRegistro_Usu' => $fecha,
       ]);
+      bitacora::bitacoras('Registro','Registro de usuario: '.$Usuario->name);
 
       return redirect()->route('Usuario.index');
 
@@ -123,6 +124,7 @@ class SeguridadController extends Controller
         $user->save();
       }
 
+      bitacora::bitacoras('Modificación','Modificación de usuario: '.$user->name);
 
         return redirect()->route('Usuario.index');
     }

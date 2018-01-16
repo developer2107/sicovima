@@ -58,7 +58,8 @@
 
 
             <li>
-                <a href="logout">
+                <a href="logoutB">
+                    
                     <i class="fa fa-sign-out"></i> Cerrar Sesión
                 </a>
             </li>

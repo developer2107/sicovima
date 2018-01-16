@@ -87,7 +87,10 @@
           $mm = $cl->id_Municipio;
           $mmm = SICOVIMA\municipio::find($mm);
           $dpt = $mmm->id_Departamento;
-          $dp = SICOVIMA\departamento::find($dpt);   
+          $dp = SICOVIMA\departamento::find($dpt);  
+
+          $datoFecha = explode("-",(String)$v->fecha_Ven);
+          $fechaOrdenada = $datoFecha[2]."/".$datoFecha[1]."/".$datoFecha[0]; 
         ?>
         
         <div style="position: absolute;left: 60px; top: 80px; z-index: 1;"><h4>{{$cl->nombre_Cli}}</h4></div>
@@ -98,7 +101,7 @@
           <div style="position: absolute;left: 60px; top: 120px; z-index: 1;"><h4>{{$ju->NIT_CJ}}</h4></div>
         <?php endif ?>
 
-        <div style="position: absolute;left: 600px; top: 85px; z-index: 1;"><h4>{{$v->fecha_Ven}}</h4></div>
+        <div style="position: absolute;left: 600px; top: 85px; z-index: 1;"><h4>{{$fechaOrdenada}}</h4></div>
         <div style="position: absolute;left: 690px; top: 120px; z-index: 1;"><h4>x</h4></div>
         
 
@@ -117,7 +120,7 @@
 
         <div style="position: absolute;left: 35px; top: {{$indicee}}px; z-index: 1;"><h4>{{$detallee->cant_DVen}}</h4></div>
         <div style="position: absolute;left: 80px; top: {{$indicee}}px; z-index: 1;"><h4>{{$produ->tipo_Prod." ".$produ->estilo_Prod." ".$produ->color_Prod}}</h4></div>
-        <div style="position: absolute;left: 450px; top: {{$indicee}}px; z-index: 1;"><h4>$ {{$detallee->costoProd_DVen}}</h4></div>
+        <div style="position: absolute;left: 450px; top: {{$indicee}}px; z-index: 1;"><h4>$ {{$detallee->costoProd_DVen+$detallee->gananciaProd_DVen}}</h4></div>
         <div style="position: absolute;left: 650px; top: {{$indicee}}px; z-index: 1;"><h4>$ {{$subtotall}}</h4></div>
        <?php
           $totall=$totall+$subtotall;
