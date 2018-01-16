@@ -30,7 +30,7 @@
                           </tr>
                           </thead>
                           <tbody>
-
+<!-- 
                           @foreach ( $materiaPrimas as $materiaPrima )
                           <tr>
                               <td align="left" id="estilo"><font size="4" >{{$materiaPrima-> nombre_MP}}</font></td>
@@ -49,7 +49,7 @@
                                   </a>
                               </td>
                           </tr>
-                          @endforeach
+                          @endforeach -->
                           </tbody>
                       </table>
                   </div>

@@ -4,6 +4,7 @@ namespace SICOVIMA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SICOVIMA\TipoMercaderia;
+use SICOVIMA\proveedorTipoMercaderia;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 use Session;
@@ -22,7 +23,7 @@ class TipoMercaderiaController extends Controller
       }else{
         $estado=$request->estado;
       }
-      $tipos=TipoMercaderia::where('estado_TM',$estado)->orderBy('nombre_TM')->get();
+      $tipos=TipoMercaderia::orderBy('nombre_TM')->get();
         return view('Proyecto.Desarrollo.TipoMercaderia.verLista',compact('tipos','estado'));
     }
 
@@ -50,7 +51,7 @@ class TipoMercaderiaController extends Controller
         if(count($aux)==0){
           TipoMercaderia::create([
             'nombre_TM'=>$request->nombre_TM,
-            'estado_TM'=>1,
+            // 'estado_TM'=>1,
           ]);
           Session::flash('message','Registro guardado');
         }else{
@@ -77,22 +78,22 @@ class TipoMercaderiaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function cambio($id)
-    {
-        $tipo=TipoMercaderia::find($id);
-        if($tipo->estado_TM){
-          $tipo->estado_TM=0;
-          $estado=1;
-          Session::flash('message','Registro inactivo');
-        }
-          else{
-            $tipo->estado_TM=1;
-            $estado=0;
-            Session::flash('message','Registro activo');
-          }
-          $tipo->save();
-        return redirect('/TipoMercaderia?estado='.$estado);
-    }
+    // public function cambio($id)
+    // {
+    //     $tipo=TipoMercaderia::find($id);
+    //     if($tipo->estado_TM){
+    //       $tipo->estado_TM=0;
+    //       $estado=1;
+    //       Session::flash('message','Registro inactivo');
+    //     }
+    //       else{
+    //         $tipo->estado_TM=1;
+    //         $estado=0;
+    //         Session::flash('message','Registro activo');
+    //       }
+    //       $tipo->save();
+    //     return redirect('/TipoMercaderia?estado='.$estado);
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -126,11 +127,11 @@ class TipoMercaderiaController extends Controller
     public function eliminar($id)
     {
       $tipo=TipoMercaderia::find($id);
-      if($tipo->estado_TM){
-        $estado=1;
-      }else{
-        $estado=0;
-      }
+      // if($tipo->estado_TM){
+      //   $estado=1;
+      // }else{
+      //   $estado=0;
+      // }
       $message="Registro eliminado";
       $error="No puede eliminarse";
         try{
@@ -142,6 +143,20 @@ class TipoMercaderiaController extends Controller
         }
         return redirect('/TipoMercaderia?estado='.$estado)->with('error','No puede eliminarse');
 
+    }
+
+    public static function buscar($id){
+      $arrayTM=[];
+      $tipos=proveedorTipoMercaderia::where('id_Proveedor',$id)->get();
+      $conteo=0;
+      foreach ($tipos as $tipo) {
+        foreach ($tipo->tipoMercaderia->materiaPrima as $mer) {
+          $mer->tipoMercaderia;
+          $arrayTM[$conteo]=$mer;
+          $conteo++;
+        }
+      }
+      return $arrayTM;
     }
 
 }

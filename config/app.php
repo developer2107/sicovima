@@ -147,6 +147,8 @@ return [
         SICOVIMA\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Spatie\Backup\BackupServiceProvider::class,
+        
 
     ],
 

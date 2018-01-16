@@ -16,8 +16,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call(departamentoSeeder::class);
         $this->call(municipioSeeder::class);
-        $this->call(materiaPrimaSeeder::class);
-        $this->call(proveedorSeeder::class);
+        $this->call(UsuarioSeeder::class);
+        // $this->call(materiaPrimaSeeder::class);
+        // $this->call(proveedorSeeder::class);
         // $this->call(UserTableSeeder::class);
 
         Model::reguard();

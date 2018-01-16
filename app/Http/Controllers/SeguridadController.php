@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 
-use SICOVIMA\users;
+use SICOVIMA\User;
 
 class SeguridadController extends Controller
 {
@@ -16,25 +16,9 @@ class SeguridadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function Buscar()
-    {
-        $Usuario = users::orderBy('name','ASC')->paginate(5);
-        return view("Proyecto.Desarrollo.Seguridad.BuscarUsuario")->with('Usuario', $Usuario);
-    }
-    public function Ver($id)
-    {
-        $Usuarioedit = users::find($id);
-        return view("Proyecto.Desarrollo.Seguridad.VerUsuario")->with('Usuarioedit',$Usuarioedit);
-    }
-
-    public function Modificar()
-    {
-        return view("Proyecto.Desarrollo.Seguridad.ModificarUsuario");
-    }
-
     public function index()
     {
-      $Usuario = users::orderBy('name','ASC')->paginate(5);
+      $Usuario = User::orderBy('name','ASC')->orderBy('estado','ASC')->paginate(5);
       return view("Proyecto.Desarrollo.Seguridad.BuscarUsuario")->with('Usuario', $Usuario);
     }
 
@@ -45,6 +29,7 @@ class SeguridadController extends Controller
      */
     public function create()
     {
+
       return view("Proyecto.Desarrollo.Seguridad.RegistrarUsuario");
     }
 
@@ -56,19 +41,23 @@ class SeguridadController extends Controller
      */
     public function store(Request $request)
     {
+
       $name = $request['name'];
       $tipo_Usuario = $request['radioInline'];
       $nameUsers = $request['nameUsers'];
       $email = $request['email'];
       $password = $request['password'];
       $fecha= date('d-m-Y');
+      $estado = $request['estado'];
 
-      $Usuario = \SICOVIMA\Users::create([
-        'name'=> $name,
+
+      $Usuario = \SICOVIMA\User::create([
+        'name'=> $nameUsers,
         'email'=> $email,
         'password' => bcrypt($password),
         'tipo' => $tipo_Usuario,
-        'nombreUsuario_Usu' => $nameUsers,
+        'estado'=> $estado,
+        'nombreUsuario_Usu' => $name,
         'fechaRegistro_Usu' => $fecha,
       ]);
 
@@ -84,8 +73,8 @@ class SeguridadController extends Controller
      */
     public function show($id)
     {
-
-
+      $Usuarioedit = User::find($id);
+      return view("Proyecto.Desarrollo.Seguridad.VerUsuario")->with('Usuarioedit',$Usuarioedit);
     }
 
     /**
@@ -96,8 +85,11 @@ class SeguridadController extends Controller
      */
     public function edit($id)
     {
-      $Usu = users::find($id);
+
+      $Usu = User::find($id);
+
       return view("Proyecto.Desarrollo.Seguridad.ModificarUsuario")->with('Usu', $Usu);
+
     }
 
     /**
@@ -109,12 +101,28 @@ class SeguridadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = users::find($id);
+      $user = User::find($id);
+      if ($request->accion === "estado") {
+        # code...
+        if ($request->estado === 'Activo') {
+          # code...
+          $user->estado = 'Inactivo';
+          $user->save();
+        }else {
+          $user->estado = 'Activo';
+          $user->save();
+        }
+
+      }else {
+        # code...
+
         $user->name = $request->name;
         $user->email = $request->email;
         $user->tipo = $request->radioInline;
         // $user->password = $request->password;
         $user->save();
+      }
+
 
         return redirect()->route('Usuario.index');
     }
@@ -127,6 +135,6 @@ class SeguridadController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd($id);
     }
 }

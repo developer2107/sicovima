@@ -106,7 +106,7 @@ class ProveedoresController extends Controller
             'estado_Prov'=>1,//true---> activo
         ]);
 
-        $tipos=tipoMercaderia::where('estado_TM',1)->get();
+        $tipos=tipoMercaderia::get();
         foreach ($tipos as $tipo) {
           echo $request['cb'.(String)$tipo->id];
           if($request['cb'.(String)$tipo->id]==1){
@@ -132,7 +132,7 @@ class ProveedoresController extends Controller
           'id_Proveedor'=>$proveedor->id,
       ]);
       }
-        //return redirect("/RegistroProveedor");
+        return redirect("/RegistroProveedor");
     }
 
     /**
@@ -166,7 +166,57 @@ class ProveedoresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return view("Proyecto.Desarrollo.Proveedores.VerProveedor");
+        $tel = $request->tel;
+        $cor = $request->cor;
+        $proveedor = proveedor::find($id);
+
+        $proveedor->nombre_Prov=$request->nombre_Prov;
+        $proveedor->NIT_Prov=$request->NIT_Prov;
+        $proveedor->direccion_Prov=$request->direccion_Prov;
+        $proveedor->id_Municipio=$request->municipios;
+        $proveedor->save();
+
+        $telefonosViejos = $proveedor->telefonoProveedor;
+        $correosViejos = $proveedor->correoProveedor;
+
+        foreach ($telefonosViejos as $telefono) {
+           $telefono->delete();
+        }
+
+        foreach ($correosViejos as $correo) {
+           $correo->delete();
+        }
+
+        for ($i=0; $i < count($tel); $i++) {
+            telefonoProveedor::create([
+            'numero_TelefonoProv'=>$tel[$i],
+            'id_Proveedor'=>$proveedor->id,
+        ]);
+        }
+
+        for ($i=0; $i < count($cor); $i++) {
+            correoProveedor::create([
+            'correo_CorreoProv'=>$cor[$i],
+            'id_Proveedor'=>$proveedor->id,
+        ]);
+        }
+
+        $ptviejos=proveedorTipoMercaderia::where('id_Proveedor',$proveedor->id)->get();
+        foreach ($ptviejos as $ptv) {
+          $ptv->delete();
+        }
+        $tipos=tipoMercaderia::get();
+        foreach ($tipos as $tipo) {
+          echo $request['cb'.(String)$tipo->id];
+          if($request['cb'.(String)$tipo->id]==1){
+          proveedorTipoMercaderia::create([
+            'id_Proveedor'=>$proveedor->id,
+            'id_tipoMercaderia'=>$tipo->id,
+          ]);
+          }
+        }
+
+        return redirect('/MostrarListaProv');
     }
 
     /**

@@ -3,65 +3,24 @@
 
 
     <!-- Bootstrap Tour -->
-    <link href="css/plugins/bootstrapTour/bootstrap-tour.min.css" rel="stylesheet">
-    <script src="js/plugins/bootstrapTour/bootstrap-tour.min.js"></script>
+    {!! Html::style('css/plugins/bootstrapTour/bootstrap-tour.min.css') !!}
+    {!! Html::script('js/plugins/bootstrapTour/bootstrap-tour.min.js') !!}
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    {!! Html::script('js/jquery-2.1.1.js') !!}
+    {!! Html::script('js/bootstrap.min.js') !!}
+    {!! Html::script('js/plugins/metisMenu/jquery.metisMenu.js') !!}
+    {!! Html::script('js/plugins/slimscroll/jquery.slimscroll.min.js') !!}
+    {!! Html::script('js/plugins/datapicker/bootstrap-datepicker.js') !!}
 
     <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-  <style>
-  @import url("//harvesthq.github.io/chosen/chosen.css");
-body {
-  font-family: sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  background: #eee;
-}
+    {!! Html::script('js/inspinia.js') !!}
+    {!! Html::script('js/plugins/pace/pace.min.js') !!}
 
-.container {
-  width: 80%;
-  margin: 1em auto;
-  padding: 1em 5%;
-  background: #fff;
-}
-h1, h2 {
-  margin-bottom: .5em;
-}
-h1 {
-  font-size: 2em;
-}
-h2 {
-  font-size: 1.6em;
-}
+    {!! Html::style('css/animate.css') !!}
+    {!! Html::style('css/style.css') !!}
+    {!! Html::style('css/bootstrap.min.css') !!}
+    {!! Html::style('font-awesome/css/font-awesome.css') !!}
 
-p {
-  margin-bottom: 1em;
-}
-select {
-  width: 250px;
-}
-.chosen-container {
-  width: 250px;
-}
-.chosen-container-multi .chosen-choices li.search-field input[type="text"]{
-  height: 30px !important;
-}
-        .thumb {
-          height: 200px;
-          border: 1px solid #000;
-          margin: 10px 5px 0 0;
-        }
-      </style>
     {!! Html::script('js/jquery-3.1.1.min.js') !!}
     {!! Html::script('bootstrap/js/jquery.js') !!}
     {!! Html::script('bootstrap/js/bootstrap.min.js') !!}
@@ -120,9 +79,6 @@ select {
          window.open("index.php","_parent");
        }
  </script>
- <script type="text/javascript">
-
- </script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -163,21 +119,21 @@ select {
 
 <style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style></head>
 <body class=" pace-done  tour-open">
-    <!-- Bootstrap Tour -->
-    <link href="css/plugins/bootstrapTour/bootstrap-tour.min.css" rel="stylesheet">
-    <script src="js/plugins/bootstrapTour/bootstrap-tour.min.js"></script>
-    <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+  <!-- Bootstrap Tour -->
+  {!! Html::style('css/plugins/bootstrapTour/bootstrap-tour.min.css') !!}
+  {!! Html::script('js/plugins/bootstrapTour/bootstrap-tour.min.js') !!}
+  <!-- Mainly scripts -->
+  {!! Html::script('js/jquery-2.1.1.js') !!}
+  {!! Html::script('js/bootstrap.min.js') !!}
+  {!! Html::script('js/plugins/metisMenu/jquery.metisMenu.js') !!}
+  {!! Html::script('js/plugins/slimscroll/jquery.slimscroll.min.js') !!}
+  {!! Html::script('js/plugins/datapicker/bootstrap-datepicker.js') !!}
 
-    <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+  <!-- Custom and plugin javascript -->
+  {!! Html::script('js/inspinia.js') !!}
+  {!! Html::script('js/plugins/pace/pace.min.js') !!}
+  {!! Html::style('css/animate.css') !!}
+  {!! Html::style('css/style.css') !!}
 
     <div class="pace  pace-inactive"><div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%" data-progress="99">
   <div class="pace-progress-inner"></div>
@@ -200,9 +156,8 @@ select {
         </div>
         @endif
            @yield('content')
-
-           @include('Proyecto.Globales.PiePagina')
        </div>
+       @include('Proyecto.Globales.PiePagina')
    </div>
 
 
@@ -358,7 +313,7 @@ select {
                 buttons: [
                     { extend: 'copy'},
                     {extend: 'csv'},
-                    {extend: 'excel', title: 'SICOVIMA-REPORTE'},
+                    {extend: 'excel', title: 'SICOVIMA-REPORTE '},
                     {extend: 'pdf', title: 'SICOVIMA-REPORTE'},
 
                     {extend: 'print',
@@ -726,7 +681,7 @@ select {
                     reader.onload = (function(theFile) {
                         return function(e) {
                           // Insertamos la imagen
-                         document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'+
+                         document.getElementById("list").innerHTML = ['<img class="thumb" width="200" height="200" src="', e.target.result,'" title="', escape(theFile.name), '"/>'+
                        '"<input type="hidden" name="codImagen" id="codImagen" value="'+ e.target.result +'"/>"'].join('');
                         };
                     })(f);

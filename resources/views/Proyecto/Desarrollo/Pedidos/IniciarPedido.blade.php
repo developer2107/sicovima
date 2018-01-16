@@ -7,7 +7,8 @@ use SICOVIMA\producto;
 
 @section('content')
 
-  {!! Form::model($idDetallePedido,['route'=>['RegistrarCompra.update',$idDetallePedido->id], 'method'=>'PUT','autocomplete'=>'off']) !!}
+  {!! Form::open(['route'=>['Pedidos.update',$detallePedido_e->id], 'method'=>'PUT','autocomplete'=>'off']) !!}
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Iniciar Pedido</h2>
@@ -36,14 +37,14 @@ use SICOVIMA\producto;
             </div>
             <div class="ibox-content">
             <br>
-                <form class="form-horizontal">
+
                     <div class="row">
                     	<div class="col-md-1">
                     	</div>
                         <label class="col-lg-2 control-label">Cliente</label>
                         <div class="col-md-3">
                             <div class="input-group">
-                            	{!! Form::text('nombre_Cli',$idDetallePedido->pedido->cliente->nombre_Cli,['class'=>'form-control','disabled'=>'disabled','readonly'=>'readonly']) !!}
+                            	{!! Form::text('nombre_Cli',$detallePedido_e->pedido->cliente->nombre_Cli,['class'=>'form-control', 'name'=>'clientes_I','id'=>'clientes_I','disabled'=>'disabled','readonly'=>'readonly']) !!}
                             	<!-- Este es no editable -->
                             </div>
                         </div>
@@ -57,18 +58,18 @@ use SICOVIMA\producto;
                         <div class="col-lg-8">
                             <div class="input-group">
                               <?php
-                              if ($idDetallePedido->pedido->cliente->tipo_Cli == 'FALSE') {
+                              if ($detallePedido_e->pedido->cliente->tipo_Cli === 'FALSE') {
                                 # code...
                                 ?>
-                                {!! Form::text('nombreResponsable_CJ','',['class'=>'form-control','disabled'=>'disabled','readonly'=>'readonly']) !!}
+                                {!! Form::text('nombreResponsable_I','',['class'=>'form-control','name'=>'Responsable_IN','disabled'=>'disabled','readonly'=>'readonly']) !!}
                               	<!-- Este es no editable -->
                                 <?php
                               }else {
-                                $Responsable=\SICOVIMA\clienteJuridico::where('id_Cliente', $idDetallePedido->pedido->cliente->id)->value('nombreResponsable_CJ');
+                                $Responsable=\SICOVIMA\clienteJuridico::where('id_Cliente', $detallePedido_e->pedido->cliente->id)->value('nombreResponsable_CJ');
                                 // $nombre = \SICOVIMA\clienteJuridico::find($Responsable->id);
 
                                 ?>
-                                {!! Form::text('nombreResponsable_CJ',$Responsable,['class'=>'form-control','disabled'=>'disabled','readonly'=>'readonly']) !!}
+                                {!! Form::text('nombreResponsable_I',$Responsable,['class'=>'form-control','name'=>'Responsable_IJ','disabled'=>'disabled','readonly'=>'readonly']) !!}
                               	<!-- Este es no editable -->
 
                                  <?php
@@ -83,17 +84,19 @@ use SICOVIMA\producto;
                     <br>
                     <div class="col-md-1">
                     </div>
-                    <label class="col-lg-2 control-label">Fecha</label>
+                    <label class="col-lg-2 control-label">Fecha de Realizacion</label>
                         <div class="col-md-4">
                             <div class="input-group date">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                {!! Form::text('fecha_Ped', $idDetallePedido->pedido->fecha_Ped,['class'=>'form-control']) !!}
+                                <?php   $dato = explode("-",(String)$detallePedido_e->pedido->fecha_Ped);
+                                        $fecha = $dato[2]." / ".$dato[1]." / ".$dato[0];
+                                ?>
+                                {!! Form::text('fecha_Ped',$fecha ,['class'=>'form-control','name'=>'fecha_Realizacion','disabled'=>'disabled']) !!}
                                 <!-- Este es no editable -->
                             </div>
                         </div>
                     </div>
                     <br>
-                </form>
             </div>
         </div>
     </div>
@@ -130,7 +133,7 @@ use SICOVIMA\producto;
 
                 <div class="col-xs-2">
                     <div class="input-group bootstrap-touchspin" id="Prueba">
-                      
+
                       <input type="hidden" name="id" value='100'/>
                       <a type="button" class="btn btn-outline btn-primary dim" id="AddCant" data-toggle="modal" data-target="#myModalTabla">Agregar Materia Prima</a>
 
@@ -154,7 +157,7 @@ use SICOVIMA\producto;
 
                 <div class="col-xs-2">
                     <div class="input-group bootstrap-touchspin">
-                        <a class="btn btn-outline btn-primary dim" type="button">Iniciar</a>
+                        {!! Form::submit('Iniciar',['class'=>'btn btn-primary']) !!}
                     </div>
                 </div>
                 <div class="col-xs-2">

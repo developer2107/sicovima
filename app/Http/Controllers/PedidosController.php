@@ -64,7 +64,8 @@ class PedidosController extends Controller
 
     public function Registrar()
     {
-        return view("Proyecto.Desarrollo.Pedidos.RegistrarPedido");//
+      $cliente = cliente::orderBy('id','ASC')->paginate();
+        return view("Proyecto.Desarrollo.Pedidos.RegistrarPedido")->with('cliente', $cliente);//
     }
 
     public function Iniciar($id)
@@ -86,42 +87,6 @@ class PedidosController extends Controller
 
         return view('Proyecto.Desarrollo.Pedidos.ListadePedidosSinIniciar')->with('pedido', $pedido)->with('producto', $producto)->with('detallePedido', $detallePedido)->with('cliente', $cliente)->with('pedido', $pedido);
       }
-
-
-    public function IniciarPedido($id)
-    {
-      $producto= producto::all();
-      $idDetallePedido= detallePedido::find($id);
-      $detallePedido=detallePedido::find($id)->with('producto', 'pedido')->get();
-      $inventarioMateriaPrima=inventarioMateriaPrima::orderBy('id_MateriaPrima', 'ASC')->where('tipoMovimiento_IMP', 1)->where('nuevaExistencia_IMP','>=',1)->get(['id','tipoMovimiento_IMP', 'existencias_IMP', 'cantidad_IMP','fechaMov_IMP','nuevaExistencia_IMP', 'id_MateriaPrima']);
-      $prueb = inventarioMateriaPrima::orderBy('id_MateriaPrima', 'ASC')->where('tipoMovimiento_IMP', 1)->where('nuevaExistencia_IMP','>=',1)->select('nuevaExistencia_IMP')->get();
-      $prueb2 = inventarioMateriaPrima::orderBy('id_MateriaPrima', 'ASC')->where('tipoMovimiento_IMP', 1)->where('nuevaExistencia_IMP','>=',1)->select('existencias_IMP')->get();
-      dd($prueb->last());
-      $cont = count($prueb);
-      $s=0;
-      for ($i=0; $i < $cont ; $i++) {
-        # code...
-        // dd($prueb[$i]->nuevaExistencia_IMP);
-        if ($prueb2[$i]->existencias_IMP >= $prueb[$i]->nuevaExistencia_IMP ) {
-          # code...
-          $s=$s+1;
-        }else {
-          # code...
-          $s=$s-1;
-        }
-      }
-      dd($s);
-      $materiaPrima = materiaPrima::where('estado_MP','=', False )->get(['id','nombre_MP']);
-
-
-
-
-      // $prueba= $detallePedido->id->get();
-      // dd($detallePedido->id);
-
-        return view('Proyecto.Desarrollo.Pedidos.IniciarPedido')->with('materiaPrima', $materiaPrima)->with('producto', $producto)->with('idDetallePedido', $idDetallePedido)->with('detallePedido', $detallePedido)->with('inventarioMateriaPrima', $inventarioMateriaPrima);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -130,14 +95,23 @@ class PedidosController extends Controller
 
      public function index()
      {
+
+       $pedido = pedido::with('cliente')->get();
        $cliente = cliente::all();
-       $producto = \SICOVIMA\producto::orderBy('id','ASC')->paginate(5);
-       return view('Proyecto.Desarrollo.Pedidos.create')->with('producto', $producto)->with('cliente',$cliente);
+       $producto=\SICOVIMA\producto::all();
+       $detallePedido=detallePedido::with('pedido','producto')->get();
+
+       $responsable = \SICOVIMA\clienteJuridico::all();
+
+         return view('Proyecto.Desarrollo.Pedidos.ListadePedidosSinIniciar')->with('pedido', $pedido)->with('producto', $producto)->with('detallePedido', $detallePedido)->with('cliente', $cliente)->with('pedido', $pedido);
+
      }
 
     public function create()
     {
-        return view('Proyecto.Desarrollo.pedidos.create');
+
+        $cliente = cliente::orderBy('id','ASC')->paginate();
+        return view('Proyecto.Desarrollo.pedidos.create')->with('cliente',$cliente);
     }
 
     /**
@@ -152,6 +126,18 @@ class PedidosController extends Controller
     {
 
       // dd($request->all());
+      $prueba= producto::all();
+      foreach ($prueba as $prueba) {
+        # code...
+        $image = imagecreatefromstring($prueba->imagen_Prod);
+        $encoded_image = base64_encode($image);
+//You dont need to decode it again.
+
+dd($encoded_image);
+
+
+      }
+      dd($variable);
 
       $contador=count($request['tipop']);
       $contador1=count($request['cantidad_DPed']);
@@ -168,7 +154,6 @@ class PedidosController extends Controller
       $codImagen = $request['files'];
       $total_Ped = $request['total_Ped'];
 
-      // dd($total_Ped);
       //recore los valores que tiene la tabla para guardarlos
           for($a=0;$a<$contador;$a++){
             //metodo guardar producto, al principio del controlador se declara el namaspace
@@ -180,10 +165,11 @@ class PedidosController extends Controller
             'color_Prod'=>$color_Prod[$a],
             'talla_Prod'=>$talla_Prod[$a],
             'imagen_Prod'=>$codImagen[$a],
-            'estado_Prod' => 0,//estado en pedido
-            'estado2_Prod' => 0,//matener en cero
+            'estado_Prod' => 0,//estado en pedido, 1= estado de producto ya no es pedido
+            'estado2_Prod' => 0,//matener en cero, defectuoso es 1
         ]);
       }
+
 
 
       //guardar pedido
@@ -198,10 +184,6 @@ class PedidosController extends Controller
 
       // $aux = cliente::find($ped->id_Cliente);
       // bitacora::bitacoras('Registro','Registro de pedido'.$ped->id.' al cliente: '.$aux->nombre_Cli);
-
-
-      //dd($p->all());
-
       $producto=producto::all();
       $id_producto=$producto->last()->id;
       $pedido=pedido::all();
@@ -209,10 +191,6 @@ class PedidosController extends Controller
 
       $cont = count($subtotal_DPed);//variable unica de la tabla y asi hacer los recorridos necesarios para guardar informacion, el
       //metodo count es para sacar cuantos registros existen y asi recorrer el for
-
-      //dd($id_cliente);
-
-
       //al tener variables ingresadas atraves del modal que se guardaron en array recorre para guardar
       for ($i=0; $i <$cont ; $i++) {
         # code..
@@ -220,14 +198,14 @@ class PedidosController extends Controller
         'cantidad_DPed'=>$cantidad_DPed[$i],
         'subtotal_DPed'=>$subtotal_DPed[$i],
         'subtotalVenta_DPed'=>$subtotalVenta_DPed[$i],
+        'estado' => 0, //estado que mantiene 0= inicar, 1= finalizar
         'id_Producto'=>$id_producto,
         'id_Pedido'=>$id_pedido,
       ]);
     }
 
-    $cliente = cliente::all();
-    $producto = \SICOVIMA\producto::orderBy('id','ASC')->paginate(5);
-            return view('Proyecto.Desarrollo.Pedidos.create')->with('producto', $producto)->with('cliente',$cliente);
+    return redirect()->route('Pedidos.index');
+
     }
 
     /**
@@ -239,7 +217,6 @@ class PedidosController extends Controller
     public function show($id)
     {
 
-      //
     }
 
     /**
@@ -250,7 +227,15 @@ class PedidosController extends Controller
      */
     public function edit($id)
     {
-        return view('Proyecto.Desarrollo.pedidos.IniciarPedido');
+      $materiaPrima = materiaPrima::where('estado_MP','=', False )->get(['id','nombre_MP']);
+      $detallePedido_e=detallePedido::find($id);
+      $inventarioMateriaPrima_e=inventarioMateriaPrima::orderBy('id_MateriaPrima', 'ASC')->where('tipoMovimiento_IMP', 1)->where('nuevaExistencia_IMP','>=',1)->get(['id','tipoMovimiento_IMP', 'existencias_IMP', 'cantidad_IMP','fechaMov_IMP','nuevaExistencia_IMP', 'id_MateriaPrima']);
+      $prueb = inventarioMateriaPrima::all();
+      $prueb2 = materiaPrima::all();
+
+      $cont = count($prueb);
+      $s=0;
+      return view('Proyecto.Desarrollo.Pedidos.IniciarPedido')->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);
     }
 
     /**
@@ -262,7 +247,7 @@ class PedidosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      dd($request->all());
     }
 
     /**

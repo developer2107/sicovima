@@ -35,6 +35,7 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Tipo de Usuario</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                             {{-- <a class="btn btn-primary btn-circle fa fa-eye" href="VerUsuario"></a>
                             <a class="btn btn-success btn-circle fa fa-pencil-square-o" href="ModificarUsuario"></a> --}}
@@ -45,9 +46,16 @@
                             <tr>
                               <td>{{$Usuario->name}}</td>
                               <td>{{$Usuario->tipo}}</td>
+                              <td>{{$Usuario->estado}}</td>
                               <td>
-                                <a class="btn btn-primary btn-circle fa fa-eye" href="VerUsuario/{{$Usuario->id}}"></a>
-                                <a class="btn btn-success btn-circle fa fa-pencil-square-o" href="ModificarUsuario/{{$Usuario->id}}"></a>
+                                <a class="btn btn-primary btn-circle fa fa-eye" href="{{route('Usuario.show',$Usuario->id)}}"></a>
+                                <?php
+                                if ($Usuario->estado === 'Activo'){  ?>
+                                <a class="btn btn-success btn-circle fa fa-pencil-square-o" href="Usuario/{{$Usuario->id}}"></a>
+                              <?php
+                                }
+                                 ?>
+
                               </td>
                             </tr>
 

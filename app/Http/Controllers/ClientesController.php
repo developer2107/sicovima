@@ -32,10 +32,10 @@ class ClientesController extends Controller
 
         return view('Proyecto.Desarrollo.Cliente.RegistroCliente',compact('departamento','municipio'))->with('departamento', $departamento)->with('municipio', $municipio);
     }
-    
+
     public function Mostrar()
     {
-      
+
       $cliente = cliente::orderby('nombre_Cli')->where('estado_Cli',1)->get();
 
       return view("Proyecto.Desarrollo.Cliente.MostrarListaCli")->with('cliente', $cliente);
@@ -66,7 +66,9 @@ class ClientesController extends Controller
     public function Modificar($id)
     {
         $cliente = cliente::find($id);
-        return view("Proyecto.Desarrollo.Cliente.ModificarCli",compact('cliente'));;
+        $departamento = departamento::all();
+        $municipio = municipio::all();
+        return view("Proyecto.Desarrollo.Cliente.ModificarCli",compact('cliente','departamento','municipio'));
     }
 
     // public function Correo(Request $request)
@@ -154,7 +156,7 @@ class ClientesController extends Controller
         ]); # code...
 
             //bitacora::bitacoras('Registro','Registro de cliente natural'.$clienteNatural->id.': '.$cliente->nombre_Cli);
-        
+
         }else{
             if ($tipo==1) {
                 $clienteJuridico = clienteJuridico::create([
@@ -225,6 +227,7 @@ class ClientesController extends Controller
 
         $cliente->nombre_Cli=$request->nombre_Cli;
         $cliente->direccion_Cli=$request->direccion_Cli;
+        $cliente->id_Municipio=$request->municipios;
         $cliente->save();
 
         if ($cliente->tipo_Cli) {

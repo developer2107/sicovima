@@ -59,6 +59,37 @@ var total=parseFloat($("#total_Com").val());
     total=total-(totalF);
      document.getElementById("total_Com").value=total.toFixed(2);
 });
+
+$('#cambioPR').on('change',function(e){
+    tabla=$("#tablaMateriaPrima");
+    tabla.empty();
+    id=$('#cambioPR').val();
+    var ruta="/github/sicovima/public/buscarTipoMercaderia/"+id;   
+$.get(ruta,function(res){
+      $(res).each(function(key,value){
+          cadena="<tr><th>Nombre </th><th>Tipo </th><th>Color</th><th>Precio</th><th>Unidad de Medida</th><th>Opciones</th>"+
+          "</tr>"+
+          "<tr>"+
+          "<td align='left' id='estilo'><font size='4' >"+value.nombre_MP+"</font></td>"+
+          "<td align='left'><font size='4' >"+value.tipo_mercaderia.nombre_TM+"</font></td>"+
+          "<td align='rihgt'><font size='4' >"+value.color_MP+"</font></td>"+
+          "<td align='rihgt'><font size='4' >"+parseFloat(value.precio_MP).toFixed(2)+"</font></td>"+
+          "<td align='rihgt'><font size='4' >"+value.unidadMedida_MP+"</font></td>"+
+          "<td align='center'>"+
+            "<input type='hidden' value='"+value.nombre_MP+"'>"+
+            "<input type='hidden' value='"+value.color_MP+"'>"+
+            "<input type='hidden' value='"+value.precio_MP+"'>"+
+            "<input type='hidden' value='"+value.id+"'>"+
+            "<input type='hidden' name='prueba' value='100'/>"+
+            "<a class='btn btn-success btn-circle' type='button' id='AddCant' data-dismiss='modal' data-toggle='modal' data-target='#myModal6'>"+
+            "<i class='fa fa-pencil-square-o'></i>"+
+            "</a>"+
+            "</td>"+
+          "</tr>";
+          tabla.append(cadena);
+      });
+    });
+  });
   
 });
 

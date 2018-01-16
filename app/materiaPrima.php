@@ -36,7 +36,7 @@ public static function obtenerCantidad($id){
 }
 
 public static function arrayTipoMercaderia(){
-     $tipoMercaderia= tipoMercaderia::where('estado_TM',1)->orderBy('nombre_TM')->get();
+     $tipoMercaderia= tipoMercaderia::orderBy('nombre_TM')->get();
      $arraytipoMer=[];
      foreach ($tipoMercaderia as $tipoMer) {
        $arraytipoMer[$tipoMer->id] = $tipoMer-> nombre_TM;

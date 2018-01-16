@@ -10,29 +10,36 @@
                         <tr>
                           <th>cantidad</th>
                             <th>Producto</th>
-                            <th>Tipo de Pedido</th>
+                            <th>Descripcion de Pedido</th>
+                            <th>Fotografia</th>
                             <th>Fecha de Pedido</th>
                             <th>Acciones</th>
                         </tr>
                         </thead>
                         <tbody>
-                          @foreach($detallePedido as $detallePedido)
+                          <?php $cont=\SICOVIMA\detallePedido::all() ?>
+                          @foreach($cont as $detallePedido_e)
                         <tr>
-                          <?php   $dato=explode("-",(String)$detallePedido->pedido->fecha_Ped);
-                          $fecha =$dato[2]."/".$dato[1]."/".$dato[0];?>
+                          <?php   $dato=explode("-",(String)$detallePedido_e->pedido->fecha_Ped);
+                          $fecha =$dato[2]."/".$dato[1]."/".$dato[0];
+                          $mime='image/*';
+                          $binary_data= $detallePedido_e->producto->imagen_Prod ;
+                          ?>
 
-                            <td>{{$detallePedido->cantidad_DPed}}</td>
-                            <td>{{$detallePedido->producto->tipo_Prod}}</td>
-                            <td>{{$detallePedido->producto->tipo_Prod}}</td>
+                            <td>{{$detallePedido_e->cantidad_DPed}}</td>
+                            <td>{{$detallePedido_e->producto->tipo_Prod}}</td>
+                            <td>{{$detallePedido_e->producto->descripcion_Prod}}</td>
+                            <td><img src= '{!!$binary_data!!}'/> </td>
                             <td>{{$fecha}}</td>
                             <td>
-                                <input  type='hidden' name='id' value={{ $detallePedido ->id}}/>
-                                <input  type='hidden' name='cantidad' value='{{ $detallePedido->cantidad_DPed }}'/>
-                                <input  type='hidden' name='tipo_Prod' value='{{ $detallePedido->producto->tipo_Prod }}'/>
-                                <input  type='hidden' name='tipo_Prod' value='{{ $detallePedido->producto->talla_Prod }}'/>
-                                <input  type='hidden' name='tipo_Prod' value='{{ $detallePedido->producto->estilo_Prod }}'/>
-                                <input  type='hidden' name='tipo_Prod' value='{{ $detallePedido->producto->color_Prod }}'/>
-                                <input  type='hidden' name='tipo_Prod' value='{{ $detallePedido->producto->descripcion_Prod }}'/>
+                                <input  type='hidden' name='id' value={{ $detallePedido_e ->id}}/>
+                                <input  type='hidden' name='cantidad' value='{{ $detallePedido_e->cantidad_DPed }}'/>
+                                <input  type='hidden' name='cantidad' value='{{ $detallePedido_e->cantidad_DPed }}'/>
+                                <input  type='hidden' name='tipo_Prod' value='{{ $detallePedido_e->producto->tipo_Prod }}'/>
+                                <input  type='hidden' name='talla_Prod' value='{{ $detallePedido_e->producto->talla_Prod }}'/>
+                                <input  type='hidden' name='estilo_prod' value='{{ $detallePedido_e->producto->estilo_Prod }}'/>
+                                <input  type='hidden' name='color_Prod' value='{{ $detallePedido_e->producto->color_Prod }}'/>
+                                <input  type='hidden' name='descripcion_Prod' value='{{ $detallePedido_e->producto->descripcion_Prod }}'/>
                                 <input  type='hidden' name='fecha' value={{ $fecha }}/>
 
                                 <a class="btn btn-primary btn-circle" id="AddCant" type="button" data-toggle="modal" data-target="#myModal7"><i class="fa fa-eye"></i>

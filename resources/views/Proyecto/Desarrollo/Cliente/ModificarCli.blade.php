@@ -1,3 +1,5 @@
+<?php use SICOVIMA\departamento;
+ ?>
 @extends('layouts.MenuAdministrador')
 
 @section('content')
@@ -80,12 +82,13 @@
                                 </div>
                                 </div>
 
-                                <br>
                             <?php if ($cliente->tipo_Cli): ?>
                                 <div id="datosJuridico" class="row" >
                             <?php else: ?>
                                 <div id="datosJuridico" class="row" style="display:none">
                             <?php endif ?>
+                            <div class="row">
+                              <div class="form-group">
                               <div class="col-md-1">
                               </div>
                               <label class="col-lg-2 control-label">NIT</label>
@@ -106,11 +109,15 @@
                                     {!! Form::text('NIT_CJ',$aux,['id' => 'nitCliente','class'=>'form-control','data-mask'=>'9999-999999-999-9','style' => 'width:155px']) !!}
                                 <!-- </div> -->
                                 </div>
+                                </div>
+                              </div>
                                 <br>
                                 <div class="row">
                                     <div class="form-group">
+                                        <!-- <div class="col-md-1">
+                                        </div> -->
                                         <label class="col-lg-3 control-label">RNC </label>
-                                        <div class="col-lg-5">
+                                        <div class="col-lg-8">
                                             {!! Form::text('RNC_CJ',$aux2,['id' => 'rncCliente','class'=>'form-control','data-mask'=>'999-99999-9','style' => 'width:155px']) !!}
                                         </div>
                                     </div>
@@ -118,20 +125,56 @@
                                 <br>
                                 <div class="row">
                                     <div class="form-group">
-                                        <label class="col-lg-3 control-label">Nombre del Responsable </label>
+                                        <div class="col-md-1">
+                                        </div>
+                                        <label class="col-lg-2 control-label">Nombre Responsable </label>
                                         <div class="col-lg-8">
                                             {!! Form::text('nombreResponsable_CJ',$aux3,['id' => 'nombreResponsable','class'=>'form-control','style' => 'width:300px']) !!}
                                         </div>
                                     </div>
                                 </div>
                                 </div>
+                              <br>
+                        <div id="idCorreos">
+                          <?php $cuentac=0; ?>
+                          @foreach ($cliente->correoCliente as $correo)
+                            <div class="row" id='t{{$cuentac}}'>
+                                <div class="form-group">
+                                  @if ($cuentac==0)
+                                 <label class="col-lg-3 control-label">Correo Electrónico</label>
+                                 <div class="col-lg-7">
+                                     {!! Form::email('cor[]',$correo->correo_CorreoCli,['id' => 'correoCliente','class'=>'form-control','placeholder'=>'JuanPerez@ejemplo.com','style' => 'width:300px']) !!}
+                                 </div>
+                                 <div class="col-lg-1">
+                                     <button class="btn btn-default  dim " type="button" id="AddCorreo" name="AddCorreo">
+                                         <i class="fa fa-plus"></i>
+                                     </button>
+                                 </div>
+                               @else
+                                 <label class="col-lg-3 control-label"></label>
+                                 <div class="col-lg-7" >
+                                   {!! Form::email('cor[]',$correo->correo_CorreoCli,['id' => 'correoCliente','class'=>'form-control','placeholder'=>'JuanPerez@ejemplo.com','style' => 'width:300px']) !!}
+
+                                 </div>
+                                 <div class='col-lg-1'>
+                                   <button class='btn btn-default  dim' type='button' onclick='deleteCorreo({{$cuentac}})' >
+                                     <i class='fa fa-minus'></i>
+                                   </button>
+                                 </div>
+                               @endif
+                             </div>
+                             </div>
+                             <?php $cuentac++; ?>
+                           @endforeach
+                           <input type="hidden" id="con" value="{{$cuentac}}">
+                         </div>
                                 <br>
                                 <div id="idTelefonos">
                                 <div class="row">
                                   <div class="col-md-1">
                                   </div>
                                   <label class="col-lg-2 control-label">Teléfono</label>
-                                    <div class="col-md-8">
+                                    <div class="col-md-5">
                                     <?php 
                                       $telefonos = $cliente->telefonoCliente;
                                       foreach ($telefonos as $telefono) {
@@ -149,44 +192,53 @@
                                     <br>
                                 </div>
                                 </div>
-                    <!-- <div class="form-group"> -->
-                                <br>
-                                <div id="idCorreos">
-                                <div class="row">
-                                  <div class="col-md-1">
-                                  </div>
-                                  <label class="col-lg-2 control-label">Correo Electronico</label>
-                                    <div class="col-md-6">
-                                    <?php 
-                                     $correos = $cliente->correoCliente;
-                                     foreach ($correos as $correo) {
-                                    ?>
-                                        {!! Form::email('cor[]',$correo->correo_CorreoCli,['class'=>'form-control','placeholder'=>'JuanPerez@ejemplo.com','style' => 'width:300px']) !!}
-                                    <?php 
-                                     }
-                                     ?>
-                                    </div>
-                                    <!-- <div class="col-lg-2"> -->
-                                        <button class="btn btn-default  dim " type="button" id="AddCorreo"  name="AddCorreo">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    <!-- </div> -->
-                                    <br>
-                                </div>
-                                </div>
+                                
                                 <br>
                                 <div class="row">
                                   <div class="col-md-1">
                                   </div>
-                                  <label class="col-lg-2 control-label">Dirección</label>
-                                    <div class="col-md-8">
+                                  <?php
+                                  $municipio2 = SICOVIMA\municipio::find($cliente->id_Municipio);
+                                  $departamento2 = SICOVIMA\departamento::find($municipio2->id_Departamento);
+                                  ?>
+                                  <label class="col-lg-3 control-label">Departamento</label>
+                                    <div class="col-md-7">
                                     <!-- <div class="input-group"> -->
-                                       {!! Form::text('direccion_Cli',null,['id' => 'direccionCliente','class'=>'form-control','style' => 'width:350px']) !!}
+                                       <select class = "form-control" name = "departamentos" id = "departamentos">
+                                         <option value="0">Seleccione un Departamento</option>
+                                         @foreach ($departamento as $v)
+                                           @if ($v->id==$departamento2->id)
+                                             <option value={{$v->id}} selected>{{$v -> nombre_Depa}}</option>
+                                           @else
+                                             <option value={{$v->id}}>{{$v -> nombre_Depa}}</option>
+                                           @endif
+
+                                         @endforeach
+                                     </select>
                                     <!-- </div> -->
                                     </div>
                                 </div>
-
                                 <br>
+                                <div class="row">
+                                  <div class="col-md-1">
+                                  </div>
+                                  <label class="col-lg-3 control-label">Municipio</label>
+                                    <div class="col-md-7">
+                                    <!-- <div class="input-group"> -->
+                                       <select class = "form-control" name = "municipios" id = "municipios">
+                                      <option value="0">Seleccione un Municipio</option>
+                                      @foreach ($municipio as $muni)
+                                        @if ($muni->id==$municipio2->id)
+                                      <option value={{$muni->id}} selected>{{$muni -> nombre_Muni}}</option>
+                                    @else
+                                      <option value={{$muni->id}}>{{$muni -> nombre_Muni}}</option>
+                                    @endif
+                                      @endforeach
+                                  </select>
+                                    <!-- </div> -->
+                                    </div>
+                                </div>
+                                <br><br><br>
                                 <div class="row">
                                     <div class="col-lg-3">
                                     </div>
