@@ -150,17 +150,6 @@
                           </div>
                       </div>
                       <br><br>
-                      <!-- <div class="row">
-                        <div class="col-md-1">
-                        </div>
-                          <label class="col-lg-4 control-label"></label>
-                          <div class="col-md-4">
-                            <div class="input-group m-b">
-                              {!! Form::submit('Dar de Baja',['class'=>'btn btn-outline btn-primary dim']) !!}
-                            </div>
-                          </div>
-                      </div> -->
-
                       </form>
                </div>
           </div>

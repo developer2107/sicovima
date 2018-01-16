@@ -166,7 +166,6 @@ use SICOVIMA\producto;
                           <input  type='hidden' name='color_Prod' value='{{ $detallePedido_e->producto->color_Prod }}'/>
                           <input  type='hidden' name='descripcion_Prod' value='{{ $detallePedido_e->producto->descripcion_Prod }}'/>
                           <input  type='hidden' name='fecha' value='{{ $detallePedido_e->pedido->fecha_Ped }}'/>
-                          <input type="hidden" name="motivo" value="">
                             <a class="btn btn-primary btn-circle" id="AddCant" type="button" data-toggle="modal" data-target="#myModal7"><i class="fa fa-eye"></i>
                             </a>
                         </td>
@@ -198,7 +197,7 @@ use SICOVIMA\producto;
                 </div>
             </div>
             <div class="ibox-content">
-                <table class="table table-bordered" id="tablaFinalizarPedidosd">
+                <table class="table table-bordered" >
                     <thead>
                     <tr>
                         <th>#</th>
@@ -207,7 +206,7 @@ use SICOVIMA\producto;
                         <th>Acciones</th>
                     </tr>
                     </thead>
-                    <tbody id="limpio">
+                    <tbody >
 
                     </tbody>
                 </table>
@@ -265,35 +264,8 @@ use SICOVIMA\producto;
                           <th>Accion</th>
                       </tr>
                       </thead>
-                      <tbody>
-                        <?php $cont=\SICOVIMA\detallePedido::all();
-                        $cont1 = count($cont);
-                        $i=1;
+                      <tbody id="limpio">
 
-                        ?>
-                        @foreach($cont as $detallePedido_e)
-                          <tr>
-                              <td>{{$detallePedido_e->cantidad_DPed}}</td>
-                              <td>{{$detallePedido_e->producto->talla_Prod}}</td>
-                              <td>{{$detallePedido_e->$detallePedido_e->producto->tipo_Prod}}</td>
-                              <td>{{$detallePedido_e->producto->color_Prod}}</td>
-                              <td>{{$detallePedido_e->producto->descripcion_Prod}}</td>
-                              <td >
-                                <input  type='hidden' name='id' value='{{ $detallePedido_e ->id}}'/>
-                                <input  type='hidden' name='cantidad' value='{{ $detallePedido_e->cantidad_DPed }}'/>
-                                <input  type='hidden' name='tipo_Prod' value='{{ $detallePedido_e->producto->tipo_Prod }}'/>
-                                <input  type='hidden' name='talla_Prod' value='{{ $detallePedido_e->producto->talla_Prod }}'/>
-                                <input  type='hidden' name='estilo_prod' value='{{ $detallePedido_e->producto->estilo_Prod }}'/>
-                                <input  type='hidden' name='color_Prod' value='{{ $detallePedido_e->producto->color_Prod }}'/>
-                                <input  type='hidden' name='descripcion_Prod' value='{{ $detallePedido_e->producto->descripcion_Prod }}'/>
-                                <input  type='hidden' name='fecha' value='{{ $detallePedido_e->pedido->fecha_Ped }}'/>
-                                <input type="hidden" name="motivo" value="">
-                                  <a class="btn btn-primary btn-circle" id="AddCant" type="button" data-toggle="modal" data-target="#myModal7"><i class="fa fa-eye"></i>
-                                  </a>
-                              </td>
-                          </tr>
-                          <?php $i++; ?>
-                        @endforeach
 
                       </tbody>
                   </table>
@@ -350,9 +322,10 @@ use SICOVIMA\producto;
             </div>
 
             <div class="modal-footer">
-              {!! Form::button('Agregar',['class'=>'btn btn-primary','id'=>'agregarMotivoEst','type'=>'button', 'value'=>'Agregar','onclick'=>'agregarMotivoEst2()','data-dismiss'=>'modal']) !!}
+
               {{-- <a class="btn btn-primary" type="button" id="AddCant" data-toggle="modal" data-target="#myModal8">Agregar</a> --}}
                 {{-- <button type="button" class="btn btn-primary">Agregar</button> --}}
+                <input class="btn btn-primary" name="agregarMotivo" id="agregarMotivo" type="button" value="Agregar" />
                 <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
             </div>
         </div>

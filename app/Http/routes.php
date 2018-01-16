@@ -63,8 +63,8 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
   Route::match(['get','post'],'/VerProveedor/{id}','ProveedoresController@Ver');
   Route::match(['get','post'],'/ModificarProv/{id}','ProveedoresController@Modificar');
   Route::Resource('/ReportesProveedor','ProveedoresController@Reportes');
-  Route::Resource('/proveedoresInaR','ProveedoresController@ReporteProvIna');
-  Route::Resource('/proveedoresActR','ProveedoresController@ReporteProvAct');
+  Route::match(['get','post'],'/proveedoresActR/{id}','ProveedoresController@ReportesProveedor');
+  Route::match(['get','post'],'/proveedoresInaR/{id}','ProveedoresController@ReportesProv');
 
   Route::Resource('/RegistroCliente','ClientesController');
   Route::Resource('/MostrarListaCli','ClientesController@Mostrar');
@@ -75,8 +75,10 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
   Route::match(['get','post'],'/ModificarCli/{id}','ClientesController@Modificar');
   Route::Resource('/DarBajaCli','ClientesController@MostrarCI');
   Route::Resource('/ReportesCliente','ClientesController@Reportes');
-  Route::Resource('/clientesInaR','ClientesController@ReporteCliIna');
-  Route::Resource('/clientesActR','ClientesController@ReporteCliAct');
+  Route::match(['get','post'],'/clientesActR/{id}','ClientesController@ReportesCliente');
+  Route::match(['get','post'],'/clientesInaR/{id}','ClientesController@ReportesCli');
+  Route::match(['get','post'],'/clientesNaturales/{id}','ClientesController@ReportesNat');
+  Route::match(['get','post'],'/clientesJuridicos/{id}','ClientesController@ReportesJur');
 
   Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
   Route::Resource('/RegistrarCompra','CompraController');

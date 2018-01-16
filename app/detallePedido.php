@@ -7,7 +7,7 @@ class detallePedido extends Model
 {
     protected $table = 'detallePedido';
 
-    protected $fillable = ['cantidad_DPed','subtotal_DPed', 'subtotalVenta_DPed','estado','id_Producto','id_Pedido'];
+    protected $fillable = ['cantidad_DPed','subtotal_DPed', 'subtotalVenta_DPed','estado','estado2','id_Producto','id_Pedido'];
 
     public function producto(){
        return $this->belongsTo('\SICOVIMA\producto','id_Producto');
