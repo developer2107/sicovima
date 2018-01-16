@@ -12,6 +12,7 @@ use SICOVIMA\cliente;
 use Mail;
 use DB;
 use SICOVIMA\User;
+use SICOVIMA\bitacora;
 use SICOVIMA\clienteJuridico;
 use SICOVIMA\clienteNatural;
 use SICOVIMA\correoCliente;
@@ -155,7 +156,7 @@ class ClientesController extends Controller
             'id_Cliente'=>$cliente->id,
         ]); # code...
 
-            //bitacora::bitacoras('Registro','Registro de cliente natural'.$clienteNatural->id.': '.$cliente->nombre_Cli);
+        bitacora::bitacoras('Registro','Registro de cliente natural: '.$cliente->nombre_Cli);
 
         }else{
             if ($tipo==1) {
@@ -166,7 +167,7 @@ class ClientesController extends Controller
                     'RNC_CJ'=>$request->rncCliente,
                 ]);
 
-                //bitacora::bitacoras('Registro','Registro de cliente juridico '.$clienteJuridico->id.': '.$cliente->nombre_Cli);
+                bitacora::bitacoras('Registro','Registro de cliente juridico: '.$cliente->nombre_Cli);
 
             }else{
                 echo "No existe";
@@ -236,10 +237,16 @@ class ClientesController extends Controller
             $clienteJuridico->RNC_CJ=$request->RNC_CJ;
             $clienteJuridico->nombreResponsable_CJ=$request->nombreResponsable_CJ;
             $clienteJuridico->save();
+
+            bitacora::bitacoras('Modificación','Modificación de cliente jurídico: '.$cliente->nombre_Cli);
+
         } else {
             $clienteNatural = clienteNatural::where('id_Cliente',$cliente->id)->get()->first();
             $clienteNatural->DUI_CN=$request->DUI_CN;
             $clienteNatural->save();
+
+            bitacora::bitacoras('Modificación','Modificación de cliente natural: '.$cliente->nombre_Cli);
+
         }
 
         $telefonosViejos = $cliente->telefonoCliente;
@@ -332,19 +339,23 @@ class ClientesController extends Controller
 
     public function bajaCli($id)
     {
-       $bajaCli = cliente::find($id);
+      $bajaCli = cliente::find($id);
+      $bajaCli->estado_Cli= 0;
+      $bajaCli-> save();
 
-           $bajaCli->estado_Cli= 0;
+      bitacora::bitacoras('Dar de baja','Se dio de baja al cliente: '.$bajaCli->nombre_Cli);
 
-       $bajaCli-> save();
-       return redirect('/MostrarListaCli/'.$id);
+      return redirect('/MostrarListaCli/'.$id);
     }
 
     public function altaCli($id)
     {
-       $altaCli = cliente::find($id);
-       $altaCli->estado_Cli= 1;
-       $altaCli-> save();
-       return redirect('/DarBajaCli/'.$id);
+      $altaCli = cliente::find($id);
+      $altaCli->estado_Cli= 1;
+      $altaCli-> save();
+
+      bitacora::bitacoras('Dar de alta','Se dio de alta al cliente: '.$altaCli->nombre_Cli);
+
+      return redirect('/DarBajaCli/'.$id);
     }
 }

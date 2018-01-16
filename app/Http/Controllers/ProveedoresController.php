@@ -12,6 +12,8 @@ use SICOVIMA\proveedorTipoMercaderia;
 use SICOVIMA\tipoMercaderia;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
+use SICOVIMA\User;
+use SICOVIMA\bitacora;
 
 class ProveedoresController extends Controller
 {
@@ -117,7 +119,7 @@ class ProveedoresController extends Controller
           }
         }
 
-      //bitacora::bitacoras('Registro','Registro de proveedor '.$proveedor->id.': '.$proveedor->nombre_Prov);
+      bitacora::bitacoras('Registro','Registro de proveedor: '.$proveedor->nombre_Prov);
 
       for ($i=0; $i < count($tel); $i++) {
           telefonoProveedor::create([
@@ -175,6 +177,8 @@ class ProveedoresController extends Controller
         $proveedor->direccion_Prov=$request->direccion_Prov;
         $proveedor->id_Municipio=$request->municipios;
         $proveedor->save();
+
+        bitacora::bitacoras('Modificación','Modificación del proveedor: '.$proveedor->nombre_Prov);
 
         $telefonosViejos = $proveedor->telefonoProveedor;
         $correosViejos = $proveedor->correoProveedor;
@@ -241,12 +245,13 @@ class ProveedoresController extends Controller
 
     public function bajaProv($id)
     {
-       $bajaProv = proveedor::find($id);
+      $bajaProv = proveedor::find($id);
+      $bajaProv->estado_Prov= 0;
+      $bajaProv-> save();
 
-           $bajaProv->estado_Prov= 0;
+      bitacora::bitacoras('Dar de baja','Se dio de baja al proveedor: '.$bajaProv->nombre_Prov);
 
-       $bajaProv-> save();
-       return redirect('/MostrarListaProv/'.$id);
+      return redirect('/MostrarListaProv/'.$id);
     }
 
     public function altaProv($id)
@@ -254,6 +259,9 @@ class ProveedoresController extends Controller
        $altaProv = proveedor::find($id);
        $altaProv->estado_Prov= 1;
        $altaProv-> save();
+
+       bitacora::bitacoras('Dar de alta','Se dio de alta al proveedor: '.$altaProv->nombre_Prov);
+
        return redirect('/DarBajaProv/'.$id);
     }
 

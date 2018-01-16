@@ -4,6 +4,8 @@ namespace SICOVIMA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SICOVIMA\TipoMercaderia;
+use SICOVIMA\User;
+use SICOVIMA\bitacora;
 use SICOVIMA\proveedorTipoMercaderia;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
@@ -53,6 +55,7 @@ class TipoMercaderiaController extends Controller
             'nombre_TM'=>$request->nombre_TM,
             // 'estado_TM'=>1,
           ]);
+          bitacora::bitacoras('Registro','Registro de tipo de materia prima: '.$request->nombre_TM);
           Session::flash('message','Registro guardado');
         }else{
           Session::flash('error','El registro ya existe');
@@ -62,6 +65,7 @@ class TipoMercaderiaController extends Controller
         $tipo=TipoMercaderia::find($request->idTipo);
         $tipo->nombre_TM=$request->nombre_TM;
         $tipo->save();
+        bitacora::bitacoras('Modificación','Modificación de tipo de materia prima: '.$request->nombre_TM);
         Session::flash('message','Registro modificado');
       }else{
         Session::flash('error','El registro ya existe');

@@ -17,7 +17,7 @@ class bitacora extends Model
 	   	bitacora::create([
 	   		'accion_Bit'=>$accion_Bit,
 	   		'comentario_Bit'=>$comentario_Bit,
-	   		'id_Usuario'=>$Auth::user()->id,]);
+	   		'id_Usuario'=>Auth::user()->id,]);
 	   	# code...
 	   }
 

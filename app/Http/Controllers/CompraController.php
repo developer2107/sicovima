@@ -12,6 +12,8 @@ use SICOVIMA\detalleCompra;
 use Redirect;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
+use SICOVIMA\User;
+use SICOVIMA\bitacora;
 
 class CompraController extends Controller
 {
@@ -92,8 +94,8 @@ class CompraController extends Controller
        'id_Proveedor'=>$request['nombre_Prov'],
      ]);
 
-      // $aux = proveedor::find($compra->id_Proveedor);
-      // bitacora::bitacoras('Registro','Registro de compra '.$compra->id.' a proveedor: '.$aux->nombre_Prov);
+      $aux = proveedor::find($compra->id_Proveedor);
+      bitacora::bitacoras('Registro','Registro de compra '.$compra->id.' a proveedor: '.$aux->nombre_Prov);
 
        for ($j=0; $j < $contador ; $j++) {
          \SICOVIMA\detalleCompra::create([
@@ -191,8 +193,8 @@ class CompraController extends Controller
          'id_Proveedor'=>$request['nombre_Prov'],
        ]);
 
-      // $aux = proveedor::find($compra->id_Proveedor);
-      // bitacora::bitacoras('Registro','Registro de compra '.$compra->id.' por modificacion, a proveedor: '.$aux->nombre_Prov);
+      $aux = proveedor::find($compra->id_Proveedor);
+      bitacora::bitacoras('Modificación','Modificación de compra '.$compra->id.' a proveedor: '.$aux->nombre_Prov);
 
          for ($j=0; $j < $contador ; $j++) {
            \SICOVIMA\detalleCompra::create([
@@ -252,8 +254,8 @@ class CompraController extends Controller
         }
         Compra::destroy($id);
         
-        // $aux = proveedor::find($compra->id_Proveedor);
-        // bitacora::bitacoras('Eliminacion','Eliminar la compra '.$compra->id.' a proveedor: '.$aux->nombre_Prov);
+        $aux = proveedor::find($compra->id_Proveedor);
+        bitacora::bitacoras('Eliminacion','Eliminacion de la compra '.$compra->id.' a proveedor: '.$aux->nombre_Prov);
 
         Session::flash('message','Compra eliminada correctamente');
         $compra = compra::with('proveedor')->get();

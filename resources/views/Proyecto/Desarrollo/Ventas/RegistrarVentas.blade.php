@@ -20,7 +20,7 @@
         <div class="p-sm">
         <br>
         <div class=" m-t-sm">
-            <a href="#" class="btn btn-primary startTour1"><i class="fa fa-info-circle" id="step1"></i>  Ayuda</a>
+            <a href="/github/sicovima/public/ayuda/ayudaa.pdf" class="btn btn-primary" target="_blank"><i class="fa fa-info-circle"></i>  Ayuda</a>
         </div>
         </div>
     </div>
@@ -30,10 +30,7 @@
     <div class="col-lg-7">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Venta</h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="btn btn-default btn-circle startTour2" type="button"><i class="fa fa-info"></i></button>
-
-                <a class="btn btn-default btn-circle" href="/github/sicovima/public/ayuda/ayudaa.pdf" target="_blank"><i class="fa fa-info"></i></a>
+                <h5>Venta</h5>
             </div>
             <div class="ibox-content">
                 <div class="p-sm">
@@ -285,112 +282,7 @@
         </div>
     </div>
 </div>
-<!-- Bootstrap Tour -->
-    <script src="js/plugins/bootstrapTour/bootstrap-tour.min.js"></script>
-<!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
 
-<!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
-
-<script>
-
-    $(document).ready(function (){
-
-        // Instance the tour
-        var tour1 = new Tour({
-            steps: [{
-                    element: "#step1",
-                    title: "Ayuda",
-                    content: "Para abrir el servicio de ayuda pulse el boton con el icono de informacion 'i' para iniciar en cada panel correspondiente.",
-                    placement: "bottom",
-                    backdrop: true,
-                    backdropContainer: '#wrapper',
-                    onShown: function (tour){
-                        $('body').addClass('tour-open')
-                    },
-                    onHidden: function (tour){
-                        $('body').removeClass('tour-close')
-                    }
-                }
-            ]});
-
-        // Initialize the tour
-        tour1.init();
-
-        $('.startTour1').click(function(){
-            tour1.restart();
-
-            // Start the tour
-            // tour.start();
-        });
-
-    });
-
-</script>
-<script>
-
-    $(document).ready(function (){
-
-        // Instance the tour
-        var tour2 = new Tour({
-            steps: [{
-                    element: "#step01",
-                    title: "Selección de cliente",
-                    content: "Seleccione el cliente al cual realizará la venta, en esta lista se le muestran todos los clientes jurídicos y naturales.",
-                    placement: "top",
-                    Keyboard: false
-                },
-                {
-
-                    element: "#step2",
-                    title: "Presentación de encargado",
-                    content: "Si en el paso anterior se seleccionó un cliente jurídico, en este panel se carga el responsable de dicho cliente, si seleccionó un cliente natural, no se mostrará nada en el panel, ya que éste tipo de cliente no posee responsable.",
-                    placement: "top",
-                    Keyboard: false
-                },
-                {
-                    element: "#step3",
-                    title: "Elección de fecha",
-                    content: "Elegir del calendario la fecha en la que se realiza la venta, seleccionando en primer lugar el mes, y luego el día.",
-                    placement: "bottom",
-                    Keyboard: false
-                },
-                {
-                    element: "#step4",
-                    title: "Agregar producto",
-                    content: "Al presionar este botón, se despliega una ventana, en la cual podemos elegir el producto que se quiere vender.",
-                    placement: "top",
-                    backdrop: true,
-                    Keyboard: false,
-                    backdropContainer: '#wrapper',
-                    onShown: function (tour){
-                        $('body').addClass('tour-open')
-                    },
-                    onHidden: function (tour){
-                        $('body').removeClass('tour-close')
-                    }
-                }
-            ]});
-
-        // Initialize the tour
-        tour2.init();
-
-        $('.startTour2').click(function(){
-            tour2.restart();
-
-            // Start the tour
-            // tour.start();
-        })
-
-    });
-
-</script>
 
 {!! Form::close() !!}
 @stop
