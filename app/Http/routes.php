@@ -91,7 +91,8 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
   Route::match(['get','post'],'/VerInventarioMP/{id}','InventarioMPController@Ver');
   Route::Resource('/RegistroMateriaP','MateriaPrimaController');
   Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambio');
-
+  Route::Resource('/ReportesVenta','VentasController@Reportes');
+  
   Route::Resource('Bitacora','BitacoraController');
   Route::Resource('Reportes','BitacoraController@Reportes');
   Route::Resource('Tour','BitacoraController@Tour');
@@ -100,8 +101,10 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
   Route::match(['get','post'],'/VerVenta/{id}','VentasController@Ver');
   Route::match(['get','post'],'/VerInventarioPT/{id}','InventarioPTController@Ver');
   Route::Resource('/RegistrarVenta','VentasController');
-  Route::Resource('/ReportesVenta','VentasController@Reportes');
-  Route::Resource('/ListadeVentas','VentasController@Mostrar');
+Route::Resource('/ReportVenta','FechaController@store');
+Route::Resource('/ReportBitacora','BitacoraController');
+   Route::match(['get','post'],'/ReporteBitacoras/{id}/{nuevaFecha}','BitacoraController@ReporteBitacoras');
+Route::Resource('/ListadeVentas','VentasController@Mostrar');
 
   Route::match(['get','post'],'/Factura/{tipo}/{idVenta}','VentasController@Factura');
   Route::match(['get','post'],'/FacturaCF/{tipo}/{idVenta}','VentasController@FacturaCF');

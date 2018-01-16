@@ -40,7 +40,7 @@
                     </div>
                     <label class="col-lg-2 control-label">Cliente</label>
                     <div class="col-md-6">
-                        <div class="input-group" id="step01">
+                        <div class="input-group" >
                            <select class = "chosen-select" name = "clientes" id = "clientes"  style="width:300px">
                                 <option value="0">Seleccione</option>
                                 @foreach ($cliente as $v)
@@ -56,7 +56,7 @@
                     </div>
                     <label class="col-lg-2 control-label">Responsable</label>
                     <div class="col-lg-7">
-                        <div class="input-group" id="step2">
+                        <div class="input-group">
                             {!! Form::text('nombreResponsable',null,['id' => 'nombreResponsable','class'=>'form-control','readonly'=>'readonly','style' => 'width:300px']) !!}
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                     <div class="col-md-1">
                     </div>
                     <label class="col-lg-2 control-label">Fecha</label>
-                    <div class="col-md-4" id="step3">
+                    <div class="col-md-4">
                         <div class="input-group date">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                             {!! Form::text('fecha_Ven',null,['class' =>'form-control','readonly'=>'readonly']) !!}
