@@ -109,7 +109,13 @@ table tr:nth-child(2n-1) td {
              $telefonoP = SICOVIMA\proveedor::numeroTelefono($prov->id);
              ?>
              <td>{{$telefonoP}}</td>
-             <td>{{$prov->direccion_Prov}}</td>
+             <?php  
+             $mm = $prov->id_Municipio;
+             $mmm = SICOVIMA\municipio::find($mm);
+             $dpt = $mmm->id_Departamento;
+             $dp = SICOVIMA\departamento::find($dpt);   
+             ?>
+             <td>{{$prov->direccion_Prov}}, {{$mmm->nombre_Muni}}, {{$dp->nombre_Depa}}</td>
            </tr>
            @endforeach
          </tbody>
