@@ -248,6 +248,7 @@ class PedidosController extends Controller
      */
     public function update(Request $request, $id)
     {
+      dd($request->all());
       if ($request['estado'] === 'TRUE') {
         # code...
           $detallePedido_U = detallePedido::find($id);

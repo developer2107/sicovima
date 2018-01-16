@@ -265,5 +265,23 @@ class ProveedoresController extends Controller
        return redirect('/DarBajaProv/'.$id);
     }
 
+    public function Reportes()
+    {
+
+     
+      return view("Proyecto.Desarrollo.Proveedores.ReportesProveedor");
+    }
+
+    public function ReporteProvIna()
+    {
+         $proveedor = proveedor::orderby('nombre_Prov')->where('estado_Prov',0)->get();
+        return view("Proyecto.Desarrollo.Proveedores.proveedoresInaR")->with('proveedor', $proveedor);
+    }
+
+    public function ReporteProvAct()
+    {
+         $proveedor = proveedor::orderby('nombre_Prov')->where('estado_Prov',1)->get();
+        return view("Proyecto.Desarrollo.Proveedores.proveedoresActR")->with('proveedor', $proveedor);
+    }
 
 }

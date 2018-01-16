@@ -122,6 +122,7 @@ class CompraController extends Controller
          ]);
        }
 
+       Session::flash('message','Compra registrada correctamente');
        $proveedores = proveedor::all();
        $materiaPrimas = \SICOVIMA\materiaPrima::all();
 
@@ -220,6 +221,8 @@ class CompraController extends Controller
              'id_MateriaPrima'=>$id_MP[$j],
            ]);
          }
+
+         Session::flash('message','Compra modificada correctamente');
 
          $compra = compra::with('proveedor')->get();
 

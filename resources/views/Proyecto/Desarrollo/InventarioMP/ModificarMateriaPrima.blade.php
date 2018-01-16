@@ -65,7 +65,7 @@
               <label class="col-lg-3 control-label">Precio</label>
               <div class="col-md-8">
                 <div class="input-group">
-                  {!! Form::number('precio_MP',null,['class'=>'touchspin2 form-control','step'=>'any','id' => 'precio_MP'])!!}
+                  {!! Form::number('precio_MP',null,['class'=>'touchspin2 form-control','step'=>'any','id' => 'precio_MP','onkeypress'=>'return NumCheck(event,this)'])!!}
                 </div>
               </div>
             </div>

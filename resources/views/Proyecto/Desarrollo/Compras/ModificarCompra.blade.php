@@ -102,8 +102,8 @@ use SICOVIMA\detalleCompra;  ?>
                     <tr>
                         <td id="cd{{$indice}}">{{$detalle->cant_DCom}}</td>
                         <td>{{$materiaP->nombre_MP." ".$materiaP->color_MP}}</td>
-                        <td>{{$detalle->subtotal_DCom/$detalle->cant_DCom}}</td>
-                        <td id="st{{$indice}}">{{$detalle->subtotal_DCom}}</td>
+                        <td><i class="fa fa-usd"></i> {{number_format($detalle->subtotal_DCom/$detalle->cant_DCom, 2,'.', ',')}}</td>
+                        <td id="st{{$indice}}"><i class="fa fa-usd"></i> {{number_format($detalle->subtotal_DCom, 2,'.', ',')}}</td>
                         <?php
                            $total1 = $detalle->subtotal_DCom + $total1;
                         ?>

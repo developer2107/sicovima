@@ -6,7 +6,7 @@ use SICOVIMA\producto;
 @extends('layouts.MenuAdministrador')
 @section('content')
 {{-- {!! Form::open(['route'=>'FinalizarPedido.store', 'method'=>'post']) !!} --}}
-{!! Form::model(['class'=>'form-horizontal','route'=>['Pedidos.update',$detallePedido_e->id], 'method'=>'PUT','autocomplete'=>'off']) !!}
+{!! Form::open(['class'=>'form-horizontal','route'=>['Pedidos.update',$detallePedido_e->id], 'method'=>'PUT','autocomplete'=>'off']) !!}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Finalizar Pedido - Verificar</h2>
@@ -133,6 +133,9 @@ use SICOVIMA\producto;
                     </ul>
                 </div>
             </div>
+            <div class="form-horizontal" id="motivos">
+
+            </div>
             <div class="ibox-content">
                 <table class="table table-bordered" id="tablaFinalizarPedidos">
                     <thead>
@@ -143,7 +146,7 @@ use SICOVIMA\producto;
                         <th>Acciones</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                       <?php $cont=\SICOVIMA\detallePedido::all();
                       $cont1 = count($cont);
                       $i=1;
@@ -154,21 +157,58 @@ use SICOVIMA\producto;
                         <td>{{$i}}</td>
                         <td>{{$detallePedido_e->producto->tipo_Prod}}</td>
                         <td>{{$detallePedido_e->cantidad_DPed}}</td>
-                        <td>
-                          <input  type='hidden' name='id' value={{ $detallePedido_e ->id}}/>
+                        <td >
+                          <input  type='hidden' name='id' value='{{ $detallePedido_e ->id}}'/>
                           <input  type='hidden' name='cantidad' value='{{ $detallePedido_e->cantidad_DPed }}'/>
                           <input  type='hidden' name='tipo_Prod' value='{{ $detallePedido_e->producto->tipo_Prod }}'/>
                           <input  type='hidden' name='talla_Prod' value='{{ $detallePedido_e->producto->talla_Prod }}'/>
                           <input  type='hidden' name='estilo_prod' value='{{ $detallePedido_e->producto->estilo_Prod }}'/>
                           <input  type='hidden' name='color_Prod' value='{{ $detallePedido_e->producto->color_Prod }}'/>
                           <input  type='hidden' name='descripcion_Prod' value='{{ $detallePedido_e->producto->descripcion_Prod }}'/>
-                          <input  type='hidden' name='fecha' value={{ $fecha }}/>
+                          <input  type='hidden' name='fecha' value='{{ $detallePedido_e->pedido->fecha_Ped }}'/>
+                          <input type="hidden" name="motivo" value="">
                             <a class="btn btn-primary btn-circle" id="AddCant" type="button" data-toggle="modal" data-target="#myModal7"><i class="fa fa-eye"></i>
                             </a>
                         </td>
                     </tr>
                     <?php $i++; ?>
                     @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Detalles de Pedido Defetuoso</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#">Config option 1</a>
+                        </li>
+                        <li><a href="#">Config option 2</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-bordered" id="tablaFinalizarPedidosd">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody id="limpio">
+
                     </tbody>
                 </table>
             </div>
@@ -187,7 +227,7 @@ use SICOVIMA\producto;
 
                 <div class="col-xs-2">
                     <div class="input-group bootstrap-touchspin">
-                        <a class="btn btn-outline btn-primary dim" type="button">Finalizar</a>
+                        {!! Form::submit('Finalizar',['class'=>'btn btn-primary']) !!}
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -199,7 +239,6 @@ use SICOVIMA\producto;
         </div>
     </div>
 </div>
-
 <div class="modal inmodal" id="myModal7" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
   <div class="modal-dialog modal-lg">
       <div class="modal-content animated fadeIn">
@@ -226,7 +265,35 @@ use SICOVIMA\producto;
                           <th>Accion</th>
                       </tr>
                       </thead>
-                      <tbody id="limpio">
+                      <tbody>
+                        <?php $cont=\SICOVIMA\detallePedido::all();
+                        $cont1 = count($cont);
+                        $i=1;
+
+                        ?>
+                        @foreach($cont as $detallePedido_e)
+                          <tr>
+                              <td>{{$detallePedido_e->cantidad_DPed}}</td>
+                              <td>{{$detallePedido_e->producto->talla_Prod}}</td>
+                              <td>{{$detallePedido_e->$detallePedido_e->producto->tipo_Prod}}</td>
+                              <td>{{$detallePedido_e->producto->color_Prod}}</td>
+                              <td>{{$detallePedido_e->producto->descripcion_Prod}}</td>
+                              <td >
+                                <input  type='hidden' name='id' value='{{ $detallePedido_e ->id}}'/>
+                                <input  type='hidden' name='cantidad' value='{{ $detallePedido_e->cantidad_DPed }}'/>
+                                <input  type='hidden' name='tipo_Prod' value='{{ $detallePedido_e->producto->tipo_Prod }}'/>
+                                <input  type='hidden' name='talla_Prod' value='{{ $detallePedido_e->producto->talla_Prod }}'/>
+                                <input  type='hidden' name='estilo_prod' value='{{ $detallePedido_e->producto->estilo_Prod }}'/>
+                                <input  type='hidden' name='color_Prod' value='{{ $detallePedido_e->producto->color_Prod }}'/>
+                                <input  type='hidden' name='descripcion_Prod' value='{{ $detallePedido_e->producto->descripcion_Prod }}'/>
+                                <input  type='hidden' name='fecha' value='{{ $detallePedido_e->pedido->fecha_Ped }}'/>
+                                <input type="hidden" name="motivo" value="">
+                                  <a class="btn btn-primary btn-circle" id="AddCant" type="button" data-toggle="modal" data-target="#myModal7"><i class="fa fa-eye"></i>
+                                  </a>
+                              </td>
+                          </tr>
+                          <?php $i++; ?>
+                        @endforeach
 
                       </tbody>
                   </table>
@@ -240,7 +307,7 @@ use SICOVIMA\producto;
       </div>
   </div>
 </div>
-
+{!! Form::close() !!}
 <div class="modal inmodal" id="myModal8" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content animated fadeIn">
@@ -258,12 +325,12 @@ use SICOVIMA\producto;
                     <br>
                     <div class="form-group"><label class="col-lg-3 control-label">Descripción</label>
                         <div class="col-lg-8">
-                             <textarea class="note-codable" style="height: 100%; width: 100%" rows="3" cols="30"></textarea>
+                             <textarea class="note-codable" name="motivo" id="motivo" style="height: 100%; width: 100%" rows="3" cols="30"></textarea>
                         </div>
                     </div>
                     <div class="form-group"><label class="col-lg-3 control-label">Cantidad</label>
                         <div class="col-lg-2">
-                            {!! Form::number('cant_DPT',null,['class'=>'form-control']) !!}
+                            {!! Form::number('cant_DPT',null,['class'=>'form-control', 'name'=>'cant_DPT', 'id'=>'cant_DPT']) !!}
 
                         </div>
                     </div>
@@ -272,21 +339,24 @@ use SICOVIMA\producto;
                         <div class="col-lg-4">
                             <div class="input-group m-b">
                                 <span class="input-group-addon">$</span>
-                                {!! Form::number('descuento_PT',null,['class'=>'touchspin2 form-control','step'=>'any']) !!}
+                                {!! Form::number('descuento_DPT',null,['class'=>'touchspin2 form-control','step'=>'any', 'name'=>'descuento_DPT', 'id'=>'descuento_DPT']) !!}
                             </div>
                         </div>
                     </div>
+                    {{-- <input type="hidden" name="idDetallePedido_f" value="{{$}}"> --}}
                 </form>
             </div>
 
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Agregar</button>
+              {!! Form::button('Agregar',['class'=>'btn btn-primary','id'=>'agregarMotivoEst','type'=>'button', 'value'=>'Agregar','onclick'=>'agregarMotivoEst2()','data-dismiss'=>'modal']) !!}
+              {{-- <a class="btn btn-primary" type="button" id="AddCant" data-toggle="modal" data-target="#myModal8">Agregar</a> --}}
+                {{-- <button type="button" class="btn btn-primary">Agregar</button> --}}
                 <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
-{!! Form::close() !!}
+
 @stop

@@ -358,4 +358,21 @@ class ClientesController extends Controller
 
       return redirect('/DarBajaCli/'.$id);
     }
+
+    public function Reportes()
+    {
+      return view("Proyecto.Desarrollo.Cliente.ReportesCliente");
+    }
+
+    public function ReporteCliAct()
+    {
+         $cliente = cliente::orderby('nombre_Cli')->where('estado_Cli',1)->get();
+        return view("Proyecto.Desarrollo.Cliente.clientesActR")->with('cliente', $cliente);
+    }
+
+    public function ReporteCliIna()
+    {
+         $cliente = cliente::orderby('nombre_Cli')->where('estado_Cli',0)->get();
+        return view("Proyecto.Desarrollo.Cliente.clientesInaR")->with('cliente', $cliente);
+    }
 }
