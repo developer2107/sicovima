@@ -95,7 +95,7 @@ table tr:nth-child(2n-1) td {
             <tr>
               <th style="color: black">Nombre</th>
               <th style="color: black">NIT</th>
-              <!-- <th style="color: black">Tipo de mercadería</th> -->
+              <th style="color: black">Tipo de mercadería</th>
               <th style="color: black">Teléfono</th>
               <th style="color: black">Dirección</th>
             </tr>
@@ -105,6 +105,11 @@ table tr:nth-child(2n-1) td {
             <tr>
              <td>{{$prov->nombre_Prov}}</td>
              <td>{{$prov->NIT_Prov}}</td>
+             <td>
+               @foreach ($prov->proveedorTipoMercaderia as $prtm)
+                     {{$prtm->tipoMercaderia->nombre_TM}}<br>
+               @endforeach
+             </td> 
              <?php
              $telefonoP = SICOVIMA\proveedor::numeroTelefono($prov->id);
              ?>

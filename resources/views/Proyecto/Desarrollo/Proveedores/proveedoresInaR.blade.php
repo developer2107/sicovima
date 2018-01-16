@@ -95,16 +95,25 @@ table tr:nth-child(2n-1) td {
             <tr>
               <th style="color: black">Nombre</th>
               <th style="color: black">NIT</th>
-              <!-- <th style="color: black">Tipo de mercadería</th> -->
+              <th style="color: black">Tipo de mercadería</th>
               <th style="color: black">Teléfono</th>
               <th style="color: black">Dirección</th>
             </tr>
           </thead>
+          <?php 
+            $proveedor = SICOVIMA\proveedor::orderby('nombre_Prov')->where('estado_Prov',0)->get();
+        
+           ?>
           <tbody>
             @foreach($proveedor as $prov) 
             <tr>
              <td>{{$prov->nombre_Prov}}</td>
              <td>{{$prov->NIT_Prov}}</td>
+             <td>
+               @foreach ($prov->proveedorTipoMercaderia as $prtm)
+                     {{$prtm->tipoMercaderia->nombre_TM}}<br>
+               @endforeach
+             </td> 
              <?php
              $telefonoP = SICOVIMA\proveedor::numeroTelefono($prov->id);
              ?>

@@ -95,57 +95,64 @@ table tr:nth-child(2n-1) td {
             <tr>
               <th style="color: black">Nombre</th>
               <th style="color: black">Tipo de Cliente</th>
-              <!-- <th style="color: black">Tipo de mercadería</th> -->
-              <th style="color: black">Teléfono</th>
-              <th style="color: black">Dirección</th>
-            </tr>
-          </thead>
-          <tbody>
+              <!-- if ($cli-> tipo_Cli) {
+              <th style="color: black">NIT</th>
+              <th style="color: black">Nombre responsable</th>
+              <th style="color: black">RNC</th>
+            } else {
+            <th style="color: black">DUI</th>
+          } -->
+          <th style="color: black">Teléfono</th>
+          <th style="color: black">Dirección</th>
+        </tr>
+      </thead>
+      <tbody>
 
-            @foreach($cliente as $cli) 
-            <tr>
-             <td>{{$cli->nombre_Cli}}</td>
-             <td>
-               @if ($cli-> tipo_Cli )
-               Juridico
-               @else
-               Natural
-               @endif
-             </td>
-             <?php
-             $telefonoC = SICOVIMA\cliente::numeroTelefonoCliente($cli->id);
-             ?>
-             <td>{{$telefonoC-> numero_TelefonoCli}}</td>
-             <?php  
-             $mm = $cli->id_Municipio;
-             $mmm = SICOVIMA\municipio::find($mm);
-             $dpt = $mmm->id_Departamento;
-             $dp = SICOVIMA\departamento::find($dpt);   
-             ?>
-             <td>{{$cli->direccion_Cli}}, {{$mmm->nombre_Muni}}, {{$dp->nombre_Depa}}</td>
-           </tr>
-           @endforeach
-         </tbody>
-       </table>
-       <footer>
-        <table>
+        @foreach($cliente as $cli) 
+        <tr>
+         <td>{{$cli->nombre_Cli}}</td>
+         <td>
+           @if ($cli-> tipo_Cli )
+           Juridico
+           @else
+           Natural
+           @endif
+         </td>
 
-          <tr>
-            <td>
-              <p class="izq">
-                Comercial Santa Clarita S.A de C.V
-              </p>
-            </td>
-            <td>
-              <p class="page">
-                Página
-              </p>
-            </td>
-          </tr>
-        </table>
-      </footer>
-    </div><!-- /.box-body -->
-  </div><!-- /.box -->
+     <?php
+     $telefonoC = SICOVIMA\cliente::numeroTelefonoCliente($cli->id);
+     ?>
+     <td>{{$telefonoC-> numero_TelefonoCli}}</td>
+     <?php  
+     $mm = $cli->id_Municipio;
+     $mmm = SICOVIMA\municipio::find($mm);
+     $dpt = $mmm->id_Departamento;
+     $dp = SICOVIMA\departamento::find($dpt);   
+     ?>
+     <td>{{$cli->direccion_Cli}}, {{$mmm->nombre_Muni}}, {{$dp->nombre_Depa}}</td>
+   </tr>
+   @endforeach
+ </tbody>
+</table>
+<footer>
+  <table>
+
+    <tr>
+      <td>
+        <p class="izq">
+          Comercial Santa Clarita S.A de C.V
+        </p>
+      </td>
+      <td>
+        <p class="page">
+          Página
+        </p>
+      </td>
+    </tr>
+  </table>
+</footer>
+</div><!-- /.box-body -->
+</div><!-- /.box -->
 </div>
 </body>
 </html>

@@ -274,8 +274,8 @@ class ProveedoresController extends Controller
 
     public function ReporteProvIna()
     {
-         $proveedor = proveedor::orderby('nombre_Prov')->where('estado_Prov',0)->get();
-        return view("Proyecto.Desarrollo.Proveedores.proveedoresInaR")->with('proveedor', $proveedor);
+         //$proveedor = proveedor::orderby('nombre_Prov')->where('estado_Prov',0)->get();
+        return view("Proyecto.Desarrollo.Proveedores.proveedoresInaR");
     }
 
     public function ReporteProvAct()
