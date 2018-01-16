@@ -1,23 +1,7 @@
 @extends('layouts.MenuAdministrador')
 @section('content')
 
-<!-- <div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-sm-4">
-        <h2>Lista de Compras</h2>
-        <ol class="breadcrumb">
-            <li>
-                <a href="index.html">Compras</a>
-            </li>
-            <li class="active">
-                <strong>Mostrar Lista</strong>
-            </li>
-        </ol>
-    </div>
-    <div class="col-sm-8">
-
-    </div>
-</div> -->
-<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-6">
       <h2>Lista de Compras</h2>
       <ol class="breadcrumb">
@@ -25,7 +9,7 @@
           <br>
           <a href={!! asset('ListadeCompras') !!}>Compras</a>
         </li>
-          <li class="active">
+        <li class="active">
           <strong>Mostrar Lista</strong>
         </li>
       </ol>
@@ -33,9 +17,9 @@
     <div class="col-sm-8">
     </div>
   </div>
-<br>
+  <br>
 
-<div class="row">
+  <div class="row">
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="row">
@@ -48,47 +32,46 @@
                 <div class="table-responsive">
                   <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                     <table id="example" class="table table-striped table-bordered display" cellspacing="100" width="100%">
-                            <thead>
-                                           <tr>
-                                                 <th align="left">Proveedor</th>
-                                                 <th align="left">Fecha</th>
-                                                 <th align="left">Numero de Factura</th>
-                                                 <th align="left">Total</th>
-                                                 <th align="left">Opciones</th>
-                                          </tr>
-                            </thead>
-                            <tbody>
-                                           @foreach($compra as $com)
+                      <thead>
+                       <tr>
+                        <th align="left">Fecha</th>
+                        <th align="left">Proveedor</th>
+                        <th align="left">Numero de Factura</th>
+                        <th align="left">Total</th>
+                        <th align="left">Opciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     @foreach($compra as $com)
 
-                                           <tr>
+                     <tr>
+                       <?php   $dato=explode("-",(String)$com->fecha_Com);
+                       $fecha=$dato[2]."/".$dato[1]."/".$dato[0];?>
+                       <td align="rihgt"><font size="4" ></font>{{$fecha}}</td>
+                       <td align="left"><font size="4" ></font>{{$com->proveedor->nombre_Prov}}</td>
+                       <td align="rihgt"><font size="4" ></font>{{$com-> numFac_Com}}</td>
+                       <td align="rihgt"><font size="4" ></font><i class="fa fa-usd"></i> {{number_format($com-> total_Com, 2,'.', ',')}}</td>
+                       <td align="center">
+                         <a href="VerCompra/{{$com->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
+                         </a>
+                         <a href="ModificarCompra/{{$com->id}}" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
+                         </a>
+                         <a href="EliminarCompra/{{$com->id}}" class='btn btn-danger btn-circle' type='button'><i class='fa fa-times'></i></a>
+                         {{-- <a class="btn btn-warning btn-circle" type="button"><i class="fa fa-times"></i>
+                       </a> --}}
+                     </tr>
 
-                                               <td align="left"><font size="4" ></font>{{$com->proveedor->nombre_Prov}}</td>
-                                               <?php   $dato=explode("-",(String)$com->fecha_Com);
-                                                $fecha=$dato[2]."/".$dato[1]."/".$dato[0];?>
-                                               <td align="rihgt"><font size="4" ></font>{{$fecha}}</td>
-                                               <td align="rihgt"><font size="4" ></font>{{$com-> numFac_Com}}</td>
-                                               <td align="rihgt"><font size="4" ></font><i class="fa fa-usd"></i> {{$com-> total_Com}}</td>
-                                               <td align="center">
-                                                 <a href="VerCompra/{{$com->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i>
-                                                 </a>
-                                                 <a href="ModificarCompra/{{$com->id}}" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i>
-                                                 </a>
-                                                 <a href="EliminarCompra/{{$com->id}}" class='btn btn-danger btn-circle' type='button'><i class='fa fa-times'></i></a>
-                                                 {{-- <a class="btn btn-warning btn-circle" type="button"><i class="fa fa-times"></i>
-                                                 </a> --}}
-                                            </tr>
-
-                                               @endforeach
-                            </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                     @endforeach
+                   </tbody>
+                 </table>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
 
 @stop

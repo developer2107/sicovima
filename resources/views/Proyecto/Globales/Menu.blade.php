@@ -21,7 +21,7 @@
                     <ul class="nav nav-second-level collapse">
                         <li><a href={!! asset('/RegistrarCompra') !!}>Registrar</a></li>
                         <li><a href={!! asset('/ListadeCompras') !!}>Mostrar Lista</a></li>
-                        <li><a href="#">Reporte</a></li>
+                        <li><a href={!! asset('ReportesCompra') !!}>Reporte</a></li>
                     </ul>
                 </li>
                 <li>
@@ -44,19 +44,22 @@
                               <li>
                                   <a href={!! asset('RegistroMateriaP') !!}>Registrar Materia Prima</a>
                               </li>
+                              <li>
+                                  <a href={!! asset('TipoMercaderia') !!}>Tipo de Mercadería </a>
+                              </li>
                           </ul>
                   </li>
-                  <li>
+                  <!-- <li>
                     <a href="#">Tipo de Mercadería <span class="fa arrow"></span></a>
                           <ul class="nav nav-third-level">
                               <li>
-                                  <a href={!! asset('TipoMercaderia') !!}>Tipo de Mercadería activa</a>
+                                  <a href={!! asset('TipoMercaderia') !!}>Tipo de Mercadería </a>
                               </li>
                               <li>
                                   <a href={!! asset('TipoMercaderia?estado=0') !!}>Tipo de Mercadería inactiva</a>
                               </li>
                           </ul>
-                  </li>
+                  </li> -->
                         <li><a href={!! asset('ProductosTerminados') !!}>Productos Terminados</a></li>
                     </ul>
                 </li>

@@ -4,7 +4,7 @@
 
 @section('content')
 {!! Form::model($proveedor,['route'=>['RegistroProveedor.update',$proveedor->id], 'method'=>'PUT']) !!}
-<input type="hidden" id="modif" value="1"/>
+<input type="hidden" id="modif" value="1">
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-sm-4">
     <h2>Modificar Proveedor</h2>

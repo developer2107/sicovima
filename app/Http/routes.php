@@ -42,7 +42,9 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
 
 /*------------------------------------------------------------------*/
 
-Route::get('/', function () {
+
+Route::group(['middleware' => 'admin'], function(){
+  Route::get('/', function () {
       return view('welcome');
   });
 
@@ -73,6 +75,8 @@ Route::get('/', function () {
   Route::match(['get','post'],'/VerCompra/{id}','CompraController@Ver');
   Route::match(['get','post'],'/EliminarCompra/{id}','CompraController@destroy');
   Route::Resource('/ListadeCompras','CompraController@Mostrar');
+  Route::Resource('/ReportesCompra','CompraController@Reportes');
+  Route::Resource('/compras','CompraController@ReporteporProv');
 
   Route::match(['get','post'],'/ModificarMateriaPrima/{id}','MateriaPrimaController@Modificar');
   Route::Resource('/ControlMateriaPrima','InventarioMPController@Mostrar');
@@ -123,8 +127,6 @@ Route::get('/', function () {
   Route::get('backup/delete/{file_name}', 'BackupController@delete');
 
 Route::match(['get','post'],'/buscarTipoMercaderia/{id}','TipoMercaderiaController@buscar');
-
-Route::group(['middleware' => 'admin'], function(){
 
 
 });
