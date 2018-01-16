@@ -18,6 +18,7 @@ class DetallePedido extends Migration
             $table->double('subtotal_DPed', 5 , 2 );
             $table->double('subtotalVenta_DPed', 5 , 2 );
             $table->boolean('estado');
+            $table->boolean('estado2');
             $table->integer('id_Producto')->unsigned();
             $table->foreign('id_Producto')->references('id')->on('producto');
             $table->integer('id_Pedido')->unsigned();
