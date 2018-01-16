@@ -83,8 +83,8 @@
 </tr>
 <tr>
   <td align="rihgt" style = "width:30%"><font size="4" >Ventas por fecha (Todas)</font></td>
-  <td align="rihgt" style = "width:20%"><a href="ReporteVentas/1" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
-  <td align="rihgt" style = "width:20%"><a href="ReporteVentas/2" class="btn btn-primary btn-circle" type="button"><i class="fa fa-download"></i></a></td>
+  <td align="rihgt" style = "width:20%"><a href="ReporteTodasVentas/1" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
+  <td align="rihgt" style = "width:20%"><a href="ReporteTodasVentas/2" class="btn btn-primary btn-circle" type="button"><i class="fa fa-download"></i></a></td>
 </tr>
               </tbody>
           </table>
