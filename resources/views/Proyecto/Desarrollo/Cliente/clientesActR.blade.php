@@ -101,6 +101,7 @@ table tr:nth-child(2n-1) td {
             </tr>
           </thead>
           <tbody>
+
             @foreach($cliente as $cli) 
             <tr>
              <td>{{$cli->nombre_Cli}}</td>
@@ -112,10 +113,16 @@ table tr:nth-child(2n-1) td {
                @endif
              </td>
              <?php
-                $telefonoC = SICOVIMA\cliente::numeroTelefonoCliente($cli->id);
-              ?>
+             $telefonoC = SICOVIMA\cliente::numeroTelefonoCliente($cli->id);
+             ?>
              <td>{{$telefonoC-> numero_TelefonoCli}}</td>
-             <td>{{$cli->direccion_Cli}}</td>
+             <?php  
+             $mm = $cli->id_Municipio;
+             $mmm = SICOVIMA\municipio::find($mm);
+             $dpt = $mmm->id_Departamento;
+             $dp = SICOVIMA\departamento::find($dpt);   
+             ?>
+             <td>{{$cli->direccion_Cli}}, {{$mmm->nombre_Muni}}, {{$dp->nombre_Depa}}</td>
            </tr>
            @endforeach
          </tbody>
