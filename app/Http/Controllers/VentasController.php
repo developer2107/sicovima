@@ -182,8 +182,12 @@ class VentasController extends Controller
             'id_Venta'=>$venta->id,
             'id_Documento'=>$documento->id,
         ]);
-        
-            return redirect("Factura/1");//factura
+        $cl = cliente::find($venta->id_Cliente);
+        if ($cl->tipo_Cli==0) {
+            return redirect("Factura/1/{$venta->id}");//factura cliente
+        }else if ($cl->tipo_Cli==1) {
+            return redirect("FacturaCF/1/{$venta->id}");//factura credito fiscal
+        }
         
     }
 
@@ -310,8 +314,15 @@ class VentasController extends Controller
             'id_Venta'=>$venta->id,
             'id_Documento'=>$documento->id,
         ]);
+        $cl = cliente::find($venta->id_Cliente);
+        if ($cl->tipo_Cli==0) {
+            return redirect("Factura/1/{{$venta}}");//factura cliente
+        }else if ($cl->tipo_Cli==1) {
+            return redirect("FacturaCF/1/{{$venta}}");//factura credito fiscal
+        }
         
-        return redirect("Factura/1");//factura
+
+
         // $cantidadV=$request->cantidadV;
         // $idV=$request->idV;
         // $costoProdV=$request->costoProdV;
@@ -415,6 +426,29 @@ class VentasController extends Controller
         return view("Proyecto.Desarrollo.Ventas.ReportesVenta",compact('ventas'))->with('ventas', $ventas);
     }
 
+    public function FacturaCF($tipo,$ventas)
+    {
+        $vistaurl="Proyecto.Desarrollo.Ventas.FacturaCF";
+        return $this->crearFacturaCF($ventas,$vistaurl,$tipo);
+    }
+
+    public function crearFacturaCF($datos,$vistaurl,$tipo)
+    {
+        $data = $datos;
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('data','date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('FacturaCF');
+        }
+        if ($tipo==2) {
+            return $pdf->download('FacturaCreditoFiscal.pdf');
+        }
+
+    }
+
     public function crearFactura($datos,$vistaurl,$tipo)
     {
         $data = $datos;
@@ -432,11 +466,15 @@ class VentasController extends Controller
 
     }
 
-    public function Factura($tipo)
+    public function Factura($tipo,$ventas)
     {
         $vistaurl="Proyecto.Desarrollo.Ventas.Factura";
-        $ventas=venta::all();
         return $this->crearFactura($ventas,$vistaurl,$tipo);
+    }
+
+    public function Ayuda()
+    {
+        echo "hola";
     }
 
 }

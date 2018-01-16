@@ -30,8 +30,10 @@
     <div class="col-lg-7">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Venta</h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <h5>Venta</h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button class="btn btn-default btn-circle startTour2" type="button"><i class="fa fa-info"></i></button>
+
+                <a class="btn btn-default btn-circle" href="/github/sicovima/public/ayuda/ayudaa.pdf" target="_blank"><i class="fa fa-info"></i></a>
             </div>
             <div class="ibox-content">
                 <div class="p-sm">
@@ -75,7 +77,7 @@
                     </div>
                     <div class="col-md-1">
                         <div class="input-group bootstrap-touchspin">
-                             <a type="button" class="btn btn-outline btn-primary dim" data-toggle="modal" data-target="#myModalTabla" id="step4">Agregar producto</a>
+                             <a type="button" class="btn btn-outline btn-primary dim tour-close" data-toggle="modal" data-target="#myModalTabla" id="step4" data-role="end">Agregar producto</a>
                         </div>
                     </div>
                     <br>
@@ -145,6 +147,9 @@
             </div>
             <div class="ibox-content">
                 <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                   
                     <div class="col-md-4">
                         <label class="font-bold">Numero de Factura</label>
                         <div class="input-group bootstrap-touchspin">
@@ -323,7 +328,7 @@
 
             // Start the tour
             // tour.start();
-        })
+        });
 
     });
 
@@ -338,20 +343,23 @@
                     element: "#step01",
                     title: "Selección de cliente",
                     content: "Seleccione el cliente al cual realizará la venta, en esta lista se le muestran todos los clientes jurídicos y naturales.",
-                    placement: "top"
+                    placement: "top",
+                    Keyboard: false
                 },
                 {
 
                     element: "#step2",
                     title: "Presentación de encargado",
                     content: "Si en el paso anterior se seleccionó un cliente jurídico, en este panel se carga el responsable de dicho cliente, si seleccionó un cliente natural, no se mostrará nada en el panel, ya que éste tipo de cliente no posee responsable.",
-                    placement: "top"
+                    placement: "top",
+                    Keyboard: false
                 },
                 {
                     element: "#step3",
                     title: "Elección de fecha",
                     content: "Elegir del calendario la fecha en la que se realiza la venta, seleccionando en primer lugar el mes, y luego el día.",
-                    placement: "bottom"
+                    placement: "bottom",
+                    Keyboard: false
                 },
                 {
                     element: "#step4",
@@ -359,6 +367,7 @@
                     content: "Al presionar este botón, se despliega una ventana, en la cual podemos elegir el producto que se quiere vender.",
                     placement: "top",
                     backdrop: true,
+                    Keyboard: false,
                     backdropContainer: '#wrapper',
                     onShown: function (tour){
                         $('body').addClass('tour-open')
@@ -366,39 +375,6 @@
                     onHidden: function (tour){
                         $('body').removeClass('tour-close')
                     }
-                },
-                {
-                    element: "#step5",
-                    title: "Title of my step",
-                    content: "Content of my step",
-                    placement: "top",
-                    backdrop: true,
-                    backdropContainer: '#wrapper',
-                    onShown: function (tour){
-                        $('body').addClass('tour-open')
-                    },
-                    onHidden: function (tour){
-                        $('body').removeClass('tour-close')
-                    }
-                },
-                {
-
-                    element: "#step6",
-                    title: "Title of my step",
-                    content: "Introduce new users to your product by walking them through it step by step.",
-                    placement: "top"
-                },
-                {
-                    element: "#step7",
-                    title: "Title of my step",
-                    content: "Introduce new users to your product by walking them through it step by step.",
-                    placement: "top"
-                },
-                {
-                    element: "#step8",
-                    title: "Title of my step",
-                    content: "Introduce new users to your product by walking them through it step by step.",
-                    placement: "top"
                 }
             ]});
 

@@ -12,6 +12,46 @@
 // });
 
 $(document).on('ready',function(){
+  $('#tablaFinalizarPedidos').on('click','#AddCant',function(e){
+    var tabla_p =$('#modalTablaFinalizar');
+    $("#limpio").empty();
+    var id_p = $(this).parents('tr').find('input:eq(0)').val();
+    var cantidad_p = $(this).parents('tr').find('input:eq(1)').val();
+    var tipo_p = $(this).parents('tr').find('input:eq(2)').val();
+    var talla_p = $(this).parents('tr').find('input:eq(3)').val();
+    var estilo_p = $(this).parents('tr').find('input:eq(4)').val();
+    var color_p = $(this).parents('tr').find('input:eq(5)').val();
+    var descripcion_p = $(this).parents('tr').find('input:eq(6)').val();
+
+    var datos_p = "<tr>"+
+    "<td>"+ cantidad_p +"</td>"+
+    "<td>"+ talla_p +"</td>"+
+    "<td>"+ estilo_p +"</td>"+
+    "<td>"+ color_p +"</td>"+
+    "<td>"+ descripcion_p +"</td>"+
+    "<td>"+ "<input  type='hidden' name='idP' value='"+id_p+"'/>" +
+    "<input  type='hidden' name='cantidad' value='"+cantidad_p+"'/>" +
+    "<input type='hidden' name='tipo_p' value='"+tipo_p+"'/>" +
+    "<input  type='hidden' name='talla_p'value='"+talla_p+"'/>" +
+    "<input  type='hidden' name='estilo_p' value='"+ estilo_p+"'/>" +
+    "<input  type='hidden' name='color_p' value='"+ color_p+"'/>" +
+    "<input  type='hidden' name='descripcion_p' value='"+ descripcion_p+"'/>" +
+    "<a class='btn btn-success btn-circle' type='button' id='AddCant' data-toggle='modal' data-target='#myModal8'><i class='fa fa-pencil-square-o'></i></a>"+
+    "</td>"+
+    "</tr>";
+
+      tabla_p.append(datos_p);
+
+  });
+
+  $('#Prueba').on('click', '#AddCant',function(e){
+    alert("hola");
+    var id_Pr = $("input#id").val();
+  });
+
+});
+
+$(document).on('ready',function(){
   $('#tablaDetallePedido').on('click','#AddCant',function(e){
     var tabla_p =$('#modalTablaInicio');
     $("#limpio").empty();
@@ -47,7 +87,6 @@ $(document).on('ready',function(){
   $('#Prueba').on('click', '#AddCant',function(e){
     alert("hola");
     var id_Pr = $("input#id").val();
-    alert(id_Pr);
   });
 
 });
@@ -86,10 +125,10 @@ $(document).on('ready',function(){
 			"<td>"+ cantidad +"</td>"+
 			"<td>"+ subtotal.toFixed(2) +"</td>"+
       "<td>"+ "<input  type='hidden' name='idI[]' value='"+id_i+"'/>" +
-      "<input  type='hidden' name='nuevaexistencia[]' value='"+existencia+"'/>" +
+      "<input  type='hidden' name='nuevaexistenciaI[]' value='"+existencia+"'/>" +
+      "<input  type='hidden' name='materiaPrimaI[]' value='"+materiaPrima_i+"'/>" +
 			"<input type='hidden' name='cantidadI[]' value='"+cantidad+"'/>" +
 			"<input  type='hidden' name='subtotalI[]'step='.01' value='"+subtotal_i+"'/>" +
-			"<input  type='hidden' name='id[]' value=''/>" +
 			"<a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>"+
 			"</td>"+
 			"</tr>";
@@ -165,24 +204,42 @@ $(document).on('ready',function(){
       },
     }
   });
-  // $('#tablaDetalleMateriaPrima').DataTable({
-  //   "order":[[2,"asc"]],
-  //   "language":{
-  //   "lengthMenu": "Mostrar _MENU_ registro por pagina",
-  //   "info": "Mostrando pagina _PAGE_ de _PAGE_",
-  //     // "infoEmpty": "No hay registros disponibles",
-  //     "infoFiltered": "(filtrada de _MAX_ registros)",
-  //     "loadingRecords": "Cargando...",
-  //     "processing":     "Procesando...",
-  //     "search": "Buscar:",
-  //     "zeroRecords":		"No se encontraron registro coincidentes",
-  //
-  //     "paginate": {
-  //       "next":		"Siguiente",
-  //       "previous":	"Anterior"
-  //     },
-  //   }
-  // });
+  $('#tablaFinalizarPedidos').DataTable({
+    "order":[[2,"asc"]],
+    "language":{
+    "lengthMenu": "Mostrar _MENU_ registro por pagina",
+    "info": "Mostrando pagina _PAGE_ de _PAGE_",
+      "infoEmpty": "No hay registros disponibles",
+      "infoFiltered": "(filtrada de _MAX_ registros)",
+      "loadingRecords": "Cargando...",
+      "processing":     "Procesando...",
+      "search": "Buscar:",
+      "zeroRecords":		"No se encontraron registro coincidentes",
+
+      "paginate": {
+        "next":		"Siguiente",
+        "previous":	"Anterior"
+      },
+    }
+  });
+  $('#tablaDetallePedido').DataTable({
+    "order":[[2,"asc"]],
+    "language":{
+    "lengthMenu": "Mostrar _MENU_ registro por pagina",
+    "info": "Mostrando pagina _PAGE_ de _PAGE_",
+      // "infoEmpty": "No hay registros disponibles",
+      "infoFiltered": "(filtrada de _MAX_ registros)",
+      "loadingRecords": "Cargando...",
+      "processing":     "Procesando...",
+      "search": "Buscar:",
+      "zeroRecords":		"No se encontraron registro coincidentes",
+
+      "paginate": {
+        "next":		"Siguiente",
+        "previous":	"Anterior"
+      },
+    }
+  });
 });
 
 $(document).on('ready',function(){

@@ -105,7 +105,7 @@ Route::group(['middleware' => 'admin'], function(){
 
   Route::Resource('/ListadePedidos','PedidosController@Mostrar');
   Route::Resource('/IniciarPedido','PedidosController@Iniciar');
-  Route::Resource('/FinalizarPedido','PedidosController@Finalizar');
+  Route::Resource('/FinalizarPedido','PedidosController@Finalizar');//este
   Route::Resource('/VerPedido','PedidosController@Ver');
   Route::Resource('/ModificarPedido','PedidosController@Modificar');
   Route::Resource('/EntregarPedido','PedidosController@Entregar');
