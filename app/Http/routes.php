@@ -41,47 +41,6 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
 
 
 /*------------------------------------------------------------------*/
-<<<<<<< HEAD
-Route::Resource('Bitacora','BitacoraController');
-Route::Resource('Reportes','BitacoraController@Reportes');
-Route::Resource('Tour','BitacoraController@Tour');
-Route::Resource('Reporte','BitacoraController@Reporte');
-Route::match(['get','post'],'/ModificarVenta/{id}','VentasController@Modificar');
-Route::match(['get','post'],'/VerVenta/{id}','VentasController@Ver');
-Route::match(['get','post'],'/VerInventarioPT/{id}','InventarioPTController@Ver');
-Route::Resource('/RegistrarVenta','VentasController');
-Route::Resource('/ReportesVenta','VentasController@Reportes');
-Route::Resource('/ListadeVentas','VentasController@Mostrar');
-Route::match(['get','post'],'/FacturaCF/{tipoCF}/{ventaCF}','VentasController@FacturaCF');
-Route::match(['get','post'],'/Factura/{tipo}/{venta}','VentasController@Factura');
-Route::match(['get','post'],'/motivov/{idMot}/{motivo}','VentasController@AddMotivoVenta');
-Route::match(['get','post'],'/motivop/{idMotProd}/{motivoProd}/{descuentoProd}','InventarioPTController@motivosProd');
-Route::get('RegistrarVentas/{id}','VentasController@getResponsables');
-Route::resource('venta','ventasController');
-Route::match(['get','post'],'/responsable/{id}','VentasController@responsables');
-Route::Resource('/ProductosTerminados','InventarioPTController@Mostrar');
-Route::Resource('/VerProductosTerminados','InventarioPTController@Ver');
-
-Route::Resource('/ListadePedidos','PedidosController@Mostrar');
-Route::Resource('/RegistrarPedido','PedidosController');
-Route::Resource('/IniciarPedido','PedidosController@Iniciar');
-Route::Resource('/FinalizarPedido','PedidosController@Finalizar');
-Route::Resource('/VerPedido','PedidosController@Ver');
-Route::Resource('/ModificarPedido','PedidosController@Modificar');
-Route::Resource('/EntregarPedido','PedidosController@Entregar');
-Route::Resource('/ListadePedidosaEntregar','PedidosController@ListaaEntregar');
-Route::Resource('/ListadePedidosSinIniciar','PedidosController@ListaSinIniciar');
-Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar');
-
-
-Route::Resource('/IniciarPedido','PedidosController@IniciarPedido');
-Route::Resource('Pedidos','PedidosController');
-Route::Resource('Usuario','SeguridadController');
-Route::Resource('/RegistrarUsuario','SeguridadController@create');
-Route::Resource('/BuscarUsuario','SeguridadController@Buscar');
-Route::match(['get','post'],'/ModificarUsuario/{id}','SeguridadController@edit');
-Route::match(['get','post'],'/VerUsuario/{id}','SeguridadController@ver');
-=======
 
 Route::get('/', function () {
       return view('welcome');
@@ -164,7 +123,6 @@ Route::get('/', function () {
   Route::get('backup/delete/{file_name}', 'BackupController@delete');
 
 Route::match(['get','post'],'/buscarTipoMercaderia/{id}','TipoMercaderiaController@buscar');
->>>>>>> ddc61bf90dc0325dd90fd3cc48d778d5eade634d
 
 Route::group(['middleware' => 'admin'], function(){
 
