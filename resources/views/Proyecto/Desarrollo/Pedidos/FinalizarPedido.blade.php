@@ -197,7 +197,7 @@ use SICOVIMA\producto;
                 </div>
             </div>
             <div class="ibox-content">
-                <table class="table table-bordered" id="tablaFinalizarPedidosd">
+                <table class="table table-bordered" >
                     <thead>
                     <tr>
                         <th>#</th>

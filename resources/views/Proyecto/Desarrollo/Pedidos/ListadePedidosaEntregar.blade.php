@@ -53,7 +53,7 @@
                                               <td align="rihgt"><font size="4" ></font>{{$fecha}}</td>
                                               <td align="center">
                                                 <input type="hidden" name="estado" value="Entregar">
-                                            <a class="btn btn-primary btn-rounded" href="{{route('Pedidos.edit',$det->id)}}">Finalizar</a>
+                                            <a class="btn btn-primary btn-rounded" href="{{route('Pedidos.edit',$det->id)}}">Entregar</a>
                                               </tr>
                                           @endforeach
                                     </tbody>

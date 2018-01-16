@@ -64,7 +64,7 @@
                                   <td align="left"><font size="4" ></font>{{$det->producto->tipo_Prod}}  {{$det->producto->descripcion_Prod}}</td>
                                   <td align="rihgt"><font size="4" ></font>{{$fecha}}</td>
                                   <td align="center">
-                                <a class="btn btn-primary btn-rounded" href="{{route('Pedidos.edit',$det->id)}}">Iniciar</a>
+                                <a class="btn btn-primary btn-rounded" href="{{route('Pedidos.edit',$det->id)}}" value="Iniciar">Iniciar</a>
                                   </tr>
                               @endforeach
                           </tbody>

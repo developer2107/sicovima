@@ -20,7 +20,6 @@ $(document).on('ready',function(){
   var color_pd;
   var descripcion_pd;
   $('#tablaFinalizarPedidos').on('click','#AddCant',function(e){
-    alert("nose");
     var tabla_pd =$('#modalTablaFinalizar');
     $("#limpio").empty();
      id_pd = $(this).parents('tr').find('input:eq(0)').val();

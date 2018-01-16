@@ -34,10 +34,10 @@ class PedidosController extends Controller
     {
       $pedido_f = pedido::with('cliente')->get();
       $cliente_f = cliente::all();
-      $producto_f=\SICOVIMA\producto::all();
-      $detallePedido_f=detallePedido::with('pedido','producto')->where('estado3', 1)->get();
+      $producto_f=\SICOVIMA\producto::all()->where('estado3', 0);
+      $detallePedido_f=detallePedido::with('pedido','producto')->where('estado', 1)->get();
       $responsable = \SICOVIMA\clienteJuridico::all();
-        return view("Proyecto.Desarrollo.Pedidos.ListadePedidosaEntregar");
+        return view("Proyecto.Desarrollo.Pedidos.ListadePedidosaEntregar")->with('detallePedido_f',$detallePedido_f);
     }
 
     public function ListaaFinalizar()
@@ -45,7 +45,7 @@ class PedidosController extends Controller
       $pedido_f = pedido::with('cliente')->get();
       $cliente_f = cliente::all();
       $producto_f=\SICOVIMA\producto::all();
-      $detallePedido_f=detallePedido::with('pedido','producto')->where('estado3', 0)->get();
+      $detallePedido_f=detallePedido::with('pedido','producto')->where('estado', 1)->get();
 
       $responsable = \SICOVIMA\clienteJuridico::all();
         return view("Proyecto.Desarrollo.Pedidos.ListadePedidosaFinalizar")->with('pedido_f', $pedido_f)->with('producto_f', $producto_f)->with('detallePedido_f', $detallePedido_f)->with('cliente_f', $cliente_f)->with('pedido_f', $pedido_f);
@@ -106,17 +106,16 @@ class PedidosController extends Controller
        $cliente = cliente::all();
        $producto=\SICOVIMA\producto::all();
        $responsable = \SICOVIMA\clienteJuridico::all();
-       $detallePedido=detallePedido::with('pedido','producto')->get();
+       $detallePedido=detallePedido::with('pedido','producto')->where('estado', 0)->get();
 
-       if ($detallePedido->estado3 == 0 && $detallePedido->estado == 0) {
+
          return view('Proyecto.Desarrollo.Pedidos.ListadePedidosSinIniciar')->with('pedido', $pedido)->with('producto', $producto)->with('detallePedido', $detallePedido)->with('cliente', $cliente)->with('pedido', $pedido);
 
-       }else if ($detallePedido->estado3 == 0 && $detallePedido->estado == 0) {
-         return view("Proyecto.Desarrollo.Pedidos.ListadePedidosaFinalizar")->with('pedido_f', $pedido_f)->with('producto_f', $producto_f)->with('detallePedido_f', $detallePedido_f)->with('cliente_f', $cliente_f)->with('pedido_f', $pedido_f);
-       }else {
-         return view("Proyecto.Desarrollo.Pedidos.MostrarListadePedidos")->with('pedido', $pedido)->with('estadoPedido', $estadoPedido);//
 
-       }
+         // return view("Proyecto.Desarrollo.Pedidos.ListadePedidosaFinalizar")->with('pedido_f', $pedido_f)->with('producto_f', $producto_f)->with('detallePedido_f', $detallePedido_f)->with('cliente_f', $cliente_f)->with('pedido_f', $pedido_f);
+         //
+         // return view("Proyecto.Desarrollo.Pedidos.MostrarListadePedidos")->with('pedido', $pedido)->with('estadoPedido', $estadoPedido);//
+
 
      }
 
@@ -237,11 +236,11 @@ class PedidosController extends Controller
       $prueb2 = materiaPrima::all();
 
 
-      if ($detallePedido_e->estado == true && $detallePedido_e->producto->estado == 0) {
+      if ($detallePedido_e->estado == true && $detallePedido_e->producto->estado == false) {
         # code...
         return view("Proyecto.Desarrollo.Pedidos.FinalizarPedido")->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);;
 
-      }else if($detallePedido_e->producto->estado == 0 && $detallePedido_e->estado == true){
+      }else if($detallePedido_e->producto->estado == false && $detallePedido_e->estado == false){
 
         return view('Proyecto.Desarrollo.Pedidos.IniciarPedido')->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);
 
