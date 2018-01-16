@@ -61,6 +61,7 @@
                                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                                     <table cellspacing="0" width="100%" class="table table-bordered" id="tablaPedidoIniciar">
                                         <thead>
+                                          
                                           <tr>
                                             <th>ID</th>
                                             <th>Materia Prima</th>

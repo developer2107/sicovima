@@ -12,42 +12,71 @@
 // });
 
 $(document).on('ready',function(){
+  var id_pd;
+  var cantidad_pd;
+  var anticipo_pd;
+  var talla_pd;
+  var estilo_pd;
+  var color_pd;
+  var descripcion_pd;
   $('#tablaFinalizarPedidos').on('click','#AddCant',function(e){
+    alert("nose");
     var tabla_p =$('#modalTablaFinalizar');
     $("#limpio").empty();
-    var id_p = $(this).parents('tr').find('input:eq(0)').val();
-    var cantidad_p = $(this).parents('tr').find('input:eq(1)').val();
-    var tipo_p = $(this).parents('tr').find('input:eq(2)').val();
-    var talla_p = $(this).parents('tr').find('input:eq(3)').val();
-    var estilo_p = $(this).parents('tr').find('input:eq(4)').val();
-    var color_p = $(this).parents('tr').find('input:eq(5)').val();
-    var descripcion_p = $(this).parents('tr').find('input:eq(6)').val();
+     id_pd = $(this).parents('tr').find('input:eq(0)').val();
+     cantidad_pd = $(this).parents('tr').find('input:eq(1)').val();
+     anticipo_pd = $(this).parents('tr').find('input:eq(2)').val();
+    talla_pd = $(this).parents('tr').find('input:eq(3)').val();
+     estilo_pd = $(this).parents('tr').find('input:eq(4)').val();
+     color_pd = $(this).parents('tr').find('input:eq(5)').val();
+     descripcion_pd = $(this).parents('tr').find('input:eq(6)').val();
+    var r = 3;
 
-    var datos_p = "<tr>"+
-    "<td>"+ cantidad_p +"</td>"+
-    "<td>"+ talla_p +"</td>"+
-    "<td>"+ estilo_p +"</td>"+
+    var datos_pd = "<tr>"+
+    "<td>"+ cantidad_pd +"</td>"+
+    "<td>"+ talla_pd +"</td>"+
+    "<td>"+ estilo_pd +"</td>"+
     "<td>"+ color_p +"</td>"+
-    "<td>"+ descripcion_p +"</td>"+
-    "<td>"+ "<input  type='hidden' name='idP' value='"+id_p+"'/>" +
-    "<input  type='hidden' name='cantidad' value='"+cantidad_p+"'/>" +
-    "<input type='hidden' name='tipo_p' value='"+tipo_p+"'/>" +
-    "<input  type='hidden' name='talla_p'value='"+talla_p+"'/>" +
-    "<input  type='hidden' name='estilo_p' value='"+ estilo_p+"'/>" +
-    "<input  type='hidden' name='color_p' value='"+ color_p+"'/>" +
-    "<input  type='hidden' name='descripcion_p' value='"+ descripcion_p+"'/>" +
+    "<td>"+ descripcion_pd +"</td>"+
+    "<td>"+ "<input  type='hidden' name='idP' value='"+id_pd+"'/>" +
+    "<input  type='hidden' name='cantidad' value='"+cantidad_pd+"'/>" +
+    "<input type='hidden' name='tipo_p' value='"+tipo_pd+"'/>" +
+    "<input  type='hidden' name='talla_p'value='"+talla_pd+"'/>" +
+    "<input  type='hidden' name='estilo_p' value='"+ estilo_pd+"'/>" +
+    "<input  type='hidden' name='color_p' value='"+ color_pd+"'/>" +
+    "<input  type='hidden' name='descripcion_p' value='"+ descripcion_pd+"'/>" +
+    "<input  type='hidden' name='r' value='"+ r+"'/>" +
     "<a class='btn btn-success btn-circle' type='button' id='AddCant' data-toggle='modal' data-target='#myModal8'><i class='fa fa-pencil-square-o'></i></a>"+
     "</td>"+
     "</tr>";
 
       tabla_p.append(datos_p);
+      $("#tablaFinalizarPedidosd").val("Agregar");
 
   });
 
-  $('#Prueba').on('click', '#AddCant',function(e){
-    alert("hola");
-    var id_Pr = $("input#id").val();
-  });
+$('#tablaFinalizarPedidosd').click(function(){
+  var tabla_p =$('#tablaFinalizarPedidosd');
+  var datos_pd = "<tr>"+
+  "<td>"+ cantidad_p +"</td>"+
+  "<td>"+ talla_p +"</td>"+
+  "<td>"+ estilo_p +"</td>"+
+  "<td>"+ color_p +"</td>"+
+  "<td>"+ descripcion_p +"</td>"+
+  "<td>"+ "<input  type='hidden' name='idP' value='"+id_p+"'/>" +
+  "<input  type='hidden' name='cantidad' value='"+cantidad_p+"'/>" +
+  "<input type='hidden' name='tipo_p' value='"+tipo_p+"'/>" +
+  "<input  type='hidden' name='talla_p'value='"+talla_p+"'/>" +
+  "<input  type='hidden' name='estilo_p' value='"+ estilo_p+"'/>" +
+  "<input  type='hidden' name='color_p' value='"+ color_p+"'/>" +
+  "<input  type='hidden' name='descripcion_p' value='"+ descripcion_p+"'/>" +
+  "<input  type='hidden' name='r' value='"+ r+"'/>" +
+  "<a class='btn btn-success btn-circle' type='button' id='AddCant' data-toggle='modal' data-target='#myModal8'><i class='fa fa-pencil-square-o'></i></a>"+
+  "</td>"+
+  "</tr>";
+
+    tabla_p.append(datos_pd);
+});
 
 });
 
