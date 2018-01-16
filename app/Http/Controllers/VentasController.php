@@ -57,7 +57,7 @@ class VentasController extends Controller
 
     public function Mostrar()
     {
-        $ventas = venta::with('cliente')->get();
+        $ventas = venta::with('cliente')->orderBy('fecha_Ven')->get();
         return view("Proyecto.Desarrollo.Ventas.MostrarListadeVentas",compact('ventas'))->with('ventas', $ventas);
     }
     
@@ -493,4 +493,25 @@ class VentasController extends Controller
         echo "hola";
     }
 
+    public function crearReporteTodasVentas($vistaurl,$tipo)
+    {
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('ReporteTodasVentas');
+        }
+        if ($tipo==2) {
+            return $pdf->download('ReporteTodasVentas.pdf');
+        }
+
+    }
+
+    public function ReporteTodasVentas($tipo)
+    {
+        $vistaurl="Proyecto.Desarrollo.Ventas.ReporteTodasVentas";
+        return $this->crearReporteTodasVentas($vistaurl,$tipo);
+    }
 }

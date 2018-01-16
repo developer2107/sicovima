@@ -30,8 +30,8 @@
                   <table id="example" class="table table-striped table-bordered display" cellspacing="100" width="100%">
                     <thead>
                       <tr>
-                       <th align="left">Cliente</th>
                        <th align="left">Fecha</th>
+                       <th align="left">Cliente</th>
                        <th align="left">Numero de Documento</th>
                        <th align="left">Total</th>
                        <th align="left">Estado</th>
@@ -41,12 +41,12 @@
                     <tbody>
 <?php foreach($ventas as $ven): $cadena='agregarMotivo('.$ven->id.');'; ?>
 <tr>
-  <td align="left"><font size="4" ></font>{{$ven->cliente->nombre_Cli}}</td>
   <?php   
   $dato = explode("-",(String)$ven->fecha_Ven);
   $fecha = $dato[2]."/".$dato[1]."/".$dato[0];
   ?>
   <td align="rihgt" style = "width:15%"><font size="4" ></font>{{$fecha}}</td>
+  <td align="left"><font size="4" ></font>{{$ven->cliente->nombre_Cli}}</td>
   <td align="rihgt" style = "width:20%"><font size="4" ></font>{{SICOVIMA\venta::numeroDocumento($ven->id)}}</td>
   <td align="rihgt" style = "width:10%"><font size="4" ></font><i class="fa fa-usd"></i>  {{$ven-> total_Ven}}</td>
   <td><?php if ($ven->estado_Ven!=2): ?>Normal<?php else: ?>Anulada<?php endif ?></td>
