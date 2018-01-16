@@ -192,7 +192,7 @@
                             <div class="ibox-content">
                                 <div class="table-responsive">
                                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                                    <table cellspacing="0" width="100%" class="table table-striped table-bordered display dataTables-example" id="tablaProductosTerm">
+                                    <table class="table table-striped table-bordered display" cellspacing="100" width="100%" id="tablaProductosTerm">
                                         <thead>
                                           <tr>
                                             <th>Estilo</th>

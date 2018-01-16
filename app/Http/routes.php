@@ -34,6 +34,7 @@ Route::get('/cerrar', 'Auth\AuthController@cerrar');
 Route::get('/login', 'Auth\AuthController@login');
 Route::get('/logout', 'LoginController@logout');
 Route::post('/authenticate', 'Auth\AuthController@authenticate');
+Route::get('/logoutB', 'LoginController@logoutB');
 
 /*------------------------------------------------------------------*/
 
@@ -101,7 +102,8 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
   Route::Resource('/RegistrarVenta','VentasController');
   Route::Resource('/ReportesVenta','VentasController@Reportes');
   Route::Resource('/ListadeVentas','VentasController@Mostrar');
-  Route::match(['get','post'],'/Factura/{tipo}','VentasController@Factura');
+  Route::match(['get','post'],'/Factura/{tipo}/{idVenta}','VentasController@Factura');
+  Route::match(['get','post'],'/FacturaCF/{tipo}/{idVenta}','VentasController@FacturaCF');
   Route::match(['get','post'],'/motivov/{idMot}/{motivo}','VentasController@AddMotivoVenta');
   Route::match(['get','post'],'/motivop/{idMotProd}/{motivoProd}/{descuentoProd}','InventarioPTController@motivosProd');
   Route::get('RegistrarVentas/{id}','VentasController@getResponsables');

@@ -73,6 +73,7 @@ class VentasController extends Controller
         //     'imagen_Prod'=>"", 
         //     'estado_Prod'=>0,
         //     'estado2_Prod'=>0,
+        //     'estado3_Prod'=>0,
         // ]);
         // producto::create([
         //     'tipo_Prod'=>"Falda",
@@ -84,6 +85,7 @@ class VentasController extends Controller
         //     'imagen_Prod'=>"", 
         //     'estado_Prod'=>1,
         //     'estado2_Prod'=>0,
+        //     'estado3_Prod'=>0,
         // ]);
         
         // // 
@@ -93,7 +95,7 @@ class VentasController extends Controller
         //         'cantidad_IPT'=>15,
         //         'fechaMov_IPT'=>"2015-08-08",
         //         'nuevaExistencia_IPT'=>15,
-        //         'id_Producto'=>3,
+        //         'id_Producto'=>1,
         //     ]);
         // inventarioProductoTerminado::create([
         //         'tipoMovimiento_IPT'=>1,
@@ -101,7 +103,7 @@ class VentasController extends Controller
         //         'cantidad_IPT'=>22,
         //         'fechaMov_IPT'=>"2016-08-09",
         //         'nuevaExistencia_IPT'=>22,
-        //         'id_Producto'=>4,
+        //         'id_Producto'=>2,
         //     ]);
 
 
@@ -137,10 +139,19 @@ class VentasController extends Controller
         $costoProdV = $request->costoProdV;
         $gananciaV = $request->gananciaV;
 
+        $datoFecha = explode("/",(String)$request->fecha_Ven);
+        $fechaOrdenada = $datoFecha[2]."-".$datoFecha[1]."-".$datoFecha[0];
+        $aux = cliente::find($request->clientes);
+        if ($aux->tipoCli==1):
+        $ju = clienteJuridico::where('id_Cliente',$aux->id)->get()->last();
+        $iva = $request->total_Ven * 0.13;
+        else:
+        $iva=0;
+        endif;
         $documento = documento::create([
             'tipo_Doc'=>1,//factura
             'tipoPago_Doc'=>2,
-            'fechaEmision_Doc'=>$request->fecha_Ven,
+            'fechaEmision_Doc'=>$fechaOrdenada,
             'estado_Doc'=>0,
             'numero_Doc'=>$request->numeroDoc,
         ]);
@@ -151,14 +162,14 @@ class VentasController extends Controller
 
         $venta = venta::create([
             'can_Ven'=>$contador,
-            'fecha_Ven'=>$request->fecha_Ven,
-            'total_Ven'=>$request->total_Ven,
+            'fecha_Ven'=>$fechaOrdenada,
+            'total_Ven'=>$request->total_Ven+$iva,
             'id_Cliente'=>$request->clientes,
             'estado_Ven'=>0,
         ]);
 
-        // $aux = cliente::find($request->clientes);
-        // bitacora::bitacoras('Registro','Registro de venta '.$venta->id.' a cliente: '.$aux->nombre_Cli);
+        
+        bitacora::bitacoras('Registro','Registro de venta a cliente: '.$aux->nombre_Cli);
 
         for ($i=0; $i < count($idV); $i++) {
             $inventario = inventarioProductoTerminado::where('id_Producto',$idV[$i])->get()->last();
@@ -166,7 +177,7 @@ class VentasController extends Controller
                 'tipoMovimiento_IPT'=>2,
                 'existencias_IPT'=>$inventario->nuevaExistencia_IPT,
                 'cantidad_IPT'=>$cantidadV[$i],
-                'fechaMov_IPT'=>$request->fecha_Ven,
+                'fechaMov_IPT'=>$fechaOrdenada,
                 'nuevaExistencia_IPT'=>$inventario->nuevaExistencia_IPT-$cantidadV[$i],
                 'id_Producto'=>$idV[$i],
             ]);
@@ -244,9 +255,12 @@ class VentasController extends Controller
         $doc = documento::find($docVenta->id_Documento);
         $doc->estado_Doc = 1;//estado anulada
         $doc->save();
+        $datoFecha = explode("/",(String)$request->fecha_Ven);
+        $fechaOrdenada = $datoFecha[2]."-".$datoFecha[1]."-".$datoFecha[0];
+  
 
-        // $aux2 = cliente::find($venta2->id_Cliente);
-        // bitacora::bitacoras('Modificacion','Modificacion de venta '.$id.' a cliente: '.$aux2->nombre_Cli);
+        $aux2 = cliente::find($venta2->id_Cliente);
+        bitacora::bitacoras('Modificacion','Modificacion de venta a cliente: '.$aux2->nombre_Cli);
 
         estadoDocumento::create([
             'motivo_EstadoDoc'=>$request->motivoEstado,
@@ -259,7 +273,7 @@ class VentasController extends Controller
                 'tipoMovimiento_IPT'=>1,
                 'existencias_IPT'=>$inventario->nuevaExistencia_IPT,
                 'cantidad_IPT'=>$detalle2->cant_DVen,
-                'fechaMov_IPT'=>$request->fecha_Ven,
+                'fechaMov_IPT'=>$fechaOrdenada,
                 'nuevaExistencia_IPT'=>$inventario->nuevaExistencia_IPT+$detalle2->cant_DVen,
                 'id_Producto'=>$detalle2->id_Producto,
             ]);
@@ -268,7 +282,7 @@ class VentasController extends Controller
         $documento = documento::create([
             'tipo_Doc'=>1,//factura
             'tipoPago_Doc'=>2,
-            'fechaEmision_Doc'=>$request->fecha_Ven,
+            'fechaEmision_Doc'=>$fechaOrdenada,
             'estado_Doc'=>0,//estado normal
             'numero_Doc'=>$request->numeroDoc,
         ]);
@@ -280,14 +294,14 @@ class VentasController extends Controller
 
         $venta = venta::create([
             'can_Ven'=>$contador,
-            'fecha_Ven'=>$request->fecha_Ven,
+            'fecha_Ven'=>$fechaOrdenada,
             'total_Ven'=>$request->total_Ven,
             'id_Cliente'=>$request->clientes,
             'estado_Ven'=>0,
         ]);
 
-        // $aux = cliente::find($request->clientes);
-        // bitacora::bitacoras('Registro','Nuevo registro de venta '.$venta->id.' por modificacion, a cliente: '.$aux->nombre_Cli);
+        $aux = cliente::find($request->clientes);
+        bitacora::bitacoras('Registro','Nuevo registro de venta por modificacion, a cliente: '.$aux->nombre_Cli);
 
         for ($i=0; $i < count($idV); $i++) {
 
@@ -297,7 +311,7 @@ class VentasController extends Controller
                 'tipoMovimiento_IPT'=>2,
                 'existencias_IPT'=>$inventario->nuevaExistencia_IPT,
                 'cantidad_IPT'=>$cantidadV[$i],
-                'fechaMov_IPT'=>$request->fecha_Ven,
+                'fechaMov_IPT'=>$fechaOrdenada,
                 'nuevaExistencia_IPT'=>$inventario->nuevaExistencia_IPT-$cantidadV[$i],
                 'id_Producto'=>$idV[$i],
             ]);
@@ -318,9 +332,9 @@ class VentasController extends Controller
         ]);
         $cl = cliente::find($venta->id_Cliente);
         if ($cl->tipo_Cli==0) {
-            return redirect("Factura/1/{{$venta}}");//factura cliente
+            return redirect("Factura/1/{$venta}");//factura cliente
         }else if ($cl->tipo_Cli==1) {
-            return redirect("FacturaCF/1/{{$venta}}");//factura credito fiscal
+            return redirect("FacturaCF/1/{$venta}");//factura credito fiscal
         }
         
 
