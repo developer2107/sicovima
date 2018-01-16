@@ -6,10 +6,10 @@
         <h2>Reportes</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="index.html">Proveedores</a>
+                <a href="index.html">Clientes</a>
             </li>
             <li class="active">
-                <strong>Reportes de Proveedor</strong>
+                <strong>Reportes de Cliente</strong>
             </li>
         </ol>
     </div>
@@ -77,14 +77,14 @@
   <td align="rihgt" style = "width:20%"><a href="crear_reporte_ventas/2" class="btn btn-primary btn-circle" type="button"><i class="fa fa-download"></i></a></td>
 </tr> -->
 <tr>
-  <td align="rihgt" style = "width:30%"><font size="4" >Proveedores Activos</font></td>
-  <td align="rihgt" style = "width:20%"><a href="proveedoresActR/1" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
-  <td align="rihgt" style = "width:20%"><a href="proveedoresActR/2" class="btn btn-primary btn-circle" type="button"><i class="fa fa-download"></i></a></td>
+  <td align="rihgt" style = "width:30%"><font size="4" >Clientes Activos</font></td>
+  <td align="rihgt" style = "width:20%"><a href="clientesActR/1" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
+  <td align="rihgt" style = "width:20%"><a href="clientesActR/2" class="btn btn-primary btn-circle" type="button"><i class="fa fa-download"></i></a></td>
 </tr>
 <tr>
-  <td align="rihgt" style = "width:30%"><font size="4" >Proveedores Inactivos</font></td>
-  <td align="rihgt" style = "width:20%"><a href="proveedoresInaR/1" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
-  <td align="rihgt" style = "width:20%"><a href="proveedoresInaR/2" class="btn btn-primary btn-circle" type="button"><i class="fa fa-download"></i></a></td>
+  <td align="rihgt" style = "width:30%"><font size="4" >Clientes Inactivos</font></td>
+  <td align="rihgt" style = "width:20%"><a href="clientesInaR/1" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
+  <td align="rihgt" style = "width:20%"><a href="clientesInaR/2" class="btn btn-primary btn-circle" type="button"><i class="fa fa-download"></i></a></td>
 </tr>
               </tbody>
           </table>

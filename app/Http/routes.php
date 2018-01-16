@@ -43,7 +43,8 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
 /*------------------------------------------------------------------*/
 
 
-Route::group(['middleware' => 'admin'], function(){
+// Route::group(['middleware' => 'admin'], function(){
+
   Route::get('/', function () {
       return view('welcome');
   });
@@ -60,6 +61,9 @@ Route::group(['middleware' => 'admin'], function(){
   Route::match(['get','post'],'/municipio/{id}','ProveedoresController@municipios');
   Route::match(['get','post'],'/VerProveedor/{id}','ProveedoresController@Ver');
   Route::match(['get','post'],'/ModificarProv/{id}','ProveedoresController@Modificar');
+  Route::Resource('/ReportesProveedor','ProveedoresController@Reportes');
+  Route::Resource('/proveedoresInaR','ProveedoresController@ReporteProvIna');
+  Route::Resource('/proveedoresActR','ProveedoresController@ReporteProvAct');
 
   Route::Resource('/RegistroCliente','ClientesController');
   Route::Resource('/MostrarListaCli','ClientesController@Mostrar');
@@ -69,6 +73,9 @@ Route::group(['middleware' => 'admin'], function(){
   Route::match(['get','post'],'/municipio/{id}','ClientesController@municipios');
   Route::match(['get','post'],'/ModificarCli/{id}','ClientesController@Modificar');
   Route::Resource('/DarBajaCli','ClientesController@MostrarCI');
+  Route::Resource('/ReportesCliente','ClientesController@Reportes');
+  Route::Resource('/clientesInaR','ClientesController@ReporteCliIna');
+  Route::Resource('/clientesActR','ClientesController@ReporteCliAct');
 
   Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
   Route::Resource('/RegistrarCompra','CompraController');
@@ -129,7 +136,7 @@ Route::group(['middleware' => 'admin'], function(){
 Route::match(['get','post'],'/buscarTipoMercaderia/{id}','TipoMercaderiaController@buscar');
 
 
-});
+// });
 
 Route::group(['middleware' => 'comun'], function(){
 
