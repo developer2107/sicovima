@@ -73,21 +73,25 @@
   </style>
 </head>
 
-<body>
+  <body>
     <div class="col-md-12">
       <div class="box-header with-border">
         <?php  
-              $v = SICOVIMA\venta::find($data);
-              $cl = SICOVIMA\cliente::find($v->id_Cliente);
-              if ($cl->tipoCli==0):
-              $na = SICOVIMA\clienteNatural::where('id_Cliente',$cl->id)->get()->last();
-              else:
-              $ju = SICOVIMA\clienteJuridico::where('id_Cliente',$cl->id)->get()->last();
-              endif
+          $v = SICOVIMA\venta::find($data);
+          $cl = SICOVIMA\cliente::find($v->id_Cliente);
+          if ($cl->tipoCli==0):
+          $na = SICOVIMA\clienteNatural::where('id_Cliente',$cl->id)->get()->last();
+          else:
+          $ju = SICOVIMA\clienteJuridico::where('id_Cliente',$cl->id)->get()->last();
+          endif;
+          $mm = $cl->id_Municipio;
+          $mmm = SICOVIMA\municipio::find($mm);
+          $dpt = $mmm->id_Departamento;
+          $dp = SICOVIMA\departamento::find($dpt);   
         ?>
         
         <div style="position: absolute;left: 60px; top: 80px; z-index: 1;"><h4>{{$cl->nombre_Cli}}</h4></div>
-        <div style="position: absolute;left: 60px; top: 100px; z-index: 1;"><h4>{{$cl->direccion_Cli}}</h4></div>
+        <div style="position: absolute;left: 60px; top: 100px; z-index: 1;"><h4>{{$cl->direccion_Cli}}, {{$mmm->nombre_Muni}}, {{$dp->nombre_Depa}}</h4></div>
         <?php if ($cl->tipoCli==0): ?>
           <div style="position: absolute;left: 60px; top: 120px; z-index: 1;"><h4>{{$na->DUI_CN}}</h4></div>
         <?php else: ?>
@@ -99,31 +103,31 @@
         
 
         <?php
-            $total=0;
-            $indice=168;
-            foreach ($v->detalleVenta as $key => $detalle):
+            $totall=0;
+            $indicee=168;
+            foreach ($v->detalleVenta as $key => $detallee):
 
         ?>
         <?php
-            $prod=SICOVIMA\producto::find($detalle->id_Producto);
-            $subtotal=($detalle->costoProd_DVen+$detalle->gananciaProd_DVen)*$detalle->cant_DVen;
+            $produ=SICOVIMA\producto::find($detallee->id_Producto);
+            $subtotall=($detallee->costoProd_DVen+$detallee->gananciaProd_DVen)*$detallee->cant_DVen;
         ?>
 
 
 
-        <div style="position: absolute;left: 35px; top: {{$indice}}px; z-index: 1;"><h4>{{$detalle->cant_DVen}}</h4></div>
-        <div style="position: absolute;left: 80px; top: {{$indice}}px; z-index: 1;"><h4>{{$prod->tipo_Prod." ".$prod->estilo_Prod." ".$prod->color_Prod}}</h4></div>
-        <div style="position: absolute;left: 450px; top: {{$indice}}px; z-index: 1;"><h4>$ {{$detalle->costoProd_DVen}}</h4></div>
-        <div style="position: absolute;left: 650px; top: {{$indice}}px; z-index: 1;"><h4>$ {{$subtotal}}</h4></div>
+        <div style="position: absolute;left: 35px; top: {{$indicee}}px; z-index: 1;"><h4>{{$detallee->cant_DVen}}</h4></div>
+        <div style="position: absolute;left: 80px; top: {{$indicee}}px; z-index: 1;"><h4>{{$produ->tipo_Prod." ".$produ->estilo_Prod." ".$produ->color_Prod}}</h4></div>
+        <div style="position: absolute;left: 450px; top: {{$indicee}}px; z-index: 1;"><h4>$ {{$detallee->costoProd_DVen}}</h4></div>
+        <div style="position: absolute;left: 650px; top: {{$indicee}}px; z-index: 1;"><h4>$ {{$subtotall}}</h4></div>
        <?php
-                        $total=$total+$subtotal;
-                        $indice=$indice+12;
-                        endforeach
-                    ?>
-        <div style="position: absolute;left: 650px; top: 325px; z-index: 1;"><h4>$ {{$total}}</h4></div>
-        <div style="position: absolute;left: 650px; top: 349px; z-index: 1;"><h4>$ {{$total}}</h4></div>
-        <div style="position: absolute;left: 650px; top: 374px; z-index: 1;"><h4>$ {{$total}}</h4></div>
-        <div style="position: absolute;left: 650px; top: 399px; z-index: 1;"><h4>$ {{$total}}</h4></div>
+          $totall=$totall+$subtotall;
+          $indicee=$indicee+12;
+          endforeach
+      ?>
+        <div style="position: absolute;left: 650px; top: 325px; z-index: 1;"><h4>$ {{$totall}}</h4></div>
+        <div style="position: absolute;left: 650px; top: 349px; z-index: 1;"><h4>$ {{$totall}}</h4></div>
+        <div style="position: absolute;left: 650px; top: 374px; z-index: 1;"><h4>$ {{$totall}}</h4></div>
+        <div style="position: absolute;left: 650px; top: 399px; z-index: 1;"><h4>$ {{$totall}}</h4></div>
       </div>
     </div> 
   </body>

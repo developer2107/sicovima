@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
-
+use SICOVIMA\bitacora;
 use SICOVIMA\User;
 
 class SeguridadController extends Controller

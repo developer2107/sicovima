@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use SICOVIMA\producto;
 use SICOVIMA\defectuosoPT;
 use SICOVIMA\inventarioProductoTerminado;
-
+use SICOVIMA\User;
+use SICOVIMA\bitacora;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 
@@ -136,8 +137,8 @@ class InventarioPTController extends Controller
                 'estado2_Prod'=>1,
             ]);
 
-            //bitacora::bitacoras('Modificacion','Modificacion de producto '.$proo->id.': '.$proo->tipo_Prod.' '.$proo->estilo_Prod);
-            //bitacora::bitacoras('Registro','Registro de producto defectuoso'.$ultProd->id.' por modificacion: '.$ultProd->tipo_Prod.' '.$ultProd->estilo_Prod);
+            bitacora::bitacoras('Modificación','Modificación de producto '.$proo->id.': '.$proo->tipo_Prod.' '.$proo->estilo_Prod);
+            bitacora::bitacoras('Registro','Registro de producto defectuoso'.$ultProd->id.' por modificación: '.$ultProd->tipo_Prod.' '.$ultProd->estilo_Prod);
 
 
             inventarioProductoTerminado::create([
@@ -169,7 +170,7 @@ class InventarioPTController extends Controller
                 'descuento_DPT'=>$descuentoProd,
             ]); 
 
-            //bitacora::bitacoras('Modificaion','Modificacion de producto'.$proo->id.' por defectuoso: '.$proo->tipo_Prod.' '.$proo->estilo_Prod);
+            bitacora::bitacoras('Modificación','Modificación de producto '.$proo->id.' por defecto: '.$proo->tipo_Prod.' '.$proo->estilo_Prod);
         
         }
         

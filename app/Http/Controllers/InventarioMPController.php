@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use SICOVIMA\materiaPrima;
 use SICOVIMA\compra;
 use SICOVIMA\proveedor;
+use SICOVIMA\User;
+use SICOVIMA\bitacora;
 use SICOVIMA\inventarioMateriaPrima;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;

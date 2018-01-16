@@ -16,6 +16,8 @@ use SICOVIMA\producto;
 use SICOVIMA\inventarioProductoTerminado;
 use SICOVIMA\estadoDocumento;
 use SICOVIMA\defectuosoPT;
+use SICOVIMA\User;
+use SICOVIMA\bitacora;
 
 
 class VentasController extends Controller

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use SICOVIMA\materiaPrima;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
+use SICOVIMA\User;
+use SICOVIMA\bitacora;
 
 class MateriaPrimaController extends Controller
 {
@@ -56,7 +58,7 @@ class MateriaPrimaController extends Controller
      */
     public function store(Request $request)
     {
-          $MP = \SICOVIMA\materiaPrima::where('nombre_MP',$request['nombre_MP'])->where('color_MP',$request['color_MP'])->where('precio_MP',$request['precio_MP'])->count();
+        $MP = \SICOVIMA\materiaPrima::where('nombre_MP',$request['nombre_MP'])->where('color_MP',$request['color_MP'])->where('precio_MP',$request['precio_MP'])->count();
 
         if ($MP == 0) {
             $materiaPrima = \SICOVIMA\materiaPrima::create([
@@ -68,7 +70,7 @@ class MateriaPrimaController extends Controller
             'estado_MP'=>true,
         ]);
 
-            //bitacora::bitacoras('Registro','Registro de materia prima '.$materiaPrima->id.': '.$materiaPrima->nombre_MP);
+        bitacora::bitacoras('Registro','Registro de materia prima: '.$materiaPrima->nombre_MP);
 
         }else{
           return view('Proyecto.Desarrollo.InventarioMP.RegistroMateriaP');
@@ -115,7 +117,7 @@ class MateriaPrimaController extends Controller
         $materiaPrimaM->precio_MP=$request->precio_MP;
         $materiaPrimaM->unidadMedida_MP=$request->unidadMedida_MP;
         $materiaPrimaM->save();
-
+        bitacora::bitacoras('Modificación','Modificación de materia prima '.$materiaPrimaM->id.': '.$materiaPrimaM->nombre_MP);
         return redirect('/ControlMateriaPrima');
     }
 
