@@ -126,6 +126,18 @@ class PedidosController extends Controller
     {
 
       // dd($request->all());
+      $prueba= producto::all();
+      foreach ($prueba as $prueba) {
+        # code...
+        $image = imagecreatefromstring($prueba->imagen_Prod);
+        $encoded_image = base64_encode($image);
+//You dont need to decode it again.
+
+dd($encoded_image);
+
+
+      }
+      dd($variable);
 
       $contador=count($request['tipop']);
       $contador1=count($request['cantidad_DPed']);
@@ -157,6 +169,7 @@ class PedidosController extends Controller
             'estado2_Prod' => 0,//matener en cero, defectuoso es 1
         ]);
       }
+
 
 
       //guardar pedido
@@ -222,19 +235,6 @@ class PedidosController extends Controller
 
       $cont = count($prueb);
       $s=0;
-      // for ($i=0; $i < $cont ; $i++) {
-      //   # code...
-      //   // dd($prueb[$i]->last());
-      //   if ($prueb2[$i]->id === $prueb[$i]->id_MateriaPrima) {
-      //     # code...
-      //     // $MAX= inventarioMateriaPrima::all()->where('id_MateriaPrima','>=', 1);
-      //     // dd($MAX->all());
-      //   }
-      //
-      // }
-
-
-
       return view('Proyecto.Desarrollo.Pedidos.IniciarPedido')->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);
     }
 
@@ -247,7 +247,7 @@ class PedidosController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+      dd($request->all());
     }
 
     /**

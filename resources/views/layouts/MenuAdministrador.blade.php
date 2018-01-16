@@ -79,9 +79,6 @@
          window.open("index.php","_parent");
        }
  </script>
- <script type="text/javascript">
-
- </script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -159,9 +156,8 @@
         </div>
         @endif
            @yield('content')
-
-           @include('Proyecto.Globales.PiePagina')
        </div>
+       @include('Proyecto.Globales.PiePagina')
    </div>
 
 
@@ -317,7 +313,7 @@
                 buttons: [
                     { extend: 'copy'},
                     {extend: 'csv'},
-                    {extend: 'excel', title: 'SICOVIMA-REPORTE'},
+                    {extend: 'excel', title: 'SICOVIMA-REPORTE '},
                     {extend: 'pdf', title: 'SICOVIMA-REPORTE'},
 
                     {extend: 'print',
