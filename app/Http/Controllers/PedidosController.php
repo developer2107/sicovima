@@ -35,7 +35,7 @@ class PedidosController extends Controller
       $pedido_f = pedido::with('cliente')->get();
       $cliente_f = cliente::all();
       $producto_f=\SICOVIMA\producto::all()->where('estado3', 0);
-      $detallePedido_f=detallePedido::with('pedido','producto')->where('estado', 1)->get();
+      $detallePedido_f=detallePedido::with('pedido','producto')->where('estado', 1)->where('estado2', 1)->get();
       $responsable = \SICOVIMA\clienteJuridico::all();
         return view("Proyecto.Desarrollo.Pedidos.ListadePedidosaEntregar")->with('detallePedido_f',$detallePedido_f);
     }
@@ -45,7 +45,7 @@ class PedidosController extends Controller
       $pedido_f = pedido::with('cliente')->get();
       $cliente_f = cliente::all();
       $producto_f=\SICOVIMA\producto::all();
-      $detallePedido_f=detallePedido::with('pedido','producto')->where('estado', 1)->get();
+      $detallePedido_f=detallePedido::with('pedido','producto')->where('estado', 0)->where('estado2', 1)->get();
 
       $responsable = \SICOVIMA\clienteJuridico::all();
         return view("Proyecto.Desarrollo.Pedidos.ListadePedidosaFinalizar")->with('pedido_f', $pedido_f)->with('producto_f', $producto_f)->with('detallePedido_f', $detallePedido_f)->with('cliente_f', $cliente_f)->with('pedido_f', $pedido_f);
@@ -106,7 +106,7 @@ class PedidosController extends Controller
        $cliente = cliente::all();
        $producto=\SICOVIMA\producto::all();
        $responsable = \SICOVIMA\clienteJuridico::all();
-       $detallePedido=detallePedido::with('pedido','producto')->where('estado', 0)->get();
+       $detallePedido=detallePedido::with('pedido','producto')->where('estado', 0)->where('estado2', 0)->get();
 
 
          return view('Proyecto.Desarrollo.Pedidos.ListadePedidosSinIniciar')->with('pedido', $pedido)->with('producto', $producto)->with('detallePedido', $detallePedido)->with('cliente', $cliente)->with('pedido', $pedido);
@@ -201,6 +201,7 @@ class PedidosController extends Controller
         'subtotal_DPed'=>$subtotal_DPed[$i],
         'subtotalVenta_DPed'=>$subtotalVenta_DPed[$i],
         'estado' => 0, //estado que mantiene 0= inicar, 1= finalizar
+        'estado' =>0,// entre la ta tabla iniciar y finalizar a la hora de listarlos
         'id_Producto'=>$id_producto,
         'id_Pedido'=>$id_pedido,
       ]);
@@ -281,6 +282,7 @@ class PedidosController extends Controller
 
       $detallePedido = detallePedido::find($id);
       $detallePedido->estado = 1;
+      $detallePedido->estado2 = 1;
       $defectuosoPT->save();
       $producto->save();
       $detallePedido->save();
@@ -295,6 +297,7 @@ class PedidosController extends Controller
 
       $detallePedido = detallePedido::find($id);
       $detallePedido->estado = 1;
+      $detallePedido->estado = 2;
       $detallePedido->save();
     }
 

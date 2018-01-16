@@ -43,6 +43,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    
                                       @foreach($detallePedido_f as $det)
                                           <tr>
                                             <?php   $dato=explode("-",(String)$det->pedido-> fechaEntregar_Ped);
