@@ -52,7 +52,7 @@
                                               <td align="left"><font size="4" ></font>{{$det->producto->tipo_Prod}}  {{$det->producto->descripcion_Prod}}</td>
                                               <td align="rihgt"><font size="4" ></font>{{$fecha}}</td>
                                               <td align="center">
-                                                <input type="hidden" name="estado" value="Finalizar">
+                                                <input type="hidden" name="estado" value="Entregar">
                                             <a class="btn btn-primary btn-rounded" href="{{route('Pedidos.edit',$det->id)}}">Finalizar</a>
                                               </tr>
                                           @endforeach

@@ -237,15 +237,16 @@ class PedidosController extends Controller
       $prueb2 = materiaPrima::all();
 
 
-
-      if ($detallePedido_e->estado == true) {
+      if ($detallePedido_e->estado == true && $detallePedido_e->producto->estado == 0) {
         # code...
         return view("Proyecto.Desarrollo.Pedidos.FinalizarPedido")->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);;
 
-      }else {
+      }else if($detallePedido_e->producto->estado == 0 && $detallePedido_e->estado == true){
 
         return view('Proyecto.Desarrollo.Pedidos.IniciarPedido')->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);
 
+      }else {
+        return view("Proyecto.Desarrollo.Pedidos.EntregarPedido")->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);;
       }
 
     }
