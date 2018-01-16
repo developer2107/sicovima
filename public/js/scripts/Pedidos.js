@@ -21,61 +21,63 @@ $(document).on('ready',function(){
   var descripcion_pd;
   $('#tablaFinalizarPedidos').on('click','#AddCant',function(e){
     alert("nose");
-    var tabla_p =$('#modalTablaFinalizar');
+    var tabla_pd =$('#modalTablaFinalizar');
     $("#limpio").empty();
      id_pd = $(this).parents('tr').find('input:eq(0)').val();
      cantidad_pd = $(this).parents('tr').find('input:eq(1)').val();
-     anticipo_pd = $(this).parents('tr').find('input:eq(2)').val();
-    talla_pd = $(this).parents('tr').find('input:eq(3)').val();
+     tipo_pd = $(this).parents('tr').find('input:eq(2)').val();
+     talla_pd = $(this).parents('tr').find('input:eq(3)').val();
      estilo_pd = $(this).parents('tr').find('input:eq(4)').val();
      color_pd = $(this).parents('tr').find('input:eq(5)').val();
      descripcion_pd = $(this).parents('tr').find('input:eq(6)').val();
-    var r = 3;
-
     var datos_pd = "<tr>"+
     "<td>"+ cantidad_pd +"</td>"+
     "<td>"+ talla_pd +"</td>"+
     "<td>"+ estilo_pd +"</td>"+
-    "<td>"+ color_p +"</td>"+
+    "<td>"+ color_pd +"</td>"+
     "<td>"+ descripcion_pd +"</td>"+
     "<td>"+ "<input  type='hidden' name='idP' value='"+id_pd+"'/>" +
-    "<input  type='hidden' name='cantidad' value='"+cantidad_pd+"'/>" +
-    "<input type='hidden' name='tipo_p' value='"+tipo_pd+"'/>" +
-    "<input  type='hidden' name='talla_p'value='"+talla_pd+"'/>" +
-    "<input  type='hidden' name='estilo_p' value='"+ estilo_pd+"'/>" +
-    "<input  type='hidden' name='color_p' value='"+ color_pd+"'/>" +
-    "<input  type='hidden' name='descripcion_p' value='"+ descripcion_pd+"'/>" +
-    "<input  type='hidden' name='r' value='"+ r+"'/>" +
-    "<a class='btn btn-success btn-circle' type='button' id='AddCant' data-toggle='modal' data-target='#myModal8'><i class='fa fa-pencil-square-o'></i></a>"+
+    "<input  type='hidden' name='cantidad_dp' value='"+cantidad_pd+"'/>" +
+    "<input type='hidden' name='tipo_pd' value='"+tipo_pd+"'/>" +
+    "<input  type='hidden' name='talla_pd'value='"+talla_pd+"'/>" +
+    "<input  type='hidden' name='estilo_pd' value='"+ estilo_pd+"'/>" +
+    "<input  type='hidden' name='color_pd' value='"+ color_pd+"'/>" +
+    "<input  type='hidden' name='descripcion_pd' value='"+ descripcion_pd+"'/>" +
+    "<a class='btn btn-success btn-circle' type='button' id='AddCant' data-toggle='modal' data-target='#myModal8' name='tablaFinalizarPedidosd'><i class='fa fa-pencil-square-o'></i></a>"+
     "</td>"+
     "</tr>";
 
-      tabla_p.append(datos_p);
-      $("#tablaFinalizarPedidosd").val("Agregar");
+      tabla_pd.append(datos_pd);
+
 
   });
 
-$('#tablaFinalizarPedidosd').click(function(){
+$('#agregarMotivo').click(function(){
+  var motivo =$("#motivo").val();
+  var cant_DPT = $("#cant_DPT").val();
+  var descuento_DPT = $("#descuento_DPT").val();
   var tabla_p =$('#tablaFinalizarPedidosd');
-  var datos_pd = "<tr>"+
-  "<td>"+ cantidad_p +"</td>"+
-  "<td>"+ talla_p +"</td>"+
-  "<td>"+ estilo_p +"</td>"+
-  "<td>"+ color_p +"</td>"+
-  "<td>"+ descripcion_p +"</td>"+
-  "<td>"+ "<input  type='hidden' name='idP' value='"+id_p+"'/>" +
-  "<input  type='hidden' name='cantidad' value='"+cantidad_p+"'/>" +
-  "<input type='hidden' name='tipo_p' value='"+tipo_p+"'/>" +
-  "<input  type='hidden' name='talla_p'value='"+talla_p+"'/>" +
-  "<input  type='hidden' name='estilo_p' value='"+ estilo_p+"'/>" +
-  "<input  type='hidden' name='color_p' value='"+ color_p+"'/>" +
-  "<input  type='hidden' name='descripcion_p' value='"+ descripcion_p+"'/>" +
-  "<input  type='hidden' name='r' value='"+ r+"'/>" +
-  "<a class='btn btn-success btn-circle' type='button' id='AddCant' data-toggle='modal' data-target='#myModal8'><i class='fa fa-pencil-square-o'></i></a>"+
+  var datos_p = "<tr>"+
+  "<td>"+ id_pd +"</td>"+
+  "<td>"+  tipo_pd+"</td>"+
+  "<td>"+ cantidad_pd +"</td>"+
+  "<td>"+ "<input  type='hidden' name='idP' value='"+id_pd+"'/>" +
+  "<input  type='hidden' name='motivo' value='"+ motivo+"'/>" +
+  "<input  type='hidden' name='cant_DPT' value='"+cant_DPT+"'/>" +
+  "<input  type='hidden' name='condicion' value='True'/>" +
+  "<input  type='hidden' name='descuento_DPT' value='"+ descuento_DPT+"'/>" +
+  "<a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>"+
   "</td>"+
   "</tr>";
 
-    tabla_p.append(datos_pd);
+    tabla_p.append(datos_p);
+    motivo =$("#motivo").val(" ");
+    cant_DPT = $("#cant_DPT").val(" ");
+    descuento_DPT = $("#descuento_DPT").val(" ");
+    var objeto=document.getElementById("cerraM");
+});
+$('#tablaFinalizarPedidosd').on('click','#Eliminar',function(e){
+  $(this).parent('td').parent('tr').remove();
 });
 
 });
@@ -114,7 +116,6 @@ $(document).on('ready',function(){
   });
 
   $('#Prueba').on('click', '#AddCant',function(e){
-    alert("hola");
     var id_Pr = $("input#id").val();
   });
 
@@ -269,6 +270,24 @@ $(document).on('ready',function(){
       },
     }
   });
+  $('#tablaFinalizarPedidosd').DataTable({
+    "order":[[2,"asc"]],
+    "language":{
+    "lengthMenu": "Mostrar _MENU_ registro por pagina",
+    "info": "Mostrando pagina _PAGE_ de _PAGE_",
+      // "infoEmpty": "No hay registros disponibles",
+      "infoFiltered": "(filtrada de _MAX_ registros)",
+      "loadingRecords": "Cargando...",
+      "processing":     "Procesando...",
+      "search": "Buscar:",
+      "zeroRecords":		"No se encontraron registro coincidentes",
+
+      "paginate": {
+        "next":		"Siguiente",
+        "previous":	"Anterior"
+      },
+    }
+  });
 });
 
 $(document).on('ready',function(){
@@ -292,8 +311,6 @@ $('#agregarPedido').click(function(){
   var total=parseFloat($("#total_Ped").val());
   // var Imagen = $("#files").val();
   var codImagen = $("#codImagen").val();
-
-  alert(codImagen);
 
   var total=parseFloat($("#total_Ped").val());
   var subtotalVenta_DPed= ((parseFloat(subTotal_DPed)+parseFloat(Precio))*parseFloat(Cantidad));

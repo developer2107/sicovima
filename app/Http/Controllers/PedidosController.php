@@ -32,7 +32,12 @@ class PedidosController extends Controller
 
     public function ListaaEntregar()
     {
-        return view("Proyecto.Desarrollo.Pedidos.ListadePedidosaEntregar");//
+      $pedido_f = pedido::with('cliente')->get();
+      $cliente_f = cliente::all();
+      $producto_f=\SICOVIMA\producto::all();
+      $detallePedido_f=detallePedido::with('pedido','producto')->where('estado3', 1)->get();
+      $responsable = \SICOVIMA\clienteJuridico::all();
+        return view("Proyecto.Desarrollo.Pedidos.ListadePedidosaEntregar");
     }
 
     public function ListaaFinalizar()
@@ -40,7 +45,7 @@ class PedidosController extends Controller
       $pedido_f = pedido::with('cliente')->get();
       $cliente_f = cliente::all();
       $producto_f=\SICOVIMA\producto::all();
-      $detallePedido_f=detallePedido::with('pedido','producto')->where('estado', 1)->get();
+      $detallePedido_f=detallePedido::with('pedido','producto')->where('estado3', 0)->get();
 
       $responsable = \SICOVIMA\clienteJuridico::all();
         return view("Proyecto.Desarrollo.Pedidos.ListadePedidosaFinalizar")->with('pedido_f', $pedido_f)->with('producto_f', $producto_f)->with('detallePedido_f', $detallePedido_f)->with('cliente_f', $cliente_f)->with('pedido_f', $pedido_f);
@@ -100,12 +105,18 @@ class PedidosController extends Controller
        $pedido = pedido::with('cliente')->get();
        $cliente = cliente::all();
        $producto=\SICOVIMA\producto::all();
-       $detallePedido=detallePedido::with('pedido','producto')->where('estado', 0)->get();
-
-
        $responsable = \SICOVIMA\clienteJuridico::all();
+       $detallePedido=detallePedido::with('pedido','producto')->get();
 
+       if ($detallePedido->estado3 == 0 && $detallePedido->estado == 0) {
          return view('Proyecto.Desarrollo.Pedidos.ListadePedidosSinIniciar')->with('pedido', $pedido)->with('producto', $producto)->with('detallePedido', $detallePedido)->with('cliente', $cliente)->with('pedido', $pedido);
+
+       }else if ($detallePedido->estado3 == 0 && $detallePedido->estado == 0) {
+         return view("Proyecto.Desarrollo.Pedidos.ListadePedidosaFinalizar")->with('pedido_f', $pedido_f)->with('producto_f', $producto_f)->with('detallePedido_f', $detallePedido_f)->with('cliente_f', $cliente_f)->with('pedido_f', $pedido_f);
+       }else {
+         return view("Proyecto.Desarrollo.Pedidos.MostrarListadePedidos")->with('pedido', $pedido)->with('estadoPedido', $estadoPedido);//
+
+       }
 
      }
 
@@ -248,13 +259,44 @@ class PedidosController extends Controller
      */
     public function update(Request $request, $id)
     {
-      dd($request->all());
       if ($request['estado'] === 'TRUE') {
         # code...
           $detallePedido_U = detallePedido::find($id);
           $detallePedido_U->estado = $request->estado;
           $detallePedido_U->save();
-      }
+      }else if($request->condicion == 'True'){
+
+        $defectuosoPT = new \SICOVIMA\defectuosoPT;
+        $defectuosoPT->cantidad_DPT = $request->cant_DPT;
+        $defectuosoPT->descripcion_DPT= $request->motivo;
+        $defectuosoPT->id_Producto= $id;
+        $defectuosoPT->descuento_DPT= $request->descuento_DPT;
+
+
+      $producto = producto::find($request->id);
+      $producto->estado_Prod = 1;
+      $producto->estado2_Prod = 1;
+      $producto->estado3_Prod = 1;
+      $producto->save();
+
+      $detallePedido = detallePedido::find($id);
+      $detallePedido->estado = 1;
+      $defectuosoPT->save();
+      $producto->save();
+      $detallePedido->save();
+
+
+    }else {
+      $producto = producto::find($request->id);
+      $producto->estado_Prod = 1;
+      $producto->estado2_Prod = 1;
+      $producto->estado3_Prod = 1;
+      $producto->save();
+
+      $detallePedido = detallePedido::find($id);
+      $detallePedido->estado = 1;
+      $detallePedido->save();
+    }
 
       return redirect()->route('Pedidos.index');
 
