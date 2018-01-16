@@ -20,9 +20,10 @@ class Producto extends Migration
             $table->double('precio_Prod', 5 , 2);
             $table->string('color_Prod');
             $table->string('talla_Prod');
-            $table->binary('imagen_Prod');
+            $table->text('imagen_Prod');
             $table->boolean('estado_Prod');//0->en pedido 1->disponible
             $table->boolean('estado2_Prod');//0->bien 1->defectuoso
+            $table->boolean('estado3_Prod');//0->inicio 1->finaizar
             $table->rememberToken();
             $table->timestamps();
         });
