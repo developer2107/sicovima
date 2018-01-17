@@ -136,10 +136,6 @@ class PedidosController extends Controller
     // ahi, se valida cuantos caracteres tendra, si sera unico, si se puede dajr vacio etc. investigar del comando request y ver video param
     // comprender.....
     {
-
-      // dd($request->all());
-
-
       $contador=count($request['tipop']);
       $contador1=count($request['cantidad_DPed']);
       $tipo_Prod=$request['tipop'];
@@ -154,6 +150,24 @@ class PedidosController extends Controller
       $id_cliente=$request['clienteRegPed'];
       $codImagen = $request['files'];
       $total_Ped = $request['total_Ped'];
+      dd($request->all());
+
+      $datoFecha = explode("/",(String)$request->fecha_Ped);
+      $fechaOrdenada = $datoFecha[2]."-".$datoFecha[1]."-".$datoFecha[0];
+      $aux = cliente::find($request->clienteRegPed);
+      if ($aux->tipoCli==1):
+      $ju = clienteJuridico::where('id_Cliente',$aux->id)->get()->last();
+      $iva = $request->total_Ped * 0.13;
+      else:
+      $iva=0;
+      endif;
+      $documento = documento::create([
+          'tipo_Doc'=>1,//factura
+          'tipoPago_Doc'=>2,
+          'fechaEmision_Doc'=>$fechaOrdenada,
+          'estado_Doc'=>0,
+          'numero_Doc'=>$request->numeroDoc,
+      ]);
 
       //recore los valores que tiene la tabla para guardarlos
           for($a=0;$a<$contador;$a++){
@@ -208,7 +222,12 @@ class PedidosController extends Controller
     }
 
     Session::flash('message','Pedido registrado correctamente');
-    return redirect()->route('Pedidos.index');
+    $cl = cliente::find($venta->id_Cliente);
+    if ($cl->tipo_Cli==0) {
+        return redirect("Factura/1/{$venta->id}");//factura cliente
+    }else if ($cl->tipo_Cli==1) {
+        return redirect("FacturaCF/1/{$venta->id}");//factura credito fiscal
+    }
 
     }
 
@@ -259,7 +278,7 @@ class PedidosController extends Controller
      */
     public function update(Request $request, $id)
     {
-      dd($request->all());
+
       if ($request['estado'] === 'TRUE') {
         # code...
           $detallePedido_U = detallePedido::find($id);
@@ -290,7 +309,7 @@ class PedidosController extends Controller
 
     }else {
       $condicion= \SICOVIMA\inventarioProductoTerminado::all()->last();
-      if ($condicion->existencias_IPT == 0) {
+      if ($condicion->empty()) {
         # code...
         $inv = new \SICOVIMA\inventarioProductoTerminado;
         $inv->tipoMovimiento_IPT= 1;
