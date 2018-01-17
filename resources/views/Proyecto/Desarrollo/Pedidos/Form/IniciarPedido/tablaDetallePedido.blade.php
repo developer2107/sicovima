@@ -19,7 +19,6 @@
                     <table class="table table-bordered" id="tablaDetallePedido">
                         <thead>
                         <tr>
-                          <th>cantidad</th>
                             <th>Producto</th>
                             <th>Descripcion de Pedido</th>
                             <th>Fotografia</th>
@@ -28,7 +27,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                          <?php $cont=\SICOVIMA\detallePedido::all() ?>
+                          <?php $cont=\SICOVIMA\detallePedido::all()->where('estado', false )->where('estado2', false) ?>
                           @foreach($cont as $detallePedido_e)
                         <tr>
                           <?php   $dato=explode("-",(String)$detallePedido_e->pedido->fecha_Ped);
@@ -36,8 +35,6 @@
                           $binary_data= $detallePedido_e->producto->imagen_Prod ;
 
                           ?>
-
-                            <td>{{$detallePedido_e->cantidad_DPed}}</td>
                             <td>{{$detallePedido_e->producto->tipo_Prod}}</td>
                             <td>{{$detallePedido_e->producto->descripcion_Prod}}</td>
                             <td><img src= '{!!$binary_data!!}' width="70" height="70"/> </td>

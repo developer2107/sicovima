@@ -87,7 +87,7 @@ class PedidosController extends Controller
       $pedido = pedido::with('cliente')->get();
       $cliente = cliente::all();
       $producto=\SICOVIMA\producto::all();
-      $detallePedido=detallePedido::with('pedido','producto')->where('estado', 0)->get();
+      $detallePedido=detallePedido::with('pedido','producto')->where('estado', 0)->where('estado2', 1)->get();
 
       $responsable = \SICOVIMA\clienteJuridico::all();
 
@@ -201,7 +201,7 @@ class PedidosController extends Controller
         'subtotal_DPed'=>$subtotal_DPed[$i],
         'subtotalVenta_DPed'=>$subtotalVenta_DPed[$i],
         'estado' => 0, //estado que mantiene 0= inicar, 1= finalizar
-        'estado' =>0,// entre la ta tabla iniciar y finalizar a la hora de listarlos
+        'estado2' =>0,// entre la ta tabla iniciar y finalizar a la hora de listarlos
         'id_Producto'=>$id_producto,
         'id_Pedido'=>$id_pedido,
       ]);
@@ -235,13 +235,11 @@ class PedidosController extends Controller
       $inventarioMateriaPrima_e=inventarioMateriaPrima::orderBy('id_MateriaPrima', 'ASC')->where('tipoMovimiento_IMP', 1)->where('nuevaExistencia_IMP','>=',1)->get(['id','tipoMovimiento_IMP', 'existencias_IMP', 'cantidad_IMP','fechaMov_IMP','nuevaExistencia_IMP', 'id_MateriaPrima']);
       $prueb = inventarioMateriaPrima::all();
       $prueb2 = materiaPrima::all();
-
-
-      if ($detallePedido_e->estado == true && $detallePedido_e->producto->estado == false) {
+      if ($detallePedido_e->estado == true && $detallePedido_e->producto->estado3 == false && $detallePedido_e->producto->estado == false && $detallePedido_e->estado2 == true ) {
         # code...
         return view("Proyecto.Desarrollo.Pedidos.FinalizarPedido")->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);;
 
-      }else if($detallePedido_e->producto->estado == false && $detallePedido_e->estado == false){
+      }else if($detallePedido_e->producto->estado == false && $detallePedido_e->producto->estado3 == false && $detallePedido_e->estado == false && $detallePedido_e->estado2 == false){
 
         return view('Proyecto.Desarrollo.Pedidos.IniciarPedido')->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);
 
@@ -252,7 +250,7 @@ class PedidosController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage3
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -260,10 +258,11 @@ class PedidosController extends Controller
      */
     public function update(Request $request, $id)
     {
+      dd($request->all());
       if ($request['estado'] === 'TRUE') {
         # code...
           $detallePedido_U = detallePedido::find($id);
-          $detallePedido_U->estado = $request->estado;
+          $detallePedido_U->estado2 = $request->estado;
           $detallePedido_U->save();
       }else if($request->condicion == 'True'){
 
@@ -289,6 +288,29 @@ class PedidosController extends Controller
 
 
     }else {
+      $condicion= \SICOVIMA\inventarioProductoTerminado::all()->last();
+      if ($condicion->existencias_IPT == 0) {
+        # code...
+        $inv = new \SICOVIMA\inventarioProductoTerminado;
+        $inv->tipoMovimiento_IPT= 1;
+        $inv->existencias_IPT=0;
+        $inv->cantidad_IPT = $request->cantidad;
+        $inv->fechaMov_IPT = $request->fecha;
+        $inv->nuevaExistencia_IPT = $request->cantidad;
+        $inv->id_Producto = $request->id;
+        $inv->save();
+      }else {
+        $llenar= \SICOVIMA\inventarioProductoTerminado::all()->where('tipoMovimiento_IPT', 0)->get()->last();
+        $inv = new \SICOVIMA\inventarioProductoTerminado;
+        $inv->tipoMovimiento_IPT= 1;
+        $inv->existencias_IPT=$llenar;
+        $inv->cantidad_IPT = $request->cantidad;
+        $inv->fechaMov_IPT = $request->fecha;
+        $inv->nuevaExistencia_IPT = $request->cantidad;
+        $inv->id_Producto = $request->id;
+        $inv->save();
+
+      }
       $producto = producto::find($request->id);
       $producto->estado_Prod = 1;
       $producto->estado2_Prod = 1;
@@ -297,7 +319,7 @@ class PedidosController extends Controller
 
       $detallePedido = detallePedido::find($id);
       $detallePedido->estado = 1;
-      $detallePedido->estado = 2;
+      $detallePedido->estado2 = 1;
       $detallePedido->save();
     }
 

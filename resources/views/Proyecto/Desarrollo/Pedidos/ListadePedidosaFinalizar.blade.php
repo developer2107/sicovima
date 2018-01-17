@@ -2,7 +2,7 @@
 @section('content')
   <div class="row wrapper border-bottom white-bg page-heading">
       <div class="col-sm-4">
-          <h2>Lista de Pedidos sin Iniciar</h2>
+          <h2>Lista de Pedidos a Finalizar</h2>
           <ol class="breadcrumb">
               <li>
                   <a href="index.html">Pedidos</a>
@@ -43,8 +43,8 @@
                             </tr>
                         </thead>
                           <tbody>
-
-                            @foreach($detallePedido_f as $det)
+                            <?php $cont=\SICOVIMA\detallePedido::all()->where('estado', false )->where('estado2', true) ?>
+                            @foreach($cont as $det)
                                 <tr>
                                   <?php   $dato=explode("-",(String)$det->pedido-> fechaEntregar_Ped);
                                   $fecha =$dato[2]."/".$dato[1]."/".$dato[0];?>
