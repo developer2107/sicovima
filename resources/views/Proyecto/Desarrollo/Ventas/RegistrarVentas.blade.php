@@ -164,7 +164,7 @@
                     <div class="col-md-2">
                         <label class="font-bold">              </label>
                         <div class="input-group bootstrap-touchspin">
-                            {!! Form::submit('Registrar',['class'=>'btn btn-outline btn-primary dim', 'target'=>'_blank']) !!}
+                            {!! Form::submit('Registrar',['class'=>'btn btn-outline btn-primary dim','target'=>'_blank']) !!}
                             <!-- //Recibo -->
                         </div>
                     </div>

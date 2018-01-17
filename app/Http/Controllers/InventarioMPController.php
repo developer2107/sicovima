@@ -11,7 +11,8 @@ use SICOVIMA\bitacora;
 use SICOVIMA\inventarioMateriaPrima;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
-
+use Input;
+use Session;
 class InventarioMPController extends Controller
 {
     /**

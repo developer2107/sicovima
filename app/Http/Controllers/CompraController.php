@@ -3,10 +3,11 @@
 namespace SICOVIMA\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Input;
+
 use SICOVIMA\proveedor;
 use SICOVIMA\materiaPrima;
 use SICOVIMA\compra;
+use Input;
 use Session;
 use SICOVIMA\detalleCompra;
 use Redirect;

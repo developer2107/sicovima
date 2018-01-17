@@ -19,6 +19,8 @@ use SICOVIMA\estadoDocumento;
 use SICOVIMA\defectuosoPT;
 use SICOVIMA\User;
 use SICOVIMA\bitacora;
+use Input;
+use Session;
 
 
 class VentasController extends Controller
@@ -169,7 +171,8 @@ class VentasController extends Controller
             'estado_Ven'=>0,
         ]);
 
-        
+        Session::flash('message','Venta registrada correctamente');
+       
         bitacora::bitacoras('Registro','Registro de venta a cliente: '.$aux->nombre_Cli);
 
         for ($i=0; $i < count($idV); $i++) {
@@ -270,6 +273,8 @@ class VentasController extends Controller
   
 
         $aux2 = cliente::find($venta2->id_Cliente);
+        Session::flash('message','Venta modificada correctamente');
+       
         bitacora::bitacoras('Modificacion','Modificacion de venta a cliente: '.$aux2->nombre_Cli);
 
         estadoDocumento::create([
@@ -311,6 +316,8 @@ class VentasController extends Controller
         ]);
 
         $aux = cliente::find($request->clientes);
+        Session::flash('message','Venta modificada correctamente');
+       
         bitacora::bitacoras('Registro','Nuevo registro de venta por modificacion, a cliente: '.$aux->nombre_Cli);
 
         for ($i=0; $i < count($idV); $i++) {
@@ -436,6 +443,8 @@ class VentasController extends Controller
         $venta3->save();
         
         $aux = cliente::find($venta3->id_Cliente);
+        Session::flash('message','Anulacion realizada correctamente');
+
         bitacora::bitacoras('Anulacion','Anulacion de venta '.$venta3->id.' a cliente: '.$aux->nombre_Cli);
 
         estadoDocumento::create([

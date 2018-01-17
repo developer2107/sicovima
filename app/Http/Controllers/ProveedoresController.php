@@ -14,6 +14,8 @@ use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 use SICOVIMA\User;
 use SICOVIMA\bitacora;
+use Input;
+use Session;
 
 class ProveedoresController extends Controller
 {
@@ -118,7 +120,8 @@ class ProveedoresController extends Controller
           ]);
           }
         }
-
+      Session::flash('message',' Proveedor registrado correctamente');
+      
       bitacora::bitacoras('Registro','Registro de proveedor: '.$proveedor->nombre_Prov);
 
       for ($i=0; $i < count($tel); $i++) {
@@ -177,7 +180,8 @@ class ProveedoresController extends Controller
         $proveedor->direccion_Prov=$request->direccion_Prov;
         $proveedor->id_Municipio=$request->municipios;
         $proveedor->save();
-
+        Session::flash('message','Proveedor modificado correctamente');
+      
         bitacora::bitacoras('Modificación','Modificación del proveedor: '.$proveedor->nombre_Prov);
 
         $telefonosViejos = $proveedor->telefonoProveedor;
@@ -248,7 +252,8 @@ class ProveedoresController extends Controller
       $bajaProv = proveedor::find($id);
       $bajaProv->estado_Prov= 0;
       $bajaProv-> save();
-
+Session::flash('message','Proveedor dado de baja correctamente');
+      
       bitacora::bitacoras('Dar de baja','Se dio de baja al proveedor: '.$bajaProv->nombre_Prov);
 
       return redirect('/MostrarListaProv/'.$id);
@@ -259,7 +264,8 @@ class ProveedoresController extends Controller
        $altaProv = proveedor::find($id);
        $altaProv->estado_Prov= 1;
        $altaProv-> save();
-
+Session::flash('message','Proveedor dado de alta correctamente');
+      
        bitacora::bitacoras('Dar de alta','Se dio de alta al proveedor: '.$altaProv->nombre_Prov);
 
        return redirect('/DarBajaProv/'.$id);

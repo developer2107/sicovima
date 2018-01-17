@@ -10,6 +10,8 @@ use SICOVIMA\User;
 use SICOVIMA\bitacora;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
+use Input;
+use Session;
 
 class InventarioPTController extends Controller
 {
@@ -140,8 +142,12 @@ class InventarioPTController extends Controller
                 'estado_Prod'=>1,
                 'estado2_Prod'=>1,
             ]);
-
+Session::flash('message','Producto modificado correctamente');
+      
             bitacora::bitacoras('Modificación','Modificación de producto '.$proo->id.': '.$proo->tipo_Prod.' '.$proo->estilo_Prod);
+            Session::flash('message','Producto registrado correctamente');
+      
+  
             bitacora::bitacoras('Registro','Registro de producto defectuoso'.$ultProd->id.' por modificación: '.$ultProd->tipo_Prod.' '.$ultProd->estilo_Prod);
 
 
@@ -173,6 +179,7 @@ class InventarioPTController extends Controller
                 'id_Producto'=>$proo->id,
                 'descuento_DPT'=>$descuentoProd,
             ]); 
+            Session::flash('message','Producto modificado correctamente');
 
             bitacora::bitacoras('Modificación','Modificación de producto '.$proo->id.' por defecto: '.$proo->tipo_Prod.' '.$proo->estilo_Prod);
         

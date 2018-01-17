@@ -10,6 +10,7 @@ use SICOVIMA\proveedorTipoMercaderia;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 use Session;
+use Input;
 
 class TipoMercaderiaController extends Controller
 {
