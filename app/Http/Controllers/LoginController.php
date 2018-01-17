@@ -7,7 +7,8 @@ use Auth;
 use SICOVIMA\bitacora;
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
-
+use Input;
+use Session;
 class LoginController extends Controller
 {
     /**

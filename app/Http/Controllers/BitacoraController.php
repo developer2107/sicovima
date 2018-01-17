@@ -9,6 +9,8 @@ use SICOVIMA\Http\Controllers\Controller;
 use SICOVIMA\bitacora;
 use SICOVIMA\fecha;
 use SICOVIMA\User;
+use Input;
+use Session;
 
 class BitacoraController extends Controller
 {

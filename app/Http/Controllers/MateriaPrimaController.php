@@ -8,7 +8,8 @@ use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 use SICOVIMA\User;
 use SICOVIMA\bitacora;
-
+use Input;
+use Session;
 class MateriaPrimaController extends Controller
 {
     /**
@@ -69,7 +70,8 @@ class MateriaPrimaController extends Controller
             'unidadMedida_MP'=>$request['unidadMedida_MP'],
             'estado_MP'=>true,
         ]);
-
+        Session::flash('message','Materia prima registrada correctamente');
+      
         bitacora::bitacoras('Registro','Registro de materia prima: '.$materiaPrima->nombre_MP);
 
         }else{
@@ -117,6 +119,8 @@ class MateriaPrimaController extends Controller
         $materiaPrimaM->precio_MP=$request->precio_MP;
         $materiaPrimaM->unidadMedida_MP=$request->unidadMedida_MP;
         $materiaPrimaM->save();
+        Session::flash('message','Materia prima modificada correctamente');
+      
         bitacora::bitacoras('Modificación','Modificación de materia prima '.$materiaPrimaM->id.': '.$materiaPrimaM->nombre_MP);
         return redirect('/ControlMateriaPrima');
     }

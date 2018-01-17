@@ -47,8 +47,7 @@
                       <?php $cadenap='agregarMotivoProd('.$mat->id.');'; ?>
                       <?php
                       $inv = SICOVIMA\inventarioMateriaPrima::where('id_MateriaPrima',$mat->id)->get()->last();
-                      if ($inv->nuevaExistencia_IMP!=0) {
-                              # code...
+                      
                         ?>
                         <tr>
                           <td align="left"><font size="4" >{{$mat-> nombre_MP." ".$mat-> color_MP}}</font></td>
@@ -58,13 +57,10 @@
                           <td align="center">
                             <a href="VerInventarioMP/{{$mat->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a>
                             <a href="ModificarMateriaPrima/{{$mat->id}}" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></a>
-                            <?php if ($mat->estado_MP==0): ?>
-                            <a class="btn btn-danger btn-circle" data-toggle="modal" type="button" data-target="#myModalAnularp" onclick="{{$cadenap}}"><i class="fa fa-times"></i></a>
-                            <?php else: ?>
-                            <?php endif ?>          
+                               
                           </td>
                         </tr>
-                        <?php } ?>
+                       
                         @endforeach
                       </tbody>
 

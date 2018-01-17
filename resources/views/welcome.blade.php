@@ -12,14 +12,14 @@
                         <div class="ibox-content">
                             <div class="carousel slide" id="carousel1">
                                 <div class="carousel-inner">
-                                    <div class="item active">
-                                        <img alt="image" class="img-responsive" src="img/p_big3.jpg">
+                                    <div class="item ">
+                                        <img alt="image" class="img-responsive" src="img/img-mada.jpg">
                                     </div>
-                                    <div class="item">
-                                        <img alt="image"  class="img-responsive" src="img/p_big1.jpg">
+                                    <div class="item active">
+                                        <img alt="image"  class="img-responsive" src="img/IMG-20180108-WA0009.jpg">
                                     </div>
                                     <div class="item ">
-                                        <img alt="image" class="img-responsive" src="img/p_big2.jpg">
+                                        <img alt="image" class="img-responsive" src="img/IMG-20180108-WA0008.jpg">
                                     </div>
 
                                 </div>

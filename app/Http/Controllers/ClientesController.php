@@ -11,6 +11,8 @@ use SICOVIMA\municipio;
 use SICOVIMA\cliente;
 use Mail;
 use DB;
+use Input;
+use Session;
 use SICOVIMA\User;
 use SICOVIMA\bitacora;
 use SICOVIMA\clienteJuridico;
@@ -155,6 +157,7 @@ class ClientesController extends Controller
             'DUI_CN'=>$request->duiCliente,
             'id_Cliente'=>$cliente->id,
         ]); # code...
+Session::flash('message','Cliente natural registrado correctamente');
 
         bitacora::bitacoras('Registro','Registro de cliente natural: '.$cliente->nombre_Cli);
 
@@ -166,6 +169,7 @@ class ClientesController extends Controller
                     'id_Cliente'=>$cliente->id,
                     'RNC_CJ'=>$request->rncCliente,
                 ]);
+                Session::flash('message','Cliente juridico registrado correctamente');
 
                 bitacora::bitacoras('Registro','Registro de cliente juridico: '.$cliente->nombre_Cli);
 
@@ -237,14 +241,15 @@ class ClientesController extends Controller
             $clienteJuridico->RNC_CJ=$request->RNC_CJ;
             $clienteJuridico->nombreResponsable_CJ=$request->nombreResponsable_CJ;
             $clienteJuridico->save();
-
+  Session::flash('message','Cliente juridico modificado correctamente');
             bitacora::bitacoras('Modificación','Modificación de cliente jurídico: '.$cliente->nombre_Cli);
 
         } else {
             $clienteNatural = clienteNatural::where('id_Cliente',$cliente->id)->get()->first();
             $clienteNatural->DUI_CN=$request->DUI_CN;
             $clienteNatural->save();
-
+Session::flash('message','Cliente natural modificado correctamente');
+  
             bitacora::bitacoras('Modificación','Modificación de cliente natural: '.$cliente->nombre_Cli);
 
         }
@@ -342,7 +347,8 @@ class ClientesController extends Controller
       $bajaCli = cliente::find($id);
       $bajaCli->estado_Cli= 0;
       $bajaCli-> save();
-
+Session::flash('message','Cliente dado de baja correctamente');
+  
       bitacora::bitacoras('Dar de baja','Se dio de baja al cliente: '.$bajaCli->nombre_Cli);
 
       return redirect('/MostrarListaCli/'.$id);
@@ -353,6 +359,7 @@ class ClientesController extends Controller
       $altaCli = cliente::find($id);
       $altaCli->estado_Cli= 1;
       $altaCli-> save();
+Session::flash('message','Cliente dado de alta correctamente');
 
       bitacora::bitacoras('Dar de alta','Se dio de alta al cliente: '.$altaCli->nombre_Cli);
 

@@ -12,7 +12,10 @@ use SICOVIMA\cliente;
 use SICOVIMA\detallePedido;
 use SICOVIMA\inventarioMateriaPrima;
 use SICOVIMA\materiaPrima;
+use SICOVIMA\bitacora;
 use Redirect;
+use Input;
+use Session;
 use SICOVIMA\Http\Requests\PedidosRequest;
 
 use SICOVIMA\Http\Requests;
@@ -220,6 +223,9 @@ class PedidosController extends Controller
         'id_Pedido'=>$id_pedido,
       ]);
     }
+    Session::flash('message','Pedido registrado correctamente');
+      
+        bitacora::bitacoras('Registro','Registro de pedido');
 
     Session::flash('message','Pedido registrado correctamente');
     $cl = cliente::find($ped->id_Cliente);
