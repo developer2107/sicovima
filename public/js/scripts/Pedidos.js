@@ -99,15 +99,7 @@ $(document).on('ready',function(){
     "<td>"+ estilo_p +"</td>"+
     "<td>"+ color_p +"</td>"+
     "<td>"+ descripcion_p +"</td>"+
-    "<td>"+ "<input  type='hidden' name='idP' value='"+id_p+"'/>" +
-    "<input  type='hidden' name='cantidad' value='"+cantidad_p+"'/>" +
-    "<input type='hidden' name='tipo_p' value='"+tipo_p+"'/>" +
-    "<input  type='hidden' name='talla_p'value='"+talla_p+"'/>" +
-    "<input  type='hidden' name='estilo_p' value='"+ estilo_p+"'/>" +
-    "<input  type='hidden' name='color_p' value='"+ color_p+"'/>" +
-    "<input  type='hidden' name='descripcion_p' value='"+ descripcion_p+"'/>" +
-    "<a class='btn btn-success btn-circle' type='button' id='AddCant' data-toggle='modal' data-target='#myModalTabla'><i class='fa fa-pencil-square-o'></i></a>"+
-    "</td>"+
+    "<td>"+
     "</tr>";
 
       tabla_p.append(datos_p);

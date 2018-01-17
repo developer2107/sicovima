@@ -80,8 +80,8 @@
          <li><a href={!! asset('RegistrarPedidos') !!}>Registrar</a></li>
          <li><a href={!! asset('ListadePedidosSinIniciar') !!}>Iniciar</a></li>
          <li><a href={!! asset('ListadePedidosaFinalizar') !!}>Finalizar</a></li>
-         <li><a href={!! asset('ListadePedidosaEntregar') !!}>Entregar</a></li>
-         <li><a href={!! asset('ListadePedidos') !!}>Mostrar Lista</a></li>
+         <!-- <li><a href={!! asset('ListadePedidosaEntregar') !!}>Entregar</a></li>
+ -->         <li><a href={!! asset('ListadePedidos') !!}>Mostrar Lista</a></li>
          <li><a href="#">Reporte</a></li>
        </ul>
      </li>

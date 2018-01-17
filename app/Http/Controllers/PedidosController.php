@@ -12,6 +12,7 @@ use SICOVIMA\cliente;
 use SICOVIMA\detallePedido;
 use SICOVIMA\inventarioMateriaPrima;
 use SICOVIMA\materiaPrima;
+use Session;
 use Redirect;
 use SICOVIMA\Http\Requests\PedidosRequest;
 
@@ -245,8 +246,8 @@ class PedidosController extends Controller
         return view('Proyecto.Desarrollo.Pedidos.IniciarPedido')->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);
 
       }else {
-        return view("Proyecto.Desarrollo.Pedidos.EntregarPedido")->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);;
-      }
+        return view("Proyecto.Desarrollo.Pedidos.FinalizarPedido")->with('materiaPrima', $materiaPrima)->with('detallePedido_e', $detallePedido_e)->with('inventarioMateriaPrima_e', $inventarioMateriaPrima_e);;
+}
 
     }
 
