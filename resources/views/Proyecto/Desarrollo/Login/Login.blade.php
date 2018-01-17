@@ -36,11 +36,11 @@
             <div class="ibox-content">
                             <div class="carousel slide" id="carousel1">
                                 <div class="carousel-inner">
-                                    <div class="item active">
-                                        <img alt="image" class="img-responsive" src="img/p_big3.jpg">
+                                    <div class="item ">
+                                        <img alt="image" class="img-responsive" src="img/pantalon-hombre.jpg">
                                     </div>
-                                    <div class="item">
-                                        <img alt="image"  class="img-responsive" src="img/p_big1.jpg">
+                                    <div class="item active">
+                                        <img alt="image"  class="img-responsive" src="img/Mada-Denim-Blanco4.jpg">
                                     </div>
                                     <div class="item ">
                                         <img alt="image" class="img-responsive" src="img/p_big2.jpg">
