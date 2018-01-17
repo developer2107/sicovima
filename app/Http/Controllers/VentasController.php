@@ -8,6 +8,7 @@ use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
 use SICOVIMA\cliente;
 use SICOVIMA\documento;
+use SICOVIMA\fecha;
 use SICOVIMA\detalleVenta;
 use SICOVIMA\venta;
 use SICOVIMA\documentoVenta;
@@ -202,6 +203,15 @@ class VentasController extends Controller
             return redirect("FacturaCF/1/{$venta->id}");//factura credito fiscal
         }
         
+    }
+
+    public function report(Request $request)
+    {
+        $nuevaFecha = fecha::create([
+            'fechai'=>$request->fecha_i,
+            'fechaf'=>$request->fecha_f,
+        ]);
+        return redirect("Proyecto.Desarrollo.Ventas.ReportesVenta");//factura credito fiscal
     }
 
     public function ListaProductos()
@@ -425,8 +435,8 @@ class VentasController extends Controller
         $venta3->estado_Ven = 1;//Anulada-Eliminada
         $venta3->save();
         
-        // $aux = cliente::find($venta3->id_Cliente);
-        // bitacora::bitacoras('Anulacion','Anulacion de venta '.$venta3->id.' a cliente: '.$aux->nombre_Cli);
+        $aux = cliente::find($venta3->id_Cliente);
+        bitacora::bitacoras('Anulacion','Anulacion de venta '.$venta3->id.' a cliente: '.$aux->nombre_Cli);
 
         estadoDocumento::create([
             'motivo_EstadoDoc'=>$motivo,

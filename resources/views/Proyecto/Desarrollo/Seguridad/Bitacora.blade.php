@@ -1,6 +1,7 @@
 @extends('layouts.MenuAdministrador')
 @section('content')
-
+{!! Form::open(['route'=>'ReportBitacora.store','method'=>'post','autocomplete'=>'off']) !!}
+  
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Bitacora</h2>
@@ -17,43 +18,7 @@
     </div>
 </div>
 <br>
-<div class="row">
-  <div class="col-lg-12">
-    <div class="ibox float-e-margins">
-      <div class="ibox-title">
-        <h5></h5>
-      </div>
-      <div class="ibox-content">
-      <div class="row">
-        <div class="col-md-2">
-          <div class="form-group" id="data_2">
-            <label class="font-noraml">Desde</label>
-            <div class="input-group date">
-              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-              <input type="text" class="form-control" value="08/01/2018">
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="form-group" id="data_2">
-            <label class="font-noraml">Hasta</label>
-            <div class="input-group date">
-              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-              <input type="text" class="form-control" value="08/01/2018">
-            </div>
-          </div>
-        </div>
-          <div class="col-md-2">
-            <label class="font-bold"></label>
-            <div class="input-group bootstrap-touchspin">
-              <a href="" class="btn btn-outline btn-primary dim" data-toggle="modal" data-target="#modalProducto" type="button">Buscar</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 <div class="row">
   <div class="col-lg-12">
     <div class="ibox float-e-margins">
@@ -70,7 +35,6 @@
                 <th>Acción</th>
                 <th>Descripción</th>
                 <th>Usuario</th>
-                <th>Opción</th>
               </tr>
             </thead>
             <tbody>
@@ -91,7 +55,6 @@
   <td align="rihgt" style = "width:20%"><font size="4" ></font>{{$bita->accion_Bit}}</td>
   <td align="rihgt" style = "width:30%"><font size="4" ></font>{{$bita->comentario_Bit}}</td>
   <td align="rihgt" style = "width:20%"><font size="4" ></font>{{$usu->name}}</td>
-  <td align="rihgt" style = "width:20%"><font size="4" ></font><a  class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
 </tr>
 <?php endforeach ?>
                     </tbody>
@@ -102,7 +65,6 @@
               <th>Acción</th>
               <th>Descripción</th>
               <th>Usuario</th>
-              <th>Opción</th>
             </tr>
             </tfoot>
           </table>
@@ -112,4 +74,46 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-lg-1">
+  </div>
+  <div class="col-lg-10">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>Generar Reporte de Bitacora</h5>
+      </div>
+      <div class="ibox-content">
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-3">
+          <div class="form-group" id="data_2">
+            <label class="font-noraml">Desde</label>
+            <div class="input-group date">
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                {!! Form::text('fecha_i',null,['class' =>'form-control','readonly'=>'readonly']) !!}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group" id="data_2">
+            <label class="font-noraml">Hasta</label>
+            <div class="input-group date">
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                {!! Form::text('fecha_f',null,['class' =>'form-control','readonly'=>'readonly']) !!}
+            </div>
+          </div>
+        </div>
+          <div class="col-md-3">
+            <label class="font-bold"></label>
+            <div class="input-group bootstrap-touchspin">
+              {!! Form::submit('Generar',['class'=>'btn btn-outline btn-primary dim']) !!}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{!! Form::close() !!}
 @stop

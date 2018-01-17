@@ -3,22 +3,41 @@
 namespace SICOVIMA\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
-use SICOVIMA\bitacora;
+
 use SICOVIMA\Http\Requests;
 use SICOVIMA\Http\Controllers\Controller;
+use SICOVIMA\cliente;
+use SICOVIMA\documento;
+use SICOVIMA\fecha;
+use SICOVIMA\detalleVenta;
+use SICOVIMA\venta;
+use SICOVIMA\documentoVenta;
+use SICOVIMA\clienteJuridico;
+use SICOVIMA\producto;
+use SICOVIMA\inventarioProductoTerminado;
+use SICOVIMA\estadoDocumento;
+use SICOVIMA\defectuosoPT;
+use SICOVIMA\User;
+use SICOVIMA\bitacora;
 
-class LoginController extends Controller
+
+class FechaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+   
+    
+    public function Index()
     {
-        return view("Proyecto.Desarrollo.Login.Login");
+    
+        return view('Proyecto.Desarrollo.Ventas.ReportesVentas');
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,19 +57,27 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datoFecha = explode("/",(String)$request->fecha_i);
+        $fechaOrdenada = $datoFecha[2]."-".$datoFecha[1]."-".$datoFecha[0];
+        $datoFecha2 = explode("/",(String)$request->fecha_f);
+        $fechaOrdenada2 = $datoFecha2[2]."-".$datoFecha2[1]."-".$datoFecha2[0];
+        $nuevaFecha = fecha::create([
+            'fechai'=>$fechaOrdenada,
+            'fechaf'=>$fechaOrdenada2,
+        ]);
+
+        return redirect("ReporteTodasVentas/1");//factura credito fiscal
+        
     }
 
+    
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -70,32 +97,5 @@ class LoginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    public function logout()
-    {
-        
-        Auth::logout();
-        
-        return redirect('login');
-    }
-    public function logoutB()
-    {
-        bitacora::bitacoras('Egreso','Egreso de usuario: '.Auth::user()->name);
-        return $this->logout();
-    }
+    
 }
