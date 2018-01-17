@@ -207,6 +207,7 @@ class PedidosController extends Controller
       ]);
     }
 
+    Session::flash('message','Pedido registrado correctamente');
     return redirect()->route('Pedidos.index');
 
     }
@@ -306,7 +307,7 @@ class PedidosController extends Controller
         $inv->existencias_IPT=$llenar;
         $inv->cantidad_IPT = $request->cantidad;
         $inv->fechaMov_IPT = $request->fecha;
-        $inv->nuevaExistencia_IPT = $request->cantidad;
+        $inv->nuevaExistencia_IPT = (($request->cantidad)+($llenar));
         $inv->id_Producto = $request->id;
         $inv->save();
 
@@ -322,6 +323,7 @@ class PedidosController extends Controller
       $detallePedido->estado2 = 1;
       $detallePedido->save();
     }
+
 
       return redirect()->route('Pedidos.index');
 
