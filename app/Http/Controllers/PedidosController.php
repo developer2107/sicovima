@@ -224,10 +224,8 @@ class PedidosController extends Controller
       ]);
     }
     Session::flash('message','Pedido registrado correctamente');
-      
-        bitacora::bitacoras('Registro','Registro de pedido');
 
-    Session::flash('message','Pedido registrado correctamente');
+        bitacora::bitacoras('Registro','Registro de pedido');
     $cl = cliente::find($ped->id_Cliente);
     if ($cl->tipo_Cli==0) {
         return redirect("Factura/1/{$ped->id}");//factura cliente
