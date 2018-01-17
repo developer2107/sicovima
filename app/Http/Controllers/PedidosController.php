@@ -222,11 +222,11 @@ class PedidosController extends Controller
     }
 
     Session::flash('message','Pedido registrado correctamente');
-    $cl = cliente::find($venta->id_Cliente);
+    $cl = cliente::find($ped->id_Cliente);
     if ($cl->tipo_Cli==0) {
-        return redirect("Factura/1/{$venta->id}");//factura cliente
+        return redirect("Factura/1/{$ped->id}");//factura cliente
     }else if ($cl->tipo_Cli==1) {
-        return redirect("FacturaCF/1/{$venta->id}");//factura credito fiscal
+        return redirect("FacturaCF/1/{$ped->id}");//factura credito fiscal
     }
 
     }
