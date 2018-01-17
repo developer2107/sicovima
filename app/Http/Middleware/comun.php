@@ -16,6 +16,9 @@ class comun
     public function handle($request, Closure $next)
     {
         if (auth()->check()) {
+            if (Auth()->user()->tipo != "Usuario Standard") {
+              return redirect('/');
+            }
             return $next($request);
         } else {
             return redirect('/login');

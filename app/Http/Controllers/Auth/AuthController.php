@@ -77,8 +77,8 @@ class AuthController extends Controller
     }
 
     protected function authenticate(Request $request){
-        //if (Auth::attempt(['name' => $request['name'], 'password' => $request['password'],'estado'=>1])) {
-        if (Auth::attempt(['name' => $request['name'], 'password' => $request['password']])) {
+        if (Auth::attempt(['name' => $request['name'], 'password' => $request['password'],'estado'=>'Activo'])) {
+        // if (Auth::attempt(['name' => $request['name'], 'password' => $request['password']])) {
             bitacora::bitacoras('Ingreso','Ingreso de usuario: '.Auth::user()->name);
 
             return redirect('/');

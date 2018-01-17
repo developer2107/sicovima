@@ -44,8 +44,13 @@ use SICOVIMA\detalleCompra;  ?>
                             <div class="form-group" id="data_2">
                                 <label class="font-bold">Fecha de Compra</label>
                                 <div class="input-group date">
+                                    <!-- <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    {!! Form::date('fecha_Com',null,['class'=>'form-control']) !!} -->
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    {!! Form::date('fecha_Com',null,['class'=>'form-control']) !!}
+                                    <?php   $dato = explode("-",(String)$compra->fecha_Com);
+                                    $fecha = $dato[2]."/".$dato[1]."/".$dato[0];
+                                    ?>
+                                    {!! Form::text('fecha_Com',$fecha,['class' =>'form-control','readonly'=>'readonly']) !!}
                                 </div>
                             </div>
                         </div>

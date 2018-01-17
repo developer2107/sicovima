@@ -94,7 +94,7 @@
         <hr/>
         <div class="row">
             <div class="col-md-6">
-                Copyright Universidad de El Salvador
+                Derechos Reservados   Universidad de El Salvador
             </div>
             <div class="col-md-6 text-right">
                <small>© 2017</small>

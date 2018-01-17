@@ -271,10 +271,26 @@ class CompraController extends Controller
         return view("Proyecto.Desarrollo.Compras.ReportesCompra",compact('compras'))->with('compras', $compras);
     }
 
-    public function ReporteporProv()
+    public function crearReporteTodasCompras($vistaurl,$tipo)
     {
-        $compras = compra::with('proveedor')->get();
-        return view("Proyecto.Desarrollo.Compras.compras",compact('compras'))->with('compras', $compras);
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('comprasFecha');
+        }
+        if ($tipo==2) {
+            return $pdf->download('comprasFecha.pdf');
+        }
+
+    }
+
+    public function comprasFecha($tipo)
+    {
+        $vistaurl="Proyecto.Desarrollo.Compras.comprasFecha";
+        return $this->crearReporteTodasCompras($vistaurl,$tipo);
     }
 
 }
