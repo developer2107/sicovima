@@ -93,21 +93,21 @@
           $fechaOrdenada = $datoFecha[2]."/".$datoFecha[1]."/".$datoFecha[0]; 
         ?>
         
-        <div style="position: absolute;left: 60px; top: 80px; z-index: 1;"><h4>{{$cl->nombre_Cli}}</h4></div>
-        <div style="position: absolute;left: 60px; top: 100px; z-index: 1;"><h4>{{$cl->direccion_Cli}}, {{$mmm->nombre_Muni}}, {{$dp->nombre_Depa}}</h4></div>
+        <div style="position: absolute;left: 87px; top: 60px; z-index: 1;"><h4>{{$cl->nombre_Cli}}</h4></div>
+        <div style="position: absolute;left: 87px; top: 80px; z-index: 1;"><h4>{{$cl->direccion_Cli}}, {{$mmm->nombre_Muni}}, {{$dp->nombre_Depa}}</h4></div>
         <?php if ($cl->tipoCli==0): ?>
-          <div style="position: absolute;left: 60px; top: 120px; z-index: 1;"><h4>{{$na->DUI_CN}}</h4></div>
+          <div style="position: absolute;left: 87px; top: 100px; z-index: 1;"><h4>{{$na->DUI_CN}}</h4></div>
         <?php else: ?>
-          <div style="position: absolute;left: 60px; top: 120px; z-index: 1;"><h4>{{$ju->NIT_CJ}}</h4></div>
+          <div style="position: absolute;left: 87px; top: 100px; z-index: 1;"><h4>{{$ju->NIT_CJ}}</h4></div>
         <?php endif ?>
 
-        <div style="position: absolute;left: 600px; top: 85px; z-index: 1;"><h4>{{$fechaOrdenada}}</h4></div>
-        <div style="position: absolute;left: 690px; top: 120px; z-index: 1;"><h4>x</h4></div>
+        <div style="position: absolute;left: 620px; top: 65px; z-index: 1;"><h4>{{$fechaOrdenada}}</h4></div>
+        <div style="position: absolute;left: 695px; top: 100px; z-index: 1;"><h4>x</h4></div>
         
 
         <?php
             $totall=0;
-            $indicee=168;
+            $indicee=150;
             foreach ($v->detalleVenta as $key => $detallee):
 
         ?>
@@ -118,19 +118,19 @@
 
 
 
-        <div style="position: absolute;left: 35px; top: {{$indicee}}px; z-index: 1;"><h4>{{$detallee->cant_DVen}}</h4></div>
-        <div style="position: absolute;left: 80px; top: {{$indicee}}px; z-index: 1;"><h4>{{$produ->tipo_Prod." ".$produ->estilo_Prod." ".$produ->color_Prod}}</h4></div>
-        <div style="position: absolute;left: 450px; top: {{$indicee}}px; z-index: 1;"><h4>$ {{$detallee->costoProd_DVen+$detallee->gananciaProd_DVen}}</h4></div>
-        <div style="position: absolute;left: 650px; top: {{$indicee}}px; z-index: 1;"><h4>$ {{$subtotall}}</h4></div>
+        <div style="position: absolute;left: 60px; top: {{$indicee}}px; z-index: 1;"><h4>{{$detallee->cant_DVen}}</h4></div>
+        <div style="position: absolute;left: 107px; top: {{$indicee}}px; z-index: 1;"><h4>{{$produ->tipo_Prod." ".$produ->estilo_Prod." ".$produ->color_Prod}}</h4></div>
+        <div style="position: absolute;left: 480px; top: {{$indicee}}px; z-index: 1;"><h4>$ {{$detallee->costoProd_DVen+$detallee->gananciaProd_DVen}}</h4></div>
+        <div style="position: absolute;left: 665px; top: {{$indicee}}px; z-index: 1;"><h4>$ {{$subtotall}}</h4></div>
        <?php
           $totall=$totall+$subtotall;
           $indicee=$indicee+12;
           endforeach
       ?>
-        <div style="position: absolute;left: 650px; top: 325px; z-index: 1;"><h4>$ {{$totall}}</h4></div>
-        <div style="position: absolute;left: 650px; top: 349px; z-index: 1;"><h4>$ </h4></div>
-        <div style="position: absolute;left: 650px; top: 374px; z-index: 1;"><h4>$ </h4></div>
-        <div style="position: absolute;left: 650px; top: 399px; z-index: 1;"><h4>$ {{$totall}}</h4></div>
+        <div style="position: absolute;left: 665px; top: 295px; z-index: 1;"><h4>{{$totall}}</h4></div>
+        <div style="position: absolute;left: 670px; top: 329px; z-index: 1;"><h4></h4></div>
+        <div style="position: absolute;left: 670px; top: 354px; z-index: 1;"><h4></h4></div>
+        <div style="position: absolute;left: 665px; top: 360px; z-index: 1;"><h4>{{$totall}}</h4></div>
       </div>
     </div> 
   </body>

@@ -54,7 +54,8 @@
   <a href="VerVenta/{{$ven->id}}" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a>
   <?php if ($ven->estado_Ven!=2): ?>
   <a href="ModificarVenta/{{$ven->id}}" class="btn btn-success btn-circle" type="button"><i class="fa fa-pencil-square-o"></i></a>
-  <a class="btn btn-danger btn-circle" data-toggle="modal" type="button" data-target="#myModalAnular" onclick="{{$cadena}}"><i class="fa fa-times"></i></a>
+
+  <a class="btn btn-danger btn-circle btn-sm demo4" data-toggle="modal" type="button" data-target="#myModalAnular" onclick="{{$cadena}}"><i class="fa fa-times"></i></a>
   <?php else: ?>
   <?php endif ?>
   </td>

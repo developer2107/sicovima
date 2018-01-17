@@ -108,11 +108,11 @@
           <a href="#">Administrar Backup</a>
           <ul class="nav nav-third-level">
             <li>
-              <a href={!! asset('RegistrarUsuario') !!}>Generar Backup</a>
+              <a href={!! asset('backup') !!}>Generar Backup</a>
             </li>
-            <li>
+            {{-- <li>
               <a href={!! asset('BuscarUsuario') !!}>Restaurar Backup</a>
-            </li>
+            </li> --}}
           </ul>
         </li>
       </ul>

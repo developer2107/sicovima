@@ -107,9 +107,6 @@
                     </div>
                     <div class="col-md-1">
                     </div>
-                    <div class="col-md-2">
-                        {!! Form::button('Ver Documento',['class'=>'btn btn-outline btn-primary']) !!}
-                    </div>
                     <br>
                 </div>
                 <br>

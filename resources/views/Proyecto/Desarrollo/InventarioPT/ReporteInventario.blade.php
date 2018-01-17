@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Reporte Bitacoras</title>
+  <title>Reporte Inventario</title>
   <style>
   footer {
       position: fixed;
@@ -96,46 +96,54 @@ table tr:nth-child(2n-1) td {
           ?>
         <div style="position: absolute;left: 550px; top: 145px; z-index: 1;">Fecha:  <?=  $fecha; ?> </div>
         <h3 align="right" style="position: absolute;left:40; top:10px; px; z-index: 1;"><img class="al img-responsive" alt="image" width="110px" height="110px" src="img/SICOVIMAAqua1.png" ></h3>
+<!-- <img alt="image" class="img-responsive" src="../img/Mada-Denim-Blanco4.jpg"> -->
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
       </div><!-- /.box-header -->
       <div class="box-body">
         <?php  
-          $bitas = SICOVIMA\bitacora::all();
+
+        $producto = SICOVIMA\producto::all();
+        $inventario = SICOVIMA\inventarioProductoTerminado::where('id_Producto',22)->get()->last();
         
            ?>
-        <div style="position: absolute;left: 310px; top: 180px; z-index: 1;"><h3>BITACORA</h3></div>
+        <div style="position: absolute;left: 310px; top: 180px; z-index: 1;"><h3>INVENTARIO</h3></div>
         <table class="table-wrapper" >
            <thead>
             <tr>
               <th style="color: white; font-weight: bold;">N</th> 
-              <th style="color: white; font-weight: bold;">Fecha</th>
-              <th style="color: white; font-weight: bold;">Hora</th>
-              <th style="color: white; font-weight: bold;">Descripción</th>
-              <th style="color: white; font-weight: bold;">Usuario<th>
+              <th style="color: white; font-weight: bold;">Tipo</th>
+              <th style="color: white; font-weight: bold;">Estilo</th>
+              <th style="color: white; font-weight: bold;">Precio</th>
+              <th style="color: white; font-weight: bold;">Talla</th>
+              <th style="color: white; font-weight: bold;">Existencias</th>
+              <th style="color: white; font-weight: bold;">Estado</th>
             </tr>
           </thead>
           <tbody>
-            <?php $n=1; ?>
-            <?php foreach($bitas as $bita): ?>
-              
+            <?php $n = 1; ?>
+            @foreach($producto as $prod)
             <?php
-            $dato = explode(" ",(String)$bita->created_at);
-            $fecha = $dato[0];
-            $hora = $dato[1];
-            $datoFecha = explode("-",(String)$fecha);
-            $fechaOrdenada = $datoFecha[2]."/".$datoFecha[1]."/".$datoFecha[0];
-            $usu = SICOVIMA\User::find($bita->id_Usuario);
-             ?>
+              $inv = SICOVIMA\inventarioProductoTerminado::where('id_Producto',$prod->id)->get()->last(); ?>
 
-              <tr>
+             <?php if ($inv->nuevaExistencia_IPT!=0): ?>
+            <tr>
               <td style = "width:10%">{{$n}}</td> 
-              <td style = "width:20%">{{$fechaOrdenada}}</td>
-              <td style = "width:20%">{{$hora}}</td>
-              <td style = "width:30%">{{$bita->comentario_Bit}}</td>
-              <td style = "width:20%">{{$usu->name}}</td>
+              <td style = "width:20%">{{$prod->tipo_Prod}}</td>
+              <td style = "width:30%">{{$prod->estilo_Prod}}</td>
+              <td style = "width:20%"><i class="fa fa-usd"></i>  {{$prod->precio_Prod}}</td>
+              <td style = "width:20%">{{$prod->talla_Prod}}</td>
+              <td style = "width:20%">{{$inv->nuevaExistencia_IPT}}</td>
+              <td style = "width:20%">
+                <?php if ($prod->estado2_Prod==1): ?>
+                  Dañado
+                  <?php else: ?>
+                  Bien
+                  <?php endif ?>
+                </td>
             </tr>
+            <?php else: ?>
+            <?php endif ?>
             <?php $n++; ?>
-
           @endforeach
         </tbody>
       </table>

@@ -54,8 +54,9 @@
                           </tr>
                       </thead>
                         <tbody>
-
-                          @foreach($detallePedido as $det)
+                          <?php $cont=\SICOVIMA\detallePedido::all()->where('estado', false )->where('estado2', false); 
+                          ?>
+                          @foreach($cont as $det)
                               <tr>
                                 <?php   $dato=explode("-",(String)$det->pedido-> fechaEntregar_Ped);
                                 $fecha =$dato[2]."/".$dato[1]."/".$dato[0];?>

@@ -1,6 +1,5 @@
 @extends('layouts.MenuAdministrador')
 @section('content')
-{!! Form::open(['route'=>'ReportBitacora.store','method'=>'post','autocomplete'=>'off']) !!}
   
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -22,8 +21,12 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="ibox float-e-margins">
-      <div class="ibox-title">
+      <div class="ibox-title responsive">
         <h5>Lista de movimientos efectuados en el sistema</h5>
+        <div class="input-group bootstrap-touchspin">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a type="button" href="ReporteBitacoras/1" target="_blank" class="btn btn-default responsive">Generar Reporte</a>
+            </div>
       </div>
       <div class="ibox-content">
         <div class="table-responsive">
@@ -74,46 +77,4 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-lg-1">
-  </div>
-  <div class="col-lg-10">
-    <div class="ibox float-e-margins">
-      <div class="ibox-title">
-        <h5>Generar Reporte de Bitacora</h5>
-      </div>
-      <div class="ibox-content">
-      <div class="row">
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-3">
-          <div class="form-group" id="data_2">
-            <label class="font-noraml">Desde</label>
-            <div class="input-group date">
-              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                {!! Form::text('fecha_i',null,['class' =>'form-control','readonly'=>'readonly']) !!}
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group" id="data_2">
-            <label class="font-noraml">Hasta</label>
-            <div class="input-group date">
-              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                {!! Form::text('fecha_f',null,['class' =>'form-control','readonly'=>'readonly']) !!}
-            </div>
-          </div>
-        </div>
-          <div class="col-md-3">
-            <label class="font-bold"></label>
-            <div class="input-group bootstrap-touchspin">
-              {!! Form::submit('Generar',['class'=>'btn btn-outline btn-primary dim']) !!}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{!! Form::close() !!}
 @stop

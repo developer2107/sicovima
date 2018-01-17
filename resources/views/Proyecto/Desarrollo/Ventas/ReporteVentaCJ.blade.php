@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Reporte Bitacoras</title>
+  <title>Reporte Ventas</title>
   <style>
   footer {
       position: fixed;
@@ -96,46 +96,44 @@ table tr:nth-child(2n-1) td {
           ?>
         <div style="position: absolute;left: 550px; top: 145px; z-index: 1;">Fecha:  <?=  $fecha; ?> </div>
         <h3 align="right" style="position: absolute;left:40; top:10px; px; z-index: 1;"><img class="al img-responsive" alt="image" width="110px" height="110px" src="img/SICOVIMAAqua1.png" ></h3>
+<!-- <img alt="image" class="img-responsive" src="../img/Mada-Denim-Blanco4.jpg"> -->
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
       </div><!-- /.box-header -->
       <div class="box-body">
         <?php  
-          $bitas = SICOVIMA\bitacora::all();
+          $ventas = SICOVIMA\venta::with('cliente')->orderBy('fecha_Ven')->get();
         
            ?>
-        <div style="position: absolute;left: 310px; top: 180px; z-index: 1;"><h3>BITACORA</h3></div>
+        <div style="position: absolute;left: 200px; top: 180px; z-index: 1;"><h3>LISTA DE VENTAS A CLIENTES JURIDICOS</h3></div>
         <table class="table-wrapper" >
            <thead>
             <tr>
               <th style="color: white; font-weight: bold;">N</th> 
               <th style="color: white; font-weight: bold;">Fecha</th>
-              <th style="color: white; font-weight: bold;">Hora</th>
-              <th style="color: white; font-weight: bold;">Descripción</th>
-              <th style="color: white; font-weight: bold;">Usuario<th>
+              <th style="color: white; font-weight: bold;">Cliente</th>
+              <th style="color: white; font-weight: bold;">Numero de Documento</th>
+              <th style="color: white; font-weight: bold;">Total</th>
             </tr>
           </thead>
           <tbody>
-            <?php $n=1; ?>
-            <?php foreach($bitas as $bita): ?>
-              
-            <?php
-            $dato = explode(" ",(String)$bita->created_at);
-            $fecha = $dato[0];
-            $hora = $dato[1];
-            $datoFecha = explode("-",(String)$fecha);
+            <?php $n = 1; ?>
+            @foreach($ventas as $ven) 
+            <?php  
+            
+            $datoFecha = explode("-",(String)$ven->fecha_Ven);
             $fechaOrdenada = $datoFecha[2]."/".$datoFecha[1]."/".$datoFecha[0];
-            $usu = SICOVIMA\User::find($bita->id_Usuario);
-             ?>
-
-              <tr>
+          ?>
+          <?php if ($ven->cliente->tipo_Cli==1): ?>
+            <tr>
               <td style = "width:10%">{{$n}}</td> 
               <td style = "width:20%">{{$fechaOrdenada}}</td>
-              <td style = "width:20%">{{$hora}}</td>
-              <td style = "width:30%">{{$bita->comentario_Bit}}</td>
-              <td style = "width:20%">{{$usu->name}}</td>
+              <td style = "width:30%">{{$ven->cliente->nombre_Cli}}</td>
+              <td style = "width:20%">{{SICOVIMA\venta::numeroDocumento($ven->id)}}</td>
+              <td style = "width:20%">$ {{$ven-> total_Ven}}</td>
             </tr>
             <?php $n++; ?>
-
+          <?php else: ?>
+          <?php endif ?>
           @endforeach
         </tbody>
       </table>

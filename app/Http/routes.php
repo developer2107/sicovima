@@ -13,18 +13,18 @@
 
 Route::get('/guardarUsuario', function () {
 
-  $para = 'ingridayala_94@hotmail.com';
-  $asunto = 'Prueba de SMTP local';
-  $mensaje = 'Mensaje de prueba';
-  $cabeceras = 'From: brendacgmaradiaga@gmail.com' ."\r\n" .
-  'Reply-To: brendacgmaradiaga@gmail.com' . "\r\n" .
-  'X-Mailer: PHP/' . phpversion();
+		$para = 'ingridayala_94@hotmail.com';
+		$asunto = 'Prueba de SMTP local';
+		$mensaje = 'Mensaje de prueba';
+		$cabeceras = 'From: brendacgmaradiaga@gmail.com' ."\r\n" .
+		'Reply-To: brendacgmaradiaga@gmail.com' . "\r\n" .
+		'X-Mailer: PHP/' . phpversion();
 
-  if(mail($para, $asunto, $mensaje, $cabeceras)) {
-    echo 'Correo enviado correctamente';
-  } else {
-    echo 'Error al enviar mensaje';
-  }
+		if(mail($para, $asunto, $mensaje, $cabeceras)) {
+		echo 'Correo enviado correctamente';
+		} else {
+		echo 'Error al enviar mensaje';
+		}
 
 });
 
@@ -47,12 +47,12 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
 Route::group(['middleware' => 'admin'], function(){
 
   Route::get('/', function () {
-    return view('welcome');
+      return view('welcome');
   });
 
   Route::Resource('/TipoMercaderia','TipoMercaderiaController');
   Route::match(['get','post'],'/EliminarTM/{id}','TipoMercaderiaController@eliminar');
-  //Route::match(['get','post'],'/cambiarTM/{id}','TipoMercaderiaController@cambio');
+  Route::match(['get','post'],'/cambiarTM/{id}','TipoMercaderiaController@cambio');
 
   Route::Resource('/RegistroProveedor','ProveedoresController');
   Route::Resource('/MostrarListaProv','ProveedoresController@Mostrar');
@@ -82,8 +82,8 @@ Route::group(['middleware' => 'admin'], function(){
 
   Route::match(['get','post'],'/ModificarCompra/{id}','CompraController@Modificar');
   Route::Resource('/RegistrarCompra','CompraController');
-  Route::match(['get','post'],'/EliminarCompra/{id}','CompraController@destroy');
   Route::match(['get','post'],'/VerCompra/{id}','CompraController@Ver');
+  Route::match(['get','post'],'/EliminarCompra/{id}','CompraController@destroy');
   Route::Resource('/ListadeCompras','CompraController@Mostrar');
   Route::Resource('/ReportesCompra','CompraController@Reportes');
   Route::match(['get','post'],'/comprasFecha/{id}','CompraController@comprasFecha');
@@ -137,15 +137,17 @@ Route::group(['middleware' => 'admin'], function(){
   Route::Resource('/BuscarUsuario','SeguridadController@Buscar');
 
   Route::get('backup', 'BackupController@index');
-  Route::get('backup/create', 'BackupController@create');
+  Route::get('backup/createAPP', 'BackupController@create');
+	Route::get('backup/createBase', 'BackupController@create1');
   Route::get('backup/download/{file_name}', 'BackupController@download');
   Route::get('backup/delete/{file_name}', 'BackupController@delete');
 
-  Route::match(['get','post'],'/buscarTipoMercaderia/{id}','TipoMercaderiaController@buscar');
+Route::match(['get','post'],'/buscarTipoMercaderia/{id}','TipoMercaderiaController@buscar');
 
 
 });
 
+<<<<<<< HEAD
 // Route::group(['middleware' => 'comun'], function(){
 
 //   Route::get('/', function () {
@@ -220,3 +222,9 @@ Route::group(['middleware' => 'admin'], function(){
 //   Route::match(['get','post'],'/buscarTipoMercaderia/{id}','TipoMercaderiaController@buscar');
 
 // });
+=======
+Route::group(['middleware' => 'comun'], function(){
+
+
+});
+>>>>>>> b7bf34f8c043161d637081ef130eef9f1b53be86
