@@ -201,7 +201,7 @@
                     <div class="col-md-3">
                         <label class="font-bold">              </label>
                         <div class="input-group bootstrap-touchspin">
-                            {!! Form::submit('Modificar',['class'=>'btn btn-outline btn-primary dim']) !!}
+                            {!! Form::submit('Modificar',['class'=>'btn btn-outline btn-primary dim', 'target'=>'_blank']) !!}
                         </div>
                     </div>
                 </div>

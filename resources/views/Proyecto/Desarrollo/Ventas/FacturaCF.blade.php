@@ -91,16 +91,16 @@
           $fechaOrdenada = $datoFecha[2]."/".$datoFecha[1]."/".$datoFecha[0]; 
         ?>
         
-        <div style="position: absolute;left: 60px; top: 58px; z-index: 1;"><h4>{{$cl->nombre_Cli}}</h4></div>
-        <div style="position: absolute;left: 60px; top: 77px; z-index: 1;"><h4>{{$cl->direccion_Cli}}</h4></div>
-        <div style="position: absolute;left: 60px; top: 95px; z-index: 1;"><h4>{{$mmm->nombre_Muni}}</h4></div>
-        <div style="position: absolute;left: 350px; top: 95px; z-index: 1;"><h4>{{$dp->nombre_Depa}}</h4></div>
-        <div style="position: absolute;left: 600px; top: 60px; z-index: 1;"><h4>{{$fechaOrdenada}}</h4></div>
-        <div style="position: absolute;left: 590px; top: 100px; z-index: 1;"><h4>{{$ju->NIT_CJ}}</h4></div>
+        <div style="position: absolute;left: 87px; top: 40px; z-index: 1;"><h4>{{$cl->nombre_Cli}}</h4></div>
+        <div style="position: absolute;left: 87px; top: 60px; z-index: 1;"><h4>{{$cl->direccion_Cli}}</h4></div>
+        <div style="position: absolute;left: 87px; top: 80px; z-index: 1;"><h4>{{$mmm->nombre_Muni}}</h4></div>
+        <div style="position: absolute;left: 352px; top: 80px; z-index: 1;"><h4>{{$dp->nombre_Depa}}</h4></div>
+        <div style="position: absolute;left: 600px; top: 47px; z-index: 1;"><h4>{{$fechaOrdenada}}</h4></div>
+        <div style="position: absolute;left: 590px; top: 85px; z-index: 1;"><h4>{{$ju->NIT_CJ}}</h4></div>
 
         <?php
             $totall=0;
-            $indicee=168;
+            $indicee=150;
             foreach ($v->detalleVenta as $key => $detallee):
 
         ?>
@@ -111,21 +111,21 @@
 
 
 
-        <div style="position: absolute;left: 35px; top: {{$indicee}}px; z-index: 1;"><h4>{{$detallee->cant_DVen}}</h4></div>
-        <div style="position: absolute;left: 80px; top: {{$indicee}}px; z-index: 1;"><h4>{{$produ->tipo_Prod." ".$produ->estilo_Prod." ".$produ->color_Prod}}</h4></div>
-        <div style="position: absolute;left: 455px; top: {{$indicee}}px; z-index: 1;"><h4>$ {{$detallee->costoProd_DVen+$detallee->gananciaProd_DVen}}</h4></div>
+        <div style="position: absolute;left: 60px; top: {{$indicee}}px; z-index: 1;"><h4>{{$detallee->cant_DVen}}</h4></div>
+        <div style="position: absolute;left: 107px; top: {{$indicee}}px; z-index: 1;"><h4>{{$produ->tipo_Prod." ".$produ->estilo_Prod." ".$produ->color_Prod}}</h4></div>
+        <div style="position: absolute;left: 465px; top: {{$indicee}}px; z-index: 1;"><h4>$ {{$detallee->costoProd_DVen+$detallee->gananciaProd_DVen}}</h4></div>
         <div style="position: absolute;left: 650px; top: {{$indicee}}px; z-index: 1;"><h4>$ {{$subtotall}}</h4></div>
        <?php
           $totall=$totall+$subtotall;
           $indicee=$indicee+12;
           endforeach
       ?>
-        <div style="position: absolute;left: 650px; top: 325px; z-index: 1;"><h4>$ {{$totall}}</h4></div>
-        <div style="position: absolute;left: 650px; top: 345px; z-index: 1;"><h4>$ {{round($iva*100)/100}}</h4></div>
-        <div style="position: absolute;left: 650px; top: 363px; z-index: 1;"><h4>$ </h4></div>
-        <div style="position: absolute;left: 650px; top: 380px; z-index: 1;"><h4>$ {{round(($totall+$iva)*100)/100}}</h4></div>
-        <div style="position: absolute;left: 650px; top: 395px; z-index: 1;"><h4>$ </h4></div>
-        <div style="position: absolute;left: 650px; top: 410px; z-index: 1;"><h4>$ {{round(($totall+$iva)*100)/100}}</h4></div>
+        <div style="position: absolute;left: 650px; top: 280px; z-index: 1;"><h4>{{$totall}}</h4></div>
+        <div style="position: absolute;left: 650px; top: 307px; z-index: 1;"><h4>{{round($iva*100)/100}}</h4></div>
+        <div style="position: absolute;left: 650px; top: 363px; z-index: 1;"><h4></h4></div>
+        <div style="position: absolute;left: 650px; top: 345px; z-index: 1;"><h4>{{round(($totall+$iva)*100)/100}}</h4></div>
+        <div style="position: absolute;left: 650px; top: 345px; z-index: 1;"><h4></h4></div>
+        <div style="position: absolute;left: 650px; top: 375px; z-index: 1;"><h4>{{round(($totall+$iva)*100)/100}}</h4></div>
       </div>
     </div> 
   </body>

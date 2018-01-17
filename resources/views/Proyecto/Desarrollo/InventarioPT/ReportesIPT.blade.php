@@ -9,7 +9,7 @@
                 <a href="index.html">Ventas</a>
             </li>
             <li class="active">
-                <strong>Reportes de Venta</strong>
+                <strong>Reportes de Inventario Productos Terminados</strong>
             </li>
         </ol>
     </div>
@@ -36,20 +36,16 @@
             </thead>
             <tbody>
               <tr>
-  <td align="center" style = "width:30%"><font size="4" >Ventas</font></td>
-  <td align="center" style = "width:10%"><a href="ReporteTodasVentas/1" target="_blank" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
+  <td align="center" style = "width:30%"><font size="4" >Inventario</font></td>
+  <td align="center" style = "width:10%"><a href="ReporteInventario/1" target="_blank" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
 </tr>
 <tr>
-  <td align="center" style = "width:30%"><font size="4" >Ventas por tipo de cliente natural</font></td>
-  <td align="center" style = "width:10%"><a href="ReporteVentaCN/1" target="_blank" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
+  <td align="center" style = "width:30%"><font size="4" >Productos En Buen Estado</font></td>
+  <td align="center" style = "width:10%"><a href="ReportePB/1" target="_blank" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
 </tr>
 <tr>
-  <td align="center" style = "width:30%"><font size="4" >Ventas por tipo de cliente jurídico</font></td>
-  <td align="center" style = "width:10%"><a href="ReporteVentaCJ/1" target="_blank" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
-</tr>
-<tr>
-  <td align="center" style = "width:30%"><font size="4" >Ventas anuladas</font></td>
-  <td align="center" style = "width:10%"><a href="ReporteVentasA/1" target="_blank" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
+  <td align="center" style = "width:30%"><font size="4" >Productos Dañados</font></td>
+  <td align="center" style = "width:10%"><a href="ReportePD/1" target="_blank" class="btn btn-primary btn-circle" type="button"><i class="fa fa-eye"></i></a></td>
 </tr>
               </tbody>
           </table>

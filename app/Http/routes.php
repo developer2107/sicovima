@@ -44,7 +44,7 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
 /*------------------------------------------------------------------*/
 
 
-// Route::group(['middleware' => 'admin'], function(){
+ Route::group(['middleware' => 'admin'], function(){
 
   Route::get('/', function () {
       return view('welcome');
@@ -94,7 +94,11 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
   Route::Resource('/RegistroMateriaP','MateriaPrimaController');
   Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambio');
   Route::Resource('/ReportesVenta','VentasController@Reportes');
-  
+  Route::Resource('/ReportesIPT','InventarioPTController@Reportes');
+  Route::match(['get','post'],'/ReporteInventario/{id}','InventarioPTController@ReporteInventario');
+  Route::match(['get','post'],'/ReportePB/{id}','InventarioPTController@ReportePB');
+  Route::match(['get','post'],'/ReportePD/{id}','InventarioPTController@ReportePD');
+
   Route::Resource('Bitacora','BitacoraController');
   Route::Resource('Reportes','BitacoraController@Reportes');
   Route::Resource('Tour','BitacoraController@Tour');
@@ -103,14 +107,17 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
   Route::match(['get','post'],'/VerVenta/{id}','VentasController@Ver');
   Route::match(['get','post'],'/VerInventarioPT/{id}','InventarioPTController@Ver');
   Route::Resource('/RegistrarVenta','VentasController');
-Route::Resource('/ReportVenta','FechaController@store');
-Route::Resource('/ReportBitacora','BitacoraController');
-   Route::match(['get','post'],'/ReporteBitacoras/{id}/{nuevaFecha}','BitacoraController@ReporteBitacoras');
-Route::Resource('/ListadeVentas','VentasController@Mostrar');
+  Route::Resource('/ReportVenta','FechaController@store');
+  Route::Resource('/ReportBitacora','BitacoraController');
+  Route::match(['get','post'],'/ReporteBitacoras/{id}','BitacoraController@ReporteBitacoras');
+  Route::Resource('/ListadeVentas','VentasController@Mostrar');
 
   Route::match(['get','post'],'/Factura/{tipo}/{idVenta}','VentasController@Factura');
   Route::match(['get','post'],'/FacturaCF/{tipo}/{idVenta}','VentasController@FacturaCF');
   Route::match(['get','post'],'/ReporteTodasVentas/{id}','VentasController@ReporteTodasVentas');
+  Route::match(['get','post'],'/ReporteVentaCN/{id}','VentasController@ReporteVentaCN');
+  Route::match(['get','post'],'/ReporteVentaCJ/{id}','VentasController@ReporteVentaCJ');
+  Route::match(['get','post'],'/ReporteVentasA/{id}','VentasController@ReporteVentasA');
 
   Route::match(['get','post'],'/motivov/{idMot}/{motivo}','VentasController@AddMotivoVenta');
   Route::match(['get','post'],'/motivop/{idMotProd}/{motivoProd}/{descuentoProd}','InventarioPTController@motivosProd');
@@ -146,7 +153,7 @@ Route::Resource('/ListadeVentas','VentasController@Mostrar');
 Route::match(['get','post'],'/buscarTipoMercaderia/{id}','TipoMercaderiaController@buscar');
 
 
-// });
+ });
 
 Route::group(['middleware' => 'comun'], function(){
 

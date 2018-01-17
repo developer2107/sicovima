@@ -49,11 +49,20 @@
       <li>
         <a href="index.html"><i class="fa fa-paste"></i><span class="nav-label">Inventario</span> <span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse">
-
-              <li>
-                <a href={!! asset('ControlMateriaPrima') !!}>Inventario de Materia Prima</a>
-              </li>
-          <li><a href={!! asset('ProductosTerminados') !!}>Productos Terminados</a></li>
+          <li>
+            <a href={!! asset('ControlMateriaPrima') !!}>Inventario de Materia Prima</a>
+          </li>
+          <li>
+            <a href="#">Productos Terminados</a>
+            <ul class="nav nav-third-level">
+            <li>
+              <a href={!! asset('ProductosTerminados') !!}>Ver Inventario</a>
+            </li>
+            <li>
+              <a href={!! asset('ReportesIPT') !!}>Reportes</a>
+            </li>
+          </ul>
+          </li>
         </ul>
       </li>
       <li>

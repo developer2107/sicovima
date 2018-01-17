@@ -109,6 +109,10 @@ class InventarioPTController extends Controller
     {
         //
     }
+    public function Reportes()
+    {
+        return view("Proyecto.Desarrollo.InventarioPT.ReportesIPT");
+    }
 
     public static function motivosProd($idMotProd,$motivoProd,$descuentoProd){
         $vv = inventarioProductoTerminado::where('id_Producto',$idMotProd)->get()->last();
@@ -177,4 +181,66 @@ class InventarioPTController extends Controller
         return 0;
     }
 
+    public function crearReporteInventario($vistaurl,$tipo)
+    {
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('ReporteInventario.pdf');
+        }
+        if ($tipo==2) {
+            return $pdf->download('ReporteInventario.pdf');
+        }
+    }
+
+    public function ReporteInventario($tipo)
+    {
+        $vistaurl="Proyecto.Desarrollo.InventarioPT.ReporteInventario";
+        return $this->crearReporteInventario($vistaurl,$tipo);
+    }
+
+    public function crearReportePB($vistaurl,$tipo)
+    {
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('ReporteProductosBuenEstado.pdf');
+        }
+        if ($tipo==2) {
+            return $pdf->download('ReporteProductosBuenEstado.pdf');
+        }
+    }
+
+    public function ReportePB($tipo)
+    {
+        $vistaurl="Proyecto.Desarrollo.InventarioPT.ReportePB";
+        return $this->crearReportePB($vistaurl,$tipo);
+    }
+
+    public function crearReportePD($vistaurl,$tipo)
+    {
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('ReporteProductosDaniados.pdf');
+        }
+        if ($tipo==2) {
+            return $pdf->download('ReporteProductosDaniados.pdf');
+        }
+    }
+
+    public function ReportePD($tipo)
+    {
+        $vistaurl="Proyecto.Desarrollo.InventarioPT.ReportePD";
+        return $this->crearReportePD($vistaurl,$tipo);
+    }
 }

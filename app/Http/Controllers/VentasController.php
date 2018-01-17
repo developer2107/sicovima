@@ -467,7 +467,7 @@ class VentasController extends Controller
         $pdf->loadHTML($view);
 
         if ($tipo==1) {
-            return $pdf->stream('FacturaCF');
+            return $pdf->stream('FacturaCF.pdf');
         }
         if ($tipo==2) {
             return $pdf->download('FacturaCreditoFiscal.pdf');
@@ -484,7 +484,7 @@ class VentasController extends Controller
         $pdf->loadHTML($view);
 
         if ($tipo==1) {
-            return $pdf->stream('Factura');
+            return $pdf->stream('Factura.pdf');
         }
         if ($tipo==2) {
             return $pdf->download('Factura.pdf');
@@ -511,7 +511,7 @@ class VentasController extends Controller
         $pdf->loadHTML($view);
 
         if ($tipo==1) {
-            return $pdf->stream('ReporteTodasVentas');
+            return $pdf->stream('ReporteTodasVentas.pdf');
         }
         if ($tipo==2) {
             return $pdf->download('ReporteTodasVentas.pdf');
@@ -524,4 +524,70 @@ class VentasController extends Controller
         $vistaurl="Proyecto.Desarrollo.Ventas.ReporteTodasVentas";
         return $this->crearReporteTodasVentas($vistaurl,$tipo);
     }
+
+    public function crearReporteVentaCN($vistaurl,$tipo)
+    {
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('ReporteVentaClienteNatural.pdf');
+        }
+        if ($tipo==2) {
+            return $pdf->download('ReporteVentaClienteNatural.pdf');
+        }
+
+    }
+
+    public function ReporteVentaCN($tipo)
+    {
+        $vistaurl="Proyecto.Desarrollo.Ventas.ReporteVentaCN";
+        return $this->crearReporteVentaCN($vistaurl,$tipo);
+    }
+
+    public function crearReporteVentaCJ($vistaurl,$tipo)
+    {
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('ReporteVentaClienteJuridico.pdf');
+        }
+        if ($tipo==2) {
+            return $pdf->download('ReporteVentaClienteJuridico.pdf');
+        }
+
+    }
+
+    public function ReporteVentaCJ($tipo)
+    {
+        $vistaurl="Proyecto.Desarrollo.Ventas.ReporteVentaCJ";
+        return $this->crearReporteVentaCJ($vistaurl,$tipo);
+    }
+
+    public function crearReporteVentasA($vistaurl,$tipo)
+    {
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('ReporteVentasAnuladas.pdf');
+        }
+        if ($tipo==2) {
+            return $pdf->download('ReporteVentasAnuladas.pdf');
+        }
+    }
+
+    public function ReporteVentasA($tipo)
+    {
+        $vistaurl="Proyecto.Desarrollo.Ventas.ReporteVentasA";
+        return $this->crearReporteVentasA($vistaurl,$tipo);
+    }
+
 }
