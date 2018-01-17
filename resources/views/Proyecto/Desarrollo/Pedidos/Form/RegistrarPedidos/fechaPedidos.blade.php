@@ -8,6 +8,12 @@
 
 
                     <div class="row">
+                      <div class="col-md-3">
+                          <label class="font-bold">Numero de Factura</label>
+                          <div class="input-group bootstrap-touchspin">
+                              {!! Form::number('numeroDoc',null,['id' => 'numeroDoc','class'=>'form-control','style' => 'width:150px','aria-required'=>'true']) !!}
+                          </div>
+                      </div>
                         <div class="col-md-3">
                             <div class="form-group" id="data_2">
                                 <label class="font-bold">Fecha de Entrega</label>
@@ -44,15 +50,6 @@
 
                          </div>
 
-
-                        <div class="col-md-2">
-
-                            <label class="font-bold">Documento</label>
-                            <div class="input-group bootstrap-touchspin">
-                            {!! Form::select('tipo_Doc', ['0' => 'Seleccionar','1' => 'Factura', '2' => 'Recibo'],'' ,['class' => 'form-control m-b']) !!}
-
-                            </div>
-                        </div>
                     </div>
 
 

@@ -24,7 +24,7 @@ class PedidosRequest extends Request
     public function rules()
     {
         return [
-            //
+            
         ];
     }
 }

@@ -56,6 +56,25 @@ class BackupController extends Controller
         }
         return 'success';
     }
+
+    public function create()
+    {
+        try {
+            ini_set('max_execution_time', 300);
+            // start the backup process
+            Artisan::call('backup:run',['--only -db'=>true]);
+            $output = Artisan::output();
+            // log the results
+            Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n".$output);
+            // return the results as a response to the ajax call
+            echo $output;
+        } catch (Exception $e) {
+            Response::make($e->getMessage(), 500);
+        }
+        return 'success';
+    }
+
+
     /**
      * Downloads a backup zip file.
      */
