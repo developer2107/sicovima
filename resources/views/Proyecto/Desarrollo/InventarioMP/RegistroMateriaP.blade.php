@@ -69,7 +69,7 @@
      <div class="form-group"><label class="col-lg-3 control-label">Precio
      </label>
      <div class="col-lg-5">
-      {!! Form::number('precio_MP',null,['class'=>'touchspin2 form-control','step'=>'any','id'=>'precio_MP','onkeypress'=>'return NumCheck(event,this)']) !!}
+      {!! Form::number('precio_MP',null,['class'=>'touchspin2 form-control','step'=>'any','id'=>'precio_MP']) !!}
   </div>
 </div>
 <div class="form-group"><label class="col-lg-3 control-label">Unidad de Medida</label>
