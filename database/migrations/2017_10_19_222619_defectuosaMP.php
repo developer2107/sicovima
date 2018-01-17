@@ -12,13 +12,12 @@ class DefectuosaMP extends Migration
      */
    public function up()
     {
-        Schema::create('defectuosoMP', function (Blueprint $table) {
+        Schema::create('defectuosaMP', function (Blueprint $table) {
             $table->increments('id');
             $table->double('cantidad_DMP', 5 , 2);
             $table->string('descripcion_DMP');
-            $table->date('fecha_DMP');
-            $table->integer('id_InventarioMP')->unsigned();
-            $table->foreign('id_InventarioMP')->references('id')->on('inventarioMateriaPrima');
+            $table->integer('id_MateriaPrima')->unsigned();
+            $table->foreign('id_MateriaPrima')->references('id')->on('materiaPrima');
             $table->rememberToken();
             $table->timestamps();
         });

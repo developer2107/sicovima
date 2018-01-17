@@ -81,30 +81,7 @@
                           </div>
                         </div>
                     </div>
-                    <br>
-                    <?php  if ($materiaPrima->estado_MP==1): ?>
-                    <div class="row">
-                      <div class="col-md-1">
-                      </div>
-                        <label class="col-lg-3 control-label">Estado</label>
-                        <div class="col-md-8">
-                          <div class="input-group">
-                            {!! Form::text('descripcion_DMP',"Bueno",['class'=>'form-control','readonly'=>'readonly'])!!}
-                          </div>
-                        </div>
-                    </div>
-                    <?php else: ?>
-                    <div class="row">
-                      <div class="col-md-1">
-                      </div>
-                        <label class="col-lg-3 control-label">Estado</label>
-                        <div class="col-md-8">
-                          <div class="input-group">
-                            {!! Form::text('descripcion_DMP',"Defectuoso",['class'=>'form-control','readonly'=>'readonly'])!!}
-                          </div>
-                        </div>
-                    </div>
-                    <?php endif ?>
+                    
                     <br>
                     <div class="row">
                       <div class="col-md-1">
@@ -117,18 +94,7 @@
                           </div>
                         </div>
                     </div>
-                    <br><br>
-                    <div class="row">
-                      <div class="col-md-1">
-                      </div>
-                        <label class="col-lg-4 control-label"></label>
-                        <div class="col-md-4">
-                          <div class="input-group m-b">
-                            <a href="/github/sicovima/public/CambioEstadoMP/{{$materiaPrima->id}}" class="btn btn-outline btn-primary dim">Modificar Estado</a>
-
-                          </div>
-                        </div>
-                    </div>
+                    <br>
                 </form>
             </div>
         </div>

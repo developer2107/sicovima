@@ -44,7 +44,7 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
 /*------------------------------------------------------------------*/
 
 
-// Route::group(['middleware' => 'admin'], function(){
+Route::group(['middleware' => 'admin'], function(){
 
   Route::get('/', function () {
       return view('welcome');
@@ -86,13 +86,14 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
   Route::match(['get','post'],'/EliminarCompra/{id}','CompraController@destroy');
   Route::Resource('/ListadeCompras','CompraController@Mostrar');
   Route::Resource('/ReportesCompra','CompraController@Reportes');
-  Route::Resource('/compras','CompraController@ReporteporProv');
+  Route::match(['get','post'],'/comprasFecha/{id}','CompraController@comprasFecha');
 
   Route::match(['get','post'],'/ModificarMateriaPrima/{id}','MateriaPrimaController@Modificar');
   Route::Resource('/ControlMateriaPrima','InventarioMPController@Mostrar');
   Route::match(['get','post'],'/VerInventarioMP/{id}','InventarioMPController@Ver');
   Route::Resource('/RegistroMateriaP','MateriaPrimaController');
-  Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambio');
+  //Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambio');
+  Route::match(['get','post'],'/motivom/{idMotMat}/{motivoMat}','InventarioMPController@motivosMat');
 
   Route::Resource('Bitacora','BitacoraController');
   Route::Resource('Reportes','BitacoraController@Reportes');
@@ -143,7 +144,7 @@ Route::match(['get','post'],'/correo','ClientesController@Correo');
 Route::match(['get','post'],'/buscarTipoMercaderia/{id}','TipoMercaderiaController@buscar');
 
 
-// });
+});
 
 Route::group(['middleware' => 'comun'], function(){
 
