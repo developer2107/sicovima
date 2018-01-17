@@ -14,7 +14,6 @@ use SICOVIMA\inventarioMateriaPrima;
 use SICOVIMA\materiaPrima;
 use SICOVIMA\bitacora;
 use Redirect;
-use Input;
 use Session;
 use SICOVIMA\Http\Requests\PedidosRequest;
 
@@ -153,7 +152,6 @@ class PedidosController extends Controller
       $id_cliente=$request['clienteRegPed'];
       $codImagen = $request['files'];
       $total_Ped = $request['total_Ped'];
-      dd($request->all());
 
       $datoFecha = explode("/",(String)$request->fecha_Ped);
       $fechaOrdenada = $datoFecha[2]."-".$datoFecha[1]."-".$datoFecha[0];
