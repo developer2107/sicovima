@@ -40,10 +40,8 @@ class InventarioPTController extends Controller
 
     public function Mostrar()
     {
-        $producto = producto::all();
-        $inventario = inventarioProductoTerminado::where('id_Producto',22)->get()->last();
-        
-        return view("Proyecto.Desarrollo.InventarioPT.InventarioPT")->with('producto', $producto)->with('inventario', $inventario);//
+        $producto = producto::All();
+        return view("Proyecto.Desarrollo.InventarioPT.InventarioPT",compact('producto'));//
     }
 
     /**

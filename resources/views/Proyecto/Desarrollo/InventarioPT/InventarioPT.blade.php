@@ -4,11 +4,11 @@
 
   <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-6">
-      <h2>Inventario de Productos Terminados</h2>
+      <h2>invventario de Productos Terminados</h2>
       <ol class="breadcrumb">
         <li>
           <br>
-          <a href={!! asset('ControlProductosTerminados') !!}>Inventario</a>
+          <a href={!! asset('ProductosTerminados') !!}>invventario</a>
         </li>
           <li class="active">
           <strong>Mostrar Lista de Productos Terminados</strong>
@@ -48,16 +48,16 @@
                         @foreach($producto as $prod)
                         <?php $cadenap='agregarMotivoProd('.$prod->id.');'; ?>
                         <?php
-                          $inv = SICOVIMA\inventarioProductoTerminado::where('id_Producto',$prod->id)->get()->last();
-                          if ($inv->nuevaExistencia_IPT!=0) {
-                              # code...
+                          $invv = SICOVIMA\inventarioProductoTerminado::where('id_Producto',$prod->id)->get()->last();
+                          if (count($invv)!=0) {
+                              
                           ?>
                         <tr>
                           <td align="left"><font size="3" >{{$prod->tipo_Prod}}</font></td>
                           <td align="left"><font size="3" >{{$prod->estilo_Prod}}</font></td>
                           <td align="left"><font size="3" ><i class="fa fa-usd"></i>  {{$prod->precio_Prod}}</font></td>
                           <td align="left"><font size="3" >{{$prod->talla_Prod}}</font></td>
-                          <td align="left" style = "width:10%"><font size="4" >{{$inv->nuevaExistencia_IPT}}</font></td>
+                          <td align="left" style = "width:10%"><font size="4" >{{$invv->nuevaExistencia_ITP}}</font></td>
                           <td align="left" style = "width:5%">
                             <?php if ($prod->estado2_Prod==1): ?>
                             <font size="4" >Dañado</font>

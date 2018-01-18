@@ -94,7 +94,6 @@ Route::group(['middleware' => 'admin'], function(){
   Route::match(['get','post'],'/VerInventarioMP/{id}','InventarioMPController@Ver');
   Route::Resource('/RegistroMateriaP','MateriaPrimaController');
 Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambio');
-  Route::Resource('/ReportesVenta','VentasController@Reportes');
   Route::Resource('/ReportesIPT','InventarioPTController@Reportes');
   Route::match(['get','post'],'/ReporteInventario/{id}','InventarioPTController@ReporteInventario');
   Route::match(['get','post'],'/ReportePB/{id}','InventarioPTController@ReportePB');
@@ -163,77 +162,3 @@ Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambi
 
 });
 
-// Route::group(['middleware' => 'comun'], function(){
-
-//   Route::get('/', function () {
-//     return view('welcome');
-//   });
-
-//   Route::Resource('/TipoMercaderia','TipoMercaderiaController');
-//   Route::match(['get','post'],'/EliminarTM/{id}','TipoMercaderiaController@eliminar');
-//   //Route::match(['get','post'],'/cambiarTM/{id}','TipoMercaderiaController@cambio');
-
-//   Route::Resource('/MostrarListaProv','ProveedoresController@Mostrar');
-//   Route::match(['get','post'],'/municipio/{id}','ProveedoresController@municipios');
-//   Route::match(['get','post'],'/VerProveedor/{id}','ProveedoresController@Ver');
-//   Route::Resource('/DarBajaProv','ProveedoresController@MostrarPI');
-//   Route::Resource('/ReportesProveedor','ProveedoresController@Reportes');
-//   Route::match(['get','post'],'/proveedoresActR/{id}','ProveedoresController@ReportesProveedor');
-//   Route::match(['get','post'],'/proveedoresInaR/{id}','ProveedoresController@ReportesProv');
-
-//   Route::Resource('/RegistroCliente','ClientesController');
-//   Route::Resource('/MostrarListaCli','ClientesController@Mostrar');
-//   Route::match(['get','post'],'/VerCliente/{id}','ClientesController@Ver');
-//   Route::match(['get','post'],'/municipio/{id}','ClientesController@municipios');
-//   Route::Resource('/DarBajaCli','ClientesController@MostrarCI');
-//   Route::Resource('/ReportesCliente','ClientesController@Reportes');
-//   Route::match(['get','post'],'/clientesActR/{id}','ClientesController@ReportesCliente');
-//   Route::match(['get','post'],'/clientesInaR/{id}','ClientesController@ReportesCli');
-//   Route::match(['get','post'],'/clientesNaturales/{id}','ClientesController@ReportesNat');
-//   Route::match(['get','post'],'/clientesJuridicos/{id}','ClientesController@ReportesJur');
-
-//   Route::match(['get','post'],'/VerCompra/{id}','CompraController@Ver');
-//   Route::Resource('/ListadeCompras','CompraController@Mostrar');
-//   Route::Resource('/ReportesCompra','CompraController@Reportes');
-//   Route::match(['get','post'],'/comprasFecha/{id}','CompraController@comprasFecha');
-
-//   Route::match(['get','post'],'/ModificarMateriaPrima/{id}','MateriaPrimaController@Modificar');
-//   Route::Resource('/ControlMateriaPrima','InventarioMPController@Mostrar');
-//   Route::match(['get','post'],'/VerInventarioMP/{id}','InventarioMPController@Ver');
-//   Route::Resource('/RegistroMateriaP','MateriaPrimaController');
-
-//   Route::match(['get','post'],'/VerVenta/{id}','VentasController@Ver');
-//   Route::match(['get','post'],'/VerInventarioPT/{id}','InventarioPTController@Ver');
-//   Route::Resource('/RegistrarVenta','VentasController');
-//   Route::Resource('/ReportesVenta','VentasController@Reportes');
-//   Route::Resource('/ListadeVentas','VentasController@Mostrar');
-//   Route::match(['get','post'],'/Factura/{tipo}/{idVenta}','VentasController@Factura');
-//   Route::match(['get','post'],'/FacturaCF/{tipo}/{idVenta}','VentasController@FacturaCF');
-//   Route::match(['get','post'],'/ReporteTodasVentas/{id}','VentasController@ReporteTodasVentas');
-
-//   Route::match(['get','post'],'/motivov/{idMot}/{motivo}','VentasController@AddMotivoVenta');
-//   Route::match(['get','post'],'/motivop/{idMotProd}/{motivoProd}/{descuentoProd}','InventarioPTController@motivosProd');
-//   Route::get('RegistrarVentas/{id}','VentasController@getResponsables');
-//   Route::resource('venta','ventasController');
-//   Route::match(['get','post'],'/responsable/{id}','VentasController@responsables');
-//   Route::Resource('/ProductosTerminados','InventarioPTController@Mostrar');
-//   Route::Resource('/VerProductosTerminados','InventarioPTController@Ver');
-
-//   Route::Resource('/ListadePedidos','PedidosController@Mostrar');
-//   Route::Resource('/IniciarPedido','PedidosController@Iniciar');
-//   Route::Resource('/FinalizarPedido','PedidosController@Finalizar');//este
-//   Route::Resource('/VerPedido','PedidosController@Ver');
-//   Route::Resource('/ModificarPedido','PedidosController@Modificar');
-//   Route::Resource('/EntregarPedido','PedidosController@Entregar');
-//   Route::Resource('/ListadePedidosaEntregar','PedidosController@ListaaEntregar');
-//   Route::Resource('/ListadePedidosSinIniciar','PedidosController@ListaSinIniciar');
-//   Route::Resource('/ListadePedidosaFinalizar','PedidosController@ListaaFinalizar');
-
-
-//   Route::Resource('/IniciarPedido','PedidosController@IniciarPedido');
-//   Route::Resource('Pedidos','PedidosController');
-//   Route::Resource('RegistrarPedidos','PedidosController@Registrar');
-
-//   Route::match(['get','post'],'/buscarTipoMercaderia/{id}','TipoMercaderiaController@buscar');
-
-// });

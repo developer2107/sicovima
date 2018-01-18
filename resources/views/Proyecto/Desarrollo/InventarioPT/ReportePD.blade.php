@@ -124,7 +124,7 @@ table tr:nth-child(2n-1) td {
             <?php
               $inv = SICOVIMA\inventarioProductoTerminado::where('id_Producto',$prod->id)->get()->last(); ?>
 
-             <?php if ($inv->nuevaExistencia_IPT!=0 && $prod->estado2_Prod==1): ?>
+             <?php if (count($inv)!=0 && $prod->estado2_Prod==1): ?>
             <tr>
               <td style = "width:10%">{{$n}}</td> 
               <td style = "width:20%">{{$prod->tipo_Prod}}</td>
