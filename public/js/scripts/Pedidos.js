@@ -51,30 +51,7 @@ $(document).on('ready',function(){
 
   });
 
-$('#agregarMotivo').click(function(){
-  var motivo =$("#motivo").val();
-  var cant_DPT = $("#cant_DPT").val();
-  var descuento_DPT = $("#descuento_DPT").val();
-  var tabla_p =$('#tablaFinalizarPedidosd');
-  var datos_p = "<tr>"+
-  "<td>"+ id_pd +"</td>"+
-  "<td>"+  tipo_pd+"</td>"+
-  "<td>"+ cantidad_pd +"</td>"+
-  "<td>"+ "<input  type='hidden' name='idP' value='"+id_pd+"'/>" +
-  "<input  type='hidden' name='motivo' value='"+ motivo+"'/>" +
-  "<input  type='hidden' name='cant_DPT' value='"+cant_DPT+"'/>" +
-  "<input  type='hidden' name='condicion' value='True'/>" +
-  "<input  type='hidden' name='descuento_DPT' value='"+ descuento_DPT+"'/>" +
-  "<a class='btn btn-danger btn-circle' type='button' id='Eliminar'><i class='fa fa-times'></i></a>"+
-  "</td>"+
-  "</tr>";
 
-    tabla_p.append(datos_p);
-    motivo =$("#motivo").val(" ");
-    cant_DPT = $("#cant_DPT").val(" ");
-    descuento_DPT = $("#descuento_DPT").val(" ");
-    var objeto=document.getElementById("cerraM");
-});
 $('#tablaFinalizarPedidosd').on('click','#Eliminar',function(e){
   $(this).parent('td').parent('tr').remove();
 });

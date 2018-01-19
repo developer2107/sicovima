@@ -139,15 +139,8 @@ class InventarioPTController extends Controller
                 'imagen_Prod'=>$proo->imagen_Prod, 
                 'estado_Prod'=>1,
                 'estado2_Prod'=>1,
+                'estado3_Prod'=>1,
             ]);
-Session::flash('message','Producto modificado correctamente');
-      
-            bitacora::bitacoras('Modificación','Modificación de producto '.$proo->id.': '.$proo->tipo_Prod.' '.$proo->estilo_Prod);
-            Session::flash('message','Producto registrado correctamente');
-      
-  
-            bitacora::bitacoras('Registro','Registro de producto defectuoso'.$ultProd->id.' por modificación: '.$ultProd->tipo_Prod.' '.$ultProd->estilo_Prod);
-
 
             inventarioProductoTerminado::create([
                 'tipoMovimiento_IPT'=>3,//entrada por defecto
@@ -165,7 +158,8 @@ Session::flash('message','Producto modificado correctamente');
                 'descuento_DPT'=>$descuentoProd,
             ]); 
         
-
+bitacora::bitacoras('Registro','Registro de producto defectuoso por modificación: '.$ultProd->tipo_Prod.' '.$ultProd->estilo_Prod);
+return 0;
         }else{
             $proo->precio_Prod = $proo->precio_Prod - $descuentoProd;
             $proo->estado2_Prod = 1;
@@ -177,13 +171,15 @@ Session::flash('message','Producto modificado correctamente');
                 'id_Producto'=>$proo->id,
                 'descuento_DPT'=>$descuentoProd,
             ]); 
+            
+            bitacora::bitacoras('Modificación','Modificación de producto '.$proo->id.' por defecto: '.$proo->tipo_Prod.' '.$proo->estilo_Prod);
+            return 0;
             Session::flash('message','Producto modificado correctamente');
 
-            bitacora::bitacoras('Modificación','Modificación de producto '.$proo->id.' por defecto: '.$proo->tipo_Prod.' '.$proo->estilo_Prod);
         
         }
         
-        return 0;
+        
     }
 
     public function crearReporteInventario($vistaurl,$tipo)

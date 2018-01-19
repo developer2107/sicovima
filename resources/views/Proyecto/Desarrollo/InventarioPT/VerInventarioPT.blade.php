@@ -7,7 +7,7 @@
         <h2>Productos Terminados</h2>
         <ol class="breadcrumb">
             <li>
-                <a href={!! asset('ProductosTerminados') !!}>Lista de Productos Terminados</a>
+                <a href={!! asset('ProductosTerminados') !!}>Productos Terminados</a>
             </li>
             <li class="active">
                 <strong>Ver Producto Terminado</strong>

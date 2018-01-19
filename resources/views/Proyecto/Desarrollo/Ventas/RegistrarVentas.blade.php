@@ -78,7 +78,7 @@
                     </div>
                     <div class="col-md-1">
                         <div class="input-group bootstrap-touchspin">
-                             <a type="button" class="btn btn-outline btn-primary dim tour-close" data-toggle="modal" data-target="#myModalTabla" id="step4" data-role="end">Agregar producto</a>
+                             <a type="button" class="btn btn-outline btn-primary dim tour-close" data-toggle="modal" data-target="#myModalTabla" id="step4" data-role="end" name="refres" id="refres">Agregar producto</a>
                         </div>
                     </div>
                     <br>
@@ -208,34 +208,33 @@
                                             <th>Opción</th>
                                           </tr>
                                         </thead>
-                                        <tbody>
-                                            @foreach ( $productos as $prod )
-                                                <?php
-                                                $inv=SICOVIMA\inventarioProductoTerminado::where('id_Producto',$prod->id)->get()->last();
-                                                ?>
-                                                <?php if ($inv->nuevaExistencia_IPT==0): ?>
-                                                <?php else: ?> 
-                                                    <tr>
-                                                <td align="left" id="estilo"><font size="4" >{{$prod-> tipo_Prod}} {{$prod-> estilo_Prod}}</font></td>
-                                                <td align="left"><font size="4" >{{$prod-> talla_Prod}}</font></td>
-                                                <td align="left"><font size="4" >{{$inv->nuevaExistencia_IPT}}</font></td>
-                                                <td align="rihgt"><font size="4" >{{$prod->color_Prod}}</font></td>
-                                                <td align="rihgt"><font size="4" >{{$prod->descripcion_Prod}}</font></td>
-                                                <td align="rihgt" id="precio" step=".01" style = "width:15%"><font size="4" ><i class="fa fa-usd"></i>  {{$prod->precio_Prod}}</font></td>
-                                                <td align="center">
-                                                    <input type="hidden" value='{{$prod->tipo_Prod." ".$prod->estilo_Prod." ".$prod->color_Prod}}'>
-                                                    <input type="hidden" value='{{$inv->nuevaExistencia_IPT}}'>
-                                                    <input type="hidden" step=".01" value='{{$prod->precio_Prod}}'>
-                                                    <input type="hidden" value='{{$prod->id}}'>
-                                                    <input type="hidden" name="prueba" value="100"/>
-                                                    <a class="btn btn-info btn-circle" type="button" id="AddCant" data-dismiss="modal" data-toggle="modal" data-target="#myModal6">
-                                                    <i class="fa fa-check"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                                <?php endif ?>
-                                            @endforeach
-                                        </tbody>
+<tbody>
+
+@foreach ( $productos as $prod )
+    <?php
+    $inv=SICOVIMA\inventarioProductoTerminado::where('id_Producto',$prod->id)->get()->last();
+    
+    if (count($inv)!=0) :   ?>
+<tr>
+    <td align="left" id="estilo"><font size="4" >{{$prod-> tipo_Prod}} {{$prod-> estilo_Prod}}</font></td>
+    <td align="left"><font size="4" >{{$prod-> talla_Prod}}</font></td>
+    <td align="left"><font size="4" >{{$inv->nuevaExistencia_IPT}}</font></td>
+    <td align="rihgt"><font size="4" >{{$prod->color_Prod}}</font></td>
+    <td align="rihgt"><font size="4" >{{$prod->descripcion_Prod}}</font></td>
+    <td align="rihgt" id="precio"><font size="4" >{{$prod->precio_Prod}}</font></td>
+    <td align="center">
+        <input type="hidden" value='{{$prod->tipo_Prod." ".$prod->estilo_Prod." ".$prod->color_Prod}}'>
+        <input type="hidden" value='{{$inv->nuevaExistencia_IPT}}'>
+        <input type="hidden" value='{{$prod->precio_Prod}}'>
+        <input type="hidden" value='{{$prod->id}}'>
+        <input type="hidden" name="prueba" value="100"/>
+        <a class="btn btn-info btn-circle" type="button" id="AddCant" data-dismiss="modal" data-toggle="modal" data-target="#myModal6"><i class="fa fa-check"></i></a>
+    </td>
+<?php else: ?>
+        <?php endif ?>
+</tr>
+@endforeach
+</tbody>
                                     </table>
                                     </div>
                                 </div>

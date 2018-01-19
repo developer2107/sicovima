@@ -38,6 +38,8 @@ $(document).on('ready',function(){
 		$("#agregarVentas").val("Agregar");
 		$("#cantidad").val("");
 		$("#gananciau").val("");
+
+
 	});
 
 	$('#agregarVentas').click(function(){
@@ -101,6 +103,14 @@ $(document).on('ready',function(){
 		}
 	});
 	
+	// $('#refres').click(function(){
+	// 	var accion = $("#refres").val();
+	// 	if (accion == "refress") {
+	// 		var cantidad=$("#cantidad").val();
+
+	// 	}
+	// });
+
 	$('#CancelarRegistroVenta').click(function(){
 		var tabla = $("#tablaProductos");
 		tabla.remove();
