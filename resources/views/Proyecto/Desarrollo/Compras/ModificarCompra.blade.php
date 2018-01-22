@@ -160,9 +160,9 @@ use SICOVIMA\detalleCompra;  ?>
                     </div>
                 </div>
                 <div class="col-xs-2">
-                    <div class="input-group bootstrap-touchspin">
+                    <!-- <div class="input-group bootstrap-touchspin">
                         <a href="" class="btn btn-outline btn-primary dim" type="button">Cancelar</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

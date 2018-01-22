@@ -136,7 +136,7 @@
     {!! Form::submit('Registrar',['class'=>'btn btn-outline btn-primary dim']) !!}
   </div>
   <div class="col-sm-7">
-    {!! Form::submit('Cancelar',['class'=>'btn btn-outline btn-primary dim']) !!}
+   <!--  {!! Form::submit('Cancelar',['class'=>'btn btn-outline btn-primary dim']) !!} -->
   </div>
 </div>
 </div>

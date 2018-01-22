@@ -183,7 +183,7 @@
                   {!! Form::submit('Modificar',['class'=>'btn btn-outline btn-primary dim']) !!}
                 </div>
                 <div class="col-sm-7">
-                  <a href="" class="btn btn-outline btn-primary dim" type="button">Cancelar</a>
+                  <!-- <a href="" class="btn btn-outline btn-primary dim" type="button">Cancelar</a> -->
                 </div>
                 <br><br>
               </div>

@@ -268,7 +268,7 @@
                                   {!! Form::submit('Modificar',['class'=>'btn btn-outline btn-primary']) !!}
                                 </div>
                                 <div class="col-lg-3">
-                                  <button type="button" class="btn btn-outline btn-primary">Cancelar</button>
+                                  <!-- <button type="button" class="btn btn-outline btn-primary">Cancelar</button> -->
                                 </div>
                               </div>
                             </form>

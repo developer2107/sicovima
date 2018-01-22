@@ -93,11 +93,13 @@ Route::group(['middleware' => 'admin'], function(){
   Route::Resource('/ControlMateriaPrima','InventarioMPController@Mostrar');
   Route::match(['get','post'],'/VerInventarioMP/{id}','InventarioMPController@Ver');
   Route::Resource('/RegistroMateriaP','MateriaPrimaController');
-Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambio');
+  Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambio');
   Route::Resource('/ReportesIPT','InventarioPTController@Reportes');
   Route::match(['get','post'],'/ReporteInventario/{id}','InventarioPTController@ReporteInventario');
   Route::match(['get','post'],'/ReportePB/{id}','InventarioPTController@ReportePB');
   Route::match(['get','post'],'/ReportePD/{id}','InventarioPTController@ReportePD');
+  Route::Resource('/ReportesIMP','InventarioMPController@Reportes');
+  Route::match(['get','post'],'/ReporteInventarioMP/{id}','InventarioMPController@ReporteInventario');
 
   //Route::match(['get','post'],'/CambioEstadoMP/{id}','InventarioMPController@Cambio');
   Route::match(['get','post'],'/motivom/{idMotMat}/{motivoMat}','InventarioMPController@motivosMat');
