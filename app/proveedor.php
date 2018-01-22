@@ -33,7 +33,7 @@ return $this->hasMany('compra');
 }
 
 public static function arrayProveedores(){
-  $proveedores=proveedor::get();
+  $proveedores=proveedor::where('estado_Prov',1)->get();
   $arrayP=[];
   foreach ($proveedores as $proveedor) {
     $arrayP[$proveedor->id]=$proveedor->nombre_Prov;
