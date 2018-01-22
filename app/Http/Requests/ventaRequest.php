@@ -4,7 +4,7 @@ namespace SICOVIMA\Http\Requests;
 
 use SICOVIMA\Http\Requests\Request;
 
-class PedidosRequest extends Request
+class ventaRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,25 +15,26 @@ class PedidosRequest extends Request
      {
          return true;
      }
-     
+
+     /**
+      * Get the validation rules that apply to the request.
+      *
+      * @return array
+      */
      public function rules()
      {
          return [
              'clientes'=>'required',
-             'fecha_Ped'=>'required',
+             'fecha_Ven'=>'required|date',
              'numeroDoc'=>'required',
-             'fechaEntregar_Ped'=>'required',
-             'fechaRecibir_Ped'=>'required',
          ];
      }
      public function messages()
      {
          return [
              'clientes.required' => 'Selecciona un cliente.',
-             'fecha_Ped.required' =>'Selecciona una fecha.',
+             'fecha_Ven.required' =>'Selecciona una fecha.',
              'numeroDoc.required' => 'Seleciona un numero de factura.',
-             'fechaEntregar_Ped.required' => 'Seleciona una fecha den entrega.',
-             'fechaRecibir_Ped.required' => 'Seleciona una fecha den recibo.',
 
          ];
      }

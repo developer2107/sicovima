@@ -18,6 +18,7 @@
     </div>
 </div>
 <br>
+
 <div id="contenido">
     {{-- <div class="col-lg-5">
         <div class="ibox-content">
@@ -30,6 +31,15 @@
             </div>
         </div>
     </div> --}}
+    @if (count($errors)>0)
+      <div class="alert alert-danger">
+        <ul>
+          @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
     <div class="col-lg-7">
         <div class="ibox-title">
             <h5></h5>
@@ -179,7 +189,7 @@
                 <div class="col-lg-3">
                     {!! Form::submit('Registrar',['class'=>'btn btn-outline btn-primary']) !!}
                 </div>
-            
+
             </div>
         </div>
 
