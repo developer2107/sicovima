@@ -5,6 +5,7 @@ namespace SICOVIMA\Http\Controllers;
 use Illuminate\Http\Request;
 
 use SICOVIMA\Http\Requests;
+use SICOVIMA\Http\Requests\clienteRequest;
 use SICOVIMA\Http\Controllers\Controller;
 use SICOVIMA\departamento;
 use SICOVIMA\municipio;
@@ -82,7 +83,7 @@ class ClientesController extends Controller
     //     });
     // }
 
-    public function correo(Request $request){
+    public function correo(clienteRequest $request){
         $usuario= User::where('email',$request['email'])->get()->first();
 
         if(count($usuario)==1){
@@ -249,7 +250,7 @@ Session::flash('message','Cliente natural registrado correctamente');
             $clienteNatural->DUI_CN=$request->DUI_CN;
             $clienteNatural->save();
 Session::flash('message','Cliente natural modificado correctamente');
-  
+
             bitacora::bitacoras('Modificación','Modificación de cliente natural: '.$cliente->nombre_Cli);
 
         }
@@ -348,7 +349,7 @@ Session::flash('message','Cliente natural modificado correctamente');
       $bajaCli->estado_Cli= 0;
       $bajaCli-> save();
 Session::flash('message','Cliente dado de baja correctamente');
-  
+
       bitacora::bitacoras('Dar de baja','Se dio de baja al cliente: '.$bajaCli->nombre_Cli);
 
       return redirect('/MostrarListaCli/'.$id);
@@ -391,7 +392,7 @@ Session::flash('message','Cliente dado de alta correctamente');
     {
 
       $vistaurl="Proyecto.Desarrollo.Cliente.clientesActR";
-      return $this->crearReporteTodosCliente($vistaurl,$tipo);     
+      return $this->crearReporteTodosCliente($vistaurl,$tipo);
     }
 
         public function crearReporteTodosClienteI($vistaurl,$tipo)
@@ -414,7 +415,7 @@ Session::flash('message','Cliente dado de alta correctamente');
     {
 
       $vistaurl="Proyecto.Desarrollo.Cliente.clientesInaR";
-      return $this->crearReporteTodosClienteI($vistaurl,$tipo);     
+      return $this->crearReporteTodosClienteI($vistaurl,$tipo);
     }
 
     public function crearReporteTodosClienteJ($vistaurl,$tipo)
@@ -437,7 +438,7 @@ Session::flash('message','Cliente dado de alta correctamente');
     {
 
       $vistaurl="Proyecto.Desarrollo.Cliente.clientesJuridicos";
-      return $this->crearReporteTodosClienteJ($vistaurl,$tipo);     
+      return $this->crearReporteTodosClienteJ($vistaurl,$tipo);
     }
 
 }

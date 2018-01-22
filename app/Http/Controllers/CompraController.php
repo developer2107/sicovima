@@ -3,7 +3,7 @@
 namespace SICOVIMA\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use SICOVIMA\Http\Requests\compraRequest;
 use SICOVIMA\proveedor;
 use SICOVIMA\materiaPrima;
 use SICOVIMA\compra;
@@ -79,7 +79,7 @@ class CompraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(compraRequest $request)
     {
 
       $cantidad = $request['cantidadc'];
@@ -228,7 +228,7 @@ class CompraController extends Controller
          $compra = compra::with('proveedor')->get();
 
          return redirect('/ListadeCompras')->with('compra',$compra);
-         
+
     }
 
     /**
@@ -254,10 +254,10 @@ class CompraController extends Controller
           ]);
 
           $e->delete();
-        
+
         }
         Compra::destroy($id);
-        
+
         $aux = proveedor::find($compra->id_Proveedor);
         bitacora::bitacoras('Eliminacion','Eliminacion de la compra '.$compra->id.' a proveedor: '.$aux->nombre_Prov);
 

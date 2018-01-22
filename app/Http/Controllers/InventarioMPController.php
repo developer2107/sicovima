@@ -109,6 +109,32 @@ class InventarioMPController extends Controller
         //
     }
 
+    public function Reportes()
+    {
+        return view("Proyecto.Desarrollo.InventarioMP.ReportesIMP");
+    }
+
+    public function crearReporteInventario($vistaurl,$tipo)
+    {
+        $date = date('Y-m-d');
+        $view = \View::make($vistaurl, compact('date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        if ($tipo==1) {
+            return $pdf->stream('ReporteInventarioMP.pdf');
+        }
+        if ($tipo==2) {
+            return $pdf->download('ReporteInventarioMP.pdf');
+        }
+    }
+
+    public function ReporteInventario($tipo)
+    {
+        $vistaurl="Proyecto.Desarrollo.InventarioMP.ReporteInventarioMP";
+        return $this->crearReporteInventario($vistaurl,$tipo);
+    }
+
     // public static function motivosMat($idMotMat,$motivoMat){
     //     $imp = inventarioMateriaPrima::where('id_MateriaPrima',$idMotMat)->get()->last();
     //     $mat = materiaPrima::find($imp->id_MateriaPrima);

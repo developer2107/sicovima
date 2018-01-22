@@ -91,9 +91,9 @@
                       <div class="col-sm-5">
                         {!! Form::submit('Modificar',['class'=>'btn btn-outline btn-primary dim']) !!}
                       </div>
-                      <div class="col-sm-7">
+                      <!-- <div class="col-sm-7">
                         <a href="" class="btn btn-outline btn-primary dim" type="button">Cancelar</a>
-                      </div>
+                      </div> -->
                       <br>
                     </div>
                   </div>

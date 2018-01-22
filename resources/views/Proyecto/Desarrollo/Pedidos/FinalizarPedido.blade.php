@@ -229,11 +229,7 @@ use SICOVIMA\producto;
                         {!! Form::submit('Finalizar',['class'=>'btn btn-primary']) !!}
                     </div>
                 </div>
-                <div class="col-xs-2">
-                    <div class="input-group bootstrap-touchspin">
-                        <a class="btn btn-outline btn-primary dim" type="button">Cancelar</a>
-                    </div>
-                </div>
+              
             </div>
         </div>
     </div>

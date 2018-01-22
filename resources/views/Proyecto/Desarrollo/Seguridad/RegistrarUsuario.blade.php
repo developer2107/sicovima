@@ -22,6 +22,15 @@
 </div>
 
 <br>
+@if (count($errors)>0)
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
 <div id="contenido">
 
                     <div class="row">
@@ -81,9 +90,10 @@
                                                 <input id="password" name="password" type="password" class="form-control required"  aria-required="true">
                                             </div>
                                         </div>
+                                        <div class="col-sm-offset-4">
+                                            {!! Form::submit('Registrar',['class'=>'btn btn-outline btn-primary']) !!}
 
-
-                                
+                                        </div>
 
 
                                     {!! Form::close() !!}

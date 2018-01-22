@@ -26,6 +26,15 @@
     </div>
 </div>
 <br>
+@if (count($errors)>0)
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
 <div class="row">
     <div class="col-lg-7">
         <div class="ibox float-e-margins">
@@ -146,7 +155,7 @@
                 <div class="row">
                     <div class="col-md-1">
                     </div>
-                   
+
                     <div class="col-md-4">
                         <label class="font-bold">Numero de Factura</label>
                         <div class="input-group bootstrap-touchspin">
@@ -205,7 +214,7 @@
 @foreach ( $productos as $prod )
     <?php
     $inv=SICOVIMA\inventarioProductoTerminado::where('id_Producto',$prod->id)->get()->last();
-    
+
     if (count($inv)!=0) :   ?>
 <tr>
     <td align="left" id="estilo"><font size="4" >{{$prod-> tipo_Prod}} {{$prod-> estilo_Prod}}</font></td>
