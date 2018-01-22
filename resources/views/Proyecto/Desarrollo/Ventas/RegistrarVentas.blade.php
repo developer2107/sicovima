@@ -78,7 +78,7 @@
                     </div>
                     <div class="col-md-1">
                         <div class="input-group bootstrap-touchspin">
-                             <a type="button" class="btn btn-outline btn-primary dim tour-close" data-toggle="modal" data-target="#myModalTabla" id="step4" data-role="end" name="refres" id="refres">Agregar producto</a>
+                             <a type="button" class="btn btn-outline btn-primary dim tour-close" data-toggle="modal" data-target="#myModalTabla" data-role="end" name="refres" id="refres">Agregar producto</a>
                         </div>
                     </div>
                     <br>
