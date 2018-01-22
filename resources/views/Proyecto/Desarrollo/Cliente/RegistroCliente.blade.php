@@ -179,9 +179,7 @@
                 <div class="col-lg-3">
                     {!! Form::submit('Registrar',['class'=>'btn btn-outline btn-primary']) !!}
                 </div>
-                <div class="col-lg-3">
-                    <button type="button" class="btn btn-outline btn-primary">Cancelar</button>
-                </div>
+            
             </div>
         </div>
 
