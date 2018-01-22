@@ -1,20 +1,24 @@
 <?php
-namespace Backpack\BackupManager\SICOVIMA\Http\Controllers;
-use Artisan;
-use Exception;
-use Illuminate\Routing\Controller;
-use League\Flysystem\Adapter\Local;
+
+namespace SICOVIMA\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use SICOVIMA\Http\Requests;
+use SICOVIMA\Http\Controllers\Controller;
 use Log;
-use Request;
 use Response;
 use Storage;
+use Artisan;
+use Exception;
+
 class BackupController extends Controller
 {
+
+
     public function index()
     {
-        if (!count(config('backup.backup.destination.disks'))) {
-            dd(trans('backpack::backup.no_disks_configured'));
-        }
+        
         $this->data['backups'] = [];
         foreach (config('backup.backup.destination.disks') as $disk_name) {
             $disk = Storage::disk($disk_name);
@@ -57,7 +61,7 @@ class BackupController extends Controller
         return 'success';
     }
 
-    public function create()
+    public function create1()
     {
         try {
             ini_set('max_execution_time', 300);

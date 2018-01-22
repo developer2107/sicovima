@@ -44,12 +44,6 @@
 
                    </div>
                </div>
-               <div class="col-xs-2">
-                   <div class="input-group bootstrap-touchspin">
-                       {!! Form::submit('Cancelar',['class'=>'btn btn-outline btn-primary dim']) !!}
-
-                   </div>
-               </div>
            </div>
        </div>
    </div>
