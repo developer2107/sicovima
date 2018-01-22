@@ -129,9 +129,8 @@
     </li>
 
     <li>
-      <a href="#"><i class="fa fa-question-circle"></i><span class="nav-label">Ayuda</span></span></a>
-      <ul class="nav nav-second-level collapse">
-      </ul>
+      <a href="/github/sicovima/public/ayuda/Ayuda.pdf" target="_blank"><i class="fa fa-info-circle"></i><span class="nav-label"> Ayuda</span></span></a>
+
     </li>
   </ul>
 
