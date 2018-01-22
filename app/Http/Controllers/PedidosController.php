@@ -305,7 +305,7 @@ class PedidosController extends Controller
         $llenar= \SICOVIMA\inventarioProductoTerminado::all()->where('tipoMovimiento_IPT', 1)->get();
         $inv = new \SICOVIMA\inventarioProductoTerminado;
         $inv->tipoMovimiento_IPT= 1;
-        $inv->existencias_IPT=23;
+        $inv->existencias_IPT=$request->cantidad;;
         $inv->cantidad_IPT = $request->cantidad;
         $inv->fechaMov_IPT = $request->fecha;
         $inv->nuevaExistencia_IPT = (($request->cantidad)+($llenar));
