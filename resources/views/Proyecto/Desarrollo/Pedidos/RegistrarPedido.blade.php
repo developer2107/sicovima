@@ -21,6 +21,15 @@
 
    </div>
 </div>
+@if (count($errors)>0)
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
 <div id="contenido" >
 
 @include('Proyecto.Desarrollo.Pedidos.Form.RegistrarPedidos.clientePedidos')
@@ -41,12 +50,6 @@
                <div class="col-xs-2">
                    <div class="input-group bootstrap-touchspin">
                        {!! Form::submit('Registrar',['class'=>'btn btn-outline btn-primary dim']) !!}
-
-                   </div>
-               </div>
-               <div class="col-xs-2">
-                   <div class="input-group bootstrap-touchspin">
-                       {!! Form::submit('Cancelar',['class'=>'btn btn-outline btn-primary dim']) !!}
 
                    </div>
                </div>

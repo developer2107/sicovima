@@ -28,6 +28,15 @@
     </div>
 </div>
 <br>
+@if (count($errors)>0)
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
 <div class="row">
     <div class="col-lg-7">
         <div class="ibox float-e-margins">
@@ -78,7 +87,7 @@
                     </div>
                     <div class="col-md-1">
                         <div class="input-group bootstrap-touchspin">
-                             <a type="button" class="btn btn-outline btn-primary dim tour-close" data-toggle="modal" data-target="#myModalTabla" id="step4" data-role="end" name="refres" id="refres">Agregar producto</a>
+                             <a type="button" class="btn btn-outline btn-primary dim tour-close" data-toggle="modal" data-target="#myModalTabla" data-role="end" name="refres" id="refres">Agregar producto</a>
                         </div>
                     </div>
                     <br>
@@ -152,7 +161,7 @@
                 <div class="row">
                     <div class="col-md-1">
                     </div>
-                   
+
                     <div class="col-md-4">
                         <label class="font-bold">Numero de Factura</label>
                         <div class="input-group bootstrap-touchspin">
@@ -213,7 +222,7 @@
 @foreach ( $productos as $prod )
     <?php
     $inv=SICOVIMA\inventarioProductoTerminado::where('id_Producto',$prod->id)->get()->last();
-    
+
     if (count($inv)!=0) :   ?>
 <tr>
     <td align="left" id="estilo"><font size="4" >{{$prod-> tipo_Prod}} {{$prod-> estilo_Prod}}</font></td>

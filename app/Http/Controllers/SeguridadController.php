@@ -5,6 +5,7 @@ namespace SICOVIMA\Http\Controllers;
 use Illuminate\Http\Request;
 
 use SICOVIMA\Http\Requests;
+use SICOVIMA\Http\Requests\UsuarioRequest;
 use SICOVIMA\Http\Controllers\Controller;
 use SICOVIMA\bitacora;
 use SICOVIMA\User;
@@ -41,7 +42,7 @@ class SeguridadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsuarioRequest $request)
     {
 
       $name = $request['name'];

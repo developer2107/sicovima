@@ -11,20 +11,30 @@ class PedidosRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return true;
-    }
+     public function authorize()
+     {
+         return true;
+     }
+     
+     public function rules()
+     {
+         return [
+             'clientes'=>'required',
+             'fecha_Ped'=>'required',
+             'numeroDoc'=>'required',
+             'fechaEntregar_Ped'=>'required',
+             'fechaRecibir_Ped'=>'required',
+         ];
+     }
+     public function messages()
+     {
+         return [
+             'clientes.required' => 'Selecciona un cliente.',
+             'fecha_Ped.required' =>'Selecciona una fecha.',
+             'numeroDoc.required' => 'Seleciona un numero de factura.',
+             'fechaEntregar_Ped.required' => 'Seleciona una fecha den entrega.',
+             'fechaRecibir_Ped.required' => 'Seleciona una fecha den recibo.',
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-            
-        ];
-    }
+         ];
+     }
 }

@@ -32,15 +32,15 @@
                     @foreach($backups as $backup)
                         <tr>
                             <td>{{ $backup['file_name'] }}</td>
-                            <td>{{ humanFilesize($backup['file_size']) }}</td>
+                            <td>{{ $backup['file_size'] }}</td>
                             <td>
-                                {{ formatTimeStamp($backup['last_modified'], 'F jS, Y, g:ia (T)') }}
+                                {{ $backup['last_modified'] }}
                             </td>
                             <td>
-                                {{ diffTimeStamp($backup['last_modified']) }}
+                                {{ $backup['last_modified'] }}
                             </td>
                             <td class="text-right">
-                                <a class="btn btn-xs btn-default"
+                                <a class="btn btn-xs btn-primary"
                                    href="{{ url('backup/download/'.$backup['file_name']) }}"><i
                                         class="fa fa-cloud-download"></i>Descargar</a>
                                 <a class="btn btn-xs btn-danger" data-button-type="delete"

@@ -23,6 +23,15 @@
 
 
 <br>
+@if (count($errors)>0)
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
 <div id="contenido">
 
   <div class="row">
@@ -135,9 +144,12 @@
   <div class="col-sm-5">
     {!! Form::submit('Registrar',['class'=>'btn btn-outline btn-primary dim']) !!}
   </div>
+<<<<<<< HEAD
   <div class="col-sm-7">
    <!--  {!! Form::submit('Cancelar',['class'=>'btn btn-outline btn-primary dim']) !!} -->
   </div>
+=======
+>>>>>>> 7bf224d17e38707d9ed4291674cf2b21f717c42d
 </div>
 </div>
 

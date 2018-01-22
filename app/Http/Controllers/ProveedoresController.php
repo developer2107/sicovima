@@ -3,6 +3,7 @@
 namespace SICOVIMA\Http\Controllers;
 
 use Illuminate\Http\Request;
+use SICOVIMA\Http\Requests\proveedorRequest;
 use SICOVIMA\proveedor;
 use SICOVIMA\municipio;
 use SICOVIMA\departamento;
@@ -121,7 +122,7 @@ class ProveedoresController extends Controller
           }
         }
       Session::flash('message',' Proveedor registrado correctamente');
-      
+
       bitacora::bitacoras('Registro','Registro de proveedor: '.$proveedor->nombre_Prov);
 
       for ($i=0; $i < count($tel); $i++) {
@@ -181,7 +182,7 @@ class ProveedoresController extends Controller
         $proveedor->id_Municipio=$request->municipios;
         $proveedor->save();
         Session::flash('message','Proveedor modificado correctamente');
-      
+
         bitacora::bitacoras('Modificación','Modificación del proveedor: '.$proveedor->nombre_Prov);
 
         $telefonosViejos = $proveedor->telefonoProveedor;
@@ -253,7 +254,7 @@ class ProveedoresController extends Controller
       $bajaProv->estado_Prov= 0;
       $bajaProv-> save();
 Session::flash('message','Proveedor dado de baja correctamente');
-      
+
       bitacora::bitacoras('Dar de baja','Se dio de baja al proveedor: '.$bajaProv->nombre_Prov);
 
       return redirect('/MostrarListaProv/'.$id);
@@ -265,7 +266,7 @@ Session::flash('message','Proveedor dado de baja correctamente');
        $altaProv->estado_Prov= 1;
        $altaProv-> save();
 Session::flash('message','Proveedor dado de alta correctamente');
-      
+
        bitacora::bitacoras('Dar de alta','Se dio de alta al proveedor: '.$altaProv->nombre_Prov);
 
        return redirect('/DarBajaProv/'.$id);
@@ -297,7 +298,7 @@ Session::flash('message','Proveedor dado de alta correctamente');
     {
 
       $vistaurl="Proyecto.Desarrollo.Proveedores.proveedoresActR";
-      return $this->crearReporteTodosProveedor($vistaurl,$tipo);     
+      return $this->crearReporteTodosProveedor($vistaurl,$tipo);
     }
 
     public function crearReporteTodosProveedorI($vistaurl,$tipo)
@@ -320,12 +321,12 @@ Session::flash('message','Proveedor dado de alta correctamente');
     {
 
       $vistaurl="Proyecto.Desarrollo.Proveedores.proveedoresInaR";
-      return $this->crearReporteTodosProveedorI($vistaurl,$tipo);     
+      return $this->crearReporteTodosProveedorI($vistaurl,$tipo);
     }
 
     // public function ReporteProvIna()
     // {
-        
+
     //     return view("Proyecto.Desarrollo.Proveedores.proveedoresInaR");
     // }
 

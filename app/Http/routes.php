@@ -154,7 +154,8 @@ Route::group(['middleware' => 'admin'], function(){
   Route::Resource('/BuscarUsuario','SeguridadController@Buscar');
 
   Route::get('backup', 'BackupController@index');
-  Route::get('backup/create', 'BackupController@create');
+  Route::get('backup/createAPP', 'BackupController@create');
+  Route::get('backup/createBase', 'BackupController@create1');
   Route::get('backup/download/{file_name}', 'BackupController@download');
   Route::get('backup/delete/{file_name}', 'BackupController@delete');
 
@@ -163,4 +164,3 @@ Route::group(['middleware' => 'admin'], function(){
 
 
 });
-

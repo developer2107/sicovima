@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -62,6 +62,8 @@ return [
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
             'strict'    => false,
+            'dump_command_path'=> 'C:\wamp64\bin\mysql\mysql5.7.19\bin',
+            'dump_using_single_transaction'=>true,
         ],
 
         'pgsql' => [

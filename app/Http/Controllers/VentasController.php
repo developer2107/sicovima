@@ -5,6 +5,7 @@ namespace SICOVIMA\Http\Controllers;
 use Illuminate\Http\Request;
 
 use SICOVIMA\Http\Requests;
+use SICOVIMA\Http\Requests\ventaRequest;
 use SICOVIMA\Http\Controllers\Controller;
 use SICOVIMA\cliente;
 use SICOVIMA\documento;
@@ -37,7 +38,7 @@ class VentasController extends Controller
         $venta = venta::find($id);
         $clientes = cliente::all();
         $cliente = cliente::all();
-        $productos = producto::where('estado_Prod',1)->get();        
+        $productos = producto::where('estado_Prod',1)->get();
         $arrayC = [];
         foreach ($clientes as $cliente) {
             $arrayC[$cliente->id]=$cliente->nombre_Cli;
@@ -50,9 +51,9 @@ class VentasController extends Controller
     public function Ver($id)
     {
         $venta = venta::find($id);
-        $productos = producto::where('estado_Prod',1)->get();        
+        $productos = producto::where('estado_Prod',1)->get();
         $cliente = cliente::find($venta->id_Cliente);
-        
+
 
         $inventarioProductoTerminados = inventarioProductoTerminado::all();
         return view('Proyecto.Desarrollo.Ventas.VerVenta',compact('inventarioProductoTerminados','venta','productos','cliente'));
@@ -63,17 +64,17 @@ class VentasController extends Controller
         $ventas = venta::with('cliente')->orderBy('fecha_Ven')->get();
         return view("Proyecto.Desarrollo.Ventas.MostrarListadeVentas",compact('ventas'))->with('ventas', $ventas);
     }
-    
+
     public function Index()
     {
         // producto::create([
         //     'tipo_Prod'=>"Camisa",
         //     'estilo_Prod'=>"Manga larga",
-        //     'descripcion_Prod'=>"Con dos bolsas en el pecho", 
-        //     'precio_Prod'=>9.35, 
-        //     'color_Prod'=>"Negra", 
-        //     'talla_Prod'=>"M", 
-        //     'imagen_Prod'=>"", 
+        //     'descripcion_Prod'=>"Con dos bolsas en el pecho",
+        //     'precio_Prod'=>9.35,
+        //     'color_Prod'=>"Negra",
+        //     'talla_Prod'=>"M",
+        //     'imagen_Prod'=>"",
         //     'estado_Prod'=>0,
         //     'estado2_Prod'=>0,
         //     'estado3_Prod'=>0,
@@ -81,17 +82,17 @@ class VentasController extends Controller
         // producto::create([
         //     'tipo_Prod'=>"Falda",
         //     'estilo_Prod'=>"Corta",
-        //     'descripcion_Prod'=>"Sin bolsas en la parte de atras", 
-        //     'precio_Prod'=>6.90, 
-        //     'color_Prod'=>"Rosado", 
-        //     'talla_Prod'=>"S", 
-        //     'imagen_Prod'=>"", 
+        //     'descripcion_Prod'=>"Sin bolsas en la parte de atras",
+        //     'precio_Prod'=>6.90,
+        //     'color_Prod'=>"Rosado",
+        //     'talla_Prod'=>"S",
+        //     'imagen_Prod'=>"",
         //     'estado_Prod'=>1,
         //     'estado2_Prod'=>0,
         //     'estado3_Prod'=>0,
         // ]);
-        
-        // // 
+
+        // //
         // inventarioProductoTerminado::create([
         //         'tipoMovimiento_IPT'=>1,
         //         'existencias_IPT'=>0,
@@ -134,7 +135,7 @@ class VentasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ventaRequest $request)
     {
 
         $cantidadV = $request->cantidadV;
@@ -172,7 +173,7 @@ class VentasController extends Controller
         ]);
 
         Session::flash('message','Venta registrada correctamente');
-       
+
         bitacora::bitacoras('Registro','Registro de venta a cliente: '.$aux->nombre_Cli);
 
         for ($i=0; $i < count($idV); $i++) {
@@ -205,7 +206,7 @@ class VentasController extends Controller
         }else if ($cl->tipo_Cli==1) {
             return redirect("FacturaCF/1/{$venta->id}");//factura credito fiscal
         }
-        
+
     }
 
     public function report(Request $request)
@@ -255,7 +256,7 @@ class VentasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $cantidadV=$request->cantidadV;
         $idV=$request->idV;
         $costoProdV=$request->costoProdV;
@@ -270,17 +271,17 @@ class VentasController extends Controller
         $doc->save();
         $datoFecha = explode("/",(String)$request->fecha_Ven);
         $fechaOrdenada = $datoFecha[2]."-".$datoFecha[1]."-".$datoFecha[0];
-  
+
 
         $aux2 = cliente::find($venta2->id_Cliente);
         Session::flash('message','Venta modificada correctamente');
-       
+
         bitacora::bitacoras('Modificacion','Modificacion de venta a cliente: '.$aux2->nombre_Cli);
 
         estadoDocumento::create([
             'motivo_EstadoDoc'=>$request->motivoEstado,
             'id_Documento'=>$docVenta->id_Documento,
-        ]);        
+        ]);
 
         foreach ($detalles2 as $detalle2) {
             $inventario = inventarioProductoTerminado::where('id_Producto',$detalle2->id_Producto)->get()->last();
@@ -317,7 +318,7 @@ class VentasController extends Controller
 
         $aux = cliente::find($request->clientes);
         Session::flash('message','Venta modificada correctamente');
-       
+
         bitacora::bitacoras('Registro','Nuevo registro de venta por modificacion, a cliente: '.$aux->nombre_Cli);
 
         for ($i=0; $i < count($idV); $i++) {
@@ -340,7 +341,7 @@ class VentasController extends Controller
             'id_Producto'=>$idV[$i],
             'gananciaProd_DVen'=>$gananciaV[$i],
             ]);# code...
-        
+
         }
 
         $documentoVenta = documentoVenta::create([
@@ -353,7 +354,7 @@ class VentasController extends Controller
         }else if ($cl->tipo_Cli==1) {
             return redirect("FacturaCF/1/{$venta}");//factura credito fiscal
         }
-        
+
 
 
         // $cantidadV=$request->cantidadV;
@@ -433,7 +434,7 @@ class VentasController extends Controller
     }
 
     public static function AddMotivoVenta($idMot,$motivo){
-        
+
         $docVenta = documentoVenta::where('id_Venta',$idMot)->get()->first();
         $doc = documento::find($docVenta->id_Documento);
         $doc->estado_Doc = 1;//estado anulada
@@ -441,7 +442,7 @@ class VentasController extends Controller
         $venta3 = venta::find($idMot);
         $venta3->estado_Ven = 1;//Anulada-Eliminada
         $venta3->save();
-        
+
         $aux = cliente::find($venta3->id_Cliente);
         Session::flash('message','Anulacion realizada correctamente');
 
@@ -450,7 +451,7 @@ class VentasController extends Controller
         estadoDocumento::create([
             'motivo_EstadoDoc'=>$motivo,
             'id_Documento'=>$docVenta->id_Documento,
-        ]);        
+        ]);
         $ventas = venta::with('cliente')->get();
         return 0;
     }

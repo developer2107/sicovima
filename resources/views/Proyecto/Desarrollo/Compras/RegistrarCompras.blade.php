@@ -19,7 +19,15 @@ use SICOVIMA\proveedor; ?>
     <div class="col-sm-8">
     </div>
 </div>
-
+@if (count($errors)>0)
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
 <br>
 <div class="row">
     <div class="col-lg-12">
@@ -89,11 +97,14 @@ use SICOVIMA\proveedor; ?>
 
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="col-xs-2">
                     <!-- <div class="input-group bootstrap-touchspin">
                         <a href="" class="btn btn-outline btn-primary dim" type="button">Cancelar</a>
                     </div> -->
                 </div>
+=======
+>>>>>>> 7bf224d17e38707d9ed4291674cf2b21f717c42d
             </div>
         </div>
     </div>
