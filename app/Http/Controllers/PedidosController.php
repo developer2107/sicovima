@@ -302,7 +302,7 @@ class PedidosController extends Controller
         $inv->id_Producto = $request->id;
         $inv->save();
       }else {
-        $llenar= \SICOVIMA\inventarioProductoTerminado::all()->where('tipoMovimiento_IPT', 1)->get()->last();
+        $llenar= \SICOVIMA\inventarioProductoTerminado::all()->where('tipoMovimiento_IPT', 1)->get();
         $inv = new \SICOVIMA\inventarioProductoTerminado;
         $inv->tipoMovimiento_IPT= 1;
         $inv->existencias_IPT=23;
