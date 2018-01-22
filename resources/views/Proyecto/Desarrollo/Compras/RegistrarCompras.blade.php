@@ -97,14 +97,7 @@ use SICOVIMA\proveedor; ?>
 
                     </div>
                 </div>
-<<<<<<< HEAD
-                <div class="col-xs-2">
-                    <!-- <div class="input-group bootstrap-touchspin">
-                        <a href="" class="btn btn-outline btn-primary dim" type="button">Cancelar</a>
-                    </div> -->
-                </div>
-=======
->>>>>>> 7bf224d17e38707d9ed4291674cf2b21f717c42d
+
             </div>
         </div>
     </div>

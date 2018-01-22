@@ -189,13 +189,7 @@
                 <div class="col-lg-3">
                     {!! Form::submit('Registrar',['class'=>'btn btn-outline btn-primary']) !!}
                 </div>
-<<<<<<< HEAD
-                <div class="col-lg-3">
-                    <!-- <button type="button" class="btn btn-outline btn-primary">Cancelar</button> -->
-                </div>
-=======
 
->>>>>>> 7bf224d17e38707d9ed4291674cf2b21f717c42d
             </div>
         </div>
 
