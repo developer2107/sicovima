@@ -18,5 +18,5 @@ class compra extends Model
     public function detalleCompra(){
 	return $this->hasMany('\SICOVIMA\detalleCompra','id_Compra');
 }
-//hola 
+//hola 9
 }
